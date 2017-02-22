@@ -1,0 +1,7 @@
+echo "~/.aliases"
+
+alias cola="git-cola &"
+alias dag="git-dag &"
+
+weather() { curl wttr.in/$1; }
+

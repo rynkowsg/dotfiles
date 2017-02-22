@@ -1,0 +1,18 @@
+[user]
+	name = Greg Rynkowski
+	email = dev@rynkowski.info
+[alias]
+	br = branch
+	ci = commit
+	co = checkout
+	cp = cherry-pick
+	lo = log --oneline --abbrev-commit
+	mrg = merge
+	pl = pull
+	rb = rebase
+	st = status
+[core]
+	editor = vim
+[push]
+	default = current
+
