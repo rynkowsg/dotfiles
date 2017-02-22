@@ -7,4 +7,3 @@ ln -s `pwd`/home/.gitconfig ~/.gitconfig
 ln -s `pwd`/home/.oh-my-zsh ~/.oh-my-zsh
 ln -s `pwd`/home/.vimrc ~/.vimrc
 ln -s `pwd`/home/.zshrc ~/.zshrc
-
