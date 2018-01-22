@@ -95,8 +95,6 @@ source $ZSH/oh-my-zsh.sh
 ###################  my settings  #############################################
 ###############################################################################
 
-export PATH="/usr/local/bin:$PATH"
-
 # to activate zsh-completions
 fpath=(/usr/local/share/zsh-completions $fpath)
 
@@ -105,3 +103,7 @@ if [ -f ~/.aliases ]; then
    source ~/.aliases
 fi
 
+# load setttings common for Bash and Zsh
+if [ -f ~/.my-config/home/common_rc ]; then
+   source ~/.my-config/home/common_rc
+fi
