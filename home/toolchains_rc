@@ -1,0 +1,9 @@
+echo "${CONFIG_DIR}/home/toolchains_rc"
+
+# http://odroid.com/dokuwiki/doku.php?id=en:c2_building_u-boot#toolchain
+export TOOLCHAINS_DIR="/usr/local/opt/toolchains"
+export ARCH=arm
+export CROSS_COMPILE=aarch64-none-elf-
+
+export PATH="${TOOLCHAINS_DIR}/gcc-linaro-aarch64-none-elf-4.9-2014.09_linux/bin:${PATH}"
+export PATH="${TOOLCHAINS_DIR}/gcc-linaro-aarch64-linux-gnu-4.9-2014.09_linux/bin:${PATH}"
