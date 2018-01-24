@@ -1,23 +1,16 @@
-echo "~/.my-config/home/common_rc"
+echo "${CONFIG_DIR}/home/common_rc"
 
 
 
 ####
-# To favour bins from /usr/local
-export PATH="/usr/local/bin:$PATH"
+# To favour bins from /usr/local and ~/bin
+export PATH="/usr/local/bin:${PATH}"
+export PATH="${HOME}/bin:${PATH}"
 
 
-####
-# ant, maven, gradle
-
-# http://stackoverflow.com/questions/3222804/how-can-i-install-apache-ant-on-mac-os-x#comment54866948_20984975
-# leave ANT_HOME empty, because it causes problems on OS X
-export ANT_ROOT="/usr/local/opt/ant"
-#export ANT_HOME="${ANT_ROOT}/bin"
-
-export MAVEN_HOME=/usr/local/opt/maven
-export GRADLE_HOME=/usr/local/opt/gradle
-
+#if [ "${CONFIG_PLATFORM}" -eq "macos" ] && [ -f ${CONFIG_DIR}/home/macos_rc ]; then
+#   source ${CONFIG_DIR}/home/macos_rc
+#fi
 
 
 ####
@@ -28,74 +21,19 @@ export ANDROID_SDK_HOME="${ANDROID_SDK_ROOT}"
 export ANDROID_HOME="${ANDROID_SDK_ROOT}"
 export ANDROID_NDK_ROOT=/usr/local/opt/android-ndk
 export ANDROID_NDK_HOME="${ANDROID_NDK_ROOT}"
+export PATH=${ANDROID_SDK_ROOT}:${ANDROID_SDK_ROOT}/tools:${ANDROID_SDK_ROOT}/tools/bin:${ANDROID_SDK_ROOT}/platform-tools:${PATH}
+export PATH=${ANDROID_NDK_ROOT}:${PATH}
 
 
+# JAVA
+export JAVA_HOME="/usr/lib/jvm/java-8-openjdk-amd64"
+export PATH="${JAVA_HOME}/bin:${PATH}"
 
-####
-# Cocos2d-x settings
-
-# Add environment variable COCOS_X_ROOT for cocos2d-x
-export COCOS_X_ROOT=/Users/greg/src/greg
-#export PATH="${COCOS_X_ROOT}:${PATH}"
-
-# Add environment variable COCOS_CONSOLE_ROOT for cocos2d-x
-export COCOS_CONSOLE_ROOT="${COCOS_X_ROOT}/cocos2d-x/tools/cocos2d-console/bin"
-export PATH=$COCOS_CONSOLE_ROOT:$PATH
-
-# Add environment variable COCOS_TEMPLATES_ROOT for cocos2d-x
-export COCOS_TEMPLATES_ROOT="${COCOS_X_ROOT}/cocos2d-x/templates"
-export PATH=$COCOS_TEMPLATES_ROOT:$PATH
-
-# Add environment variable NDK_ROOT for cocos2d-x
-export NDK_ROOT=${ANDROID_NDK_ROOT}
-export PATH=$NDK_ROOT:$PATH
-
-# Add environment variable ANDROID_SDK_ROOT for cocos2d-x
-export PATH=$ANDROID_SDK_ROOT:$PATH
-export PATH=$ANDROID_SDK_ROOT/tools:$ANDROID_SDK_ROOT/platform-tools:$PATH
-
-# Add environment variable ANT_ROOT for cocos2d-x
-export PATH="${ANT_ROOT}/bin:${PATH}"
-
-
-
-####
-# nvm
-
-###export NVM_DIR="$HOME/.nvm"
-###[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
-#[ -s "$NVM_DIR/nvm.sh" ] && \. "/usr/local/opt/nvm/nvm.sh"
-
-#[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
-
-
-####
-# For using brew
-export HOMEBREW_GITHUB_API_TOKEN=cb324594b0f26a69fcae23dcc0acca8847401b38
-
-
-####
-# fuse2ext
-export PATH="/usr/local/opt/e2fsprogs/bin:$PATH"
-export PATH="/usr/local/opt/e2fsprogs/sbin:$PATH"
-
-
-ssh-add ~/.ssh/id_rsa
-ssh-add ~/.ssh/id_rsa_hopster
-export PATH="/usr/local/opt/gettext/bin:$PATH"
 
 # NVM
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
-[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+#[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
-# SDK MAN
-export SDKMAN_DIR="/Users/greg/.sdkman"
-[[ -s "/Users/greg/.sdkman/bin/sdkman-init.sh" ]] && source "/Users/greg/.sdkman/bin/sdkman-init.sh"
 
-export JAVA_HOME=/Library/Java/JavaVirtualMachines/jdk-9.jdk/Contents/Home
-export JAVA_HOME=/Library/Java/JavaVirtualMachines/jdk1.8.0_144.jdk/Contents/Home/
-
-#export PATH="$HOME/.jenv/bin:$PATH"
-#eval "$(jenv init -)"
-
+ssh-add ~/.ssh/id_rsa
