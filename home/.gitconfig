@@ -28,7 +28,7 @@
 [color]
 	ui = true
 [gui]
-	editor = mate
+	editor = kate
 [diff]
 	tool = meld
 	guitool = meld
