@@ -3,5 +3,10 @@ echo "~/.aliases"
 alias cola="git-cola &"
 alias dag="git-dag &"
 
+alias pycharm="pycharm-community"
+alias pycharm-community="/opt/pycharm-community/bin/pycharm.sh &"
+alias idea="idea-IC"
+alias idea-IC="/opt/idea-IC/bin/idea.sh &"
+
 weather() { curl wttr.in/$1; }
 
