@@ -5,3 +5,6 @@ alias dag="git-dag &"
 
 weather() { curl wttr.in/$1; }
 
+alias src="cd /Volumes/Recoverable/Sources"
+
+alias remaining_battery="pmset -g batt"
