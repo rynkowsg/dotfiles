@@ -90,11 +90,14 @@ export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
 # SDK MAN
-export SDKMAN_DIR="/Users/greg/.sdkman"
-[[ -s "/Users/greg/.sdkman/bin/sdkman-init.sh" ]] && source "/Users/greg/.sdkman/bin/sdkman-init.sh"
+#export SDKMAN_DIR="${HOME}/.sdkman"
+#[[ -s "${SDKMAN_DIR}/bin/sdkman-init.sh" ]] && source "${SDKMAN_DIR}/bin/sdkman-init.sh"
 
-export JAVA_HOME=/Library/Java/JavaVirtualMachines/jdk-9.jdk/Contents/Home
-export JAVA_HOME=/Library/Java/JavaVirtualMachines/jdk1.8.0_144.jdk/Contents/Home/
+
+#export JAVA_HOME=/Library/Java/JavaVirtualMachines/jdk-10.0.1.jdk/Contents/Home/
+#for Android SDK tools:
+#export JAVA_HOME="/Applications/Android\ Studio.app/Contents/jre/jdk/Contents/Home"
+export JAVA_HOME=/Library/Java/JavaVirtualMachines/jdk1.8.0_172.jdk/Contents/Home/
 
 #export PATH="$HOME/.jenv/bin:$PATH"
 #eval "$(jenv init -)"
