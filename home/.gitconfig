@@ -1,48 +1,48 @@
 [user]
-	name = Greg Rynkowski
-	email = dev@rynkowski.info
+  name = Greg Rynkowski
+  email = dev@rynkowski.info
 [alias]
-	br = branch
-	ci = commit
-	co = checkout
-	cor = checkout --recurse-submodules
-	cp = cherry-pick
-	fetchr = fetch --recurse-submodules
-	lo = log --oneline --abbrev-commit
-	mrg = merge
-	pl = pull
-	plr = pull --rebase
-	rb = rebase
-	st = status
-	fix-lfs = "!f() { cp /dev/null .gitattributes && git status && git checkout -- .gitattributes && git status; }; f"
-	pushf = push --force-with-lease
-	lg = log --oneline --decorate --graph
-	# https://coderwall.com/p/euwpig/a-better-git-log
-	lgg = log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit
+  br = branch
+  ci = commit
+  co = checkout
+  cor = checkout --recurse-submodules
+  cp = cherry-pick
+  fetchr = fetch --recurse-submodules
+  lo = log --oneline --abbrev-commit
+  mrg = merge
+  pl = pull
+  plr = pull --rebase
+  rb = rebase
+  st = status
+  fix-lfs = "!f() { cp /dev/null .gitattributes && git status && git checkout -- .gitattributes && git status; }; f"
+  pushf = push --force-with-lease
+  lg = log --oneline --decorate --graph
+  # https://coderwall.com/p/euwpig/a-better-git-log
+  lgg = log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit
 [core]
-	editor = vim
-	pager = less -XFR
-	fileMode = false
+  editor = vim
+  pager = less -XFR
+  fileMode = false
 [push]
-	default = current
+  default = current
 [color]
-	ui = true
+  ui = true
 [gui]
-	editor = mate
+  editor = mate
 [diff]
-	tool = meld
-	guitool = meld
+  tool = meld
+  guitool = meld
 [lfs]
-	batch = true
-	concurrenttransfers = 12
+  batch = true
+  concurrenttransfers = 12
 [filter "lfs"]
-	clean = git-lfs clean -- %f
-	smudge = git-lfs smudge -- %f
-	process = git-lfs filter-process
-	required = true
+  clean = git-lfs clean -- %f
+  smudge = git-lfs smudge -- %f
+  process = git-lfs filter-process
+  required = true
 [cola]
-	spellcheck = false
+  spellcheck = false
 [merge]
-	tool = meld
+  tool = meld
 [mergetool "meld"]
-	path = /usr/local/bin/meld
+  path = /usr/local/bin/meld
