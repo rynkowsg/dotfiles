@@ -105,8 +105,8 @@ if [ -f ~/.aliases ]; then
 fi
 
 # load setttings common for Bash and Zsh
-if [ -f ~/.my-config/home/common_rc ]; then
-   source ~/.my-config/home/common_rc
+if [ -f ~/.dotfiles/home/common_rc ]; then
+   source ~/.dotfiles/home/common_rc
 fi
 
 
