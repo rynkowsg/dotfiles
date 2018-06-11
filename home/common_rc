@@ -92,6 +92,21 @@ export JAVA_HOME=/Library/Java/JavaVirtualMachines/jdk1.8.0_172.jdk/Contents/Hom
 #eval "$(jenv init -)"
 
 
+# Enable iTerm2 Shell Integration
+if [ -n "$ZSH_VERSION" ]; then
+  if [ -f ../mac/iterm2_shell_integration.zsh ]; then
+     source ../mac/iterm2_shell_integration.zsh
+  fi
+elif [ -n "$BASH_VERSION" ]; then
+  if [ -f ../mac/iterm2_shell_integration.bash ]; then
+     source ../mac/iterm2_shell_integration.bash
+  fi
+else
+  echo "shell completition for your shell $SHELL can't be loaded"
+fi
+# https://stackoverflow.com/questions/9910966/how-to-tell-if-its-using-zsh-or-bash
+
+
 
 #################################################
 #########  ENVIRONMENT VARS SETUP     ###########
