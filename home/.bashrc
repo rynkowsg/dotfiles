@@ -1,4 +1,4 @@
-echo "~/.bashrc"
+echo "dotfiles/home/.bashrc"
 
 if [ -f ~/.my-config/home/common_rc ]; then
    source ~/.my-config/home/common_rc

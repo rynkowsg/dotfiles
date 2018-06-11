@@ -1,4 +1,4 @@
-echo "~/.aliases"
+echo "dotfiles/home/.aliases"
 
 alias cola="git-cola &"
 alias dag="git-dag &"
