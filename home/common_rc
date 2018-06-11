@@ -1,22 +1,20 @@
 echo "dotfiles/home/common_rc"
 
+#################################################
+#########  ENVIRONMENT VARS SETUP     ###########
 
-
-####
-# To favour bins from /usr/local
-export PATH="/usr/local/bin:$PATH"
-
+export PATH="/usr/local/bin:$PATH"  # To favour bins from /usr/local
 
 ####
 # ant, maven, gradle
-
 # http://stackoverflow.com/questions/3222804/how-can-i-install-apache-ant-on-mac-os-x#comment54866948_20984975
 # leave ANT_HOME empty, because it causes problems on OS X
 export ANT_ROOT="/usr/local/opt/ant"
 #export ANT_HOME="${ANT_ROOT}/bin"
-
 export MAVEN_HOME=/usr/local/opt/maven
 export GRADLE_HOME=/usr/local/opt/gradle
+# Add environment variable ANT_ROOT to PATH (for cocos2d-x)
+export PATH="${ANT_ROOT}/bin:${PATH}"
 
 
 
@@ -26,8 +24,8 @@ export GRADLE_HOME=/usr/local/opt/gradle
 export ANDROID_SDK_ROOT=/usr/local/opt/android-sdk
 export ANDROID_SDK_HOME="${ANDROID_SDK_ROOT}"
 export ANDROID_HOME="${ANDROID_SDK_ROOT}"
-export ANDROID_NDK_ROOT=/usr/local/opt/android-ndk
-export ANDROID_NDK_HOME="${ANDROID_NDK_ROOT}"
+#export ANDROID_NDK_ROOT=/usr/local/opt/android-ndk
+#export ANDROID_NDK_HOME="${ANDROID_NDK_ROOT}"
 
 
 
@@ -51,16 +49,10 @@ export NDK_ROOT=${ANDROID_NDK_ROOT}
 export PATH=$NDK_ROOT:$PATH
 
 # Add environment variable ANDROID_SDK_ROOT for cocos2d-x
-export PATH=$ANDROID_SDK_ROOT:$PATH
-export PATH=$ANDROID_SDK_ROOT/tools:$ANDROID_SDK_ROOT/platform-tools:$PATH
-
-# Add environment variable ANT_ROOT for cocos2d-x
-export PATH="${ANT_ROOT}/bin:${PATH}"
-
-
-####
-# For using brew
-export HOMEBREW_GITHUB_API_TOKEN=cb324594b0f26a69fcae23dcc0acca8847401b38
+export PATH="${ANDROID_SDK_ROOT}:${PATH}"
+export PATH="${ANDROID_SDK_ROOT}/tools:${ANDROID_SDK_ROOT}/tools/bin:${PATH}"
+export PATH="${ANDROID_SDK_ROOT}/platform-tools:${PATH}"
+export PATH="${ANDROID_SDK_ROOT}/build-tools/latest:${PATH}"
 
 
 ####
@@ -69,9 +61,9 @@ export PATH="/usr/local/opt/e2fsprogs/bin:$PATH"
 export PATH="/usr/local/opt/e2fsprogs/sbin:$PATH"
 
 
-ssh-add ~/.ssh/id_rsa
-ssh-add ~/.ssh/id_rsa_hopster
+# gettext
 export PATH="/usr/local/opt/gettext/bin:$PATH"
+
 
 # NVM
 export NVM_DIR=$(cd -P "$HOME/.nvm" && pwd)
@@ -95,6 +87,18 @@ fi
 #export JAVA_HOME="/Applications/Android\ Studio.app/Contents/jre/jdk/Contents/Home"
 export JAVA_HOME=/Library/Java/JavaVirtualMachines/jdk1.8.0_172.jdk/Contents/Home/
 
+# jenv
 #export PATH="$HOME/.jenv/bin:$PATH"
 #eval "$(jenv init -)"
 
+
+
+#################################################
+#########  ENVIRONMENT VARS SETUP     ###########
+
+# For Homebrew to call GitHub without limit of requests
+export HOMEBREW_GITHUB_API_TOKEN=cb324594b0f26a69fcae23dcc0acca8847401b38
+
+## Loads SSH identities
+ssh-add ~/.ssh/id_rsa
+ssh-add ~/.ssh/id_rsa_hopster
