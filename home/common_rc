@@ -101,4 +101,4 @@ export HOMEBREW_GITHUB_API_TOKEN=cb324594b0f26a69fcae23dcc0acca8847401b38
 
 ## Loads SSH identities
 ssh-add ~/.ssh/id_rsa
-ssh-add ~/.ssh/id_rsa_hopster
+#ssh-add ~/.ssh/id_rsa_hopster
