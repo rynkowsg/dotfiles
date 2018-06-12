@@ -7,3 +7,6 @@
 [submodule "home/.pyenv"]
 	path = home/.pyenv
 	url = git@github.com:pyenv/pyenv.git
+[submodule "home/.rbenv"]
+	path = home/.rbenv
+	url = git@github.com:rbenv/rbenv.git

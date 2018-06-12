@@ -101,6 +101,14 @@ if command -v pyenv 1>/dev/null 2>&1; then
 fi
 
 
+# rbenv
+# https://github.com/rbenv/rbenv
+export PATH="$HOME/.rbenv/bin:$PATH"
+if command -v rbenv 1>/dev/null 2>&1; then
+  eval "$(rbenv init -)"
+fi
+
+
 # Enable iTerm2 Shell Integration
 if [ -n "$ZSH_VERSION" ]; then
   if [ -f ../mac/iterm2_shell_integration.zsh ]; then

@@ -34,3 +34,6 @@ ln -s "${HOME_DOTFILES}/home/.nvm" ~/.nvm
 
 [ -f ~/.pyenv ] && mv ~/.pyenv ~/.pyenv_backup
 ln -s "${HOME_DOTFILES}/home/.pyenv" ~/.pyenv
+
+[ -f ~/.rbenv ] && mv ~/.rbenv ~/.rbenv_backup
+ln -s "${HOME_DOTFILES}/home/.rbenv" ~/.rbenv
