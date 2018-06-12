@@ -37,3 +37,5 @@ ln -s "${HOME_DOTFILES}/home/.pyenv" ~/.pyenv
 
 [ -f ~/.rbenv ] && mv ~/.rbenv ~/.rbenv_backup
 ln -s "${HOME_DOTFILES}/home/.rbenv" ~/.rbenv
+
+ln -s "${HOME_DOTFILES}/refs/pyenv-virtualenv" "home/.pyenv/plugins/pyenv-virtualenv"
