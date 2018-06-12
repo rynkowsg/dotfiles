@@ -31,3 +31,6 @@ ln -s "${HOME_DOTFILES}/refs/oh-my-zsh" ~/.oh-my-zsh
 
 [ -f ~/.nvm ] && mv ~/.nvm ~/.nvm_backup
 ln -s "${HOME_DOTFILES}/home/.nvm" ~/.nvm
+
+[ -f ~/.pyenv ] && mv ~/.pyenv ~/.pyenv_backup
+ln -s "${HOME_DOTFILES}/home/.pyenv" ~/.pyenv

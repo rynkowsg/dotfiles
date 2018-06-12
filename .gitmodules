@@ -4,3 +4,6 @@
 [submodule "home/.oh-my-zsh"]
 	path = home/.oh-my-zsh
 	url = git@github.com:robbyrussell/oh-my-zsh.git
+[submodule "home/.pyenv"]
+	path = home/.pyenv
+	url = git@github.com:pyenv/pyenv.git
