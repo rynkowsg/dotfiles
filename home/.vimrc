@@ -6,8 +6,11 @@
 
 call plug#begin('~/.vim/plugged')
 " On-demand loading
+Plug 'wellle/tmux-complete.vim'
 Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
 Plug 'tpope/vim-fireplace', { 'for': 'clojure' }
+Plug 'Valloric/YouCompleteMe', { 'do': './install.py' }
+"Plug '~/.fzf'
 call plug#end()
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
