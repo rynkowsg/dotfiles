@@ -134,3 +134,14 @@ export HOMEBREW_GITHUB_API_TOKEN=cb324594b0f26a69fcae23dcc0acca8847401b38
 ## Loads SSH identities
 ssh-add ~/.ssh/id_rsa
 #ssh-add ~/.ssh/id_rsa_hopster
+
+
+# Enable fzf
+if [ -n "$ZSH_VERSION" ]; then
+  [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+elif [ -n "$BASH_VERSION" ]; then
+  [ -f ~/.fzf.bash ] && source ~/.fzf.bash
+else
+  echo "fzf support for $SHELL is not available"
+fi
+# https://stackoverflow.com/questions/9910966/how-to-tell-if-its-using-zsh-or-bash

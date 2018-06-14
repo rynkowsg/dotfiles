@@ -39,3 +39,7 @@ ln -s "${HOME_DOTFILES}/home/.pyenv" ~/.pyenv
 ln -s "${HOME_DOTFILES}/home/.rbenv" ~/.rbenv
 
 ln -s "${HOME_DOTFILES}/refs/pyenv-virtualenv" "home/.pyenv/plugins/pyenv-virtualenv"
+
+ln -s "/Users/greg/.dotfiles/home/.fzf" ~/.fzf
+ln -s "/Users/greg/.dotfiles/home/.fzf.bash" ~/.fzf.bash
+ln -s "/Users/greg/.dotfiles/home/.fzf.zsh" ~/.fzf.zsh
