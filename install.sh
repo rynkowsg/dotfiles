@@ -22,6 +22,8 @@ ln -s "${HOME_DOTFILES}/home/.tmux.conf" ~/.tmux.conf
 
 #[ -f ~/.vimrc ] && mv ~/.vimrc ~/.vimrc_backup
 ln -s "${HOME_DOTFILES}/home/.vimrc" ~/.vimrc
+#[ -f ~/.vim ] && mv ~/.vim ~/.vim_backup
+ln -s "${HOME_DOTFILES}/home/.vim" ~/.vim
 
 #[ -f ~/.zshrc ] && mv ~/.zshrc ~/.zshrc_backup
 ln -s "${HOME_DOTFILES}/home/.zshrc" ~/.zshrc

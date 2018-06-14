@@ -16,3 +16,6 @@
 [submodule "refs/fzf"]
 	path = refs/fzf
 	url = git@github.com:junegunn/fzf.git
+[submodule "refs/vim-plug"]
+	path = refs/vim-plug
+	url = git@github.com:junegunn/vim-plug.git
