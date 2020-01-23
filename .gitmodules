@@ -19,3 +19,6 @@
 [submodule "refs/vim-plug"]
 	path = refs/vim-plug
 	url = git@github.com:junegunn/vim-plug.git
+[submodule "refs/virtualenvwrapper"]
+	path = refs/virtualenvwrapper
+	url = git@bitbucket.org:virtualenvwrapper/virtualenvwrapper.git

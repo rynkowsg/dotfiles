@@ -109,6 +109,17 @@ if command -v rbenv 1>/dev/null 2>&1; then
 fi
 
 
+### virtualenv
+
+# Setup virtualenv home
+#export WORKON_HOME=$HOME/.virtualenvs
+#source ~/.dotfiles/refs/virtualenvwrapper/virtualenvwrapper.sh
+#source /usr/local/bin/pyenv-virtualenvwrapper
+
+# Tell pyenv-virtualenvwrapper to use pyenv when creating new Python environments
+#export PYENV_VIRTUALENVWRAPPER_PREFER_PYVENV="true"
+
+
 # Enable iTerm2 Shell Integration
 if [ -n "$ZSH_VERSION" ]; then
   if [ -f ../mac/iterm2_shell_integration.zsh ]; then
