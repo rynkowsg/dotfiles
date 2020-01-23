@@ -66,17 +66,24 @@ export PATH="/usr/local/opt/e2fsprogs/sbin:$PATH"
 export PATH="/usr/local/opt/gettext/bin:$PATH"
 
 
-# NVM
-export NVM_DIR=$(cd -P "$HOME/.nvm" && pwd)
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
-# https://stackoverflow.com/questions/9910966/how-to-tell-if-its-using-zsh-or-bash
-if [ -n "$ZSH_VERSION" ]; then
-#  echo "zsh_completion for NVM doesn't exist"
-elif [ -n "$BASH_VERSION" ]; then
-  [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
-else
-  echo "shell completition for your shell $SHELL can't be loaded"
-fi
+
+function init_nvm() {
+  export NVM_DIR=$(cd -P "$HOME/.nvm" && pwd)
+  [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+  # https://stackoverflow.com/questions/9910966/how-to-tell-if-its-using-zsh-or-bash
+  if [ -n "$ZSH_VERSION" ]; then
+    [ -s "$NVM_DIR/zsh_completion" ] && \. "$NVM_DIR/zsh_completion"
+  elif [ -n "$BASH_VERSION" ]; then
+    [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"
+  else
+    echo "nvm shell completition for $SHELL can't be loaded"
+  fi
+  # https://github.com/creationix/nvm/issues/855#issuecomment-314309706
+  local NVM_CURRENT=$(nvm current)
+  nvm use --delete-prefix $NVM_CURRENT --silent
+  npm config set prefix $NVM_DIR/versions/node/$NVM_CURRENT
+}
+init_nvm
 
 # SDK MAN
 #export SDKMAN_DIR="${HOME}/.sdkman"
