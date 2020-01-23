@@ -4,6 +4,7 @@ echo "dotfiles/home/common_rc"
 #########  ENVIRONMENT VARS SETUP     ###########
 
 export PATH="/usr/local/bin:$PATH"  # To favour bins from /usr/local
+export EDITOR="/usr/local/bin/mate -w"
 
 ####
 # ant, maven, gradle
