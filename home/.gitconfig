@@ -42,10 +42,10 @@
   process = git-lfs filter-process
   required = true
 [cola]
-	spellcheck = true
-	boldheaders = true
-	expandtab = true
-	tabwidth = 4
+  spellcheck = true
+  boldheaders = true
+  expandtab = true
+  tabwidth = 4
 [merge]
   tool = meld
 [mergetool "meld"]

@@ -1,5 +1,6 @@
 echo "dotfiles/home/common_rc"
 
+
 #################################################
 #########  ENVIRONMENT VARS SETUP     ###########
 
@@ -17,7 +18,11 @@ export GRADLE_HOME=/usr/local/opt/gradle
 # Add environment variable ANT_ROOT to PATH (for cocos2d-x)
 export PATH="${ANT_ROOT}/bin:${PATH}"
 
+#if [ "${CONFIG_PLATFORM}" -eq "macos" ] && [ -f ${CONFIG_DIR}/home/macos_rc ]; then
+#   source ${CONFIG_DIR}/home/macos_rc
+#fi
 
+#source "${CONFIG_DIR}/home/toolchains_rc"
 
 ####
 # Android
@@ -28,28 +33,7 @@ export ANDROID_HOME="${ANDROID_SDK_ROOT}"
 #export ANDROID_NDK_ROOT=/usr/local/opt/android-ndk
 #export ANDROID_NDK_HOME="${ANDROID_NDK_ROOT}"
 
-
-
-####
-# Cocos2d-x settings
-
-# Add environment variable COCOS_X_ROOT for cocos2d-x
-export COCOS_X_ROOT=/Users/greg/src/greg
-#export PATH="${COCOS_X_ROOT}:${PATH}"
-
-# Add environment variable COCOS_CONSOLE_ROOT for cocos2d-x
-export COCOS_CONSOLE_ROOT="${COCOS_X_ROOT}/cocos2d-x/tools/cocos2d-console/bin"
-export PATH=$COCOS_CONSOLE_ROOT:$PATH
-
-# Add environment variable COCOS_TEMPLATES_ROOT for cocos2d-x
-export COCOS_TEMPLATES_ROOT="${COCOS_X_ROOT}/cocos2d-x/templates"
-export PATH=$COCOS_TEMPLATES_ROOT:$PATH
-
-# Add environment variable NDK_ROOT for cocos2d-x
-export NDK_ROOT=${ANDROID_NDK_ROOT}
-export PATH=$NDK_ROOT:$PATH
-
-# Add environment variable ANDROID_SDK_ROOT for cocos2d-x
+# Add tools from subdirectories of ANDROID_SDK_ROOT to PATH
 export PATH="${ANDROID_SDK_ROOT}:${PATH}"
 export PATH="${ANDROID_SDK_ROOT}/tools:${ANDROID_SDK_ROOT}/tools/bin:${PATH}"
 export PATH="${ANDROID_SDK_ROOT}/platform-tools:${PATH}"

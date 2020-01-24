@@ -1,0 +1,40 @@
+echo "${CONFIG_DIR}/home/macos_rc"
+
+####
+# ant, maven, gradle
+
+# http://stackoverflow.com/questions/3222804/how-can-i-install-apache-ant-on-mac-os-x#comment54866948_20984975
+# leave ANT_HOME empty, because it causes problems on OS X
+export ANT_ROOT="/usr/local/opt/ant"
+#export ANT_HOME="${ANT_ROOT}/bin"
+
+# Add environment variable ANT_ROOT for cocos2d-x
+export PATH="${ANT_ROOT}/bin:${PATH}"
+
+export MAVEN_HOME=/usr/local/opt/maven
+export GRADLE_HOME=/usr/local/opt/gradle
+
+
+####
+# For using brew
+#export HOMEBREW_GITHUB_API_TOKEN=cb324594b0f26a69fcae23dcc0acca8847401b38
+
+
+####
+# fuse2ext
+export PATH="/usr/local/opt/e2fsprogs/bin:$PATH"
+export PATH="/usr/local/opt/e2fsprogs/sbin:$PATH"
+
+
+export PATH="/usr/local/opt/gettext/bin:$PATH"
+
+# SDK MAN
+#export SDKMAN_DIR="/Users/greg/.sdkman"
+#[[ -s "/Users/greg/.sdkman/bin/sdkman-init.sh" ]] && source "/Users/greg/.sdkman/bin/sdkman-init.sh"
+
+#export JAVA_HOME=/Library/Java/JavaVirtualMachines/jdk-9.jdk/Contents/Home
+#export JAVA_HOME=/Library/Java/JavaVirtualMachines/jdk1.8.0_144.jdk/Contents/Home/
+
+#export PATH="$HOME/.jenv/bin:$PATH"
+#eval "$(jenv init -)"
+
