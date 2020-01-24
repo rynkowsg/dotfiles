@@ -1,0 +1,165 @@
+###########
+# Variables
+###########
+TIME_COMMANDS=true # set to 'false' to disable prefxing commands with time
+ 
+PREFIX="executing:"
+
+
+# CONNECTING
+
+BOX_HOSTNAME="humax-04538.dev.youview.co.uk"
+BOX_IP_ADDRESS="172.20.39.90"
+
+SSH_BOX="ssh root@${BOX_HOSTNAME}"
+SSH_BOX_IP="ssh root@${BOX_IP_ADDRESS}"
+SERIAL_BOX="screen -a -D -R -fn -l /dev/tty.KeySerial1 115200,cs8"
+
+alias box-ssh="prefix_only $SSH_BOX"
+alias box-ssh-ip="prefix_only $SSH_BOX_IP"
+alias box-serial="prefix_only $SERIAL_BOX"
+alias box-telnet="prefix_only telnet ${BOX_IP_ADDRESS}"
+
+
+# GIT
+
+GIT_LOG_ONE_LINE="git log --oneline"
+GIT_LOG_ONE_LINE_HEAD="$GIT_LOG_ONE_LINE | head"
+ 
+GIT_FETCH_ALL_AND_PRUNE="git fetch --all -p"
+GIT_REBASE_ON_MASTER="$GIT_FETCH_ALL_AND_PRUNE ; git rebase origin/master"
+GIT_REBASE="git rebase"
+GIT_REBASE_INTERACTIVE="$GIT_REBASE -i"
+GIT_REBASE_CONTINUE="$GIT_REBASE --continue"
+GIT_REBASE_ABORT="$GIT_REBASE --abort"
+ 
+GIT_LOG_FIND_FILE_IN_HISTORY='git log --all --full-history -- '
+ 
+GIT_GET_BRANCH_NAME="git rev-parse --abbrev-ref HEAD"
+GIT_COMMIT_AMEND="git commit --amend"
+GIT_COMPARE_WITH_MASTER="git log --oneline ..origin/master | wc -l"
+GIT_COMPARE_WITH_MASTER_ANNOUNCE="$GIT_FETCH_ALL_AND_PRUNE ; $GIT_COMPARE_WITH_MASTER"
+ 
+
+# PHOENIX
+
+CLEAN_GEN_FOLDERS="rm -r gen tmp dist build"
+NPM_RUN_TEST="npm run mocha -- "
+NPM_RUN_TEST_ALL="npm run unit:all"
+NPM_RUN_TEST_ALL_MIN="npm run mocha -- --tsc-cache=tmp/tsc-tests services/**/*.js -R min"
+NPM_RUN_TEST_PRECOMPILE="npm run unit -- "
+ 
+NPM_SHRINKWRAP="npm shrinkwrap --dev"
+ 
+LINT="gulp lint"
+TYPESCRIPT_COMPILE_CHECK="npm run tsc -- --noEmit"
+TYPESCRIPT_COMPILE_ALL="npm run tsc -- --outDir tmp/tsreq"
+ 
+NPM_BUNDLE_SINGLE="npm run bundle:single"
+NPM_DIST="npm run gulp -- dist --quick"
+PACK="gulp pack --dev"
+DEPLOY="--deploy ${BOX_IP_ADDRESS}"
+PACK_DEPLOY="$PACK $DEPLOY"
+PACK_WATCH="$PACK --watch"
+PACK_WATCH_AND_DEPLOY="$PACK_DEPLOY --watch"
+TOPOLOGY_LIST="Stable,Unstable-With-Fakes" # Unstable-With-Fakes
+PACK_TOPOLOGIES="$PACK --tdls $TOPOLOGY_LIST"
+PACK_TOPOLOGIES_AND_WATCH="$PACK --tdls $TOPOLOGY_LIST --watch"
+PACK_TOPOLOGIES_TO_BOX="$PACK_TOPOLOGIES serve $DEPLOY"
+PACK_TOPOLOGIES_TO_BOX_AND_WATCH="$PACK_TOPOLOGIES_TO_BOX --watch"
+ 
+CUCUMBER_TEST="gulp cucumber:run --tags @test"
+CUCUMBER_BUILD="gulp cucumber:dist"
+ 
+#########
+# Aliases
+#########
+alias te='open -a TextEdit'
+# -h Human readable, -G colour output, -F symbols for file types
+alias ls='ls -GFh'
+alias du:s="du -sh */ | gsort -h" # get file sizes, aggregated to top-level folders, sorted in desc order
+ 
+alias log="prefix $GIT_LOG_ONE_LINE_HEAD"
+alias loga="prefix $GIT_LOG_ONE_LINE"
+alias fetch="prefix $GIT_FETCH_ALL_AND_PRUNE"
+ 
+alias r="prefix $GIT_REBASE_ON_MASTER"
+alias r:c="prefix $GIT_REBASE_CONTINUE"
+alias r:a="prefix $GIT_REBASE_ABORT"
+alias r:i="prefix $GIT_REBASE_INTERACTIVE"
+ 
+alias gf="prefix $GIT_LOG_FIND_FILE_IN_HISTORY"
+ 
+alias check="prefix_only $GIT_COMPARE_WITH_MASTER_ANNOUNCE ; $TIME_COMMAND $GIT_FETCH_ALL_AND_PRUNE ; printf 'Number of commits from master: ' ; $GIT_COMPARE_WITH_MASTER"
+alias clean="prefix $CLEAN_GEN_FOLDERS ; echo 'cleaning done'"
+alias amend="prefix $GIT_COMMIT_AMEND"
+ 
+alias test="prefix $NPM_RUN_TEST"
+alias testp="prefix $NPM_RUN_TEST_PRECOMPILE"
+alias testa="prefix $NPM_RUN_TEST_ALL"
+alias testao="prefix $NPM_RUN_TEST_ALL_MIN"
+alias lint="prefix $LINT"
+alias wrap="prefix $NPM_SHRINKWRAP"
+alias getBranch="prefix $GIT_GET_BRANCH_NAME"
+ 
+#alias bundle="prefix $NPM_BUNDLE_SINGLE"
+alias dist="prefix $NPM_DIST"
+alias tcc="prefix $TYPESCRIPT_COMPILE_CHECK"
+alias tc="prefix $TYPESCRIPT_COMPILE_ALL"
+ 
+alias pack="prefix $PACK"
+alias pack:w="prefix $PACK_WATCH"
+alias pack:s="prefix $PACK_TOPOLOGIES"
+alias pack:d="prefix $PACK_DEPLOY"
+alias pack:ws="prefix $PACK_TOPOLOGIES_AND_WATCH"
+alias pack:wd="prefix $PACK_WATCH_AND_DEPLOY"
+alias pack:sd="prefix $PACK_TOPOLOGIES_TO_BOX"
+alias pack:wsd="prefix $PACK_TOPOLOGIES_TO_BOX_AND_WATCH"
+ 
+alias ct="prefix $CUCUMBER_TEST"
+alias cb="prefix $CUCUMBER_BUILD"
+
+
+###########
+# Functions
+###########
+ 
+# announce full commands and prefix them with time,
+# to indicate how long they take to run
+function prefix() {
+  echo "$PREFIX $*";
+  if [ "$TIME_COMMANDS" != true  ] ; then
+      $*;
+  else
+      time $*;
+  fi
+}
+ 
+# announce the full command, including arguments
+function prefix_only() {
+  echo "$PREFIX $*";
+  $*;
+}
+ 
+# run the suite used by Jenkins
+function build() {
+    declare -a COMMANDS=(
+        'gulp clean'
+        'gulp pack --dev'
+        'npm run unit:all'
+        'gulp cucumber'
+        'gulp lint'
+    )
+ 
+    for i in "${COMMANDS[@]}"
+    do
+        prefix $i
+    done
+}
+
+export YV_DATACENTER="cc3"
+export YV_ENVIRONMENT="san01"
+export YV_PROJECTS="/Volumes/Recoverable/Sources/yv-cloud"
+export YV_GITHUB_USER="gregrynkowski"
+export YV_GITHUB_TOKEN="64388148b0a2b8c52433716327cf732327057cff"
+

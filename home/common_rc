@@ -164,3 +164,6 @@ else
   echo "fzf support for $SHELL is not available"
 fi
 # https://stackoverflow.com/questions/9910966/how-to-tell-if-its-using-zsh-or-bash
+
+
+#source ~/.dotfiles/home/youview_rc
