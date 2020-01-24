@@ -85,6 +85,9 @@ function init_nvm() {
 }
 init_nvm
 
+# Homebrew - ruby
+export PATH="/usr/local/opt/ruby/bin:$PATH"
+
 # SDK MAN
 #export SDKMAN_DIR="${HOME}/.sdkman"
 #[[ -s "${SDKMAN_DIR}/bin/sdkman-init.sh" ]] && source "${SDKMAN_DIR}/bin/sdkman-init.sh"
