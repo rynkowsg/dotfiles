@@ -1,4 +1,4 @@
-echo "~/.aliases"
+echo "dotfiles/home/.aliases"
 
 alias cola="git-cola &"
 alias dag="git-dag &"
@@ -16,3 +16,8 @@ alias pbcopy="xclip -sel clip"
 
 weather() { curl wttr.in/$1; }
 
+#alias sdkmanager="JAVA_HOME=/Applications/Android\ Studio\ 3.5.app/Contents/jre/jdk/Contents/Home sdkmanager"
+
+alias src="cd /Volumes/Recoverable/Sources"
+
+alias remaining_battery="pmset -g batt"

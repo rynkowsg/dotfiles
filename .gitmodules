@@ -1,3 +1,24 @@
-[submodule "refs/oh-my-zsh"]
-	path = refs/oh-my-zsh
-	url = git@github.com/robbyrussell/oh-my-zsh.git
+[submodule "home/.nvm"]
+	path = home/.nvm
+	url = git@github.com:creationix/nvm.git
+[submodule "home/.oh-my-zsh"]
+	path = home/.oh-my-zsh
+	url = git@github.com:robbyrussell/oh-my-zsh.git
+[submodule "home/.pyenv"]
+	path = home/.pyenv
+	url = git@github.com:pyenv/pyenv.git
+[submodule "home/.rbenv"]
+	path = home/.rbenv
+	url = git@github.com:rbenv/rbenv.git
+[submodule "refs/pyenv-virtualenv"]
+	path = refs/pyenv-virtualenv
+	url = git@github.com:pyenv/pyenv-virtualenv.git
+[submodule "refs/fzf"]
+	path = refs/fzf
+	url = git@github.com:junegunn/fzf.git
+[submodule "refs/vim-plug"]
+	path = refs/vim-plug
+	url = git@github.com:junegunn/vim-plug.git
+[submodule "refs/virtualenvwrapper"]
+	path = refs/virtualenvwrapper
+	url = git@bitbucket.org:virtualenvwrapper/virtualenvwrapper.git

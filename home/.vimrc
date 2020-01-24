@@ -4,6 +4,21 @@
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 
+call plug#begin('~/.vim/plugged')
+Plug 'wellle/tmux-complete.vim'
+Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
+
+" Clojure
+Plug 'tpope/vim-fireplace', { 'for': 'clojure' }
+" Solidity
+Plug 'tomlion/vim-solidity'
+
+
+"Plug 'Valloric/YouCompleteMe', { 'do': './install.py' }
+"Plug '~/.fzf'
+call plug#end()
+" TO INSTALL ENTER IN VIM "PlugInstall" COMMAND
+
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => General
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""

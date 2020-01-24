@@ -1,4 +1,4 @@
-echo "~/.bash_profile"
+echo "dotfiles/home/.bash_profile"
 
 if [ -f ~/.bashrc ]; then
    source ~/.bashrc
