@@ -35,6 +35,12 @@
   ;;   :test {:extra-paths ["test"]}
   ;; }
 
+  :aliases
+  {:new {:extra-deps {seancorfield/clj-new
+                      {:mvn/version "1.0.199"}}
+         :main-opts ["-m" "clj-new.create"]}}
+
+
   ;; Provider attributes
 
   ;; :mvn/repos {
