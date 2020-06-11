@@ -8,6 +8,9 @@ HOME_DOTFILES="${HOME}/.dotfiles"
 #[ -f ~/.aliases ] && mv ~/.aliases ~/.aliases_backup
 ln -s "${HOME_DOTFILES}/home/.aliases" ~/.aliases
 
+[ -f ~/.oh-my-zsh ] && mv ~/.oh-my-zsh ~/.oh-my-zsh_backup
+ln -s "${HOME_DOTFILES}/home/.oh-my-zsh" ~/.oh-my-zsh
+
 #[ -f ~/.bashrc ] && mv ~/.bashrc ~/.bashrc_backup
 ln -s "${HOME_DOTFILES}/home/.bashrc" ~/.bashrc
 
