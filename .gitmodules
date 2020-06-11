@@ -22,3 +22,6 @@
 [submodule "refs/virtualenvwrapper"]
 	path = refs/virtualenvwrapper
 	url = git@bitbucket.org:virtualenvwrapper/virtualenvwrapper.git
+[submodule "home/.jenv"]
+	path = home/.jenv
+	url = https://github.com/jenv/jenv.git
