@@ -51,3 +51,7 @@ ln -s "${HOME_DOTFILES}/refs/pyenv-virtualenv" "home/.pyenv/plugins/pyenv-virtua
 ln -s "/Users/greg/.dotfiles/home/.fzf" ~/.fzf
 ln -s "/Users/greg/.dotfiles/home/.fzf.bash" ~/.fzf.bash
 ln -s "/Users/greg/.dotfiles/home/.fzf.zsh" ~/.fzf.zsh
+
+[ -f ~/.clojure ] && mv ~/.clojure/ ~/.clojure_backup
+mkdir ~/.clojure
+ln -s "${HOME_DOTFILES}/home/.clojure/deps.edn" ~/.clojure/deps.edn
