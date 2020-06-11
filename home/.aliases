@@ -5,8 +5,8 @@ alias dag="git-dag &"
 
 alias pycharm="pycharm-community"
 alias pycharm-community="/opt/pycharm-community/bin/pycharm.sh &"
-alias idea="idea-IC"
-alias idea-IC="/opt/idea-IC/bin/idea.sh &"
+#alias idea="idea-IC"
+#alias idea-IC="/opt/idea-IC/bin/idea.sh &"
 alias webstorm="/opt/webstorm/bin/webstorm.sh &"
 alias android-studio="/opt/android-studio/bin/studio.sh &"
 
