@@ -1,4 +1,18 @@
-if begin; status --is-interactive; and not functions -q -- iterm2_status; and [ "$ITERM_ENABLE_SHELL_INTEGRATION_WITH_TMUX""$TERM" != screen ]; end
+# This program is free software; you can redistribute it and/or
+# modify it under the terms of the GNU General Public License
+# as published by the Free Software Foundation; either version 2
+# of the License, or (at your option) any later version.
+# 
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+# 
+# You should have received a copy of the GNU General Public License
+# along with this program; if not, write to the Free Software
+# Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
+
+if begin; status --is-interactive; and not functions -q -- iterm2_status; and [ "$ITERM_ENABLE_SHELL_INTEGRATION_WITH_TMUX""$TERM" != screen ]; and [ "$TERM" != dumb ]; and [ "$TERM" != linux ]; end
   function iterm2_status
     printf "\033]133;D;%s\007" $argv
   end
@@ -14,7 +28,7 @@ if begin; status --is-interactive; and not functions -q -- iterm2_status; and [ 
   end
 
   # Tell terminal to create a mark at this location
-  function iterm2_preexec
+  function iterm2_preexec --on-event fish_preexec
     # For other shells we would output status here but we can't do that in fish.
     printf "\033]133;C;\007"
   end
@@ -28,9 +42,8 @@ if begin; status --is-interactive; and not functions -q -- iterm2_status; and [ 
     printf "\033]1337;SetUserVar=%s=%s\007" "$argv[1]" (printf "%s" "$argv[2]" | base64 | tr -d "\n")
   end
 
-  # iTerm2 inform terminal that command starts here
-  function iterm2_precmd
-    printf "\033]1337;RemoteHost=%s@%s\007\033]1337;CurrentDir=$PWD\007" $USER $iterm2_hostname
+  function iterm2_write_remotehost_currentdir_uservars
+    printf "\033]1337;RemoteHost=%s@%s\007\033]1337;CurrentDir=%s\007" $USER $iterm2_hostname $PWD
 
     # Users can define a function called iterm2_print_user_vars.
     # It should call iterm2_set_user_var and produce no other output.
@@ -47,8 +60,9 @@ if begin; status --is-interactive; and not functions -q -- iterm2_status; and [ 
      set -l last_status $status
 
      iterm2_status $last_status
+     iterm2_write_remotehost_currentdir_uservars
      if not functions iterm2_fish_prompt | grep iterm2_prompt_mark > /dev/null
-       iterm2_prompt_mark
+         iterm2_prompt_mark
      end
      sh -c "exit $last_status"
 
@@ -64,23 +78,15 @@ if begin; status --is-interactive; and not functions -q -- iterm2_status; and [ 
      iterm2_prompt_end
   end
 
-  function underscore_change -v _
-    if [ x$_ = xfish ]
-      iterm2_precmd
-    else
-      iterm2_preexec
-    end
-  end
-
   # If hostname -f is slow for you, set iterm2_hostname before sourcing this script
-  if not set -q iterm2_hostname
-    set iterm2_hostname (hostname -f 2>/dev/null)
+  if not set -q -g iterm2_hostname
+    set -g iterm2_hostname (hostname -f 2>/dev/null)
     # some flavors of BSD (i.e. NetBSD and OpenBSD) don't have the -f option
     if test $status -ne 0
-      set iterm2_hostname (hostname)
+      set -g iterm2_hostname (hostname)
     end
   end
 
-  iterm2_precmd
-  printf "\033]1337;ShellIntegrationVersion=6;shell=fish\007"
+  iterm2_write_remotehost_currentdir_uservars
+  printf "\033]1337;ShellIntegrationVersion=10;shell=fish\007"
 end
