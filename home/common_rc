@@ -148,5 +148,7 @@ else
 fi
 # https://stackoverflow.com/questions/9910966/how-to-tell-if-its-using-zsh-or-bash
 
+# Terraform
+complete -o nospace -C /usr/local/bin/terraform terraform
 
 #source ~/.dotfiles/home/youview_rc
