@@ -48,9 +48,14 @@ ln -s "${HOME_DOTFILES}/home/.jenv" ~/.jenv
 
 ln -s "${HOME_DOTFILES}/refs/pyenv-virtualenv" "home/.pyenv/plugins/pyenv-virtualenv"
 
-ln -s "/Users/greg/.dotfiles/home/.fzf" ~/.fzf
-ln -s "/Users/greg/.dotfiles/home/.fzf.bash" ~/.fzf.bash
-ln -s "/Users/greg/.dotfiles/home/.fzf.zsh" ~/.fzf.zsh
+ln -s "${HOME_DOTFILES}/home/.fzf" ~/.fzf
+ln -s "${HOME_DOTFILES}/home/.fzf.bash" ~/.fzf.bash
+ln -s "${HOME_DOTFILES}/home/.fzf.zsh" ~/.fzf.zsh
+
+[ -f ~/.Brewfile ] && mv ~/.Brewfile ~/.Brewfile_backup
+ln -s "${HOME_DOTFILES}/home/.Brewfile" ~/.Brewfile
+[ -f ~/.Brewfile.lock.json ] && mv ~/.Brewfile ~/.Brewfile.lock.json_backup
+ln -s "${HOME_DOTFILES}/home/.Brewfile.lock.json" ~/.Brewfile.lock.json
 
 [ -f ~/.clojure ] && mv ~/.clojure/ ~/.clojure_backup
 mkdir ~/.clojure
