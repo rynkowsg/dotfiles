@@ -99,6 +99,8 @@ source $ZSH/oh-my-zsh.sh
 # to activate zsh-completions
 fpath=(/usr/local/share/zsh-completions $fpath)
 
+### COMMONS
+
 # load aliases
 if [ -f ~/.aliases ]; then
    source ~/.aliases
@@ -108,3 +110,11 @@ fi
 if [ -f ~/.dotfiles/home/common_rc ]; then
    source ~/.dotfiles/home/common_rc
 fi
+
+### SPECIFIC
+
+# Enable fzf
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+
+# Enable iTerm2 Shell Integration
+[ -f ../mac/iterm2_shell_integration.zsh ] && source ../mac/iterm2_shell_integration.zsh
