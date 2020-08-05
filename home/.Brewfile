@@ -1,7 +1,7 @@
 # https://github.com/Homebrew/homebrew-bundle
 #
 # Usage:
-#   brew bundle --file="${HOME_DOTFILES}/home/.Brewfile"
+#   brew bundle --file="${HOME_DOTFILES}/home/.Brewfile" --verbose
 #
 #   brew bundle --global --verbose
 
@@ -70,3 +70,6 @@ brew "httpie"
 # utils
 brew "speedtest-cli"
 brew "youtube-dl"
+
+# programming visual
+cask "dash"
