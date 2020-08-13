@@ -1,1 +1,4 @@
 .idea/
+/home/.netlify/config.json
+/home/.netlify/helper/bin/git-credential-netlify
+/home/.vim/.netrwhist

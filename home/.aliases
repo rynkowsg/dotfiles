@@ -21,3 +21,5 @@ weather() { curl wttr.in/$1; }
 alias src="cd /Volumes/Recoverable/Sources"
 
 alias remaining_battery="pmset -g batt"
+
+alias adb_top_activity="adb shell dumpsys window windows | grep -E 'mCurrentFocus|mFocusedApp'"

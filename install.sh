@@ -28,11 +28,14 @@ ln -s "${HOME_DOTFILES}/home/.vimrc" ~/.vimrc
 #[ -f ~/.vim ] && mv ~/.vim ~/.vim_backup
 ln -s "${HOME_DOTFILES}/home/.vim" ~/.vim
 
+[ -f ~/.netlify ] && mv ~/.netlify ~/.netlify_backup
+ln -s "${HOME_DOTFILES}/home/.netlify" ~/.netlify
+
 #[ -f ~/.zshrc ] && mv ~/.zshrc ~/.zshrc_backup
 ln -s "${HOME_DOTFILES}/home/.zshrc" ~/.zshrc
 
 #[ -f ~/.oh-my-zsh ] && mv ~/.oh-my-zsh ~/.oh-my-zsh_backup
-ln -s "${HOME_DOTFILES}/refs/oh-my-zsh" ~/.oh-my-zsh
+ln -s "${HOME_DOTFILES}/home/.oh-my-zsh" ~/.oh-my-zsh
 
 [ -f ~/.nvm ] && mv ~/.nvm ~/.nvm_backup
 ln -s "${HOME_DOTFILES}/home/.nvm" ~/.nvm

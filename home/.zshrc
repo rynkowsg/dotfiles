@@ -58,7 +58,7 @@ COMPLETION_WAITING_DOTS="true"
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git adb common-aliases dotenv npx gitignore)
+plugins=(git adb common-aliases dotenv npx gitignore aws)
 
 # common-aliases - lots of useful aliases
 # https://github.com/ohmyzsh/ohmyzsh/tree/master/plugins/common-aliases
@@ -121,3 +121,7 @@ fi
 
 # Enable iTerm2 Shell Integration
 [ -f ../mac/iterm2_shell_integration.zsh ] && source ../mac/iterm2_shell_integration.zsh
+
+# Enable Netlify integration
+# The next line updates PATH for Netlify's Git Credential Helper.
+if [ -f '/Users/greg/.netlify/helper/path.zsh.inc' ]; then source '/Users/greg/.netlify/helper/path.zsh.inc'; fi

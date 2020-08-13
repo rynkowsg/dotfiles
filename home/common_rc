@@ -35,6 +35,9 @@ export PATH="${ANDROID_NDK_ROOT}:${PATH}"
 #export ANDROID_NDK_ROOT=/usr/local/opt/android-ndk
 #export ANDROID_NDK_HOME="${ANDROID_NDK_ROOT}"
 
+# veridex
+# https://developer.android.com/distribute/best-practices/develop/restrictions-non-sdk-interfaces
+export PATH="/usr/local/opt/runtime-master-appcompat/veridex-mac:${PATH}"
 
 ####
 # fuse2ext
@@ -78,12 +81,13 @@ export PATH="/usr/local/opt/ruby/bin:$PATH"
 #export JAVA_HOME="/Applications/Android\ Studio.app/Contents/jre/jdk/Contents/Home"
 export JAVA_HOME=/Library/Java/JavaVirtualMachines/jdk1.8.0_172.jdk/Contents/Home/
 
-# jenv
+### jenv
+# https://github.com/jenv/jenv
 export PATH="$HOME/.jenv/bin:$PATH"
 eval "$(jenv init -)"
 
 
-# pyenv
+### pyenv
 # https://github.com/pyenv/pyenv#user-content-installation
 export PYENV_ROOT="$HOME/.pyenv"
 export PATH="$PYENV_ROOT/bin:$PATH"
@@ -123,5 +127,15 @@ ssh-add ~/.ssh/id_rsa
 
 # Terraform
 complete -o nospace -C /usr/local/bin/terraform terraform
+
+# Enable Google Cloud SDK tools
+export GOOGLE_CLOUD_SDK_PATH="/usr/local/Caskroom/google-cloud-sdk/latest/google-cloud-sdk"
+if [ -n "$BASH_VERSION" ]; then
+  source "${GOOGLE_CLOUD_SDK_PATH}/path.bash.inc"
+  source "${GOOGLE_CLOUD_SDK_PATH}/completion.bash.inc"
+elif [ -n "$ZSH_VERSION" ]; then
+  source "${GOOGLE_CLOUD_SDK_PATH}/path.zsh.inc"
+  source "${GOOGLE_CLOUD_SDK_PATH}/completion.zsh.inc"
+fi
 
 #source ~/.dotfiles/home/youview_rc

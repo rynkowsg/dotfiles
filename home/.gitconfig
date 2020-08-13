@@ -46,7 +46,14 @@
 	boldheaders = true
 	expandtab = true
 	tabwidth = 4
+	theme = default
+	statusindent = true
+	statusshowtotals = true
 [merge]
   tool = meld
 [mergetool "meld"]
   path = /usr/local/bin/meld
+
+# This next lines include Netlify's Git Credential Helper configuration in your Git configuration.
+[include]
+  path = /Users/greg/.netlify/helper/git-config
