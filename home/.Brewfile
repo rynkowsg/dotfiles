@@ -22,8 +22,6 @@ brew "git-lfs"
 brew "git-gui"
 brew "git-cola"
 
-brew "awscli"
-
 tap "homebrew/cask"
 tap "homebrew/cask-fonts"
 #cask_args appdir: "~/Applications"
@@ -73,3 +71,7 @@ brew "youtube-dl"
 
 # programming visual
 cask "dash"
+cask "intellij-idea"
+
+# other visual
+cask "grammarly"
