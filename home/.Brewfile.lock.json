@@ -171,22 +171,22 @@
         }
       },
       "awscli": {
-        "version": "2.0.42",
+        "version": "2.0.44",
         "bottle": {
           "cellar": "/usr/local/Cellar",
           "prefix": "/usr/local",
           "files": {
             "catalina": {
-              "url": "https://homebrew.bintray.com/bottles/awscli-2.0.42.catalina.bottle.tar.gz",
-              "sha256": "4d036dee1f19568f74cfd85874ef49570f9b1801a0637883ccfb63736dfd4a5b"
+              "url": "https://homebrew.bintray.com/bottles/awscli-2.0.44.catalina.bottle.tar.gz",
+              "sha256": "391408bb08636c2190a9c9b75d4574e20475cb4e199d14b24ad2c02a03d4aee7"
             },
             "mojave": {
-              "url": "https://homebrew.bintray.com/bottles/awscli-2.0.42.mojave.bottle.tar.gz",
-              "sha256": "fd7e99234056b89cd56fbd4c5206b69bab6eb1d73459637086fb3bcfa3e3588e"
+              "url": "https://homebrew.bintray.com/bottles/awscli-2.0.44.mojave.bottle.tar.gz",
+              "sha256": "b610a107875dac44a9a3a5c45569228dfb0c51769af74e69ac3aec57ac1c8c70"
             },
             "high_sierra": {
-              "url": "https://homebrew.bintray.com/bottles/awscli-2.0.42.high_sierra.bottle.tar.gz",
-              "sha256": "3d37c1ddab7210a802923b223f7af58ba798f61604ca61d8baac98fb3d0492c6"
+              "url": "https://homebrew.bintray.com/bottles/awscli-2.0.44.high_sierra.bottle.tar.gz",
+              "sha256": "2eeada5996038d52a6d9efe9458180b5f38fc69ab3e8ab98c810d0c17cac93ce"
             }
           }
         }
@@ -472,11 +472,11 @@
         }
       },
       "gradle": {
-        "version": "6.6",
+        "version": "6.6.1",
         "bottle": false
       },
       "ktlint": {
-        "version": "0.38.0",
+        "version": "0.38.1",
         "bottle": false
       },
       "pidcat": {
@@ -578,10 +578,10 @@
     },
     "tap": {
       "homebrew/cask": {
-        "revision": "8f92af1af300b96e04f45862e91e6f22f5bc3393"
+        "revision": "132a512a8231265e4304ae4b2ed42ad42c1f9020"
       },
       "homebrew/cask-fonts": {
-        "revision": "815944ad70d5932b51c16ec58bd9e0648ce99e2f"
+        "revision": "ba7ed6c607bffd0fbcd0f60ed1e7ca20b60bf654"
       }
     },
     "cask": {
@@ -632,6 +632,12 @@
         "options": {
           "full_name": "grammarly"
         }
+      },
+      "nozbe": {
+        "version": "3.13.0",
+        "options": {
+          "full_name": "nozbe"
+        }
       }
     },
     "mas": {
@@ -641,9 +647,9 @@
   "system": {
     "macos": {
       "catalina": {
-        "HOMEBREW_VERSION": "2.4.13",
+        "HOMEBREW_VERSION": "2.4.14",
         "HOMEBREW_PREFIX": "/usr/local",
-        "Homebrew/homebrew-core": "69d8d79d83b527524d3fb625a4a43c65ed617111",
+        "Homebrew/homebrew-core": "8b47ecc243541d5da436c568b293511c851c782c",
         "CLT": "11.0.33.17",
         "Xcode": "11.6",
         "macOS": "10.15.6"

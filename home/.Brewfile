@@ -74,4 +74,5 @@ cask "dash"
 cask "intellij-idea"
 
 # other visual
+cask "nozbe"
 cask "grammarly"
