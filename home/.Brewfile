@@ -72,7 +72,12 @@ brew "youtube-dl"
 # programming visual
 cask "dash"
 cask "intellij-idea"
+# android
+brew "leakcanary-shark"
 
 # other visual
 cask "nozbe"
 cask "grammarly"
+
+# have a look at this:
+# https://github.com/aterreno/macosx-from-scratch/blob/master/Brewfile
