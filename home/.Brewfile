@@ -76,6 +76,7 @@ cask "intellij-idea"
 brew "leakcanary-shark"
 
 # other visual
+cask "authy"
 cask "nozbe"
 cask "grammarly"
 
