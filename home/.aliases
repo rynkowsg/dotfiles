@@ -38,3 +38,5 @@ adb_apk_pull() {
 }
 # Short:
 #export NAME=com.amazon.kindle;  mkdir -p "$NAME"; adb pull "$(adb shell pm path $NAME | awk -F':' '{print $2}')" "${NAME}/"
+
+alias adb_top_activity="adb shell dumpsys window windows | grep -E 'mCurrentFocus|mFocusedApp'"
