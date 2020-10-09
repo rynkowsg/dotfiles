@@ -74,6 +74,10 @@ cask "dash"
 cask "intellij-idea"
 # android
 brew "leakcanary-shark"
+cask "chromedriver"
+
+# design
+cask "sketch"
 
 # other visual
 cask "authy"
