@@ -84,5 +84,9 @@ cask "authy"
 cask "nozbe"
 cask "grammarly"
 
+cask "android-sdk"
+cask "vysor"
+cask "font-roboto"
+
 # have a look at this:
 # https://github.com/aterreno/macosx-from-scratch/blob/master/Brewfile
