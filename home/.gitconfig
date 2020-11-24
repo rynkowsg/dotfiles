@@ -20,6 +20,7 @@
   lg = log --oneline --decorate --graph
   # https://coderwall.com/p/euwpig/a-better-git-log
   lgg = log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit
+  lggs = log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cs)%Creset' --abbrev-commit
 [core]
   editor = vim
   pager = less -XFR
