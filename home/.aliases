@@ -40,3 +40,7 @@ adb_apk_pull() {
 #export NAME=com.amazon.kindle;  mkdir -p "$NAME"; adb pull "$(adb shell pm path $NAME | awk -F':' '{print $2}')" "${NAME}/"
 
 alias adb_top_activity="adb shell dumpsys window windows | grep -E 'mCurrentFocus|mFocusedApp'"
+
+alias my-youtube-dl="youtube-dl -o '%(uploader)s/%(upload_date)s_%(title)s.%(ext)s' --restrict-filenames --continue --no-overwrites --write-description --write-info-json --write-annotations --write-all-thumbnails --sub-format srt --write-sub --sub-lang en,pl"
+
+alias adb_screencap='adb shell screencap /sdcard/screencap.png; adb pull "/sdcard/screencap.png" ~/"Desktop/screencap-$(date "+%Y%m%d_%H%m%S").png"'
