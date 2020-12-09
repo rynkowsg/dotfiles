@@ -22,6 +22,8 @@ brew "git-lfs"
 brew "git-gui"
 brew "git-cola"
 
+brew "gpg"
+
 tap "homebrew/cask"
 tap "homebrew/cask-fonts"
 #cask_args appdir: "~/Applications"
