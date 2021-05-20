@@ -1,1 +1,2 @@
-EXCLUDES="refs commonrc commands-log.sh common_rc-old zshrc-old.sh"
+EXCLUDES="refs commonrc commands-log.sh README.md install.sh"
+TAGS="macos"
