@@ -1,0 +1,9 @@
+# Enable iTerm2 Shell Integration
+if [ -n "$ZSH_VERSION" ]; then
+  [ -f ../mac/iterm2_shell_integration.zsh ] && source ../mac/iterm2_shell_integration.zsh
+elif [ -n "$BASH_VERSION" ]; then
+  [ -f ../mac/iterm2_shell_integration.bash ] && source ../mac/iterm2_shell_integration.bash
+else
+  echo "iTerm2 Shell Integration for $SHELL can't be loaded"
+fi
+# https://stackoverflow.com/questions/9910966/how-to-tell-if-its-using-zsh-or-bash

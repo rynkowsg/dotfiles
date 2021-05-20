@@ -1,33 +1,43 @@
-echo "dotfiles/home/.zshrc"
-
 ###############################################################################
-###################  oh-my-zsh settings  ######################################
+###################  oh-my-zsh template  ######################################
 ###############################################################################
 
 # If you come from bash you might have to change your $PATH.
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
 
 # Path to your oh-my-zsh installation.
-export ZSH=${HOME}/.oh-my-zsh
+export ZSH="${HOME}/.dotfiles/refs/oh-my-zsh"
 
-# Set name of the theme to load. Optionally, if you set this to "random"
-# it'll load a random theme each time that oh-my-zsh is loaded.
-# See https://github.com/robbyrussell/oh-my-zsh/wiki/Themes
-#ZSH_THEME="robbyrussell"
+# Set name of the theme to load --- if set to "random", it will
+# load a random theme each time oh-my-zsh is loaded, in which case,
+# to know which specific one was loaded, run: echo $RANDOM_THEME
+# See https://github.com/ohmyzsh/ohmyzsh/wiki/Themes
 ZSH_THEME="blinks"
+
+# Set list of themes to pick from when loading at random
+# Setting this variable when ZSH_THEME=random will cause zsh to load
+# a theme from this variable instead of looking in $ZSH/themes/
+# If set to an empty array, this variable will have no effect.
+# ZSH_THEME_RANDOM_CANDIDATES=( "robbyrussell" "agnoster" )
 
 # Uncomment the following line to use case-sensitive completion.
 # CASE_SENSITIVE="true"
 
-# Uncomment the following line to use hyphen-insensitive completion. Case
-# sensitive completion must be off. _ and - will be interchangeable.
+# Uncomment the following line to use hyphen-insensitive completion.
+# Case-sensitive completion must be off. _ and - will be interchangeable.
 # HYPHEN_INSENSITIVE="true"
 
 # Uncomment the following line to disable bi-weekly auto-update checks.
 # DISABLE_AUTO_UPDATE="true"
 
+# Uncomment the following line to automatically update without prompting.
+# DISABLE_UPDATE_PROMPT="true"
+
 # Uncomment the following line to change how often to auto-update (in days).
 export UPDATE_ZSH_DAYS=7
+
+# Uncomment the following line if pasting URLs and other text is messed up.
+# DISABLE_MAGIC_FUNCTIONS="true"
 
 # Uncomment the following line to disable colors in ls.
 # DISABLE_LS_COLORS="true"
@@ -39,6 +49,8 @@ export UPDATE_ZSH_DAYS=7
 ENABLE_CORRECTION="false"
 
 # Uncomment the following line to display red dots whilst waiting for completion.
+# Caution: this setting can cause issues with multiline prompts (zsh 5.7.1 and newer seem to work)
+# See https://github.com/ohmyzsh/ohmyzsh/issues/5765
 COMPLETION_WAITING_DOTS="true"
 
 # Uncomment the following line if you want to disable marking untracked files
@@ -48,20 +60,25 @@ COMPLETION_WAITING_DOTS="true"
 
 # Uncomment the following line if you want to change the command execution time
 # stamp shown in the history command output.
-# The optional three formats: "mm/dd/yyyy"|"dd.mm.yyyy"|"yyyy-mm-dd"
+# You can set one of the optional three formats:
+# "mm/dd/yyyy"|"dd.mm.yyyy"|"yyyy-mm-dd"
+# or set a custom format using the strftime function format specifications,
+# see 'man strftime' for details.
 # HIST_STAMPS="mm/dd/yyyy"
 
 # Would you like to use another custom folder than $ZSH/custom?
 # ZSH_CUSTOM=/path/to/new-custom-folder
 
-# Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
-# Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
+# Which plugins would you like to load?
+# Standard plugins can be found in $ZSH/plugins/
+# Custom plugins may be added to $ZSH_CUSTOM/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
 plugins=(git adb common-aliases dotenv gitignore aws)
 
-# common-aliases - lots of useful aliases
-# https://github.com/ohmyzsh/ohmyzsh/tree/master/plugins/common-aliases
+# about plugins:
+# - common-aliases - lots of useful aliases
+#   https://github.com/ohmyzsh/ohmyzsh/tree/master/plugins/common-aliases
 
 source $ZSH/oh-my-zsh.sh
 
@@ -82,9 +99,6 @@ source $ZSH/oh-my-zsh.sh
 # Compilation flags
 # export ARCHFLAGS="-arch x86_64"
 
-# ssh
-# export SSH_KEY_PATH="~/.ssh/rsa_id"
-
 # Set personal aliases, overriding those provided by oh-my-zsh libs,
 # plugins, and themes. Aliases can be placed here, though oh-my-zsh
 # users are encouraged to define aliases within the ZSH_CUSTOM folder.
@@ -94,52 +108,12 @@ source $ZSH/oh-my-zsh.sh
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
-
 ###############################################################################
 ###################  my settings  #############################################
 ###############################################################################
 
-# to activate zsh-completions
-fpath=(/usr/local/share/zsh-completions $fpath)
+# Activate zsh-completions
+# fpath=(/usr/local/share/zsh-completions $fpath)
 
-### COMMONS
-
-# load aliases
-if [ -f ~/.aliases ]; then
-   source ~/.aliases
-fi
-
-# load setttings common for Bash and Zsh
-if [ -f ~/.dotfiles/home/common_rc ]; then
-   source ~/.dotfiles/home/common_rc
-fi
-
-### SPECIFIC
-
-export HISTFILE=~/.zsh_history
-export HISTFILESIZE=1000000000
-export HISTSIZE=1000000000
-
-# Enable fzf
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
-
-# Enable iTerm2 Shell Integration
-[ -f ../mac/iterm2_shell_integration.zsh ] && source ../mac/iterm2_shell_integration.zsh
-
-# Enable Netlify integration
-# The next line updates PATH for Netlify's Git Credential Helper.
-if [ -f '/Users/greg/.netlify/helper/path.zsh.inc' ]; then source '/Users/greg/.netlify/helper/path.zsh.inc'; fi
-
-# tabtab source for packages
-# uninstall by removing these lines
-[[ -f ~/.config/tabtab/__tabtab.zsh ]] && . ~/.config/tabtab/__tabtab.zsh || true
-
-# tabtab source for serverless package
-# uninstall by removing these lines or running `tabtab uninstall serverless`
-[[ -f /Users/greg/Desktop/serverless-healthcheck/node_modules/tabtab/.completions/serverless.zsh ]] && . /Users/greg/Desktop/serverless-healthcheck/node_modules/tabtab/.completions/serverless.zsh
-# tabtab source for sls package
-# uninstall by removing these lines or running `tabtab uninstall sls`
-[[ -f /Users/greg/Desktop/serverless-healthcheck/node_modules/tabtab/.completions/sls.zsh ]] && . /Users/greg/Desktop/serverless-healthcheck/node_modules/tabtab/.completions/sls.zsh
-# tabtab source for slss package
-# uninstall by removing these lines or running `tabtab uninstall slss`
-[[ -f /Users/greg/Desktop/serverless-healthcheck/node_modules/tabtab/.completions/slss.zsh ]] && . /Users/greg/Desktop/serverless-healthcheck/node_modules/tabtab/.completions/slss.zsh
+# Load commons among shells
+[ -f ~/.dotfiles/commonrc ] && source ~/.dotfiles/commonrc

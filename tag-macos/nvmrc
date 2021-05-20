@@ -1,0 +1,19 @@
+#!/usr/bin/env sh
+
+###
+# Add the following to ~/.zshrc or your desired shell configuration file
+###
+
+# You can set $NVM_DIR to any location, but leaving it unchanged from
+# /usr/local/opt/nvm will destroy any nvm-installed Node installations
+# upon upgrade/reinstall.
+export NVM_DIR="${HOME}/.nvm"
+
+# You should create NVM's working directory if it doesn't exist:
+mkdir -p "${NVM_DIR}"
+
+# This loads nvm
+[ -s "/usr/local/opt/nvm/nvm.sh" ] && . "/usr/local/opt/nvm/nvm.sh"
+
+# This loads nvm bash_completion
+[ -s "/usr/local/opt/nvm/etc/bash_completion.d/nvm" ] && . "/usr/local/opt/nvm/etc/bash_completion.d/nvm"

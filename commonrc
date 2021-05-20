@@ -1,0 +1,27 @@
+#!/usr/bin/env bash
+
+# Load aliases
+[ -f "$HOME"/.aliases ] && source "$HOME"/.aliases
+
+# Load platform specific setup
+[ -f "$HOME"/.platformrc ] && source "$HOME"/.platformrc
+
+# Load fzf
+if [ -n "$ZSH_VERSION" ]; then
+  [ -f "$HOME"/.fzf.zsh ] && source "$HOME"/.fzf.zsh
+elif [ -n "$BASH_VERSION" ]; then
+  [ -f "$HOME"/.fzf.bash ] && source "$HOME"/.fzf.bash
+else
+  echo "fzf integration for $SHELL can't be loaded"
+fi
+# https://stackoverflow.com/questions/9910966/how-to-tell-if-its-using-zsh-or-bash
+
+# Load nvm
+[ -f "$HOME"/.nvmrc ] && source "$HOME"/.nvmrc
+
+# Load autojump
+# https://github.com/wting/autojump
+# Add the following line to your ~/.bash_profile or ~/.zshrc file:
+[ -f /usr/local/etc/profile.d/autojump.sh ] && . /usr/local/etc/profile.d/autojump.sh
+# If you use the Fish shell then add the following line to your ~/.config/fish/config.fish:
+#[ -f /usr/local/share/autojump/autojump.fish ]; and source /usr/local/share/autojump/autojump.fish
