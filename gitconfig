@@ -1,0 +1,60 @@
+[user]
+	name = Greg Rynkowski
+	email = greg@twobuffers.com
+[alias]
+  br = branch
+  ci = commit
+  co = checkout
+  cor = checkout --recurse-submodules
+  cp = cherry-pick
+  fetchr = fetch --recurse-submodules
+  lo = log --oneline --abbrev-commit
+  mrg = merge
+  pl = pull
+  plr = pull --rebase
+  rb = rebase
+  st = status
+  fix-lfs = "!f() { cp /dev/null .gitattributes && git status && git checkout -- .gitattributes && git status; }; f"
+  pushf = push --force-with-lease
+  this = symbolic-ref --short HEAD
+  lg = log --oneline --decorate --graph
+  # https://coderwall.com/p/euwpig/a-better-git-log
+  lgg = log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit
+  lggs = log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cs)%Creset' --abbrev-commit
+[core]
+  editor = vim
+  pager = less -XFR
+  fileMode = false
+[push]
+  default = current
+[color]
+  ui = true
+[gui]
+  editor = mate
+[diff]
+  tool = meld
+  guitool = meld
+[lfs]
+  batch = true
+  concurrenttransfers = 12
+[filter "lfs"]
+  clean = git-lfs clean -- %f
+  smudge = git-lfs smudge -- %f
+  process = git-lfs filter-process
+  required = true
+[cola]
+	spellcheck = true
+	boldheaders = true
+	expandtab = true
+	tabwidth = 4
+	theme = default
+	statusindent = true
+	statusshowtotals = true
+[merge]
+  tool = meld
+[mergetool "meld"]
+  path = /usr/local/bin/meld
+
+# This next lines include Netlify's Git Credential Helper configuration in your Git configuration.
+[include]
+  path = /Users/greg/.netlify/helper/git-config
