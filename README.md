@@ -8,6 +8,7 @@ My dotfiles, managed by [rcm].
 yet it support complex dotfiles configurations.
 
 More about rcm:
+- https://thoughtbot.com/blog/rcm-for-rc-files-in-dotfiles-repos
 - https://thoughtbot.github.io/rcm/rcm.7.html
 - https://thoughtbot.github.io/rcm/rcrc.5.html
 
