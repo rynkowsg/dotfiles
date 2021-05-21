@@ -99,7 +99,7 @@ alias dag="git-dag &"
 ###############################################################################
 
 # https://coderwall.com/p/oaaqwq/pbcopy-on-ubuntu-linux
-alias pbcopy="xclip -sel clip"
+#alias pbcopy="xclip -sel clip"
 
 weather() { curl wttr.in/$1; }
 
