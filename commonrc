@@ -1,5 +1,10 @@
 #!/usr/bin/env bash
 
+# Global env vars
+
+# https://consoledonottrack.com/
+export DO_NOT_TRACK=1
+
 # Load aliases
 [ -f "$HOME"/.aliases ] && source "$HOME"/.aliases
 
