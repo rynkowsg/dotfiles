@@ -50,6 +50,7 @@
 	theme = default
 	statusindent = true
 	statusshowtotals = true
+	icontheme = default
 [merge]
   tool = meld
 [mergetool "meld"]
