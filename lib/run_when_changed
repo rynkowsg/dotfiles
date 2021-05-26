@@ -1,0 +1,60 @@
+#!/usr/bin/env bash
+
+# shellcheck disable=SC2164
+# shellcheck disable=SC2155
+
+#####################################################################
+# Takes a path to a script and executes it if either                #
+# - it has never been executed or                                   #
+# - if it has changed since last execution.                         #
+#####################################################################
+
+# https://techstop.github.io/bash-script-colors/
+RED="\e[0;91m"
+GREEN="\e[0;92m"
+RESET="\e[0m"
+
+# Creates checksum filepath for given script
+# ---
+# Creates always a filename with '.' at the beginning,
+# even if the script doesn't start with '.'.
+# $1 - script path
+function create_checksum_file_path {
+  local script_file="$1"
+  local dir="$(cd "$(dirname "${script_file}")"; pwd -P)"
+  local filename="$(basename "${script_file}")"
+  local prefix=""
+  [[ "${filename}" != .* ]] && prefix="."
+  echo "${dir}/${prefix}${filename}.checksum"
+}
+
+SCRIPT_FILE="$1"
+CHECKSUM_FILE="$(create_checksum_file_path "${SCRIPT_FILE}")"
+NEW_CHECKSUM=$(sha1sum "${SCRIPT_FILE}" | awk '{ print $1 }')
+
+# IF file exists AND no changes THEN no action needed, SO finish
+[ -f "${CHECKSUM_FILE}" ] && [ "$(<"${CHECKSUM_FILE}")" = "${NEW_CHECKSUM}" ] && exit 0
+
+# OTHERWISE proceed
+printf "${GREEN}%s${RESET}\n" "Never executed '${SCRIPT_FILE}' before OR detected some changes"
+while true; do
+  read -p "Do you wish to run '${SCRIPT_FILE}'? " yn
+  case $yn in
+    [Yy]*) break;; # continue script
+    [Nn]*) exit;;
+    *) echo "Please answer yes or no.";;
+  esac
+done
+# https://www.shellhacks.com/yes-no-bash-script-prompt-confirmation/
+
+# RUN script
+bash "${SCRIPT_FILE}"
+SCRIPT_RES=${?}
+if [ $SCRIPT_RES -eq 0 ]; then
+  # update checksum file
+  echo "${NEW_CHECKSUM}" >"${CHECKSUM_FILE}"
+  printf "${GREEN}%s${RESET}\n\n" "Updated checksum file: '${CHECKSUM_FILE}"
+else
+  printf "${RED}%s${RESET}\n\n" "Script failed. Error code: ${SCRIPT_RES}"
+  exit $SCRIPT_RES
+fi

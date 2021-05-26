@@ -1,0 +1,41 @@
+#!/usr/bin/env bash
+
+# https://unix.stackexchange.com/a/152714
+SCRIPT_DIR="$(cd "$(dirname "$([ -L "$0" ] && readlink "$0" || echo "$0")")" || exit 1; pwd -P)"
+ROOT_DIR="$(cd "${SCRIPT_DIR}/../.." || exit 1; pwd -P)"
+
+# install common apps/deps
+sh "${ROOT_DIR}/lib/macos/install_common"
+
+# Web Browsers
+brew install --cask firefox --appdir /Applications
+brew install --cask google-chrome --appdir /Applications
+
+# Messengers
+brew install --cask telegram-desktop
+brew install --cask whatsapp
+brew install --cask messenger
+brew install --cask slack
+brew install --cask signal
+brew install --cask skype
+brew install --cask zoom
+
+# Office apps / editors / notepads
+brew install --cask microsoft-office
+brew install --cask microsoft-auto-update
+brew install --cask textmate
+brew install --cask evernote
+brew install --cask standard-notes
+
+# Media
+brew install --cask spotify
+brew install --cask vlc
+
+# Utils
+brew install --cask macs-fan-control
+brew install --cask nordvpn
+# alternatively:
+#     mas install 1116599239  # NordVPN
+brew install --cask 1password
+# alternatively:
+#     mas install 443987910   # 1Password

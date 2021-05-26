@@ -15,3 +15,9 @@ else
   echo "iTerm2 Shell Integration for $SHELL can't be loaded"
 fi
 # https://stackoverflow.com/questions/9910966/how-to-tell-if-its-using-zsh-or-bash
+
+# Install MacOS specific apps
+# Chek if installed already (compare the checksums), if there is change, ask to install.
+bash "${HOME}/.dotfiles/lib/run_when_changed" "${HOME}/.macos/install_muggle_apps"
+bash "${HOME}/.dotfiles/lib/run_when_changed" "${HOME}/.macos/install_power_user_tools"
+bash "${HOME}/.dotfiles/lib/run_when_changed" "${HOME}/.macos/install_android_tools"

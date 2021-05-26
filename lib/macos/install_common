@@ -1,0 +1,20 @@
+#!/usr/bin/env bash
+
+# https://unix.stackexchange.com/a/152714
+SCRIPT_DIR="$(cd "$(dirname "$([ -L "$0" ] && readlink "$0" || echo "$0")")" || exit 1; pwd -P)"
+ROOT_DIR="$(cd "${SCRIPT_DIR}/../.." || exit 1; pwd -P)"
+
+# install Homebrew if not installed
+source "${ROOT_DIR}/lib/macos/homebrew"
+install_homebrew;
+
+# tap cask
+brew tap homebrew/cask
+
+# upgrade
+brew update
+brew upgrade
+
+# install mas - App Store CLI tool
+# https://github.com/mas-cli/mas
+brew install mas

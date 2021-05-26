@@ -1,0 +1,154 @@
+#!/usr/bin/env bash
+
+# Inspirations:
+# - https://github.com/aterreno/macosx-from-scratch/blob/master/Brewfile
+# - https://github.com/bkuhlmann/mac_os-config/blob/main/bin/install_homebrew_formulas
+# - https://github.com/bkuhlmann/mac_os-config/blob/main/bin/install_homebrew_casks
+
+# https://unix.stackexchange.com/a/152714
+SCRIPT_DIR="$(cd "$(dirname "$([ -L "$0" ] && readlink "$0" || echo "$0")")" || exit 1; pwd -P)"
+ROOT_DIR="$(cd "${SCRIPT_DIR}/../.." || exit 1; pwd -P)"
+
+# install common apps/deps
+sh "${ROOT_DIR}/lib/macos/install_common"
+
+#####################
+###     SHELL     ###
+#####################
+
+# shells
+brew install bash
+brew install bash-completion
+brew install zsh
+brew install zsh-completion
+chsh -s /usr/local/bin/zsh
+
+# git
+brew install svn
+brew install git
+brew install git-lfs
+brew install git-gui
+brew install git-cola
+brew install tig
+brew install pre-commit
+
+# gpg
+brew install gnupg
+brew install pinentry-mac
+brew install gpa            # GNU Privacy Assistant
+
+# common CLI utils
+{
+  brew install asciidoc
+  brew install asciidoctor
+  # asciidoctor **/*.adoc
+  # fswatch -o **/*.adoc | xargs -n1 -I{} asciidoctor **/*.adoc
+}
+brew install autojump       # shell navigation
+{ # Use GNU shell tools instead of preinstalled with the system
+  # https://www.gnu.org/software/coreutils/manual/coreutils.html
+  brew install coreutils
+  # it requires PATH update at platformrc
+  #     export PATH="/usr/local/opt/coreutils/libexec/gnubin:${PATH}"
+}
+brew install curl
+brew install exiftool
+brew install fswatch
+brew install fzf            # custom Ctrl+R completion
+brew install jq
+brew install htop
+brew install httpie
+brew install mc
+brew install openssh
+brew install prettyping
+brew install pv             # data's progress through a pipe
+# https://thoughtbot.github.io/rcm/rcm.7.html
+# https://thoughtbot.github.io/rcm/rcrc.5.html
+brew install rcm
+brew install rlwrap
+brew install speedtest-cli
+brew install tmux
+brew install tree
+{
+  brew install vim
+  curl -fLo ~/.vim/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+  vim +PlugInstall +PlugClean! +qall
+}
+brew install weechat        # messenger
+# https://github.com/whalebrew/whalebrew
+brew install whalebrew      # For dockerizing commands
+brew install wget
+brew install youtube-dl
+
+# languages / envs
+brew install python
+brew install ruby
+# clojure
+brew install clojure
+brew install leiningen
+brew install borkdude/brew/babashka
+{
+  # tfenv - for terraform, globally and locally in projects
+  brew install tfenv
+  tfenv install
+  # Terraform checkers
+  brew install tfsec
+  brew install checkov
+}
+{
+  # nvm - to use npm/node only in JS projects locally
+  brew install nvm && mkdir -p ~/.nvm
+  [ -s "/usr/local/opt/nvm/nvm.sh" ] && . "/usr/local/opt/nvm/nvm.sh"
+  nvm install --lts
+}
+{
+  # yarn - to use npm packages installed globally
+  brew install yarn
+  yarn global add serverless
+  yarn global add npx
+}
+
+# Virtualization / containerization
+brew install --cask virtualbox
+brew install --cask docker
+
+# cloud
+brew install awscli
+brew install circleci
+
+# audio / video / graphics
+{
+  brew install ffmpeg
+  brew install libav          # avconv - audio converter
+}
+{
+  brew install asciinema      # https://asciinema.org/
+}
+{
+  brew install graphviz
+  brew install imagemagick
+  brew install imageoptim-cli
+}
+
+#######################
+###    NON-SHELL    ###
+#######################
+
+# Fonts
+brew tap homebrew/cask-fonts
+brew install --cask font-roboto
+brew install --cask font-fira-code
+brew install --cask font-fira-mono
+
+# IDEs
+brew install --cask intellij-idea
+brew install --cask pycharm
+brew install --cask webstorm
+
+# Other developer tools
+brew install --cask dash   # documentations
+brew install --cask imageoptim
+brew install --cask iterm2 # terminal
+
+# Non-developer tools
+brew install --cask spectacle
