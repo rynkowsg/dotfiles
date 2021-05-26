@@ -1,0 +1,46 @@
+# Inspiration:
+# https://github.com/bkuhlmann/mac_os-config/blob/main/lib/restore.bom
+
+# Apple Finder
+Library/Preferences/com.apple.finder.plist
+
+# Firefox
+Library/Preferences/org.mozilla.firefox.plist
+Library/Application Support/Firefox/
+
+# Google Chrome
+Library/Preferences/com.google.Chrome.plist
+
+# iTerm
+Library/Preferences/com.googlecode.iterm2.plist
+Library/Application Support/iTerm2/
+.config/iterm2
+
+# JetBrains
+Library/Preferences/jetbrains.jetprofile.asset.plist
+Library/Preferences/jetbrains.webstorm.69aafa88.plist
+f/jetbrains.webstorm.d9f3b04.plist
+Library/Application Support/JetBrains/IntelliJIdea2021.1/
+Library/Application Support/JetBrains/WebStorm2021.1/
+
+# Spectacle
+Library/Application Support/Spectacle/
+
+# Spotify
+Library/Preferences/com.spotify.client.helper.plist
+Library/Preferences/com.spotify.client.plist
+
+# TextMate
+Library/Preferences/com.macromates.TextMate.plist
+Library/Preferences/com.macromates.TextMate.preview.plist
+Library/Application Support/TextMate/
+
+# VLC
+Library/Application Support/org.videolan.vlc
+Library/Preferences/org.videolan.vlc.plist
+
+# git-cola
+.config/git-cola
+
+# USER
+.ssh
