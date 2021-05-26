@@ -20,6 +20,11 @@ alias reload="exec ${SHELL} -l"
 # Print each PATH entry on a separate line
 alias path='echo -e ${PATH//:/\\n}'
 
+# whereis
+# https://www.unix.com/shell-programming-and-scripting/131832-how-find-duplicate-commands-search-path.html
+alias whereis='find `printenv PATH | sed "s/:/ /g"`  -maxdepth 1  -name'
+alias whereis2='type -a'
+
 ###############################################################################
 # Navigation                                                                  #
 ###############################################################################
