@@ -1,0 +1,21 @@
+#!/usr/bin/env bash
+
+# $1 - root_dir
+function install_dotfiles_deps {
+  local root_dir="$1"
+  # on detecting system: https://stackoverflow.com/a/8597411
+  if [[ "$OSTYPE" == "darwin"* ]]; then
+    # install Homebrew if not installed
+    source "${root_dir}/lib/macos/homebrew"
+    install_homebrew;
+    # install rcm
+    brew install rcm
+    # install coreutils (usage of mktemp is different in GNU and BSD implementations)
+    brew install coreutils
+    export PATH="/usr/local/opt/coreutils/libexec/gnubin:${PATH}"
+  else
+    RED='\033[0;31m'; NC='\033[0m' # No Color
+    printf "${RED}%s${NC}\n" "'${OSTYPE}' not supported."
+    exit 1;
+  fi
+}
