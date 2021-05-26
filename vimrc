@@ -128,3 +128,9 @@ set smartindent     " Enable smart-indent - Be smart when using tabs ;)
 """"""""""""""""""""""""""""""
 " Always show the status line
 set laststatus=1
+
+
+""""""""""
+" => FZF
+""""""""""
+set rtp+=$FZF_ROOT
