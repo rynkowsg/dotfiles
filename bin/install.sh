@@ -1,7 +1,7 @@
-#set -x
+#!/usr/bin/env bash
 
 SCRIPT_DIR="$(cd "$(dirname "$([ -L "$0" ] && readlink "$0" || echo "$0")")" || exit 1; pwd -P)"
-ROOT_DIR="${SCRIPT_DIR}"
+ROOT_DIR="${SCRIPT_DIR}/.."
 
 # install dependencies
 source "${ROOT_DIR}/lib/install_dotfiles_deps" && install_dotfiles_deps "${ROOT_DIR}"
@@ -25,5 +25,3 @@ printf "%s\n" "---------------------------------------------------------------"
 yes | env VERBOSE=1 sh "${INSTALL_SCRIPT}"
 
 rm -rf "${TMP_DIR}"
-
-#set +x

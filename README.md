@@ -16,7 +16,7 @@ More about rcm:
 
 ```shell
 git clone https://github.com/rynkowski/dotfiles ~/.dotfiles
-~/.dotfiles/install.sh
+~/.dotfiles/bin/install.sh
 ```
 
 [rcm]: https://github.com/thoughtbot/rcm
