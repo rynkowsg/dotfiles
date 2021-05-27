@@ -29,11 +29,6 @@
   default = current
 [color]
   ui = true
-[gui]
-  editor = mate
-[diff]
-  tool = meld
-  guitool = meld
 [lfs]
   batch = true
   concurrenttransfers = 12
@@ -51,7 +46,8 @@
 	statusindent = true
 	statusshowtotals = true
 	icontheme = default
-[merge]
-  tool = meld
-[mergetool "meld"]
-  path = /usr/local/bin/meld
+[include]
+  path = ~/.gitconfig.platform
+
+# to preview all config:
+#    git config --list --show-origin

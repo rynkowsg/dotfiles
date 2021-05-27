@@ -1,0 +1,9 @@
+[gui]
+  editor = mate
+[diff]
+  tool = meld
+  guitool = meld
+[merge]
+  tool = meld
+[mergetool "meld"]
+  path = /usr/local/bin/meld
