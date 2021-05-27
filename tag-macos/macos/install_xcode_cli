@@ -1,0 +1,41 @@
+#!/usr/bin/env bash
+
+# Copied from:
+# https://github.com/bkuhlmann/mac_os/blob/566b9d871ebb9fa59bf9407ac568ac2d16d7aa06/bin/install_dev_tools
+
+RED='\033[0;31m'; NC='\033[0m' # No Color
+
+# create temp dir
+TMP_DIR=$(mktemp -d -t "dotfiles-$(date +%Y%m%d_%H%M%S)-XXXXXXXX")
+clean() { rm -rf "${TMP_DIR}"; }
+trap clean EXIT
+
+# attempt to install
+printf "Installing Xcode CLI tools...\n"
+ERR_FILE="${TMP_DIR}/err.log"
+xcode-select --install 2>"${ERR_FILE}"
+
+# handle error
+install_status=${?}
+if [ $install_status -ne 0 ]; then
+  if grep -q "command line tools are already installed" "${ERR_FILE}"; then
+    printf "${RED}%s${NC}\n" "Command line tools are already installed"
+    exit 0
+  else
+    printf "${RED}%s${NC}\n" "Command failed for whatever reason"
+    exit $install_status
+  fi
+fi
+
+# post install reminder we need Xcode
+printf "%s\n" "💡 ALT+TAB to view and accept Xcode license window."
+read -p "Have you completed the Xcode CLI tools install (y/n)? " xcode_response
+if [[ "$xcode_response" != "y" ]]; then
+  printf "ERROR: Xcode CLI tools must be installed before proceeding.\n"
+  exit 1
+fi
+
+# post install update for Apple ARM devices
+if [[ "$(/usr/bin/arch)" == "arm64" ]]; then
+  softwareupdate --install-rosetta --agree-to-license
+fi
