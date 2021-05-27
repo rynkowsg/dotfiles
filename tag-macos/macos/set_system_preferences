@@ -1,0 +1,256 @@
+#!/usr/bin/env bash
+
+# Applies system and application settings.
+
+# Some of the options taken from:
+# - https://github.com/bkuhlmann/mac_os-config/blob/main/bin/apply_default_settings
+# - https://gist.githubspot.com/Tristor/d3c699d16f6c1bbeec8f4c9d647a1f24
+# - https://www.cultofmac.com/646404/secret-mac-settings/
+# - https://github.com/mathiasbynens/dotfiles/blob/master/.macos
+# - https://gist.github.com/cmdoptesc/506a3017bc8acdf9787ddc2fcead0688
+# - https://gist.github.com/llimllib/aa4420cac617774ee2a54d8603d862e4
+# - https://github.com/driesvints/dotfiles/blob/main/.macos
+# - http://files.snp-productions.co.uk/downloads/files/MacOS%20Configuration%20v2.1.pdf
+
+###############################################################################
+# PREDICATES                                                                  #
+###############################################################################
+
+# Predicates to compare specific system versions
+
+function macos_version() { echo "$(sw_vers -productVersion)"; }; export -f macos_version;
+
+function version_gt() { test "$(echo "$@" | tr " " "\n" | sort -V | head -n 1)" != "$1"; }
+function version_le() { test "$(echo "$@" | tr " " "\n" | sort -V | head -n 1)" = "$1"; }
+function version_lt() { test "$(echo "$@" | tr " " "\n" | sort -rV | head -n 1)" != "$1"; }
+function version_ge() { test "$(echo "$@" | tr " " "\n" | sort -rV | head -n 1)" = "$1"; }
+
+function osx_version_is() { [[ "$(macos_version)" = "$1"* ]]; }
+function osx_version_le() { [[ "$(macos_version)" = "$1"* ]] || (version_le "$(macos_version)" "$1"); }
+function osx_version_ge() { [[ "$(macos_version)" = "$1"* ]] || (version_ge "$(macos_version)" "$1"); }
+
+function is_catalina() { osx_version_is "10.15"; }
+function is_bigsur() { osx_version_is "11"; }
+function le_catalina() { osx_version_le "10.15"; }
+function ge_catalina() { osx_version_ge "10.15"; }
+function le_bigsur() { osx_version_le "11"; }
+function ge_bigsur() { osx_version_ge "11"; }
+
+# Predicates to check against many versions
+
+is_this_version() { [[ "$(sw_vers -productVersion)" = "$1"* ]] && echo "true" || echo "false"; }; export -f is_this_version;
+alias map="xargs -n1"
+function osx_version_in() { [[ $(printf '%s\n' "${@}" | uniq |  map bash -c 'is_this_version $@' _ | grep -P '^true$') == "true" ]]; }
+
+# Predicates against hardware platform
+
+function is_macmini() { [[ "$(uname --hardware-platform)" = Macmini* ]]; }
+function is_macbookpro() { [[ "$(uname --hardware-platform)" = MacBookPro* ]]; }
+
+# How to use xargs with functions: https://stackoverflow.com/q/50806496
+# Comparing version numbers: https://www.xmodulo.com/compare-two-version-numbers.html
+
+###############################################################################
+# General                                                                     #
+###############################################################################
+
+###############################################################################
+# Desktop & Screen Saver                                                      #
+###############################################################################
+
+###############################################################################
+# Dock & Menu Bar                                                             #
+###############################################################################
+
+###############################################################################
+# Mission Control                                                             #
+###############################################################################
+
+# Automatically rearrange Spaces based on most recent use - DISABLED
+# Sometimes I pick that I keep communicators in the last space,
+# and it is kinda annoying that it changes. Definitely I don't want this option.
+# https://macos-defaults.com/mission-control/mru-spaces.html
+defaults write com.apple.dock mru-spaces -bool false
+
+# When switching to an application, switch to a Space with open windows for the application - ENABLED
+defaults write NSGlobalDomain AppleSpacesSwitchOnActivate -bool true
+
+# Group windows by application - DISABLED
+defaults write com.apple.dock expose-group-apps -bool false
+
+# Displays have separate Spaces - ENABLED
+defaults write com.apple.spaces spans-displays -bool false
+
+# Hot corners
+# Possible values:
+#  0: no-op
+#  2: Mission Control
+#  3: Show application windows
+#  4: Desktop
+#  5: Start screen saver
+#  6: Disable screen saver
+#  7: Dashboard
+# 10: Put display to sleep
+# 11: Launchpad
+# 12: Notification Center
+# Top left screen corner → Mission Control
+defaults write com.apple.dock wvous-tl-corner -int 0
+defaults write com.apple.dock wvous-tl-modifier -int 0
+# Top right screen corner → Desktop
+defaults write com.apple.dock wvous-tr-corner -int 4
+defaults write com.apple.dock wvous-tr-modifier -int 0
+# Bottom left screen corner → Launchpad (similar to Menu from Windows)
+defaults write com.apple.dock wvous-bl-corner -int 11
+defaults write com.apple.dock wvous-bl-modifier -int 0
+# Bottom right screen corner → Start screen saver
+defaults write com.apple.dock wvous-br-corner -int 5
+defaults write com.apple.dock wvous-br-modifier -int 0
+
+### MORE - options not available from System Preferences
+
+# Disable Mission Control - DISABLED (so keep it Mission Control enabled)
+# https://www.defaults-write.com/mac-os-x-disable-mission-control-and-spaces/
+defaults write com.apple.dock mcx-expose-disabled -bool false
+
+###############################################################################
+# Siri                                                                        #
+###############################################################################
+
+###############################################################################
+# Spotlight                                                                   #
+###############################################################################
+
+defaults write com.apple.spotlight orderedItems -array \
+	'{"enabled" = 1;"name" = "APPLICATIONS";}' \
+	'{"enabled" = 1;"name" = "SYSTEM_PREFS";}' \
+	'{"enabled" = 1;"name" = "DIRECTORIES";}' \
+	'{"enabled" = 0;"name" = "PDF";}' \
+	'{"enabled" = 1;"name" = "FONTS";}' \
+	'{"enabled" = 0;"name" = "DOCUMENTS";}' \
+	'{"enabled" = 0;"name" = "MESSAGES";}' \
+	'{"enabled" = 0;"name" = "CONTACT";}' \
+	'{"enabled" = 0;"name" = "EVENT_TODO";}' \
+	'{"enabled" = 0;"name" = "IMAGES";}' \
+	'{"enabled" = 0;"name" = "BOOKMARKS";}' \
+	'{"enabled" = 0;"name" = "MUSIC";}' \
+	'{"enabled" = 0;"name" = "MOVIES";}' \
+	'{"enabled" = 0;"name" = "PRESENTATIONS";}' \
+	'{"enabled" = 0;"name" = "SPREADSHEETS";}' \
+	'{"enabled" = 0;"name" = "SOURCE";}' \
+	'{"enabled" = 0;"name" = "MENU_DEFINITION";}' \
+	'{"enabled" = 0;"name" = "MENU_OTHER";}' \
+	'{"enabled" = 0;"name" = "MENU_CONVERSION";}' \
+	'{"enabled" = 0;"name" = "MENU_EXPRESSION";}' \
+	'{"enabled" = 0;"name" = "MENU_SPOTLIGHT_SUGGESTIONS";}'
+# Load new settings before rebuilding the index
+sudo killall mds > /dev/null
+# Make sure indexing is enabled for the main volume
+sudo mdutil -i on / > /dev/null
+# Rebuild the index from scratch
+sudo mdutil -E / > /dev/null
+
+###############################################################################
+# Language & Region                                                           #
+###############################################################################
+
+###############################################################################
+# Notifications
+# Internet Accounts
+# Users & Groups
+# Accessibility
+# Screen Time
+# Extensions
+# Security & Privacy
+# ----
+# Software Update
+# Network
+# Bluetooth
+# Sound
+# Printers & Scanners
+# Keyboard
+# Trackpad
+# Mouse
+# Displays
+# Sidecar
+###############################################################################
+
+###############################################################################
+# Battery / Energy Saver                                                      #
+###############################################################################
+
+# Commands
+# current setup: `pmset -g`
+# capabilities:  `pmset -g cap`
+# more: https://www.dssw.co.uk/reference/pmset.html
+
+# Turn display off after: 15 MIN
+sudo pmset -b displaysleep 20
+sudo pmset -c displaysleep 20
+
+# Prevent computer from sleeping automatically when the display is off: SAME AS display sleep
+sudo pmset -b sleep 20
+sudo pmset -c sleep 20
+# to prevent, it needs to be set to 0
+
+# Put hard disk to sleep when possible: DISABLED
+sudo pmset -a disksleep 0
+
+# Wake for network access: DISABLED (only macmini)
+(is_macmini) && sudo pmset -a womp 0
+
+# Start up automatically after a power failure: ENABLED for AC
+sudo pmset -c autorestart 1
+
+# Enable Power Nap: DISABLED
+sudo pmset -a powernap 0
+
+### MORE - options not available from System Preferences
+
+# Wake the machine when the laptop lid is opened (only macbookpro)
+(is_macbookpro) && sudo pmset -a lidwake 1
+
+# Display sleep will use an intermediate half-brightness state between full brightness and fully off
+sudo pmset -a halfdim 1
+
+# Prevent idle system sleep when any tty (e.g. remote login session) is 'active'
+sudo pmset -a ttyskeepawake 1
+
+# Wake the machine based on proximity of devices using same iCloud id
+sudo pmset -a proximitywake 1
+
+# Prevents TCP connections when sleeping
+# - might reduce battery drain overnight
+# - side effect: disables Find My Mac
+sudo pmset -a tcpkeepalive 0
+# More: https://forums.macrumors.com/threads/psa-if-your-2015-or-2016-mbp-has-some-battery-drain-while-sleeping-here-is-the-fix.2026702/page-3
+
+# Hibernation mode
+# 0: Disable hibernation (speeds up entering sleep mode)
+# 3: Copy RAM to disk so the system state can still be restored in case of a
+#    power failure.
+#    The system will wake from memory, unless a power loss forces it to restore from hibernate image.
+# 25: Copy RAM to disk and remove power to memory. The system will restore from disk image.
+#     and will remove power to memory. The system will restore from disk image.                    │
+#     If you want "hibernation" - slower sleeps, slower wakes, and better battery life, you should use this setting.
+sudo pmset -c hibernatemode 3
+sudo pmset -b hibernatemode 25
+
+# automatically hibernate a machine after it has slept for a specified time period. This saves power while asleep
+sudo pmset -a standby 1
+sudo pmset -a standbydelaylow 10800    # 3h
+sudo pmset -a standbydelayhigh 86400   # 24h
+
+# After sleeping for <autopoweroffdelay> seconds, the system will write a hibernation image and go into
+# a lower power chipset sleep. Wakeups from this state will take longer than wakeups from regular sleep.
+sudo pmset -a autopoweroff 1
+sudo pmset -a autopoweroffdelay 259200 # 72h = 3d
+
+###############################################################################
+# Date & Time
+# Sharing
+# Time Machine
+# Startup Disk
+# Profiles
+###############################################################################
+
+# TODO: Restart Dock, Finder and all other apps involved
