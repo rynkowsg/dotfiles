@@ -10,6 +10,7 @@ sh "${ROOT_DIR}/lib/macos/install_common"
 # Web Browsers
 brew install --cask firefox --appdir /Applications
 brew install --cask google-chrome --appdir /Applications
+brew install --cask tor-browser
 
 # Messengers
 brew install --cask telegram-desktop
@@ -28,12 +29,14 @@ brew install --cask evernote
 brew install --cask standard-notes
 
 # Media
+brew install --cask kindle
 brew install --cask spotify
 brew install --cask vlc
 
 # Utils
 brew install --cask macs-fan-control
 brew install --cask nordvpn
+brew install --cask techsmith-capture
 # alternatively:
 #     mas install 1116599239  # NordVPN
 brew install --cask 1password

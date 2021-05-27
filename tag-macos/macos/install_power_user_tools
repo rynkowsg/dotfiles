@@ -17,19 +17,13 @@ sh "${ROOT_DIR}/lib/macos/install_common"
 #####################
 
 # shells
-brew install bash
-brew install bash-completion
-brew install zsh
-brew install zsh-completion
+brew install bash bash-completion
+brew install zsh zsh-completion
 chsh -s "$(brew --prefix)/bin/zsh"
 
 # git
 brew install svn
-brew install git
-brew install git-lfs
-brew install git-gui
-brew install git-cola
-brew install tig
+brew install git git-lfs git-gui git-cola tig
 brew install pre-commit
 
 # gpg
@@ -37,20 +31,26 @@ brew install gnupg
 brew install pinentry-mac
 brew install gpa            # GNU Privacy Assistant
 
+# GNU utils
+brew install coreutils ed findutils gnu-sed gnu-tar grep make
+# it requires PATH update at platformrc
+#     export PATH="/usr/local/opt/coreutils/libexec/gnubin:$PATH"
+#     export PATH="/usr/local/opt/ed/libexec/gnubin:$PATH"
+#     export PATH="/usr/local/opt/findutils/libexec/gnubin:$PATH"
+#     export PATH="/usr/local/opt/gawk/libexec/gnubin:$PATH"
+#     export PATH="/usr/local/opt/gnu-sed/libexec/gnubin:$PATH"
+#     export PATH="/usr/local/opt/gnu-tar/libexec/gnubin:$PATH"
+#     export PATH="/usr/local/opt/grep/libexec/gnubin:$PATH"
+#     export PATH="/usr/local/opt/make/libexec/gnubin:$PATH"
+
 # common CLI utils
 {
-  brew install asciidoc
-  brew install asciidoctor
+  brew install asciidoc asciidoctor
   # asciidoctor **/*.adoc
   # fswatch -o **/*.adoc | xargs -n1 -I{} asciidoctor **/*.adoc
 }
 brew install autojump       # shell navigation
-{ # Use GNU shell tools instead of preinstalled with the system
-  # https://www.gnu.org/software/coreutils/manual/coreutils.html
-  brew install coreutils
-  # it requires PATH update at platformrc
-  #     export PATH="/usr/local/opt/coreutils/libexec/gnubin:${PATH}"
-}
+
 brew install curl
 brew install exiftool
 brew install fswatch
@@ -92,8 +92,7 @@ brew install borkdude/brew/babashka
   brew install tfenv
   tfenv install
   # Terraform checkers
-  brew install tfsec
-  brew install checkov
+  brew install tfsec checkov
 }
 {
   # nvm - to use npm/node only in JS projects locally
@@ -117,18 +116,11 @@ brew install awscli
 brew install circleci
 
 # audio / video / graphics
-{
-  brew install ffmpeg
-  brew install libav          # avconv - audio converter
-}
-{
-  brew install asciinema      # https://asciinema.org/
-}
-{
-  brew install graphviz
-  brew install imagemagick
-  brew install imageoptim-cli
-}
+brew install ffmpeg libav
+brew install asciinema      # https://asciinema.org/
+brew install graphviz
+brew install imagemagick
+brew install imageoptim-cli
 
 #######################
 ###    NON-SHELL    ###
@@ -137,10 +129,12 @@ brew install circleci
 # Fonts
 brew tap homebrew/cask-fonts
 brew install --cask font-roboto
-brew install --cask font-fira-code
-brew install --cask font-fira-mono
+brew install --cask font-fira-code font-fira-mono
+brew install --cask font-hack
+brew install --cask font-iosevka
 
-# IDEs
+# IDEs / Editors
+brew install --cask emacs
 brew install --cask intellij-idea
 brew install --cask pycharm
 brew install --cask webstorm
