@@ -21,7 +21,7 @@ brew install bash
 brew install bash-completion
 brew install zsh
 brew install zsh-completion
-chsh -s /usr/local/bin/zsh
+chsh -s "$(brew --prefix)/bin/zsh"
 
 # git
 brew install svn

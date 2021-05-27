@@ -1,10 +1,10 @@
 #!/usr/bin/env bash
 
 # Use coreutils instead of MacOS's
-export PATH="/usr/local/opt/coreutils/libexec/gnubin:${PATH}"
+export PATH="$(brew --prefix)/opt/coreutils/libexec/gnubin:${PATH}"
 
 # Set FZF location for .vimrc
-export FZF_ROOT="/usr/local/opt/fzf"
+export FZF_ROOT="$(brew --prefix)/opt/fzf"
 
 # Enable iTerm2 Shell Integration
 if [ -n "$ZSH_VERSION" ]; then
