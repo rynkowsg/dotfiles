@@ -1,0 +1,29 @@
+#!/usr/bin/env bash
+
+###############################################################################
+# Computer Name                                                               #
+###############################################################################
+
+printf "CURRENT SETTINGS:\n"
+printf " ComputerName:  %s\n" "$(scutil --get ComputerName)"
+printf " HostName:      %s\n" "$(scutil --get HostName)"
+printf " LocalHostName: %s\n" "$(scutil --get LocalHostName)"
+printf " NetBIOSName:   %s\n" "$(defaults read /Library/Preferences/SystemConfiguration/com.apple.smb.server NetBIOSName)"
+printf "\n"
+
+read -p "What is this machine's label (Example: \"Alchemist\")? " mac_os_label
+if [[ -z "$mac_os_label" ]]; then
+  printf "ERROR: Invalid MacOS label.\n"
+  exit 1
+fi
+
+read -p "What is this machine's name (Example: \"alchemist\")? " mac_os_name
+if [[ -z "$mac_os_name" ]]; then
+  printf "ERROR: Invalid MacOS name.\n"
+  exit 1
+fi
+
+sudo scutil --set ComputerName "$mac_os_label"
+sudo scutil --set HostName "$mac_os_name"
+sudo scutil --set LocalHostName "$mac_os_name"
+sudo defaults write /Library/Preferences/SystemConfiguration/com.apple.smb.server NetBIOSName -string "$mac_os_name"

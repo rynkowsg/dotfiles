@@ -2,6 +2,8 @@
 
 # Applies system and application settings.
 
+set -x
+
 # Some of the options taken from:
 # - https://github.com/bkuhlmann/mac_os-config/blob/main/bin/apply_default_settings
 # - https://gist.githubspot.com/Tristor/d3c699d16f6c1bbeec8f4c9d647a1f24
@@ -11,6 +13,7 @@
 # - https://gist.github.com/llimllib/aa4420cac617774ee2a54d8603d862e4
 # - https://github.com/driesvints/dotfiles/blob/main/.macos
 # - http://files.snp-productions.co.uk/downloads/files/MacOS%20Configuration%20v2.1.pdf
+# - https://wilsonmar.github.io/dotfiles/
 
 ###############################################################################
 # PREDICATES                                                                  #
@@ -53,6 +56,112 @@ function is_macbookpro() { [[ "$(uname --hardware-platform)" = MacBookPro* ]]; }
 ###############################################################################
 # General                                                                     #
 ###############################################################################
+# More on the options:
+# https://support.apple.com/en-gb/guide/mac-help/mchlp1225/mac#Ask%20to%20keep%20changes%20when%20closing%20documents
+
+# Set the theme to change automatically (light in the day, dark in the night)
+# [BigSur] "General" > "Appearance:"
+# There are three themes: light, dark & auto.
+## Theme: Light
+#defaults delete NSGlobalDomain AppleInterfaceStyle
+#defaults delete NSGlobalDomain AppleInterfaceStyleSwitchesAutomatically
+## Theme: Dark
+#defaults write NSGlobalDomain AppleInterfaceStyle -string "Dark"
+#defaults delete NSGlobalDomain AppleInterfaceStyleSwitchesAutomatically
+# Theme: Auto
+defaults delete NSGlobalDomain AppleInterfaceStyle
+defaults write NSGlobalDomain AppleInterfaceStyleSwitchesAutomatically -bool true
+
+# Set colors to "Graphite"
+# [BigSur] "General" > "Accent color:" & "Highlight color:"
+# Options: Blue (default), Purple, Pink, Red, Orange, Yellow, Green, Graphite
+## Blue
+#defaults delete NSGlobalDomain AppleAccentColor
+#defaults delete NSGlobalDomain AppleHighlightColor
+#defaults write NSGlobalDomain AppleAquaColorVariant -int 1
+## Purple
+#defaults write NSGlobalDomain AppleAccentColor -int 5
+#defaults write NSGlobalDomain AppleAquaColorVariant -int 1
+#defaults write NSGlobalDomain AppleHighlightColor -string "0.968627 0.831373 1.000000 Purple"
+## Pink
+#defaults write NSGlobalDomain AppleAccentColor -int 6
+#defaults write NSGlobalDomain AppleAquaColorVariant -int 1
+#defaults write NSGlobalDomain AppleHighlightColor -string "1.000000 0.749020 0.823529 Pink"
+## Red
+#defaults write NSGlobalDomain AppleAccentColor -int 0
+#defaults write NSGlobalDomain AppleAquaColorVariant -int 1
+#defaults write NSGlobalDomain AppleHighlightColor -string "1.000000 0.733333 0.721569 Red"
+## Orange
+#defaults write NSGlobalDomain AppleAccentColor -int 1
+#defaults write NSGlobalDomain AppleAquaColorVariant -int 1
+#defaults write NSGlobalDomain AppleHighlightColor -string "1.000000 0.874510 0.701961 Orange"
+## Yellow
+#defaults write NSGlobalDomain AppleAccentColor -int 2
+#defaults write NSGlobalDomain AppleAquaColorVariant -int 1
+#defaults write NSGlobalDomain AppleHighlightColor -string "1.000000 0.937255 0.690196 Yellow"
+## Green
+#defaults write NSGlobalDomain AppleAccentColor -int 3
+#defaults write NSGlobalDomain AppleAquaColorVariant -int 1
+#defaults write NSGlobalDomain AppleHighlightColor -string "0.752941 0.964706 0.678431 Green"
+# Graphite
+defaults write NSGlobalDomain AppleAccentColor -string "-1"
+defaults write NSGlobalDomain AppleAquaColorVariant -int 6
+defaults write NSGlobalDomain AppleHighlightColor -string "0.847059 0.847059 0.862745 Graphite"
+
+# Always show scrollbars
+# [BigSur] "General" > "Show scroll bars:"
+# - "Always"
+defaults write NSGlobalDomain AppleShowScrollBars -string "Always"
+# - "When scrolling"
+#defaults write NSGlobalDomain AppleShowScrollBars -string "WhenScrolling"
+# - "Automatically based on mouse or trackpad"
+#defaults write NSGlobalDomain AppleShowScrollBars -string "Automatic"
+
+# When scroll bar clicked, jump to the sport that's clicked
+# Alternative, is to just scroll some portion of the text
+# in the selected direction.
+# To test both options and momentarily switch between scrolling methods,
+# press and hold the Option key while clicking the scroll bar.
+# [BigSur] "General" > "Click in the scroll bar to"
+## "Jump to the next page"
+#defaults write NSGlobalDomain AppleScrollerPagingBehavior -int 0
+# "Jump to the spot that's clicked"
+defaults write NSGlobalDomain AppleScrollerPagingBehavior -int 1
+
+# Default web browser
+# [BigSur] "General" > "Default web browser:"
+# TODO
+
+# Prefer tabs over windows when opening documents
+# [BigSur] "General" > "Prefer tabs <option> when opening documents"
+## "never"
+#defaults write NSGlobalDomain AppleWindowTabbingMode -string manual
+## "in full screen"
+#defaults write NSGlobalDomain AppleWindowTabbingMode -string manual
+# "always"
+defaults write NSGlobalDomain AppleWindowTabbingMode -string always
+# TODO: "manual" is used twice here. Have a look.  Maybe there is some
+#       other property to change, besides AppleWindowTabbingMode.
+
+# Don't ask about saving docs on close, just save them.
+# [BigSur] "General" > "Ask to keep changes when closing documents"
+# "Unsaved changes are saved automatically when you close documents.
+# If you also want to be asked to save changes, select this tickbox."
+defaults write NSGlobalDomain NSCloseAlwaysConfirmsChanges -bool false
+
+# Don't restore windows when re-open an app
+# [BigSur] "General" > "Close windows when quitting an app"
+# When selected, open documents and windows will not be restored
+# when you re-open an app.
+defaults write NSGlobalDomain NSQuitAlwaysKeepsWindows -bool false
+# This option enabled, seems to disable window resume system-wide:
+# https://discussions.apple.com/thread/4074116z
+
+# [BigSur] "General" > "Recent items: X Documents, Apps, and Servers"
+# TODO
+
+# [BigSur] "General" > "Allow handoff between this Mac and your iCloud devices"
+# TODO
 
 ###############################################################################
 # Desktop & Screen Saver                                                      #
@@ -61,27 +170,128 @@ function is_macbookpro() { [[ "$(uname --hardware-platform)" = MacBookPro* ]]; }
 ###############################################################################
 # Dock & Menu Bar                                                             #
 ###############################################################################
+# More on the options:
+# https://support.apple.com/en-gb/guide/mac-help/mchlp1119/11.0/mac/11.0
+
+# Make the Dock icons relatively small
+# [BigSur] "Dock & Menu Bar" > "Dock" section > "Size:"
+# https://macos-defaults.com/dock/tilesize.html#set-to-48-default-value
+defaults write com.apple.dock tilesize -int 48
+
+# Disable the icons magnification
+# [BigSur] "Dock & Menu Bar" > "Dock" section > "Magnification:" > (checkbox)
+# https://macos-defaults.com/dock/tilesize.html#set-to-48-default-value
+defaults write com.apple.dock magnification -bool false
+
+# Make the magnified icon visibly larger then normal size
+# (it works only if the magnification is enabled)
+# [BigSur] "Dock & Menu Bar" > "Dock" section > "Magnification:" > (scale)
+# https://macos-defaults.com/dock/tilesize.html#set-to-48-default-value
+defaults write com.apple.dock largesize -int 56
+
+# Place the Dock on the right of the screen
+# [BigSur] "Dock & Menu Bar" > "Dock" section > "Position on screen:"
+# https://macos-defaults.com/dock/orientation.html#set-to-right
+# Default: "bottom", other values: "left", "right"
+defaults write com.apple.dock orientation -string right
+
+# Use 'scale' effect to minimize/maximize windows
+# [BigSur] "Dock & Menu Bar" > "Dock" section > "Minimize windows using:"
+# Available options: "genie", "scale", "suck"
+# https://macos-defaults.com/dock/mineffect.html#set-to-scale
+defaults write com.apple.dock mineffect -string "scale"
+
+# [BigSur] "Dock & Menu Bar" > "Dock" section > "Double click a window's title bar to ..."
+# zoom
+# minimise
+# TODO
+
+# Automatically hide and show the Dock
+# [BigSur] "Dock & Menu Bar" > "Dock" section > "Automatically hide and show the Dock"
+defaults write com.apple.dock autohide -bool true
+
+# Automatically hide and show the menu bar
+# [BigSur] "Dock & Menu Bar" > "Menu Bar" section > "Automatically hide and show the menu bar"
+defaults write NSGlobalDomain _HIHideMenuBar -bool true
+
+###
+### MORE - options not available in
+###
+
+# Remove the auto-hiding delay
+defaults write com.apple.Dock autohide-delay -float 0
+
+# Remove the animation when hiding/showing the Dock
+# https://macos-defaults.com/dock/autohide-time-modifier.html#set-to-0
+defaults write com.apple.dock autohide-time-modifier -float 0
+
+# Minimize windows into their application’s icon
+defaults write com.apple.dock minimize-to-application -bool true
+
+# Enable spring loading for all Dock items
+# https://macos-defaults.com/misc/enable-spring-load-actions-on-all-items.html
+defaults write com.apple.dock enable-spring-load-actions-on-all-items -bool true
+
+# Show indicator lights for open applications in the Dock
+defaults write com.apple.dock show-process-indicators -bool true
+
+# Wipe all (default) app icons from the Dock
+# This is only really useful when setting up a new Mac, or if you don’t use
+# the Dock to launch apps.
+defaults rename com.apple.dock persistent-apps persistent-apps-backup
+defaults write com.apple.dock persistent-apps -array
+# TODO: make backups more sophisticated
+#  - test is there were already some backup (to avoid overriding)
+#  - implement adding number at the end (use recursion to increase numbers if backup exists)
+
+# Show only open applications in the Dock
+# This setting is similar to just clearing persistent-apps. Similar but different.
+# It works in a way that if true, Dock always clear persistent-apps on launch.
+defaults write com.apple.dock static-only -bool true
+
+# Don’t animate opening applications from the Dock
+defaults write com.apple.dock launchanim -bool false
+
+# Enable highlight hover effect for the grid view of a stack (Dock)
+defaults write com.apple.dock mouse-over-hilite-stack -bool true
+
+# Speed up Mission Control animations
+# Warning: doesn't work on Sierra
+# https://github.com/mathiasbynens/dotfiles/issues/711
+defaults write com.apple.dock expose-animation-duration -float 0.1
+
+# Show one application at a time
+# https://www.defaults-write.com/show-one-application-at-a-time/
+# Same behaviour can be achieved by using:
+# - command-alt click a dock item to switch while hiding others
+# - command-alt-h to hide all other apps but the front facing one
+#defaults write com.apple.dock single-app -bool true
 
 ###############################################################################
 # Mission Control                                                             #
 ###############################################################################
 
-# Automatically rearrange Spaces based on most recent use - DISABLED
+# Disable automatic rearrange of Spaces based on most recent use
+# [BigSur] "Mission Control" > "Automatically rearrange Spaces based on most recent use"
 # Sometimes I pick that I keep communicators in the last space,
 # and it is kinda annoying that it changes. Definitely I don't want this option.
 # https://macos-defaults.com/mission-control/mru-spaces.html
 defaults write com.apple.dock mru-spaces -bool false
 
-# When switching to an application, switch to a Space with open windows for the application - ENABLED
+# When switching to an application, switch to a Space with open windows for the application
+# [BigSur] "Mission Control" > "When switching to an application, switch to a Space with open windows for the application"
 defaults write NSGlobalDomain AppleSpacesSwitchOnActivate -bool true
 
-# Group windows by application - DISABLED
+# Disable group windows by application
+# [BigSur] "Mission Control" > "Group windows by application"
 defaults write com.apple.dock expose-group-apps -bool false
 
-# Displays have separate Spaces - ENABLED
+# Enable separate Spaces for each display
+# [BigSur] "Mission Control" > "Displays have separate Spaces"
 defaults write com.apple.spaces spans-displays -bool false
 
-# Hot corners
+# Setup Hot corners
+# [BigSur] "Mission Control" > "Hot corners"
 # Possible values:
 #  0: no-op
 #  2: Mission Control
@@ -93,17 +303,17 @@ defaults write com.apple.spaces spans-displays -bool false
 # 10: Put display to sleep
 # 11: Launchpad
 # 12: Notification Center
-# Top left screen corner → Mission Control
+# Top left screen corner → Nothing
 defaults write com.apple.dock wvous-tl-corner -int 0
 defaults write com.apple.dock wvous-tl-modifier -int 0
-# Top right screen corner → Desktop
-defaults write com.apple.dock wvous-tr-corner -int 4
+# Top right screen corner → Nothing
+defaults write com.apple.dock wvous-tr-corner -int 0
 defaults write com.apple.dock wvous-tr-modifier -int 0
 # Bottom left screen corner → Launchpad (similar to Menu from Windows)
 defaults write com.apple.dock wvous-bl-corner -int 11
 defaults write com.apple.dock wvous-bl-modifier -int 0
-# Bottom right screen corner → Start screen saver
-defaults write com.apple.dock wvous-br-corner -int 5
+# Bottom right screen corner → Nothing
+defaults write com.apple.dock wvous-br-corner -int 0
 defaults write com.apple.dock wvous-br-modifier -int 0
 
 ### MORE - options not available from System Preferences
@@ -120,28 +330,30 @@ defaults write com.apple.dock mcx-expose-disabled -bool false
 # Spotlight                                                                   #
 ###############################################################################
 
+# TODO: The setting below doesn't work
+# [BigSur] "Spotlight"
 defaults write com.apple.spotlight orderedItems -array \
-	'{"enabled" = 1;"name" = "APPLICATIONS";}' \
-	'{"enabled" = 1;"name" = "SYSTEM_PREFS";}' \
-	'{"enabled" = 1;"name" = "DIRECTORIES";}' \
-	'{"enabled" = 0;"name" = "PDF";}' \
-	'{"enabled" = 1;"name" = "FONTS";}' \
-	'{"enabled" = 0;"name" = "DOCUMENTS";}' \
-	'{"enabled" = 0;"name" = "MESSAGES";}' \
-	'{"enabled" = 0;"name" = "CONTACT";}' \
-	'{"enabled" = 0;"name" = "EVENT_TODO";}' \
-	'{"enabled" = 0;"name" = "IMAGES";}' \
-	'{"enabled" = 0;"name" = "BOOKMARKS";}' \
-	'{"enabled" = 0;"name" = "MUSIC";}' \
-	'{"enabled" = 0;"name" = "MOVIES";}' \
-	'{"enabled" = 0;"name" = "PRESENTATIONS";}' \
-	'{"enabled" = 0;"name" = "SPREADSHEETS";}' \
-	'{"enabled" = 0;"name" = "SOURCE";}' \
-	'{"enabled" = 0;"name" = "MENU_DEFINITION";}' \
-	'{"enabled" = 0;"name" = "MENU_OTHER";}' \
-	'{"enabled" = 0;"name" = "MENU_CONVERSION";}' \
-	'{"enabled" = 0;"name" = "MENU_EXPRESSION";}' \
-	'{"enabled" = 0;"name" = "MENU_SPOTLIGHT_SUGGESTIONS";}'
+	'{"enabled" = 1; "name" = "APPLICATIONS";}' \
+	'{"enabled" = 1; "name" = "SYSTEM_PREFS";}' \
+	'{"enabled" = 1; "name" = "DIRECTORIES";}' \
+	'{"enabled" = 0; "name" = "PDF";}' \
+	'{"enabled" = 1; "name" = "FONTS";}' \
+	'{"enabled" = 1; "name" = "DOCUMENTS";}' \
+	'{"enabled" = 0; "name" = "MESSAGES";}' \
+	'{"enabled" = 0; "name" = "CONTACT";}' \
+	'{"enabled" = 0; "name" = "EVENT_TODO";}' \
+	'{"enabled" = 0; "name" = "IMAGES";}' \
+	'{"enabled" = 0; "name" = "BOOKMARKS";}' \
+	'{"enabled" = 0; "name" = "MUSIC";}' \
+	'{"enabled" = 0; "name" = "MOVIES";}' \
+	'{"enabled" = 0; "name" = "PRESENTATIONS";}' \
+	'{"enabled" = 0; "name" = "SPREADSHEETS";}' \
+	'{"enabled" = 0; "name" = "SOURCE";}' \
+	'{"enabled" = 0; "name" = "MENU_DEFINITION";}' \
+	'{"enabled" = 0; "name" = "MENU_OTHER";}' \
+	'{"enabled" = 0; "name" = "MENU_CONVERSION";}' \
+	'{"enabled" = 0; "name" = "MENU_EXPRESSION";}' \
+	'{"enabled" = 0; "name" = "MENU_SPOTLIGHT_SUGGESTIONS";}'
 # Load new settings before rebuilding the index
 sudo killall mds > /dev/null
 # Make sure indexing is enabled for the main volume
@@ -162,12 +374,89 @@ sudo mdutil -E / > /dev/null
 # Extensions
 # Security & Privacy
 # ----
+###############################################################################
+
+###############################################################################
 # Software Update
+###############################################################################
+
+# Enable software updates
+sudo softwareupdate --schedule on
+
+# Enable the automatic update check
+defaults write com.apple.SoftwareUpdate AutomaticCheckEnabled -bool true
+
+# Check for software updates daily, not just once per week
+defaults write com.apple.SoftwareUpdate ScheduleFrequency -int 1
+
+# Download newly available updates in background
+defaults write com.apple.SoftwareUpdate AutomaticDownload -int 1
+
+
+# Install System data files & security updates
+defaults write com.apple.SoftwareUpdate CriticalUpdateInstall -int 1
+
+# Automatically download apps purchased on other Macs
+defaults write com.apple.SoftwareUpdate ConfigDataInstall -int 1
+
+# Turn on app auto-update
+defaults write com.apple.commerce AutoUpdate -bool true
+
+# Don't allow the App Store to reboot machine on macOS updates
+defaults write com.apple.commerce AutoUpdateRestartRequired -bool true
+# TODO: check what is better, allow or disallow
+
+# Enable the WebKit Developer Tools in the Mac App Store
+defaults write com.apple.appstore WebKitDeveloperExtras -bool true
+
+# Enable Debug Menu in the Mac App Store
+defaults write com.apple.appstore ShowDebugMenu -bool true
+
+###############################################################################
 # Network
 # Bluetooth
 # Sound
 # Printers & Scanners
+###############################################################################
+
+###############################################################################
 # Keyboard
+###############################################################################
+
+# KEYBOARD
+
+# Set a blazingly fast keyboard repeat rate
+# [BigSur] "Keyboard" > "Keyboard" > "Key Repeat"
+defaults write NSGlobalDomain KeyRepeat -int 2
+# [BigSur] "Keyboard" > "Keyboard" > "Delay Until Repeat"
+defaults write NSGlobalDomain InitialKeyRepeat -int 15
+
+# Disable press-and-hold for keys in favor of key repeat
+defaults write NSGlobalDomain ApplePressAndHoldEnabled -bool false
+
+# Use all F1, F2 as standard keys
+# [BigSur] "Keyboard" > "Keyboard" > "Use all F1, F2, etc. keys as standard function keys"
+defaults write NSGlobalDomain com.apple.keyboard.fnState -bool true
+# More: https://apple.stackexchange.com/a/60496
+
+# LANGUAGES
+
+# Set language and text formats
+# Note: if you’re in the US, replace `EUR` with `USD`, `Centimeters` with
+# `Inches`, `en_GB` with `en_US`, and `true` with `false`.
+defaults write NSGlobalDomain AppleLanguages -array "en" "pl"
+# previously I had "en-GB" "pl-GB"
+defaults write NSGlobalDomain AppleLocale -string "en_GB@currency=GBP"
+defaults write NSGlobalDomain AppleMeasurementUnits -string "Centimeters"
+defaults write NSGlobalDomain AppleMetricUnits -bool true
+
+# Show language menu in the top right corner of the boot screen
+sudo defaults write /Library/Preferences/com.apple.loginwindow showInputMenu -bool true
+
+# Set the timezone; see `sudo systemsetup -listtimezones` for other values
+sudo systemsetup -settimezone "Europe/London"# > /dev/null
+
+###############################################################################
 # Trackpad
 # Mouse
 # Displays
@@ -248,9 +537,35 @@ sudo pmset -a autopoweroffdelay 259200 # 72h = 3d
 ###############################################################################
 # Date & Time
 # Sharing
-# Time Machine
+###############################################################################
+
+
+###############################################################################
+# Time Machine                                                                #
+###############################################################################
+
+# Disable local Time Machine backups
+# [BigSur] "Time Machine" > "Back Up Automatically"
+hash tmutil &> /dev/null && sudo tmutil disable
+
+# Don't offer new disks for Time Machine backup
+# https://macos-defaults.com/timemachine/DoNotOfferNewDisksForBackup.html#set-to-true
+defaults write com.apple.TimeMachine DoNotOfferNewDisksForBackup -bool true
+
+###############################################################################
 # Startup Disk
 # Profiles
 ###############################################################################
 
-# TODO: Restart Dock, Finder and all other apps involved
+###############################################################################
+# Kill affected applications                                                  #
+###############################################################################
+
+for app in \
+	"Dock" \
+	"Finder"; do
+	killall "${app}" &> /dev/null || {
+    RED="\e[0;91m"; RESET="\e[0m";
+    printf "${RED}%s${RESET}\n" "Could not kill '${app}'."
+  }
+done

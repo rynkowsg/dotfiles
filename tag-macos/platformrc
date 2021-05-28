@@ -28,8 +28,11 @@ fi
 
 # Install MacOS specific apps
 # Chek if installed already (compare the checksums), if there is change, ask to install.
+bash "${HOME}/.dotfiles/lib/run_when_changed" "${HOME}/.macos/set_computer_name"
 bash "${HOME}/.dotfiles/lib/run_when_changed" "${HOME}/.macos/install_xcode_cli"
 bash "${HOME}/.dotfiles/lib/run_when_changed" "${HOME}/.macos/install_muggle_apps"
 bash "${HOME}/.dotfiles/lib/run_when_changed" "${HOME}/.macos/install_power_user_tools"
 bash "${HOME}/.dotfiles/lib/run_when_changed" "${HOME}/.macos/install_android_tools"
 bash "${HOME}/.dotfiles/lib/run_when_changed" "${HOME}/.macos/set_system_preferences"
+bash "${HOME}/.dotfiles/lib/run_when_changed" "${HOME}/.macos/set_system_preferences_misc"
+bash "${HOME}/.dotfiles/lib/run_when_changed" "${HOME}/.macos/set_apple_apps_preferences"

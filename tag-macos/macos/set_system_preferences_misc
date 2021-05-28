@@ -1,0 +1,50 @@
+#!/usr/bin/env bash
+
+set -x
+
+#############
+### LOGIN ###
+#############
+
+# Reveal IP address, hostname, OS version, etc. when clicking login window clock
+sudo defaults write /Library/Preferences/com.apple.loginwindow AdminHostInfo HostName
+
+# Disable relaunching apps (TODO: read about this option later)
+defaults write com.apple.loginwindow LoginwindowLaunchesRelaunchApps -bool false
+# More: https://apple.stackexchange.com/a/29343
+#       https://apple.stackexchange.com/a/44903
+
+###############
+### WINDOWS ###
+###############
+
+# Disable smooth scrolling
+# (Uncomment if you’re on an older Mac that messes up the animation)
+#defaults write NSGlobalDomain NSScrollAnimationEnabled -bool false
+
+# Increase window resize speed for Cocoa applications
+defaults write NSGlobalDomain NSWindowResizeTime -float 0.001
+
+# Expand save panel by default
+defaults write NSGlobalDomain NSNavPanelExpandedStateForSaveMode -bool true
+defaults write NSGlobalDomain NSNavPanelExpandedStateForSaveMode2 -bool true
+
+# Expand print panel by default
+defaults write NSGlobalDomain PMPrintingExpandedStateForPrint -bool true
+defaults write NSGlobalDomain PMPrintingExpandedStateForPrint2 -bool true
+
+###################
+### PERFORMANCE ###
+###################
+
+# Disable automatic termination of inactive apps
+defaults write NSGlobalDomain NSDisableAutomaticTermination -bool true
+
+################
+### SECURITY ###
+################
+
+# Turn off the 'Application Downloaded from Internet' quarantine warning
+# Warning: doesn't work on Big Sur
+# https://macos-defaults.com/misc/LSQuarantine.html
+defaults write com.apple.LaunchServices LSQuarantine -bool false
