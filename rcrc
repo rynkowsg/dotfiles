@@ -1,2 +1,2 @@
-EXCLUDES="refs commonrc commands-log.sh README.md *lib* bin"
+EXCLUDES="refs commonrc commands-log.sh README.md *lib* bin screenshots"
 TAGS="macos"
