@@ -122,6 +122,9 @@ brew install graphviz
 brew install imagemagick
 brew install imageoptim-cli
 
+# macos control
+brew install smudge/smudge/nightlight
+
 #######################
 ###    NON-SHELL    ###
 #######################

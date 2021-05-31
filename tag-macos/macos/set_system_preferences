@@ -459,7 +459,21 @@ sudo systemsetup -settimezone "Europe/London"# > /dev/null
 ###############################################################################
 # Trackpad
 # Mouse
+###############################################################################
+
+###############################################################################
 # Displays
+###############################################################################
+
+# Enable night shift, from Sunset to Sunrise
+# [BigSur] 'Displays' > 'Night Shift' tab > 'Schedule:'
+# It works quite nice with Theme Auto,
+# so the theme changes between light & dark based on part of the day.
+# To work nightlight needs to be installed:
+#   brew install smudge/smudge/nightlight
+nightlight schedule start
+
+###############################################################################
 # Sidecar
 ###############################################################################
 
