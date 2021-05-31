@@ -68,6 +68,8 @@ brew install rcm
 brew install rlwrap
 brew install speedtest-cli
 brew install tmux
+# TODO: install tmux plugins
+# https://github.com/smudge/dotfiles/blob/master/setup.sh#L20
 brew install tree
 {
   brew install vim
