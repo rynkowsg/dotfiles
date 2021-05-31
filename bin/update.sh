@@ -14,6 +14,7 @@ if [[ "$OSTYPE" == "darwin"* ]]; then
   # update packages
   brew update
   brew upgrade
+  softwareupdate --all --install --force
 fi
 
 # Remind to update oh-my-zsh
