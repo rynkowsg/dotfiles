@@ -31,3 +31,10 @@ fi
 
 # Load nvm
 [ -f "$HOME"/.nvmrc ] && source "$HOME"/.nvmrc
+
+# Setup Babashka (bb) completion
+if [ -n "$ZSH_VERSION" ]; then
+  [ -f "$HOME"/.bb.zsh ] && source "$HOME"/.bb.zsh
+else
+  echo "babashka integration for $SHELL doesn't exist or couldn't be loaded"
+fi
