@@ -164,7 +164,8 @@ brew install imagemagick
 brew install imageoptim-cli
 
 # macos control
-brew install smudge/smudge/nightlight
+brew install smudge/smudge/nightlight   # managing night shift feature
+brew install duti                       # assigning apps for file extensions
 
 #######################
 ###    NON-SHELL    ###
