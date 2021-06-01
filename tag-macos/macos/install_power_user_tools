@@ -94,6 +94,48 @@ brew install borkdude/brew/babashka
   brew install tfsec checkov
 }
 {
+  # Java & jenv setup
+  brew install jenv
+  mkdir -p "${HOME}/.jenv/bin"
+  export PATH="${HOME}/.jenv/bin:${PATH}"
+  eval "$(jenv init -)"
+  jenv enable-plugin export
+  jenv enable-plugin maven
+  brew tap adoptopenjdk/openjdk
+  printf "%s\n" "List of available adoptopenjdk:"
+  brew search adoptopenjdk
+  brew install                          \
+    adoptopenjdk/openjdk/adoptopenjdk8  \
+    adoptopenjdk/openjdk/adoptopenjdk11 \
+    adoptopenjdk/openjdk/adoptopenjdk12 \
+    adoptopenjdk/openjdk/adoptopenjdk13 \
+    adoptopenjdk/openjdk/adoptopenjdk14 \
+    adoptopenjdk/openjdk/adoptopenjdk15 \
+    adoptopenjdk/openjdk/adoptopenjdk16
+#    adoptopenjdk/openjdk/adoptopenjdk9  \
+#    adoptopenjdk/openjdk/adoptopenjdk10 \
+    # apple complains about these two that they
+    # "cannot be opened because the developer cannot be verified"
+    # that message happen when I try to add then to jenv
+  printf "%s\n" "List of JavaVirtualMachines:"
+  ls -l /Library/Java/JavaVirtualMachines/
+  jenv add /Library/Java/JavaVirtualMachines/adoptopenjdk-8.jdk/Contents/Home
+#  jenv add /Library/Java/JavaVirtualMachines/adoptopenjdk-9.jdk/Contents/Home
+#  jenv add /Library/Java/JavaVirtualMachines/adoptopenjdk-10.jdk/Contents/Home
+  jenv add /Library/Java/JavaVirtualMachines/adoptopenjdk-11.jdk/Contents/Home
+  jenv add /Library/Java/JavaVirtualMachines/adoptopenjdk-12.jdk/Contents/Home
+  jenv add /Library/Java/JavaVirtualMachines/adoptopenjdk-13.jdk/Contents/Home
+  jenv add /Library/Java/JavaVirtualMachines/adoptopenjdk-14.jdk/Contents/Home
+  jenv add /Library/Java/JavaVirtualMachines/adoptopenjdk-15.jdk/Contents/Home
+  jenv add /Library/Java/JavaVirtualMachines/adoptopenjdk-16.jdk/Contents/Home
+  printf "%s\n" "jenv versions:"
+  jenv versions
+  jenv shell 16
+  # Links:
+  # - https://kenanhancer.com/2020/05/09/how-to-install-java-with-brew-and-jenv/
+  # - https://developer.bring.com/blog/configuring-jenv-the-right-way/
+}
+{
   # nvm - to use npm/node only in JS projects locally
   brew install nvm && mkdir -p ~/.nvm
   [ -s "/usr/local/opt/nvm/nvm.sh" ] && . "/usr/local/opt/nvm/nvm.sh"
@@ -137,9 +179,7 @@ brew install --cask font-iosevka
 
 # IDEs / Editors
 brew install --cask emacs
-brew install --cask intellij-idea
-brew install --cask pycharm
-brew install --cask webstorm
+brew install --cask intellij-idea pycharm webstorm
 
 # Other developer tools
 brew install --cask dash   # documentations

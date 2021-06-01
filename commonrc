@@ -32,6 +32,10 @@ fi
 # Load nvm
 [ -f "$HOME"/.nvmrc ] && source "$HOME"/.nvmrc
 
+# Load jenv
+export PATH="${HOME}/.jenv/bin:${PATH}"
+eval "$(jenv init -)"
+
 # Setup Babashka (bb) completion
 if [ -n "$ZSH_VERSION" ]; then
   [ -f "$HOME"/.bb.zsh ] && source "$HOME"/.bb.zsh
