@@ -137,7 +137,18 @@ fi
 # Show the /Volumes folder
 sudo chflags nohidden /Volumes
 
-### Default apps
+### Default apps by extension and UTI
+
+# About UTIs:
+# - https://en.wikipedia.org/wiki/Uniform_Type_Identifier
+# - https://developer.apple.com/library/archive/documentation/FileManagement/Conceptual/understanding_utis/understand_utis_conc/understand_utis_conc.html
+
+println "\n%s\n" "All available UTIs:"
+println "%s\n" "--------------------"
+/System/Library/Frameworks/CoreServices.framework/Frameworks/LaunchServices.framework/Versions/A/Support/lsregister -dump \
+      | grep -E "^uti:.*"  \
+      | awk '{ print $2 }' \
+      | sort | uniq
 
 # $1 - app name
 function id_of {
@@ -146,66 +157,20 @@ function id_of {
 
 textmate_id="$(id_of "TextMate")"
 # texts / notes
-duti -s "${textmate_id}" .adoc editor   # asciidoc
-duti -s "${textmate_id}" .md editor     # markdown
-duti -s "${textmate_id}" .txt editor
-# shell scripts
-duti -s "${textmate_id}" .bash editor
-duti -s "${textmate_id}" .fish editor
-duti -s "${textmate_id}" .sh editor
-duti -s "${textmate_id}" .tcsh editor
-duti -s "${textmate_id}" .zsh editor
-# my dotfiles
-duti -s "${textmate_id}" .bashrc editor
-duti -s "${textmate_id}" .platformrc editor # my .dotfiles
-duti -s "${textmate_id}" platformrc editor  # my .dotfiles
-# data
-duti -s "${textmate_id}" .csv editor
-duti -s "${textmate_id}" .edn editor
-duti -s "${textmate_id}" .json editor
-duti -s "${textmate_id}" .xml editor
-duti -s "${textmate_id}" .yml editor
-# code
-duti -s "${textmate_id}" .c editor
-duti -s "${textmate_id}" .cc editor
-duti -s "${textmate_id}" .cpp editor
-duti -s "${textmate_id}" .clj editor
-duti -s "${textmate_id}" .clj editor
-duti -s "${textmate_id}" .cljc editor
-duti -s "${textmate_id}" .cljs editor
-duti -s "${textmate_id}" .h editor
-duti -s "${textmate_id}" .hpp editor
-duti -s "${textmate_id}" .java editor
-duti -s "${textmate_id}" .js editor
-duti -s "${textmate_id}" .jsx editor
-duti -s "${textmate_id}" .kt editor
-duti -s "${textmate_id}" .ts editor
-duti -s "${textmate_id}" .tsx editor
-# configs
-duti -s "${textmate_id}" .conf editor
-duti -s "${textmate_id}" .iml editor    # JetBrains config files
-duti -s "${textmate_id}" .plist editor  # MacOS config files
-# misc
-duti -s "${textmate_id}" .asc editor    # armored GPG
+duti -s "${textmate_id}" public.shell-script editor
+duti -s "${textmate_id}" public.source-code  editor
+duti -s "${textmate_id}" public.text editor
+duti -s "${textmate_id}" public.xml editor
 
 preview_id="$(id_of "Preview")"
+duti -s "${preview_id}" public.image viewer
 duti -s "${preview_id}" .pdf editor
-duti -s "${preview_id}" .png viewer
-duti -s "${preview_id}" .jpg viewer
 
 vlc_id="$(id_of "VLC")"
-# video
-duti -s "${vlc_id}" .avi viewer
-duti -s "${vlc_id}" .mkv viewer
-duti -s "${vlc_id}" .mp4 viewer
-# audio
-duti -s "${vlc_id}" .acc viewer
-duti -s "${vlc_id}" .m4a viewer
-duti -s "${vlc_id}" .mp3 viewer
-duti -s "${vlc_id}" .wav viewer
+duti -s "${vlc_id}" public.audiovisual-content
 
 firefox_id="$(id_of "Firefox")"
-duti -s "${firefox_id}" .html viewer
+duti -s "${firefox_id}" public.html viewer
 
 ###############################################################################
 # Photos                                                                      #
