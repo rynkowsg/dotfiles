@@ -9,7 +9,15 @@ export DO_NOT_TRACK=1
 [ -f "$HOME"/.aliases ] && source "$HOME"/.aliases
 
 # Load platform specific setup
+# (it needs to be done before the rest, some of the ENVs are set here)
 [ -f "$HOME"/.platformrc ] && source "$HOME"/.platformrc
+
+# Load autojump
+# https://github.com/wting/autojump
+# Add the following line to your ~/.bash_profile or ~/.zshrc file:
+[ -f /usr/local/etc/profile.d/autojump.sh ] && . /usr/local/etc/profile.d/autojump.sh
+# If you use the Fish shell then add the following line to your ~/.config/fish/config.fish:
+#[ -f /usr/local/share/autojump/autojump.fish ]; and source /usr/local/share/autojump/autojump.fish
 
 # Load fzf
 if [ -n "$ZSH_VERSION" ]; then
@@ -23,10 +31,3 @@ fi
 
 # Load nvm
 [ -f "$HOME"/.nvmrc ] && source "$HOME"/.nvmrc
-
-# Load autojump
-# https://github.com/wting/autojump
-# Add the following line to your ~/.bash_profile or ~/.zshrc file:
-[ -f /usr/local/etc/profile.d/autojump.sh ] && . /usr/local/etc/profile.d/autojump.sh
-# If you use the Fish shell then add the following line to your ~/.config/fish/config.fish:
-#[ -f /usr/local/share/autojump/autojump.fish ]; and source /usr/local/share/autojump/autojump.fish

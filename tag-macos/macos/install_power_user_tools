@@ -23,16 +23,13 @@ chsh -s "$(brew --prefix)/bin/zsh"
 
 # git
 brew install svn
-brew install git git-lfs git-gui git-cola tig
-brew install pre-commit
+brew install git git-lfs git-gui git-cola tig pre-commit
 
 # gpg
-brew install gnupg
-brew install pinentry-mac
-brew install gpa            # GNU Privacy Assistant
+brew install gnupg pinentry-mac gpa
 
 # GNU utils
-brew install coreutils ed findutils gnu-sed gnu-tar grep make
+brew install coreutils ed findutils gawk gnu-sed gnu-tar grep make
 # it requires PATH update at platformrc
 #     export PATH="/usr/local/opt/coreutils/libexec/gnubin:$PATH"
 #     export PATH="/usr/local/opt/ed/libexec/gnubin:$PATH"
