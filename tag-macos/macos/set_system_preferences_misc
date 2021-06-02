@@ -48,3 +48,16 @@ defaults write NSGlobalDomain NSDisableAutomaticTermination -bool true
 # Warning: doesn't work on Big Sur
 # https://macos-defaults.com/misc/LSQuarantine.html
 defaults write com.apple.LaunchServices LSQuarantine -bool false
+
+##########
+### UX ###
+##########
+
+# Disable smart dashes as they’re annoying when typing code.
+defaults write NSGlobalDomain NSAutomaticDashSubstitutionEnabled -bool false
+
+# Disable automatic periods with a double space:
+defaults write NSGlobalDomain NSAutomaticPeriodSubstitutionEnabled -bool false
+
+# Disable smart quotes as they’re annoying when typing code.
+defaults write NSGlobalDomain NSAutomaticQuoteSubstitutionEnabled -bool false
