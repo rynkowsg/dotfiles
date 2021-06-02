@@ -439,6 +439,21 @@ defaults write NSGlobalDomain ApplePressAndHoldEnabled -bool false
 defaults write NSGlobalDomain com.apple.keyboard.fnState -bool true
 # More: https://apple.stackexchange.com/a/60496
 
+# SHORTCUTS
+
+# Disable 'Show Desktop' (F11) shortcut
+# [MacOS] 'Keyboard' > 'Shortcuts' tab > 'Mission control' section > 'Show Desktop'
+HOTKEYS_PLIST="${HOME}/Library/Preferences/com.apple.symbolichotkeys.plist"
+#printf "BEFORE:\n"
+#printf "  AppleSymbolicHotKeys.36.enabled = %s\n" "$(plutil -extract AppleSymbolicHotKeys.36 json -o - "${HOTKEYS_PLIST}" | jq '.enabled')"
+#printf "  AppleSymbolicHotKeys.37.enabled = %s\n" "$(plutil -extract AppleSymbolicHotKeys.37 json -o - "${HOTKEYS_PLIST}" | jq '.enabled')"
+plutil -replace AppleSymbolicHotKeys.36.enabled -bool false "${HOTKEYS_PLIST}"
+plutil -replace AppleSymbolicHotKeys.37.enabled -bool false "${HOTKEYS_PLIST}"
+#printf "AFTER:\n"
+#printf "AppleSymbolicHotKeys.36.enabled = %s\n" "$(plutil -extract AppleSymbolicHotKeys.36 json -o - "${HOTKEYS_PLIST}" | jq '.enabled')"
+#printf "AppleSymbolicHotKeys.37.enabled = %s\n" "$(plutil -extract AppleSymbolicHotKeys.37 json -o - "${HOTKEYS_PLIST}" | jq '.enabled')"
+# More on editing plist files: https://scriptingosx.com/2016/11/editing-property-lists/
+
 # LANGUAGES
 
 # Set language and text formats
