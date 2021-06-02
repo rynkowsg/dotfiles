@@ -1,0 +1,20 @@
+#!/usr/bin/env bash
+
+set -x
+
+# Spotify: Disable minimize start (when autostart enabled)
+plutil -replace AutoStartSettingIsHidden -bool false "${HOME}/Library/Preferences/com.spotify.client.plist"
+# Spotify: Disable autostart
+sed -i 's|^\(app.autostart-mode=\).*$|\1"off"|' "${HOME}/Library/Application Support/Spotify/prefs"
+# https://community.spotify.com/t5/Desktop-Mac/Auto-Startup-I-need-to-disable-it/td-p/4572478
+
+# Spotify: Disable autoplay similar songs when your music ends
+SPOTIFY_USER_PREFS="${HOME}/Library/Application Support/Spotify/Users/rynkowsg-user/prefs"
+SPOTIFY_USER_PREFS_BACKUP="${SPOTIFY_USER_PREFS}.backup"
+mkdir -p "$(dirname "${SPOTIFY_USER_PREFS}")"
+touch "${SPOTIFY_USER_PREFS}"
+cp "${SPOTIFY_USER_PREFS}" "${SPOTIFY_USER_PREFS_BACKUP}"
+(
+  grep -v app.player.autoplay "${SPOTIFY_USER_PREFS_BACKUP}"  \
+    && echo "app.player.autoplay=false"
+) | sort > "${SPOTIFY_USER_PREFS}"

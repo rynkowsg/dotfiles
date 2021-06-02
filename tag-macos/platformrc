@@ -36,3 +36,4 @@ bash "${HOME}/.dotfiles/lib/run_when_changed" "${HOME}/.macos/install_android_to
 bash "${HOME}/.dotfiles/lib/run_when_changed" "${HOME}/.macos/set_system_preferences"
 bash "${HOME}/.dotfiles/lib/run_when_changed" "${HOME}/.macos/set_system_preferences_misc"
 bash "${HOME}/.dotfiles/lib/run_when_changed" "${HOME}/.macos/set_apple_apps_preferences"
+bash "${HOME}/.dotfiles/lib/run_when_changed" "${HOME}/.macos/set_other_apps_preferences"
