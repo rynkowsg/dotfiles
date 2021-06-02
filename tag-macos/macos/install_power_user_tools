@@ -186,6 +186,7 @@ brew install --cask intellij-idea pycharm webstorm
 brew install --cask dash   # documentations
 brew install --cask imageoptim
 brew install --cask iterm2 # terminal
+brew install --cask meld
 
 # Non-developer tools
 brew install --cask spectacle
