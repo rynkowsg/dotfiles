@@ -1,13 +1,17 @@
 #!/usr/bin/env bash
 
-# update repo
-git fetch -p origin
-git rebase -i origin/master
-git submodule update --init --recursive
-
-# install all the links again
 SCRIPT_DIR="$(cd "$(dirname "$([ -L "$0" ] && readlink "$0" || echo "$0")")" || exit 1; pwd -P)"
 ROOT_DIR="$(cd "${SCRIPT_DIR}/.." || exit 1; pwd -P)"
+
+# update repo
+(
+  cd "${SCRIPT_DIR}" || return
+  git fetch -p origin
+  git rebase -i origin/master
+  git submodule update --init --recursive
+)
+
+# install all the links again
 bash "${ROOT_DIR}/bin/install.sh"
 
 if [[ "$OSTYPE" == "darwin"* ]]; then
