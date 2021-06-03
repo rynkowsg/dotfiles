@@ -1,4 +1,4 @@
 # https://thoughtbot.github.io/rcm/rcrc.5.html
 # https://thoughtbot.github.io/rcm/lsrc.1.html#EXCLUDE_PATTERN
-EXCLUDES="./refs ./commonrc ./commands-log.sh ./README.md *lib* ./bin screenshots"
+EXCLUDES="./refs ./commonrc ./README.md *lib* ./bin screenshots"
 TAGS="macos"
