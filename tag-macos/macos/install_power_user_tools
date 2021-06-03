@@ -138,7 +138,7 @@ brew install borkdude/brew/babashka
 {
   # nvm - to use npm/node only in JS projects locally
   brew install nvm && mkdir -p ~/.nvm
-  [ -s "/usr/local/opt/nvm/nvm.sh" ] && . "/usr/local/opt/nvm/nvm.sh"
+  [ -s "$(brew --prefix)/opt/nvm/nvm.sh" ] && . "$(brew --prefix)/opt/nvm/nvm.sh"
   nvm install --lts
 }
 {

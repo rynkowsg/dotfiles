@@ -12,7 +12,7 @@ function install_dotfiles_deps {
     brew install rcm
     # install coreutils (usage of mktemp is different in GNU and BSD implementations)
     brew install coreutils
-    export PATH="/usr/local/opt/coreutils/libexec/gnubin:${PATH}"
+    export PATH="$(brew --prefix)/opt/coreutils/libexec/gnubin:${PATH}"
   else
     RED='\033[0;31m'; NC='\033[0m' # No Color
     printf "${RED}%s${NC}\n" "'${OSTYPE}' not supported."
