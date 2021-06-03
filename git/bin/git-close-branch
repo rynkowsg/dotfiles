@@ -1,0 +1,47 @@
+#!/usr/bin/env bash
+
+# define colors
+RED=$(printf '\033[31m')
+#  GREEN=$(printf '\033[32m')
+#  YELLOW=$(printf '\033[33m')
+#  BLUE=$(printf '\033[34m')
+#  BOLD=$(printf '\033[1m')
+#  DIM=$(printf '\033[2m')
+#  UNDER=$(printf '\033[4m')
+RESET=$(printf '\033[m')
+
+# don't allow to run the command from 'master'
+current_branch="$(git rev-parse --abbrev-ref HEAD)"
+[ "${current_branch}" = "master" ]                                 \
+  && printf "${RED}%s${RESET}\n" "Closing 'master' is not allowed" \
+  && exit 1
+
+# don't allow to close branch if there are unmerged changes
+git fetch -p origin
+[ -n "$(git lo origin/master..)" ]                                 \
+  && printf "${RED}%s\n" "This branch contains unmerged changes."  \
+  && printf "%s\n\n${RESET}" "Can't close it."                     \
+  && bash -x -c "git lo origin/master.."                           \
+  && exit 2
+
+# check for unmerged changes in 'master'
+[ -n "$(git lo origin/master..master)" ]                                               \
+  && printf "${RED}%s\n" "Local master contains changes unavailable in origin/master." \
+  && printf "%s\n\n${RESET}" "Can't override those."                                   \
+  && bash -x -c "git lo origin/master..master"                                         \
+  && {
+    while true; do
+      printf "%s" "Do you wish to loose changes in master? "
+      read yn
+      case $yn in
+        [Yy]*) break;; # continue script
+        [Nn]*) exit 3;;
+        *) echo "Please answer yes or no.";;
+      esac
+      done
+  }
+
+# perform changes
+bash -x -c "git br -f master origin/master"
+bash -x -c "git co master"
+bash -x -c "git br -d \"${current_branch}\""

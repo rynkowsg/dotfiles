@@ -93,6 +93,18 @@ alias adb_apk_list="adb shell pm list packages"
 alias remaining_battery="pmset -g batt"
 
 ###############################################################################
+# git                                                                         #
+###############################################################################
+
+alias gbr-current="git rev-parse --abbrev-ref HEAD"
+
+# impl here: ~/.git/bin/git-close-branch
+# inspired by: https://github.com/agross/dotfiles/commit/453bde6218b3e483beade7860acb8730d76a30ae
+#alias gbr-close="git close-branch"
+# TODO: it doesn't seem to work
+alias gbr-close="~/.git/bin/git-close-branch"
+
+###############################################################################
 # UI apps                                                                     #
 ###############################################################################
 
