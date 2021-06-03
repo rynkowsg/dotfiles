@@ -192,4 +192,6 @@ brew install --cask iterm2 # terminal
 brew install --cask meld
 
 # Non-developer tools
-brew install --cask spectacle
+brew install --cask alfred        # keyboard launcher
+open /Applications/Alfred\ 4.app
+brew install --cask spectacle     # organising windows using shortcuts

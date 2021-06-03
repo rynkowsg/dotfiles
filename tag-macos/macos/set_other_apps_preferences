@@ -18,3 +18,8 @@ cp "${SPOTIFY_USER_PREFS}" "${SPOTIFY_USER_PREFS_BACKUP}"
   grep -v app.player.autoplay "${SPOTIFY_USER_PREFS_BACKUP}"  \
     && echo "app.player.autoplay=false"
 ) | sort > "${SPOTIFY_USER_PREFS}"
+
+# Alfred: Set folder for syncing preferences
+ALFRED_PREFS="${HOME}/Library/Preferences/com.runningwithcrayons.Alfred-Preferences.plist"
+# shellcheck disable=SC2088
+plutil -replace syncfolder -string "~/OneDrive/Apps Data" "${ALFRED_PREFS}"

@@ -1,6 +1,10 @@
 # Inspiration:
 # https://github.com/bkuhlmann/mac_os-config/blob/main/lib/restore.bom
 
+# Alfred
+/Users/bkuhlmann/Library/Preferences/com.runningwithcrayons.Alfred-Preferences.plist
+/Users/bkuhlmann/Library/Preferences/com.runningwithcrayons.Alfred.plist
+
 # Apple Finder
 Library/Preferences/com.apple.finder.plist
 
