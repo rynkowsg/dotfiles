@@ -1,5 +1,7 @@
 #!/usr/bin/env bash
 
+set -x
+
 # https://unix.stackexchange.com/a/152714
 SCRIPT_DIR="$(cd "$(dirname "$([ -L "$0" ] && readlink "$0" || echo "$0")")" || exit 1; pwd -P)"
 ROOT_DIR="$(cd "${SCRIPT_DIR}/../.." || exit 1; pwd -P)"
@@ -22,8 +24,7 @@ brew install --cask skype
 brew install --cask zoom
 
 # Office apps / editors / notepads
-brew install --cask microsoft-office
-brew install --cask microsoft-auto-update
+brew install --cask microsoft-office microsoft-auto-update
 brew install --cask textmate
 brew install --cask evernote
 brew install --cask standard-notes
@@ -32,6 +33,9 @@ brew install --cask standard-notes
 brew install --cask kindle
 brew install --cask spotify
 brew install --cask vlc
+
+# Storage / cloud
+#brew install --cask onedrive # its already included in microsoft-office
 
 # Utils
 brew install --cask macs-fan-control

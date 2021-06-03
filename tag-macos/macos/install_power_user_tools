@@ -150,7 +150,10 @@ brew install borkdude/brew/babashka
 
 # Virtualization / containerization
 brew install --cask virtualbox
-brew install --cask docker
+{
+  brew install --cask docker
+  ! command -v docker > /dev/null && open /Applications/Docker.app
+}
 
 # cloud
 brew install awscli
