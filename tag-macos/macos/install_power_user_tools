@@ -196,12 +196,13 @@ brew install --cask emacs
 brew install --cask intellij-idea pycharm webstorm
 
 # Other developer tools
-brew install --cask dash   # documentations
+brew install --cask dash        # documentations
 brew install --cask imageoptim
-brew install --cask iterm2 # terminal
+brew install --cask iterm2      # terminal
 brew install --cask meld
 
 # Non-developer tools
 brew install --cask alfred        # keyboard launcher
 open /Applications/Alfred\ 4.app
+brew install --cask sloth         # GUI for lsof
 brew install --cask spectacle     # organising windows using shortcuts
