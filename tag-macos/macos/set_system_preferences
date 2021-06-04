@@ -441,9 +441,10 @@ defaults write NSGlobalDomain com.apple.keyboard.fnState -bool true
 
 # SHORTCUTS
 
+HOTKEYS_PLIST="${HOME}/Library/Preferences/com.apple.symbolichotkeys.plist"
+
 # Disable 'Show Desktop' (F11) shortcut
 # [MacOS] 'Keyboard' > 'Shortcuts' tab > 'Mission control' section > 'Show Desktop'
-HOTKEYS_PLIST="${HOME}/Library/Preferences/com.apple.symbolichotkeys.plist"
 #printf "BEFORE:\n"
 #printf "  AppleSymbolicHotKeys.36.enabled = %s\n" "$(plutil -extract AppleSymbolicHotKeys.36 json -o - "${HOTKEYS_PLIST}" | jq '.enabled')"
 #printf "  AppleSymbolicHotKeys.37.enabled = %s\n" "$(plutil -extract AppleSymbolicHotKeys.37 json -o - "${HOTKEYS_PLIST}" | jq '.enabled')"
@@ -453,6 +454,13 @@ plutil -replace AppleSymbolicHotKeys.37.enabled -bool false "${HOTKEYS_PLIST}"
 #printf "AppleSymbolicHotKeys.36.enabled = %s\n" "$(plutil -extract AppleSymbolicHotKeys.36 json -o - "${HOTKEYS_PLIST}" | jq '.enabled')"
 #printf "AppleSymbolicHotKeys.37.enabled = %s\n" "$(plutil -extract AppleSymbolicHotKeys.37 json -o - "${HOTKEYS_PLIST}" | jq '.enabled')"
 # More on editing plist files: https://scriptingosx.com/2016/11/editing-property-lists/
+
+# Disable 'Show Spotlight search' hotkey
+# [MacOS] 'Keyboard' > 'Shortcuts' tab > 'Spotligh' section > 'Show Spotlight search'
+plutil -replace AppleSymbolicHotKeys.64.enabled -bool false "${HOTKEYS_PLIST}"
+# Disable 'Show Finder search window' hotkey
+# [MacOS] 'Keyboard' > 'Shortcuts' tab > 'Spotligh' section > 'Show Finder search window'
+plutil -replace AppleSymbolicHotKeys.65.enabled -bool false "${HOTKEYS_PLIST}"
 
 # LANGUAGES
 
