@@ -108,7 +108,9 @@ brew install borkdude/brew/babashka
   brew install jenv
   mkdir -p "${HOME}/.jenv/bin"
   export PATH="${HOME}/.jenv/bin:${PATH}"
+  SHELL_OPTS="${-}"; [[ $SHELL_OPTS == *x* ]] && echo "Disable xtrace feature for the 'jenv init'" && set +x
   eval "$(jenv init -)"
+  [[ $SHELL_OPTS == *x* ]] && set -x
   jenv enable-plugin export
   jenv enable-plugin maven
   brew tap adoptopenjdk/openjdk
@@ -148,8 +150,10 @@ brew install borkdude/brew/babashka
 {
   # nvm - to use npm/node only in JS projects locally
   brew install nvm && mkdir -p ~/.nvm
+  SHELL_OPTS="${-}"; [[ $SHELL_OPTS == *x* ]] && echo "Disable xtrace feature for the 'nvm' setup" && set +x
   [ -s "$(brew --prefix)/opt/nvm/nvm.sh" ] && . "$(brew --prefix)/opt/nvm/nvm.sh"
   nvm install --lts
+  [[ $SHELL_OPTS == *x* ]] && set -x
 }
 {
   # yarn - to use npm packages installed globally
