@@ -41,7 +41,8 @@ brew install --cask vlc
 brew install --cask macs-fan-control
 brew install --cask nordvpn
 brew install --cask techsmith-capture
-brew install homebrew/cask/gimp
+brew install --cask gimp
+brew install --cask transmission
 # alternatively:
 #     mas install 1116599239  # NordVPN
 brew install --cask 1password
