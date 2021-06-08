@@ -143,16 +143,17 @@ sudo chflags nohidden /Volumes
 # - https://en.wikipedia.org/wiki/Uniform_Type_Identifier
 # - https://developer.apple.com/library/archive/documentation/FileManagement/Conceptual/understanding_utis/understand_utis_conc/understand_utis_conc.html
 
-println "\n%s\n" "All available UTIs:"
-println "%s\n" "--------------------"
-/System/Library/Frameworks/CoreServices.framework/Frameworks/LaunchServices.framework/Versions/A/Support/lsregister -dump \
-      | grep -E "^uti:.*"  \
-      | awk '{ print $2 }' \
-      | sort | uniq
+## Uncomment to print all available UTIs
+#printf "\n%s\n" "All available UTIs:"
+#printf "%s\n" "--------------------"
+#/System/Library/Frameworks/CoreServices.framework/Frameworks/LaunchServices.framework/Versions/A/Support/lsregister -dump \
+#      | grep -E "^uti:.*"  \
+#      | awk '{ print $2 }' \
+#      | sort | uniq
 
 # $1 - app name
 function id_of {
-  echo "$(osascript -e "id of app \"${1}\"")"
+  osascript -e "id of app \"${1}\""
 }
 
 textmate_id="$(id_of "TextMate")"
