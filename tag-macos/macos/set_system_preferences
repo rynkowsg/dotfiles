@@ -458,8 +458,9 @@ plutil -replace AppleSymbolicHotKeys.37.enabled -bool false "${HOTKEYS_PLIST}"
 # Disable 'Show Spotlight search' hotkey
 # [MacOS] 'Keyboard' > 'Shortcuts' tab > 'Spotligh' section > 'Show Spotlight search'
 plutil -replace AppleSymbolicHotKeys.64.enabled -bool false "${HOTKEYS_PLIST}"
+
 # Disable 'Show Finder search window' hotkey
-# [MacOS] 'Keyboard' > 'Shortcuts' tab > 'Spotligh' section > 'Show Finder search window'
+# [MacOS] 'Keyboard' > 'Shortcuts' tab > 'Spotlight' section > 'Show Finder search window'
 plutil -replace AppleSymbolicHotKeys.65.enabled -bool false "${HOTKEYS_PLIST}"
 
 # LANGUAGES
