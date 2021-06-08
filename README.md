@@ -19,4 +19,9 @@ git clone https://github.com/rynkowski/dotfiles ~/.dotfiles
 ~/.dotfiles/bin/install.sh
 ```
 
+## Useful links
+
+- https://github.com/glennj/exercism.io/blob/main/_mentor_notes/bash.md
+  -- pretty massive note about best practices writing bash
+
 [rcm]: https://github.com/thoughtbot/rcm
