@@ -14,6 +14,9 @@ brew install --cask firefox --appdir /Applications
 brew install --cask google-chrome --appdir /Applications
 brew install --cask tor-browser
 
+# E-mail client
+brew install --cask thunderbird
+
 # Messengers
 brew install --cask telegram-desktop
 brew install --cask whatsapp
@@ -38,13 +41,16 @@ brew install --cask vlc
 #brew install --cask onedrive # its already included in microsoft-office
 
 # Utils
-brew install --cask macs-fan-control
-brew install --cask nordvpn
-brew install --cask techsmith-capture
-brew install --cask gimp
-brew install --cask transmission
-# alternatively:
-#     mas install 1116599239  # NordVPN
 brew install --cask 1password
 # alternatively:
 #     mas install 443987910   # 1Password
+brew install --cask gimp
+brew install --cask macs-fan-control
+brew install --cask nordvpn
+# alternatively:
+#     mas install 1116599239  # NordVPN
+brew install --cask techsmith-capture
+brew install --cask transmission
+
+# Optionally
+# brew install --cask Geekbench # performance tests
