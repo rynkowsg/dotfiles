@@ -526,7 +526,7 @@ sudo pmset -a disksleep 0
 (is_macmini) && sudo pmset -a womp 0
 
 # Start up automatically after a power failure: ENABLED for AC
-sudo pmset -c autorestart 1
+sudo pmset -c autorestart 0
 
 # Enable Power Nap: DISABLED
 sudo pmset -a powernap 0
@@ -560,7 +560,7 @@ sudo pmset -a tcpkeepalive 0
 #     and will remove power to memory. The system will restore from disk image.                    │
 #     If you want "hibernation" - slower sleeps, slower wakes, and better battery life, you should use this setting.
 sudo pmset -c hibernatemode 3
-sudo pmset -b hibernatemode 25
+sudo pmset -b hibernatemode 3
 
 # automatically hibernate a machine after it has slept for a specified time period. This saves power while asleep
 sudo pmset -a standby 1
