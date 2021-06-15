@@ -1,0 +1,9 @@
+<settings>
+    <servers>
+        <server>
+            <id>cognitect-dev-tools</id>
+            <username>?cognitect-username?</username>
+            <password>?cognitect-password?</password>
+        </server>
+    </servers>
+</settings>

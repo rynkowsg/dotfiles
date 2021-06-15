@@ -1,4 +1,5 @@
 # https://thoughtbot.github.io/rcm/rcrc.5.html
 # https://thoughtbot.github.io/rcm/lsrc.1.html#EXCLUDE_PATTERN
+COPY_ALWAYS="m2/settings.xml datomic/dev-local.edn"
 EXCLUDES="./refs ./commonrc ./README.md *lib* ./bin screenshots"
 TAGS="macos"

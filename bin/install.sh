@@ -25,3 +25,5 @@ printf "%s\n" "---------------------------------------------------------------"
 yes | env VERBOSE=1 sh "${INSTALL_SCRIPT}"
 
 rm -rf "${TMP_DIR}"
+
+bash "${ROOT_DIR}/bin/inject_secrets.sh"
