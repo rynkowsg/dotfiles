@@ -104,6 +104,13 @@ alias gbr-current="git rev-parse --abbrev-ref HEAD"
 # TODO: it doesn't seem to work
 alias gbr-close="~/.git/bin/git-close-branch"
 
+git_commit_with_date_described() {
+  local desc="${1}"; shift;
+  local new_date="$(date --date "${desc}")}";
+  GIT_AUTHOR_DATE="${new_date}" GIT_COMMITTER_DATE="${new_date}" git commit --date "${new_date}" "$@";
+}
+alias git-commit-with-date-described=git_commit_with_date_described
+
 ###############################################################################
 # UI apps                                                                     #
 ###############################################################################
