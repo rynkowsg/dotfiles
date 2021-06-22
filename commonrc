@@ -41,3 +41,15 @@ if [ -n "$ZSH_VERSION" ]; then
 else
   echo "Warning! Babashka integration for $SHELL doesn't exist or couldn't be loaded"
 fi
+
+# Setup cloud
+GOOGLE_CLOUD_HOME="$(brew --prefix)/Caskroom/google-cloud-sdk/latest/google-cloud-sdk"
+if [ -n "$BASH_VERSION" ]; then
+  source "${GOOGLE_CLOUD_HOME}/path.bash.inc"
+  source "${GOOGLE_CLOUD_HOME}/completion.bash.inc"
+elif [ -n "$ZSH_VERSION" ]; then
+  source "${GOOGLE_CLOUD_HOME}/path.zsh.inc"
+  source "${GOOGLE_CLOUD_HOME}/completion.zsh.inc"
+elif [ -n "$FISH_VERSION" ]; then
+  source "${GOOGLE_CLOUD_HOME}/path.fish.inc"
+fi

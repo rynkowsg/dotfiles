@@ -172,6 +172,7 @@ brew install --cask virtualbox
 # cloud
 brew install awscli
 brew install circleci
+brew install --cask google-cloud-sdk
 
 # audio / video / graphics
 brew install ffmpeg libav
