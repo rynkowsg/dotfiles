@@ -61,10 +61,7 @@ brew install autojump       # shell navigation
 brew install curl
 brew install exiftool
 brew install fswatch
-brew install fzf            # custom Ctrl+R completion
-brew install jq
 brew install htop
-brew install httpie
 brew install mc
 brew install openssh
 brew install prettyping
@@ -161,6 +158,15 @@ brew install borkdude/brew/babashka
   yarn global add serverless
   yarn global add npx
 }
+
+# https://github.com/ibraheemdev/modern-unix
+brew install bat            # new cat
+brew install dog            # new dig
+brew install fzf            # custom Ctrl+R completion
+brew install jq
+yarn global add gtop
+brew install httpie
+brew install tldr           # kinda man
 
 # Virtualization / containerization
 brew install --cask virtualbox
