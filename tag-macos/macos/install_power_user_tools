@@ -215,3 +215,6 @@ brew install --cask spectacle     # organising windows using shortcuts
 brew install --cask turbo-boost-switcher
 # https://apps.apple.com/gb/app/tadam-stay-focused-at-work/id531349534?mt=12
 mas install 531349534             # tadam - stay focused-at-work
+
+# Non-developer apps
+brew install --cask discord

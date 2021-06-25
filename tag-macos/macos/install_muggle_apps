@@ -45,6 +45,7 @@ brew install --cask 1password
 # alternatively:
 #     mas install 443987910   # 1Password
 brew install --cask gimp
+brew install --cask keka
 brew install --cask macs-fan-control
 brew install --cask nordvpn
 # alternatively:
