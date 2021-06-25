@@ -129,3 +129,17 @@ weather() { curl wttr.in/$1; }
 
 alias my-youtube-dl="youtube-dl -o '%(uploader)s/%(upload_date)s_%(title)s.%(ext)s' --restrict-filenames --continue --no-overwrites --write-description --write-info-json --write-annotations --write-all-thumbnails --sub-format srt --write-sub --sub-lang en,pl"
 alias my-speedtest='speedtest | tee ~/OneDrive/Logs/speedtest/"$(date "+%Y%m%d_%H%m%S")-$(uname -n).txt"'
+
+# change git origin
+change-git-remote() {
+  local origin="${1}"
+  local from="${2}"
+  local to="${3}"
+  local new_remote="$(git remote -v      |\
+    grep "${origin}" |\
+    head -n 1        |\
+    awk '{print $2}' |\
+    sed "s/$2/$3/")"
+  git remote set-url "${origin}" "${new_remote}"
+}
+
