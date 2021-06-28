@@ -48,6 +48,11 @@
 	icontheme = default
 [include]
   path = ~/.gitconfig.platform
+# That include contains settings for git-cola.
+# For some reason it doesn't work. Perhaps git-cola can'r resolve [include] blocks.
+# TODO: Sort out the problem of setting platform-specific gitconfig for git-cola.
+[gui]
+  editor = mate
 
 # to preview all config:
 #    git config --list --show-origin
