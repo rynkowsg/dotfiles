@@ -143,3 +143,4 @@ change-git-remote() {
   git remote set-url "${origin}" "${new_remote}"
 }
 
+alias veracrypt="/Applications/VeraCrypt.app/Contents/MacOS/VeraCrypt --text"

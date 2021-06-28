@@ -36,7 +36,10 @@ brew install svn
 brew install git git-lfs git-gui git-cola tig pre-commit
 
 # gpg
-brew install gnupg pinentry-mac gpa
+brew install gnupg pinentry-mac gpa paperkey
+
+# qr
+brew install qrencode zbar imagesnap
 
 # GNU utils
 brew install coreutils ed findutils gawk gnu-sed gnu-tar grep make
@@ -90,9 +93,8 @@ brew install youtube-dl
 brew install python
 brew install ruby
 # clojure
-brew install clojure
-brew install leiningen
-brew install borkdude/brew/babashka
+brew install clojure leiningen
+brew install borkdude/brew/babashka borkdude/brew/jet
 {
   # tfenv - for terraform, globally and locally in projects
   brew install tfenv
@@ -221,6 +223,7 @@ brew install --cask spectacle     # organising windows using shortcuts
 brew install --cask turbo-boost-switcher
 # https://apps.apple.com/gb/app/tadam-stay-focused-at-work/id531349534?mt=12
 mas install 531349534             # tadam - stay focused-at-work
+brew install --cask veracrypt     # disk encryption software focusing on security based on TrueCrypt
 
 # Non-developer apps
 brew install --cask discord
