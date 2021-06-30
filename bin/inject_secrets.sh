@@ -10,8 +10,7 @@ printf "${RED}%s${RESET}\n" "Script can not handle secret entries."
 printf "${RED}%s${RESET}\n" "Reason: CLI password manager has not been setup yet."
 exit 1
 
-TOKEN="?cognitect-username?"
-sed -i "s/${TOKEN}/REPLACEMENT/g" "${HOME}/.m2/settings.xml"
-
-TOKEN="?cognitect-password?"
-sed -i "s/${TOKEN}/REPLACEMENT/g" "${HOME}/.m2/settings.xml"
+COGNITECT_USER="?cognitect-username?"
+COGNITECT_PASS="?cognitect-password?"
+sed -i "s/${COGNITECT_USER}/REPLACEMENT/g" "${HOME}/.m2/settings.xml"
+sed -i "s/${COGNITECT_PASS}/REPLACEMENT/g" "${HOME}/.m2/settings.xml"

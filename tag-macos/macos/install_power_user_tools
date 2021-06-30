@@ -66,6 +66,7 @@ brew install exiftool
 brew install fswatch
 brew install htop
 brew install mc
+brew install nload          # Realtime console network usage monitor
 brew install openssh
 brew install prettyping
 brew install pv             # data's progress through a pipe
