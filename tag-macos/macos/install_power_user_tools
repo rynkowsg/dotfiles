@@ -129,8 +129,13 @@ brew install borkdude/brew/babashka borkdude/brew/jet
     # apple complains about these two that they
     # "cannot be opened because the developer cannot be verified"
     # that message happen when I try to add then to jenv
+  printf "%s\n" "List of available corretto jdks:"
+  brew search corretto
+  brew install --cask corretto8 corretto11
   printf "%s\n" "List of JavaVirtualMachines:"
-  ls -l /Library/Java/JavaVirtualMachines/
+#  ls -l /Library/Java/JavaVirtualMachines/
+  /usr/libexec/java_home -V
+  # add all to jenv
   jenv add /Library/Java/JavaVirtualMachines/adoptopenjdk-8.jdk/Contents/Home
 #  jenv add /Library/Java/JavaVirtualMachines/adoptopenjdk-9.jdk/Contents/Home
 #  jenv add /Library/Java/JavaVirtualMachines/adoptopenjdk-10.jdk/Contents/Home
@@ -140,6 +145,8 @@ brew install borkdude/brew/babashka borkdude/brew/jet
   jenv add /Library/Java/JavaVirtualMachines/adoptopenjdk-14.jdk/Contents/Home
   jenv add /Library/Java/JavaVirtualMachines/adoptopenjdk-15.jdk/Contents/Home
   jenv add /Library/Java/JavaVirtualMachines/adoptopenjdk-16.jdk/Contents/Home
+  jenv add /Library/Java/JavaVirtualMachines/amazon-corretto-8.jdk/Contents/Home/
+  jenv add /Library/Java/JavaVirtualMachines/amazon-corretto-11.jdk/Contents/Home/
   printf "%s\n" "jenv versions:"
   jenv versions
   jenv shell 16
