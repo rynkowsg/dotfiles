@@ -51,6 +51,9 @@ fi
 # Add to PATH bin/ containing user packages
 export PATH="${HOME}/.local/bin:${PATH}"
 
+# Add anaconda's path
+export PATH="$(brew --prefix)/anaconda3/bin:${PATH}"
+
 # Setup Babashka (bb) completion
 if [ -n "$ZSH_VERSION" ]; then
   [ -f "$HOME"/.bb.zsh ] && source "$HOME"/.bb.zsh

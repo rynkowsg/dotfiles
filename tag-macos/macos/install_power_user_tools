@@ -113,6 +113,12 @@ brew install youtube-dl
   # https://pipenv.pypa.io/en/latest/install/#installing-pipenv
   brew install pipenv
 }
+{
+  brew install --cask anaconda
+  # Fix "Verifying transaction: / WARNING conda.core.path_actions:verify(962): Unable to create environments file. Path not writable."
+  sudo chmod 775 ~/.conda/environments.txt
+  /usr/local/anaconda3/bin/conda update -y conda
+}
 brew install ruby
 # clojure
 brew install clojure leiningen
