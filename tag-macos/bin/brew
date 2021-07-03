@@ -1,0 +1,13 @@
+#!/usr/bin/env bash
+
+# since that script has the same name and .bin is in the PATH,
+# we need to take .bin out from PATH to get access to original brew
+BREW_PREFIX="$(/usr/bin/env PATH="${PATH//${HOME}\/.bin://}" brew --prefix)"
+
+TMP_PATH="$(echo "${PATH}" |                                \
+  sed -e "s|$(pyenv root)/shims:||"                         \
+      -e "s|${BREW_PREFIX}/opt/coreutils/libexec/gnubin:||" \
+      -e "s|${BREW_PREFIX}/opt/findutils/libexec/gnubin:||"
+)"
+# assumes default location of brew is `$(brew --prefix)/bin/brew`
+/usr/bin/env PATH="${TMP_PATH}" "${BREW_PREFIX}/bin/brew" "$@"

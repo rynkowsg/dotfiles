@@ -37,3 +37,7 @@ bash "${HOME}/.dotfiles/lib/run_when_changed" "${HOME}/.macos/set_system_prefere
 bash "${HOME}/.dotfiles/lib/run_when_changed" "${HOME}/.macos/set_system_preferences_misc"
 bash "${HOME}/.dotfiles/lib/run_when_changed" "${HOME}/.macos/set_apple_apps_preferences"
 bash "${HOME}/.dotfiles/lib/run_when_changed" "${HOME}/.macos/set_other_apps_preferences"
+
+# Homebrew
+# to fix brew doctor warning "Homebrew's "sbin" was not found in your PATH"
+export PATH="$(brew --prefix)/sbin:${PATH}"
