@@ -23,3 +23,7 @@ cp "${SPOTIFY_USER_PREFS}" "${SPOTIFY_USER_PREFS_BACKUP}"
 ALFRED_PREFS="${HOME}/Library/Preferences/com.runningwithcrayons.Alfred-Preferences.plist"
 # shellcheck disable=SC2088
 plutil -replace syncfolder -string "~/OneDrive/Apps Data" "${ALFRED_PREFS}"
+
+# TODO: sync TMUX settings
+# https://apple.stackexchange.com/questions/111534/iterm2-doesnt-read-com-googlecode-iterm2-plist/111559#111559
+# https://stackoverflow.com/questions/22943676/how-to-export-iterm2-profiles/27535485#27535485
