@@ -91,7 +91,28 @@ brew install wget
 brew install youtube-dl
 
 # languages / envs
-brew install python
+{
+  brew install python
+  # https://towardsdatascience.com/python-environment-101-1d68bda3094d
+  # https://binx.io/blog/2019/04/12/installing-pyenv-on-macos/
+  # 1. pyenv
+  brew install pyenv
+  brew install openssl readline sqlite3 xz zlib
+  printf "%s\n" "List of available Python envs:"
+  pyenv install --list
+  echo "N" | pyenv install 2.7.18
+  echo "N" | pyenv install 3.9.6
+  mkdir -p "$HOME/.pyenv/bin" # pyenv init adds this path to PATH, but it doesn't exist until you install something
+  pyenv global 3.9.6
+  printf "%s\n" "List of installed Python envs:"
+  pyenv versions
+  # 2. pyenv-virtualenv
+  brew install pyenv-virtualenv
+  # 3. pipenv
+  # https://pipenv.pypa.io/en/latest/basics/
+  # https://pipenv.pypa.io/en/latest/install/#installing-pipenv
+  brew install pipenv
+}
 brew install ruby
 # clojure
 brew install clojure leiningen
