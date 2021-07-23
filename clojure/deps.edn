@@ -10,24 +10,24 @@
 ;; Only the last :paths is kept and others are dropped.
 
 {;; Paths
-;; Directories in the current project to include in the classpath
-  :paths     ["src"]
+ ;; Directories in the current project to include in the classpath
+ :paths
+ ["src"]
 
-  ;; External dependencies
-  :deps      {;; https://mvnrepository.com/artifact/org.clojure/clojure
-             ;  org.clojure/clojure {:mvn/version "1.10.1"}
-               }
+ ;; External dependencies
+ :deps
+ {org.clojure/clojure {:mvn/version "1.10.2"}}
 
-  ;; Aliases
-  ;;   resolve-deps aliases (-R) affect dependency resolution, options:
-  ;;     :extra-deps - specifies extra deps to add to :deps
-  ;;     :override-deps - specifies a coordinate to use instead of that in :deps
-  ;;     :default-deps - specifies a coordinate to use for a lib if one isn't found
-  ;;   make-classpath aliases (-C) affect the classpath generation, options:
-  ;;     :extra-paths - vector of additional paths to add to the classpath
-  ;;     :classpath-overrides - map of lib to path that overrides the result of resolving deps
-  :aliases
-  {;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+ ;; Aliases
+ ;;   resolve-deps aliases (-R) affect dependency resolution, options:
+ ;;     :extra-deps - specifies extra deps to add to :deps
+ ;;     :override-deps - specifies a coordinate to use instead of that in :deps
+ ;;     :default-deps - specifies a coordinate to use for a lib if one isn't found
+ ;;   make-classpath aliases (-C) affect the classpath generation, options:
+ ;;     :extra-paths - vector of additional paths to add to the classpath
+ ;;     :classpath-overrides - map of lib to path that overrides the result of resolving deps
+ :aliases
+ {;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
   ;; REPL experience
   ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
@@ -35,48 +35,54 @@
   ;; Clojure REPL with syntax highlighting, built in docs and a quit command `:repl/quit`
   ;; https://github.com/bhauman/rebel-readline
   ;; clojure -M:repl/rebel
-    :repl/rebel       {:extra-deps {com.bhauman/rebel-readline {:mvn/version "0.1.4"}}
-                       :main-opts  ["-m" "rebel-readline.main"]}
+  :repl/rebel
+  {:extra-deps {com.bhauman/rebel-readline {:mvn/version "0.1.4"}}
+   :main-opts  ["-m" "rebel-readline.main"]}
 
-    ;; rebel readline with nrepl for editor connection to REPL
-    ;; CIDER: run `cider-connect-clj` and expressions evaluated in rebel
-    ;; are also available from CIDER/Emacs/Spacemacs
-    ;; clojure -M:repl/rebel-nrepl
-    :repl/rebel-nrepl {:extra-deps {nrepl/nrepl                {:mvn/version "0.8.3"}
-                                    com.bhauman/rebel-readline {:mvn/version "0.1.4"}}
-                       :main-opts  ["--main"
-                                    "nrepl.cmdline"
-                                    ;; -m
-                                    "--interactive"
-                                    ;; -i
-                                    "--repl-fn"
-                                    "rebel-readline.main/-main"]}
-    ;; -f
+  ;; rebel readline with nrepl for editor connection to REPL
+  ;; CIDER: run `cider-connect-clj` and expressions evaluated in rebel
+  ;; are also available from CIDER/Emacs/Spacemacs
+  ;; clojure -M:repl/rebel-nrepl
+  :repl/rebel-nrepl
+  {:extra-deps {nrepl/nrepl                {:mvn/version "0.8.3"}
+                com.bhauman/rebel-readline {:mvn/version "0.1.4"}}
+   :main-opts  ["--main"
+                "nrepl.cmdline"
+                ;; -m
+                "--interactive"
+                ;; -i
+                "--repl-fn"
+                "rebel-readline.main/-main"]}
+  ;; -f
 
-    ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-    ;; End of REPL experience
-    ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+  ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+  ;; End of REPL experience
+  ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
-    ;; Uberjar archive of the project, including Clojure runtime
-    ;; clojure -X:project/uberjar :main-class domain.application
-    ;; clojure -X:project/uberjar :jar '"project-name.jar"' :main-class domain.application
-    :project/uberjar  {:replace-deps {com.github.seancorfield/depstar {:mvn/version "2.1.267"}}
-                       :exec-fn      hf.depstar/uberjar
-                       :exec-args    {:jar        "target/uberjar.jar"
-                                      :main-class calc.core
-                                      :aot        true
-                                      :compile-ns :all}}
+  ;; Uberjar archive of the project, including Clojure runtime
+  ;; clojure -X:project/uberjar :main-class domain.application
+  ;; clojure -X:project/uberjar :jar '"project-name.jar"' :main-class domain.application
+  :project/uberjar
+  {:replace-deps {com.github.seancorfield/depstar {:mvn/version "2.1.267"}}
+   :exec-fn      hf.depstar/uberjar
+   :exec-args    {:jar        "target/uberjar.jar"
+                  :main-class calc.core
+                  :aot        true
+                  :compile-ns :all}}
 
-    ;; https://clojars.org/seancorfield/clj-new
-    :project/new      {:extra-deps {seancorfield/clj-new {:mvn/version "1.1.309"}}
-                       :exec-fn    clj-new/create}
+  ;; https://clojars.org/seancorfield/clj-new
+  :project/new
+  {:extra-deps {seancorfield/clj-new {:mvn/version "1.1.309"}}
+   :exec-fn    clj-new/create}
 
-    :project/outdated {:replace-paths []
-                       :replace-deps  {com.github.liquidz/antq {:mvn/version "0.16.0"}
-                                       org.slf4j/slf4j-nop     {:mvn/version "1.7.32"}}
-                       :main-opts     ["-m" "antq.core"]}}
+  :project/outdated
+  {:replace-paths []
+   :replace-deps  {com.github.liquidz/antq {:mvn/version "0.16.0"}
+                   org.slf4j/slf4j-nop     {:mvn/version "1.7.32"}}
+   :main-opts     ["-m" "antq.core"]}}
 
-  ;; Provider attributes
-  :mvn/repos {"central"             {:url "https://repo1.maven.org/maven2/"}
-              "clojars"             {:url "https://repo.clojars.org/"}
-              "cognitect-dev-tools" {:url "https://dev-tools.cognitect.com/maven/releases/"}}}
+ ;; Provider attributes
+ :mvn/repos
+ {"central"             {:url "https://repo1.maven.org/maven2/"}
+  "clojars"             {:url "https://repo.clojars.org/"}
+  "cognitect-dev-tools" {:url "https://dev-tools.cognitect.com/maven/releases/"}}}
