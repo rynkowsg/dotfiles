@@ -60,7 +60,7 @@
     ;; Uberjar archive of the project, including Clojure runtime
     ;; clojure -X:project/uberjar :main-class domain.application
     ;; clojure -X:project/uberjar :jar '"project-name.jar"' :main-class domain.application
-    :project/uberjar  {:replace-deps {seancorfield/depstar {:mvn/version "2.0.165"}}
+    :project/uberjar  {:replace-deps {com.github.seancorfield/depstar {:mvn/version "2.1.267"}}
                        :exec-fn      hf.depstar/uberjar
                        :exec-args    {:jar        "target/uberjar.jar"
                                       :main-class calc.core
@@ -68,11 +68,12 @@
                                       :compile-ns :all}}
 
     ;; https://clojars.org/seancorfield/clj-new
-    :project/new      {:extra-deps {seancorfield/clj-new {:mvn/version "1.1.234"}}
+    :project/new      {:extra-deps {seancorfield/clj-new {:mvn/version "1.1.309"}}
                        :exec-fn    clj-new/create}
 
     :project/outdated {:replace-paths []
-                       :replace-deps  {antq/antq {:mvn/version "0.9.3"}}
+                       :replace-deps  {com.github.liquidz/antq {:mvn/version "0.16.0"}
+                                       org.slf4j/slf4j-nop     {:mvn/version "1.7.32"}}
                        :main-opts     ["-m" "antq.core"]}}
 
   ;; Provider attributes

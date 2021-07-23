@@ -1,0 +1,15 @@
+/target
+/classes
+/checkouts
+*.jar
+*.class
+.cpcache
+/.lein-*
+.nrepl-history
+.nrepl-port
+pom.xml
+pom.xml.asc
+/.dir-locals.el
+
+# MacOs
+.DS_Store
