@@ -203,6 +203,7 @@ brew install borkdude/brew/babashka borkdude/brew/jet
   # Links:
   # - https://kenanhancer.com/2020/05/09/how-to-install-java-with-brew-and-jenv/
   # - https://developer.bring.com/blog/configuring-jenv-the-right-way/
+  brew install maven
 }
 {
   # nvm - to use npm/node only in JS projects locally
