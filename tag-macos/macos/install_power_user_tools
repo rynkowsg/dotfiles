@@ -121,7 +121,8 @@ brew install youtube-dl
 }
 brew install ruby
 # clojure
-brew install clojure leiningen
+brew tap clojure/tools
+brew install clojure/tools/clojure leiningen
 brew install borkdude/brew/babashka borkdude/brew/jet
 {
   # tfenv - for terraform, globally and locally in projects
