@@ -443,6 +443,11 @@ defaults write NSGlobalDomain com.apple.keyboard.fnState -bool true
 
 HOTKEYS_PLIST="${HOME}/Library/Preferences/com.apple.symbolichotkeys.plist"
 
+# Disable 'Mission Control' shortcut
+# [MacOS] 'Keyboard' > 'Shortcuts' tab > 'Mission control' section > 'Mission Control'
+plutil -replace AppleSymbolicHotKeys.32.enabled -bool false "${HOTKEYS_PLIST}"
+plutil -replace AppleSymbolicHotKeys.34.enabled -bool false "${HOTKEYS_PLIST}"
+
 # Disable 'Show Desktop' (F11) shortcut
 # [MacOS] 'Keyboard' > 'Shortcuts' tab > 'Mission control' section > 'Show Desktop'
 #printf "BEFORE:\n"
