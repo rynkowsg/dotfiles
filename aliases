@@ -146,3 +146,5 @@ change-git-remote() {
 alias veracrypt="/Applications/VeraCrypt.app/Contents/MacOS/VeraCrypt --text"
 alias pip-search="${HOME}/.bin/pypy-search.sh"
 alias pip-uninstall-all="pip freeze | xargs pip uninstall -y"
+
+alias dns-reset="sudo dscacheutil -flushcache; sudo killall -HUP mDNSResponder"
