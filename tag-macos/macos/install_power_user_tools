@@ -37,6 +37,10 @@ brew install git git-lfs git-gui git-cola tig pre-commit
 
 # gpg
 brew install gnupg pinentry-mac gpa paperkey
+brew install hopenpgp-tools # linting public key
+brew install ykman          # yubikey manager
+brew install --cask gpg-suite
+brew install pass gopass    # GPG-based password manager
 
 # qr
 brew install qrencode zbar imagesnap
@@ -242,12 +246,16 @@ brew install awscli
 brew install circleci
 brew install --cask google-cloud-sdk
 
+# wordpress
+brew install --cask local # localwp.com
+
 # audio / video / graphics
 brew install ffmpeg libav
 brew install asciinema      # https://asciinema.org/
 brew install graphviz
 brew install imagemagick
 brew install imageoptim-cli
+brew install jpegoptim jpeginfo
 
 # macos control
 brew install smudge/smudge/nightlight   # managing night shift feature
