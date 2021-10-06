@@ -11,7 +11,6 @@
   cor = checkout --recurse-submodules
   cp = cherry-pick
   fetchr = fetch --recurse-submodules
-  lo = log --oneline --abbrev-commit
   mrg = merge
   pl = pull
   plr = pull --rebase
@@ -20,8 +19,10 @@
   fix-lfs = "!f() { cp /dev/null .gitattributes && git status && git checkout -- .gitattributes && git status; }; f"
   pushf = push --force-with-lease
   this = symbolic-ref --short HEAD
-  lg = log --oneline --decorate --graph
   # https://coderwall.com/p/euwpig/a-better-git-log
+  logs = log --show-signature
+  lo = log --oneline --abbrev-commit
+  lg = log --oneline --decorate --graph
   lgg = log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit
   lggs = log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cs)%Creset' --abbrev-commit
 [core]
