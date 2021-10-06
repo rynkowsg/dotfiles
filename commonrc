@@ -15,6 +15,11 @@ export DO_NOT_TRACK=1
 # Load user bin
 export PATH="${HOME}/.bin:${PATH}"
 
+# Setup GPG + SSH
+export GPG_TTY="$(tty)"
+export SSH_AUTH_SOCK=$(gpgconf --list-dirs agent-ssh-socket)
+gpgconf --launch gpg-agent
+
 # Load autojump
 # https://github.com/wting/autojump
 if [ -n "$BASH_VERSION" ] || [ -n "$ZSH_VERSION" ]; then
