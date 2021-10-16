@@ -1,9 +1,9 @@
 [user]
-	name = Greg Rynkowski
-	email = greg@rynkowski.pl
+  name = Greg Rynkowski
+  email = greg@rynkowski.pl
   signingkey = F3476719D0661632D61D0B3B6762037B92E2622E
 [commit]
-	gpgsign = true
+  gpgsign = true
 [alias]
   br = branch
   ci = commit
