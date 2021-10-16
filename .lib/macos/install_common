@@ -8,7 +8,7 @@ ROOT_DIR="$(cd "${SCRIPT_DIR}/../.." || exit 1; pwd -P)"
 softwareupdate --all --install --force
 
 # install Homebrew if not installed
-source "${ROOT_DIR}/lib/macos/homebrew"
+source "${ROOT_DIR}/.lib/macos/homebrew"
 install_homebrew;
 
 # tap cask

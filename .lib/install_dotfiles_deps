@@ -6,7 +6,7 @@ function install_dotfiles_deps {
   # on detecting system: https://stackoverflow.com/a/8597411
   if [[ "$OSTYPE" == "darwin"* ]]; then
     # install Homebrew if not installed
-    source "${root_dir}/lib/macos/homebrew"
+    source "${root_dir}/.lib/macos/homebrew"
     install_homebrew;
     # install rcm
     brew install rcm

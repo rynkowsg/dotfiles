@@ -4,7 +4,7 @@ SCRIPT_DIR="$(cd "$(dirname "$([ -L "$0" ] && readlink "$0" || echo "$0")")" || 
 ROOT_DIR="${SCRIPT_DIR}/.."
 
 # install dependencies
-source "${ROOT_DIR}/lib/install_dotfiles_deps" && install_dotfiles_deps "${ROOT_DIR}"
+source "${ROOT_DIR}/.lib/install_dotfiles_deps" && install_dotfiles_deps "${ROOT_DIR}"
 
 # link all the files
 
