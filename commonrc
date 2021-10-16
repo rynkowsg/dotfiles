@@ -79,10 +79,11 @@ elif [ -n "$FISH_VERSION" ]; then
 fi
 
 # Android dev env setup
-export ANDROID_SDK_ROOT=/usr/local/opt/android-sdk
+export ANDROID_SDK_ROOT="/usr/local/opt/android-sdk"
 export ANDROID_HOME="${ANDROID_SDK_ROOT}"
 export PATH="${ANDROID_SDK_ROOT}:${ANDROID_SDK_ROOT}/tools:${ANDROID_SDK_ROOT}/tools/bin:${PATH}"
 export PATH="${ANDROID_SDK_ROOT}/platform-tools:${PATH}"
 export PATH="${ANDROID_SDK_ROOT}/build-tools/latest:${PATH}"  # requires a symlink e.g. `ln -s 27.0.3 latest`
 export PATH="${ANDROID_NDK_ROOT}:${PATH}"
-export ANDROID_NDK_ROOT=/usr/local/opt/android-sdk/ndk/23.0.7599858/
+export ANDROID_NDK_ROOT="/usr/local/opt/android-sdk/ndk/latest"
+bb "${HOME}/.dotfiles/.lib/clj/scripts/update_latest_symlink.clj" "/usr/local/opt/android-sdk/build-tools" "/usr/local/opt/android-sdk/ndk"

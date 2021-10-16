@@ -1,2 +1,6 @@
+# MacOs
 .DS_Store
+
+# JetBrains
 .idea/
+*.iml
