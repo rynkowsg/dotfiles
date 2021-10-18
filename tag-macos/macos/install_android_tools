@@ -11,10 +11,57 @@ sh "${ROOT_DIR}/.lib/macos/install_common"
 ###    ANDROID DEV TOOLS    ###
 ###############################
 
+# install android-sdk
+brew install --cask android-sdk
+# create a symlink "/usr/local/opt/android-sdk"
+bb "${HOME}/.dotfiles/.lib/clj/scripts/update_latest_symlink.clj" "/usr/local/Caskroom/android-sdk/"
+rm -f "/usr/local/opt/android-sdk"
+ln -s "/usr/local/Caskroom/android-sdk/latest" "/usr/local/opt/android-sdk"
+# install SDK components
+yes | JAVA_HOME="${HOME}/.jenv/versions/1.8" sdkmanager --install "build-tools;29.0.3" \
+                                                                  "build-tools;30.0.3" \
+                                                                  "build-tools;31.0.0" \
+                                                                  "cmake;3.18.1" \
+                                                                  "cmdline-tools;5.0" \
+                                                                  "cmdline-tools;latest" \
+                                                                  "emulator"  \
+                                                                  "extras;android;m2repository"  \
+                                                                  "extras;google;google_play_services" \
+                                                                  "extras;google;instantapps" \
+                                                                  "extras;google;m2repository" \
+                                                                  "extras;google;market_apk_expansion" \
+                                                                  "extras;google;market_licensing" \
+                                                                  "extras;intel;Hardware_Accelerated_Execution_Manager" \
+                                                                  "ndk;20.0.5594570" \
+                                                                  "ndk;23.0.7599858" \
+                                                                  "platform-tools"  \
+                                                                  "platforms;android-22" \
+                                                                  "platforms;android-29" \
+                                                                  "platforms;android-30" \
+                                                                  "platforms;android-31" \
+                                                                  "sources;android-22" \
+                                                                  "sources;android-29" \
+                                                                  "sources;android-30" \
+                                                                  "sources;android-31" \
+                                                                  "system-images;android-29;google_apis_playstore;x86" \
+                                                                  "system-images;android-30;google_apis_playstore;x86_64" \
+                                                                  "system-images;android-31;google_apis_playstore;x86_64" \
+                                                                  "tools"
+JAVA_HOME="${HOME}/.jenv/versions/1.8" sdkmanager --update
+JAVA_HOME="${HOME}/.jenv/versions/1.8" sdkmanager --list
+# create latest symlinks inside of the Android SDK
+bb "${HOME}/.dotfiles/.lib/clj/scripts/update_latest_symlink.clj" \
+  "/usr/local/opt/android-sdk/build-tools" \
+  "/usr/local/opt/android-sdk/ndk"
+
+brew install --cask android-studio
+
+# Android developer tools
+brew install pidcat
+brew install --cask genymotion
 brew install gradle
 brew install ktlint
 brew install pidcat
-brew install --cask android-sdk
 brew install --cask vysor
 brew install leakcanary-shark
 brew install --cask chromedriver
