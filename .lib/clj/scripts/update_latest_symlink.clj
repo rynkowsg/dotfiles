@@ -25,16 +25,18 @@
   (println "[update-symlinks]   added" (str path) " => " (str target)))
 
 (defn create-latest-in-dir [dir]
-  (let [latest-one      (str (pick-latest dir))
-        symlink-path    (fs/file dir "latest")
-        exists          (fs/link? symlink-path)
-        previous-target (when exists (str (fs/read-sym-link symlink-path)))]
-    (when (not exists)
-      (create-symlink symlink-path latest-one))
-    (when (and exists (not= previous-target latest-one))
-      (fs/delete symlink-path)
-      (println "[update-symlinks] removed" (str symlink-path) " => " (str previous-target))
-      (create-symlink symlink-path latest-one))))
+  (if (fs/exists? dir)
+   (let [latest-one      (str (pick-latest dir))
+         symlink-path    (fs/file dir "latest")
+         exists          (fs/link? symlink-path)
+         previous-target (when exists (str (fs/read-sym-link symlink-path)))]
+     (when (not exists)
+       (create-symlink symlink-path latest-one))
+     (when (and exists (not= previous-target latest-one))
+       (fs/delete symlink-path)
+       (println "[update-symlinks] removed" (str symlink-path) " => " (str previous-target))
+       (create-symlink symlink-path latest-one)))
+   (println "[update-symlinks] directory doesn't exist:" dir)))
 
 (let [dirs *command-line-args*]
   (run! create-latest-in-dir dirs))
