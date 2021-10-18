@@ -94,7 +94,10 @@ brew install weechat        # messenger
 # https://github.com/whalebrew/whalebrew
 brew install whalebrew      # For dockerizing commands
 brew install wget
-brew install youtube-dl
+# https://github.com/ytdl-org/youtube-dl
+#brew install youtube-dl # this one seems to be dead
+# https://github.com/yt-dlp/yt-dlp
+brew install yt-dlp/taps/yt-dlp
 
 # languages / envs
 {

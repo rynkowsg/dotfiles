@@ -127,7 +127,7 @@ alias dag="git-dag &"
 
 weather() { curl wttr.in/$1; }
 
-alias my-youtube-dl="youtube-dl -o '%(uploader)s/%(upload_date)s_%(title)s.%(ext)s' --restrict-filenames --continue --no-overwrites --write-description --write-info-json --write-annotations --write-all-thumbnails --sub-format srt --write-sub --sub-lang en,pl"
+alias my-youtube-dl="yt-dlp -o '%(uploader)s/%(upload_date)s_%(title)s.%(ext)s' --restrict-filenames --continue --no-overwrites --write-description --write-info-json --write-annotations --write-all-thumbnails --sub-format srt --write-sub --sub-lang en,pl"
 alias my-speedtest='speedtest | tee ~/OneDrive/Logs/speedtest/"$(date "+%Y%m%d_%H%m%S")-$(uname -n).txt"'
 
 # change git origin
