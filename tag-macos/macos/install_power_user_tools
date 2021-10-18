@@ -41,6 +41,8 @@ brew install hopenpgp-tools # linting public key
 brew install ykman          # yubikey manager
 brew install --cask gpg-suite
 brew install pass gopass    # GPG-based password manager
+# https://android.stackexchange.com/questions/239151/why-does-grapheneos-use-signify-instead-of-pgp-to-sign-their-releases-gpg-cryp
+brew install signify-osx
 
 # qr
 brew install qrencode zbar imagesnap
@@ -295,3 +297,4 @@ brew install --cask veracrypt     # disk encryption software focusing on securit
 
 # Non-developer apps
 brew install --cask discord
+brew install --cask element
