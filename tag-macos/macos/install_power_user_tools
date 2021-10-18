@@ -209,7 +209,7 @@ brew install borkdude/brew/babashka borkdude/brew/jet
   /usr/libexec/java_home -V
   printf "%s\n" "jenv versions:"
   jenv versions
-  jenv shell 16
+  jenv shell 1.8
   # Links:
   # - https://kenanhancer.com/2020/05/09/how-to-install-java-with-brew-and-jenv/
   # - https://developer.bring.com/blog/configuring-jenv-the-right-way/
