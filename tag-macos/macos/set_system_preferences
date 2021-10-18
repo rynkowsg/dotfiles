@@ -564,8 +564,8 @@ sudo pmset -a tcpkeepalive 0
 # 25: Copy RAM to disk and remove power to memory. The system will restore from disk image.
 #     and will remove power to memory. The system will restore from disk image.                    │
 #     If you want "hibernation" - slower sleeps, slower wakes, and better battery life, you should use this setting.
-sudo pmset -c hibernatemode 3
-sudo pmset -b hibernatemode 3
+(is_macmini) && sudo pmset -a hibernatemode 3
+(is_macbookpro) && sudo pmset -a hibernatemode 0
 
 # automatically hibernate a machine after it has slept for a specified time period. This saves power while asleep
 sudo pmset -a standby 1
