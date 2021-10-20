@@ -33,6 +33,7 @@ yes | JAVA_HOME="${HOME}/.jenv/versions/1.8" sdkmanager --install "build-tools;2
                                                                   "extras;google;market_licensing" \
                                                                   "extras;intel;Hardware_Accelerated_Execution_Manager" \
                                                                   "ndk;20.0.5594570" \
+                                                                  "ndk;21.0.6113669" \
                                                                   "ndk;23.0.7599858" \
                                                                   "platform-tools"  \
                                                                   "platforms;android-22" \
