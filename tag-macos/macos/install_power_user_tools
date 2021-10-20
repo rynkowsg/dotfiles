@@ -173,7 +173,9 @@ brew install borkdude/brew/babashka borkdude/brew/jet
   # https://www.shellhacks.com/yes-no-bash-script-prompt-confirmation/
   # Oracle
   # https://download.oracle.com/otn/java/jdk/8u301-b09/d3c52aa6bfa54d3ca74e617f18309292/jdk-8u301-macosx-x64.dmg
-  jenv add /Library/Java/JavaVirtualMachines/jdk1.8.0_301.jdk/Contents/Home
+  for home_path in /Library/Java/JavaVirtualMachines/jdk*.jdk/Contents/Home; do
+    jenv add "$home_path"
+  done
   ######  Open JDK  ######
   brew tap adoptopenjdk/openjdk
   printf "%s\n" "List of available adoptopenjdk:"
