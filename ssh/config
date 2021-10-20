@@ -3,4 +3,4 @@ Host github.com
   IdentityFile ~/.ssh/id_rsa_yubikey.pub
 Host *
   AddKeysToAgent yes
-  IdentityFile ~/.ssh/id_rsa
+  IdentityFile ~/.ssh/id_rsa_yubikey.pub
