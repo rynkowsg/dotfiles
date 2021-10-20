@@ -34,6 +34,10 @@ echo "SHELL: $SHELL"
 # git
 brew install svn
 brew install git git-lfs git-gui git-cola tig pre-commit
+# git-filter-repo - great tool for rewriting history
+# https://github.com/newren/git-filter-repo
+# https://htmlpreview.github.io/?https://github.com/newren/git-filter-repo/blob/docs/html/git-filter-repo.html#EXAMPLES
+brew install git-filter-repo
 
 # gpg
 brew install gnupg pinentry-mac gpa paperkey
