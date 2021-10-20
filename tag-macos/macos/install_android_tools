@@ -62,7 +62,6 @@ brew install pidcat
 brew install --cask genymotion
 brew install gradle
 brew install ktlint
-brew install pidcat
 brew install --cask vysor
 brew install leakcanary-shark
 brew install --cask chromedriver

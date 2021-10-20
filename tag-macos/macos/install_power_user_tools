@@ -287,10 +287,6 @@ brew install --cask font-iosevka
 brew install --cask emacs
 brew install --cask intellij-idea pycharm webstorm
 
-# Android developer tools
-brew install pidcat
-brew install --cask genymotion vysor
-
 # Other developer tools
 brew install --cask dash        # documentations
 brew install --cask imageoptim
