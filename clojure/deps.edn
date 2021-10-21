@@ -68,6 +68,17 @@
      ;; REPL / nREPL / REBL
      ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
+     :dev
+     {:extra-deps {org.clojure/tools.deps.alpha {:git/url "https://github.com/clojure/tools.deps.alpha"
+                                                 :sha     "83a477b305839c697666401508c395cfed29506a"}}}
+     ; Example usage:
+     ;(comment
+     ;  (require '[clojure.tools.deps.alpha.repl :refer [add-libs] :as deps-repl])
+     ;  (deps-repl/libs)
+     ;  (deps-repl/current-basis)
+     ;  (add-libs '{babashka/fs                     {:mvn/version "0.1.0"}
+     ;              clj-commons/fs                  {:mvn/version "1.6.309"}}))
+
      ;; start a modern nREPL server on a random available port
      :nrepl
      {:extra-deps {nrepl/nrepl {:mvn/version "0.8.3"}}
