@@ -4,3 +4,6 @@
 # JetBrains
 .idea/
 *.iml
+
+# specifc
+ssh/id_rsa_yubikey.pub
