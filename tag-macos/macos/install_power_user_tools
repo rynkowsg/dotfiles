@@ -132,7 +132,11 @@ brew install yt-dlp/taps/yt-dlp
   sudo chmod 775 ~/.conda/environments.txt
   /usr/local/anaconda3/bin/conda update -y conda
 }
+# ruby
 brew install ruby
+# go
+brew install go
+bb "${HOME}/.dotfiles/.lib/clj/scripts/update_latest_symlink.clj" "/usr/local/Cellar/go"
 # clojure
 brew tap clojure/tools
 brew install clojure/tools/clojure leiningen
@@ -143,6 +147,8 @@ brew install borkdude/brew/babashka borkdude/brew/jet
   tfenv install
   # Terraform checkers
   brew install tfsec checkov
+  # cf-terraforming - tool of importing state from CloudFlare
+  GO111MODULE=on go get -u github.com/cloudflare/cf-terraforming/...
 }
 {
   # Java & jenv setup

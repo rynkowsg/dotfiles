@@ -53,6 +53,12 @@ eval "$(pyenv init -)"
 if which pyenv-virtualenv-init > /dev/null; then
   eval "$(pyenv virtualenv-init -)";
 fi
+
+# Load go
+export GOROOT="/usr/local/Cellar/go/latest"
+export GOPATH="${HOME}/.go"
+export PATH="${GOROOT}/bin:${GOPATH}/bin:${PATH}"
+
 # Add to PATH bin/ containing user packages
 export PATH="${HOME}/.local/bin:${PATH}"
 
