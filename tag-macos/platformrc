@@ -17,26 +17,32 @@ export PATH="$(brew --prefix)/opt/make/libexec/gnubin:${PATH}"
 export FZF_ROOT="$(brew --prefix)/opt/fzf"
 
 # Enable iTerm2 Shell Integration
-if [ -n "$ZSH_VERSION" ]; then
-  [ -f ../mac/iterm2_shell_integration.zsh ] && source ../mac/iterm2_shell_integration.zsh
-elif [ -n "$BASH_VERSION" ]; then
-  [ -f ../mac/iterm2_shell_integration.bash ] && source ../mac/iterm2_shell_integration.bash
-else
-  echo "iTerm2 Shell Integration for $SHELL can't be loaded"
+if [ -z "$INTELLIJ_ENVIRONMENT_READER" ]; then
+  # https://youtrack.jetbrains.com/articles/IDEA-A-19/Shell-Environment-Loading
+  if [ -n "$ZSH_VERSION" ]; then
+    [ -f ../mac/iterm2_shell_integration.zsh ] && source ../mac/iterm2_shell_integration.zsh
+  elif [ -n "$BASH_VERSION" ]; then
+    [ -f ../mac/iterm2_shell_integration.bash ] && source ../mac/iterm2_shell_integration.bash
+  else
+    echo "iTerm2 Shell Integration for $SHELL can't be loaded"
+  fi
+  # https://stackoverflow.com/questions/9910966/how-to-tell-if-its-using-zsh-or-bash
 fi
-# https://stackoverflow.com/questions/9910966/how-to-tell-if-its-using-zsh-or-bash
 
 # Install MacOS specific apps
-# Chek if installed already (compare the checksums), if there is change, ask to install.
-bash "${HOME}/.dotfiles/.lib/run_when_changed" "${HOME}/.macos/set_computer_name"
-bash "${HOME}/.dotfiles/.lib/run_when_changed" "${HOME}/.macos/install_xcode_cli"
-bash "${HOME}/.dotfiles/.lib/run_when_changed" "${HOME}/.macos/install_muggle_apps"
-bash "${HOME}/.dotfiles/.lib/run_when_changed" "${HOME}/.macos/install_power_user_tools"
-bash "${HOME}/.dotfiles/.lib/run_when_changed" "${HOME}/.macos/install_android_tools"
-bash "${HOME}/.dotfiles/.lib/run_when_changed" "${HOME}/.macos/set_system_preferences"
-bash "${HOME}/.dotfiles/.lib/run_when_changed" "${HOME}/.macos/set_system_preferences_misc"
-bash "${HOME}/.dotfiles/.lib/run_when_changed" "${HOME}/.macos/set_apple_apps_preferences"
-bash "${HOME}/.dotfiles/.lib/run_when_changed" "${HOME}/.macos/set_other_apps_preferences"
+# Check if installed already (compare the checksums), if there is change, ask to install.
+if [ -z "$INTELLIJ_ENVIRONMENT_READER" ]; then
+  # https://youtrack.jetbrains.com/articles/IDEA-A-19/Shell-Environment-Loading
+  bash "${HOME}/.dotfiles/.lib/run_when_changed" "${HOME}/.macos/set_computer_name"
+  bash "${HOME}/.dotfiles/.lib/run_when_changed" "${HOME}/.macos/install_xcode_cli"
+  bash "${HOME}/.dotfiles/.lib/run_when_changed" "${HOME}/.macos/install_muggle_apps"
+  bash "${HOME}/.dotfiles/.lib/run_when_changed" "${HOME}/.macos/install_power_user_tools"
+  bash "${HOME}/.dotfiles/.lib/run_when_changed" "${HOME}/.macos/install_android_tools"
+  bash "${HOME}/.dotfiles/.lib/run_when_changed" "${HOME}/.macos/set_system_preferences"
+  bash "${HOME}/.dotfiles/.lib/run_when_changed" "${HOME}/.macos/set_system_preferences_misc"
+  bash "${HOME}/.dotfiles/.lib/run_when_changed" "${HOME}/.macos/set_apple_apps_preferences"
+  bash "${HOME}/.dotfiles/.lib/run_when_changed" "${HOME}/.macos/set_other_apps_preferences"
+fi
 
 # Homebrew
 # to fix brew doctor warning "Homebrew's "sbin" was not found in your PATH"
