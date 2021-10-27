@@ -143,6 +143,11 @@ brew install borkdude/brew/babashka borkdude/brew/jet
   brew install tfsec checkov
   # cf-terraforming - tool of importing state from CloudFlare
   GO111MODULE=on go get -u github.com/cloudflare/cf-terraforming/...
+  # TODO: Fix belowwarning
+  # go get: installing executables with 'go get' in module mode is deprecated.
+  #         Use 'go install pkg@version' instead.
+  #         For more information, see https://golang.org/doc/go-get-install-deprecation
+  #         or run 'go help get' or 'go help install'.
 }
 {
   # Java & jenv setup
@@ -160,6 +165,9 @@ brew install borkdude/brew/babashka borkdude/brew/jet
   printf "${GREEN}%s${RESET}\n" "--- Oracle JDK 1.8 ---"
   printf "%s\n" ""
   printf "%s\n" "Download the latest Oracle JDK 1.8 from location below and install it."
+  printf "%s\n" "    https://www.oracle.com/webapps/redirect/signon?nexturl=https://download.oracle.com/otn/java/jdk/8u311-b11/4d5417147a92418ea8b615e228bb6935/jdk-8u311-macosx-x64.dmg"
+  printf "%s\n" ""
+  printf "%s\n" "Oracle JDK8 downloads:"
   printf "%s\n" "    https://www.oracle.com/java/technologies/javase/javase-jdk8-downloads.html"
   printf "%s\n" ""
   while true; do
@@ -172,7 +180,8 @@ brew install borkdude/brew/babashka borkdude/brew/jet
   done
   # https://www.shellhacks.com/yes-no-bash-script-prompt-confirmation/
   # Oracle
-  # https://download.oracle.com/otn/java/jdk/8u301-b09/d3c52aa6bfa54d3ca74e617f18309292/jdk-8u301-macosx-x64.dmg
+  # https://www.oracle.com/webapps/redirect/signon?nexturl=https://download.oracle.com/otn/java/jdk/8u301-b09/d3c52aa6bfa54d3ca74e617f18309292/jdk-8u301-macosx-x64.dmg
+  # https://www.oracle.com/webapps/redirect/signon?nexturl=https://download.oracle.com/otn/java/jdk/8u311-b11/4d5417147a92418ea8b615e228bb6935/jdk-8u311-macosx-x64.dmg
   for home_path in /Library/Java/JavaVirtualMachines/jdk*.jdk/Contents/Home; do
     jenv add "$home_path"
   done
