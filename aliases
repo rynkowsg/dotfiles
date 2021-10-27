@@ -86,6 +86,8 @@ alias adb_screencap='adb shell screencap /sdcard/screencap.png; adb pull "/sdcar
 
 alias adb_apk_list="adb shell pm list packages"
 
+alias sdkmanager="JAVA_HOME=/Users/greg/.jenv/versions/1.8 sdkmanager"
+
 ###############################################################################
 # MacOS                                                                       #
 ###############################################################################

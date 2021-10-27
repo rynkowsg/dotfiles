@@ -17,8 +17,11 @@ brew install --cask android-sdk
 bb "${HOME}/.dotfiles/.lib/clj/scripts/update_latest_symlink.clj" "/usr/local/Caskroom/android-sdk/"
 rm -f "/usr/local/opt/android-sdk"
 ln -s "/usr/local/Caskroom/android-sdk/latest" "/usr/local/opt/android-sdk"
+# remove symlinks messing up the sdkmanager (they are recreated later in script)
+rm -f /usr/local/opt/android-sdk/build-tools/latest /usr/local/opt/android-sdk/ndk/latest
 # install SDK components
 yes | JAVA_HOME="${HOME}/.jenv/versions/1.8" sdkmanager --install "build-tools;29.0.3" \
+                                                                  "build-tools;30.0.2" \
                                                                   "build-tools;30.0.3" \
                                                                   "build-tools;31.0.0" \
                                                                   "cmake;3.18.1" \
@@ -35,6 +38,7 @@ yes | JAVA_HOME="${HOME}/.jenv/versions/1.8" sdkmanager --install "build-tools;2
                                                                   "ndk;20.0.5594570" \
                                                                   "ndk;21.0.6113669" \
                                                                   "ndk;23.0.7599858" \
+                                                                  "ndk;23.1.7779620" \
                                                                   "platform-tools"  \
                                                                   "platforms;android-22" \
                                                                   "platforms;android-29" \
@@ -50,7 +54,7 @@ yes | JAVA_HOME="${HOME}/.jenv/versions/1.8" sdkmanager --install "build-tools;2
                                                                   "tools"
 JAVA_HOME="${HOME}/.jenv/versions/1.8" sdkmanager --update
 JAVA_HOME="${HOME}/.jenv/versions/1.8" sdkmanager --list
-# create latest symlinks inside of the Android SDK
+# create latest symlinks
 bb "${HOME}/.dotfiles/.lib/clj/scripts/update_latest_symlink.clj" \
   "/usr/local/opt/android-sdk/build-tools" \
   "/usr/local/opt/android-sdk/ndk"
