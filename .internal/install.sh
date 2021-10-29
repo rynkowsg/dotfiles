@@ -27,3 +27,8 @@ yes | env VERBOSE=1 sh "${INSTALL_SCRIPT}"
 rm -rf "${TMP_DIR}"
 
 bash "${ROOT_DIR}/.internal/inject_secrets.sh"
+
+# checkout password stores
+mkdir -p ~/.password-store
+git clone git@github.com:rynkowsg/rynkowski-pass-store.git ~/.password-store/rynkowski
+git clone git@github.com:rynkowsg/chargedup-pass-store.git ~/.password-store/chargedup
