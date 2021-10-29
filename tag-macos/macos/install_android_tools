@@ -49,6 +49,7 @@ yes | JAVA_HOME="${HOME}/.jenv/versions/1.8" sdkmanager --install "build-tools;2
                                                                   "sources;android-30" \
                                                                   "sources;android-31" \
                                                                   "system-images;android-29;google_apis_playstore;x86" \
+                                                                  "system-images;android-30;google_apis_playstore;x86" \
                                                                   "system-images;android-30;google_apis_playstore;x86_64" \
                                                                   "system-images;android-31;google_apis_playstore;x86_64" \
                                                                   "tools"
