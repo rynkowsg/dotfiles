@@ -1,7 +1,7 @@
 <settings>
     <servers>
         <server>
-            <id>cognitect-dev-tools</id>
+            <id>?cognitect-server-id?</id>
             <username>?cognitect-username?</username>
             <password>?cognitect-password?</password>
         </server>
