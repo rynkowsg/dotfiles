@@ -70,3 +70,4 @@ brew install ktlint
 brew install --cask vysor
 brew install leakcanary-shark
 brew install --cask chromedriver
+brew install --cask http-toolkit  # monitor of apps network traffic
