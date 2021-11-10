@@ -58,5 +58,8 @@
 [gui]
   editor = mate
 
+[url "ssh://git@github.com"]
+	insteadOf = https://github.com
+
 # to preview all config:
 #    git config --list --show-origin
