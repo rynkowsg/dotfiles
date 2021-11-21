@@ -1,0 +1,39 @@
+% gpg -k --keyid-format 0xlong
+/Users/greg/.gnupg/pubring.kbx
+------------------------------
+pub   rsa4096/0x6762037B92E2622E 2021-10-05 [C] [expires: 2031-10-03]
+      F3476719D0661632D61D0B3B6762037B92E2622E
+uid                   [ultimate] Greg Rynkowski <greg@rynkowski.pl>
+uid                   [ultimate] Grzegorz Rynkowski
+uid                   [ultimate] [jpeg image of size 4095]
+sub   rsa4096/0xD309860892F299B8 2021-10-05 [E] [expires: 2022-10-05]
+sub   rsa4096/0x3C96BC5FBFFD1F1E 2021-10-05 [S] [expires: 2022-10-05]
+sub   rsa4096/0xDBD5263B7C10EA06 2021-10-05 [A] [expires: 2022-10-05]
+
+% gpg -k --keyid-format 0xshort
+/Users/greg/.gnupg/pubring.kbx
+------------------------------
+pub   rsa4096/0x92E2622E 2021-10-05 [C] [expires: 2031-10-03]
+      F3476719D0661632D61D0B3B6762037B92E2622E
+uid           [ultimate] Greg Rynkowski <greg@rynkowski.pl>
+uid           [ultimate] Grzegorz Rynkowski
+uid           [ultimate] [jpeg image of size 4095]
+sub   rsa4096/0x92F299B8 2021-10-05 [E] [expires: 2022-10-05]
+sub   rsa4096/0xBFFD1F1E 2021-10-05 [S] [expires: 2022-10-05]
+sub   rsa4096/0x7C10EA06 2021-10-05 [A] [expires: 2022-10-05]
+
+
+MASTER - FINGERPRINT:
+F3476719D0661632D61D0B3B6762037B92E2622E
+
+MASTER - KEY ID:
+0x6762037B92E2622E / 0x92E2622E
+
+ENCRYPTION SUBKEY - KEY ID
+0xD309860892F299B8 / 0x92F299B8
+
+SIGNING SUBKEY - KEY ID
+0x3C96BC5FBFFD1F1E / 0xBFFD1F1E
+
+AUTHENTICATION SUBKEY - KEY ID
+0xDBD5263B7C10EA06 / 0x7C10EA06
