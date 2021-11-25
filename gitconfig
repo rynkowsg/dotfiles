@@ -58,8 +58,11 @@
 [gui]
   editor = mate
 
-[url "ssh://git@github.com"]
-	insteadOf = https://github.com
+# Replace all Github URLs from https:// to ssh://
+# (this also affect all other apps using git, so if you use gpg and yubikey
+# for SSH, you might need to approve more requests then usual)
+#[url "ssh://git@github.com"]
+#	insteadOf = https://github.com
 
 # to preview all config:
 #    git config --list --show-origin
