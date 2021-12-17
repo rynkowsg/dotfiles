@@ -1,46 +1,46 @@
 [user]
-  name = Greg Rynkowski
-  email = greg@rynkowski.pl
-  signingkey = F3476719D0661632D61D0B3B6762037B92E2622E
+	name = Greg Rynkowski
+	email = greg@rynkowski.pl
+	signingkey = F3476719D0661632D61D0B3B6762037B92E2622E
 [commit]
-  gpgsign = true
+	gpgsign = true
 [alias]
-  br = branch
-  ci = commit
-  co = checkout
-  cor = checkout --recurse-submodules
-  cp = cherry-pick
-  fetchr = fetch --recurse-submodules
-  mrg = merge
-  pl = pull
-  plr = pull --rebase
-  rb = rebase
-  st = status
-  fix-lfs = "!f() { cp /dev/null .gitattributes && git status && git checkout -- .gitattributes && git status; }; f"
-  pushf = push --force-with-lease
-  this = symbolic-ref --short HEAD
-  # https://coderwall.com/p/euwpig/a-better-git-log
-  logs = log --show-signature
-  lo = log --oneline --abbrev-commit
-  lg = log --oneline --decorate --graph
-  lgg = log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit
-  lggs = log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cs)%Creset' --abbrev-commit
+	br = branch
+	ci = commit
+	co = checkout
+	cor = checkout --recurse-submodules
+	cp = cherry-pick
+	fetchr = fetch --recurse-submodules
+	mrg = merge
+	pl = pull
+	plr = pull --rebase
+	rb = rebase
+	st = status
+	fix-lfs = "!f() { cp /dev/null .gitattributes && git status && git checkout -- .gitattributes && git status; }; f"
+	pushf = push --force-with-lease
+	this = symbolic-ref --short HEAD
+	# https://coderwall.com/p/euwpig/a-better-git-log
+	logs = log --show-signature
+	lo = log --oneline --abbrev-commit
+	lg = log --oneline --decorate --graph
+	lgg = log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit
+	lggs = log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cs)%Creset' --abbrev-commit
 [core]
-  editor = vim
-  pager = less -XFR
-  fileMode = false
+	editor = vim
+	pager = less -XFR
+	fileMode = false
 [push]
-  default = current
+	default = current
 [color]
-  ui = true
+	ui = true
 [lfs]
-  batch = true
-  concurrenttransfers = 12
+	batch = true
+	concurrenttransfers = 12
 [filter "lfs"]
-  clean = git-lfs clean -- %f
-  smudge = git-lfs smudge -- %f
-  process = git-lfs filter-process
-  required = true
+	clean = git-lfs clean -- %f
+	smudge = git-lfs smudge -- %f
+	process = git-lfs filter-process
+	required = true
 [cola]
 	spellcheck = true
 	boldheaders = true
@@ -51,12 +51,12 @@
 	statusshowtotals = true
 	icontheme = default
 [include]
-  path = ~/.gitconfig.platform
+	path = ~/.gitconfig.platform
 # That include contains settings for git-cola.
 # For some reason it doesn't work. Perhaps git-cola can'r resolve [include] blocks.
 # TODO: Sort out the problem of setting platform-specific gitconfig for git-cola.
 [gui]
-  editor = mate
+	editor = mate
 
 # Replace all Github URLs from https:// to ssh://
 # (this also affect all other apps using git, so if you use gpg and yubikey
