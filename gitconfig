@@ -57,6 +57,7 @@
 # TODO: Sort out the problem of setting platform-specific gitconfig for git-cola.
 [gui]
 	editor = mate
+	diffcontext = 20
 
 # Replace all Github URLs from https:// to ssh://
 # (this also affect all other apps using git, so if you use gpg and yubikey
