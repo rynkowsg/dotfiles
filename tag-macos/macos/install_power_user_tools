@@ -218,6 +218,12 @@ brew install borkdude/brew/babashka borkdude/brew/jet
   brew install --cask corretto8 corretto11
   jenv add /Library/Java/JavaVirtualMachines/amazon-corretto-8.jdk/Contents/Home
   jenv add /Library/Java/JavaVirtualMachines/amazon-corretto-11.jdk/Contents/Home
+  ######  GraalVM #######
+  # TODO: install graalvm
+  # TODO: consider adding Homebrew cask for GraalVM
+  # https://www.graalvm.org/docs/getting-started/macos/
+  # https://stackoverflow.com/questions/67904532/graalvm-on-macos-catalina
+  # https://github.com/oracle/graal/issues/1724
   ###### ALL INSTALLED ######
   printf "%s\n" "List of JavaVirtualMachines:"
 #  ls -l /Library/Java/JavaVirtualMachines/
