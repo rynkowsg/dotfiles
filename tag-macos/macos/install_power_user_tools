@@ -134,7 +134,7 @@ bb "${HOME}/.dotfiles/.lib/clj/scripts/update_latest_symlink.clj" "/usr/local/Ce
 # clojure
 brew tap clojure/tools
 brew install clojure/tools/clojure leiningen
-brew install borkdude/brew/babashka borkdude/brew/jet
+brew install borkdude/brew/babashka borkdude/brew/jet borkdude/brew/clj-kondo
 {
   # tfenv - for terraform, globally and locally in projects
   brew install tfenv

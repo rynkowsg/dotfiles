@@ -26,11 +26,12 @@ brew install --cask signal
 brew install --cask skype
 brew install --cask zoom
 
-# Office apps / editors / notepads
+# Office apps / editors / notepads / todo
 brew install --cask microsoft-office microsoft-auto-update
 brew install --cask textmate
 brew install --cask evernote
 brew install --cask standard-notes
+brew install --cask ticktick
 
 # Media
 brew install --cask kindle
