@@ -104,6 +104,7 @@ brew install wget
 brew install yt-dlp/taps/yt-dlp
 
 # languages / envs
+brew install plantuml
 {
   brew install python
   # https://towardsdatascience.com/python-environment-101-1d68bda3094d
@@ -249,6 +250,7 @@ brew install borkdude/brew/babashka borkdude/brew/jet borkdude/brew/clj-kondo
   brew install yarn
   yarn global add serverless
   yarn global add npx
+  yarn global add nbb # https://github.com/babashka/nbb
 }
 
 # https://github.com/ibraheemdev/modern-unix
