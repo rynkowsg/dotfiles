@@ -67,3 +67,5 @@
 
 # to preview all config:
 #    git config --list --show-origin
+[http]
+	cookiefile = /Users/greg/.gitcookies
