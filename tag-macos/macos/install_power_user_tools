@@ -42,7 +42,8 @@ brew install git-filter-repo
 # gpg
 brew install gnupg pinentry-mac gpa paperkey
 brew install hopenpgp-tools # linting public key
-brew install ykman          # yubikey manager
+brew install ykman                         # yubikey manager (CLI)
+brew install --cask yubico-yubikey-manager # yubikey manager (GUI)
 brew install --cask gpg-suite
 brew install pass gopass    # GPG-based password manager
 # https://android.stackexchange.com/questions/239151/why-does-grapheneos-use-signify-instead-of-pgp-to-sign-their-releases-gpg-cryp
@@ -309,6 +310,7 @@ brew install --cask dash        # documentations
 brew install --cask imageoptim
 brew install --cask iterm2      # terminal
 brew install --cask meld
+brew install --cask postman
 
 # Non-developer tools
 brew install --cask alfred        # keyboard launcher

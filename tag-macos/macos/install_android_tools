@@ -45,6 +45,7 @@ yes | JAVA_HOME="${HOME}/.jenv/versions/1.8" sdkmanager --install "build-tools;2
                                                                   "platforms;android-29" \
                                                                   "platforms;android-30" \
                                                                   "platforms;android-31" \
+                                                                  "platforms;android-32" \
                                                                   "sources;android-22" \
                                                                   "sources;android-29" \
                                                                   "sources;android-30" \
