@@ -167,7 +167,7 @@ brew install borkdude/brew/babashka borkdude/brew/jet borkdude/brew/clj-kondo
   printf "${GREEN}%s${RESET}\n" "--- Oracle JDK 1.8 ---"
   printf "%s\n" ""
   printf "%s\n" "Download the latest Oracle JDK 1.8 from location below and install it."
-  printf "%s\n" "    https://www.oracle.com/webapps/redirect/signon?nexturl=https://download.oracle.com/otn/java/jdk/8u311-b11/4d5417147a92418ea8b615e228bb6935/jdk-8u311-macosx-x64.dmg"
+  printf "%s\n" "    https://www.oracle.com/webapps/redirect/signon?nexturl=https://download.oracle.com/otn/java/jdk/8u321-b07/df5ad55fdd604472a86a45a217032c7d/jdk-8u321-macosx-x64.dmg"
   printf "%s\n" ""
   printf "%s\n" "Oracle JDK8 downloads:"
   printf "%s\n" "    https://www.oracle.com/java/technologies/javase/javase-jdk8-downloads.html"
