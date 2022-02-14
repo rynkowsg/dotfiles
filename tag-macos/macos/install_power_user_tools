@@ -172,6 +172,9 @@ brew install borkdude/brew/babashka borkdude/brew/jet borkdude/brew/clj-kondo
   printf "%s\n" "Oracle JDK8 downloads:"
   printf "%s\n" "    https://www.oracle.com/java/technologies/javase/javase-jdk8-downloads.html"
   printf "%s\n" ""
+  printf "%s\n" "Installed JDKs:"
+  ls -1 "/Library/Java/JavaVirtualMachines/"
+  printf "%s\n" ""
   while true; do
     read -p "Have you finished? " yn
     case $yn in
