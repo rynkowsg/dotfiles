@@ -64,14 +64,17 @@ brew install coreutils ed findutils gawk gnu-sed gnu-tar grep make
 #     export PATH="/usr/local/opt/grep/libexec/gnubin:$PATH"
 #     export PATH="/usr/local/opt/make/libexec/gnubin:$PATH"
 
-# common CLI utils
+# markup tools
 {
   brew install asciidoc asciidoctor
   # asciidoctor **/*.adoc
   # fswatch -o **/*.adoc | xargs -n1 -I{} asciidoctor **/*.adoc
 }
-brew install autojump       # shell navigation
+# pandoc - universal document converter (md <=> adoc <=> tex <=> docx & more)
+brew install pandoc
 
+# common CLI utils
+brew install autojump       # shell navigation
 brew install curl
 brew install exiftool
 brew install fswatch
