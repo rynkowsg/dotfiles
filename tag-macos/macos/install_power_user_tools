@@ -278,6 +278,7 @@ brew install --cask virtualbox
 
 # cloud
 brew install awscli
+brew install --cask aws-vault
 brew install circleci
 brew install --cask google-cloud-sdk
 
