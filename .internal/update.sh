@@ -12,7 +12,7 @@ ROOT_DIR="$(cd "${SCRIPT_DIR}/.." || exit 1; pwd -P)"
 )
 
 # install all the links again
-bash "${ROOT_DIR}/bin/install.sh"
+bash "${ROOT_DIR}/.internal/install.sh"
 
 if [[ "$OSTYPE" == "darwin"* ]]; then
   # update packages
