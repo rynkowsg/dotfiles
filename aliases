@@ -102,7 +102,7 @@ alias remaining_battery="pmset -g batt"
 
 alias gbr-current="git rev-parse --abbrev-ref HEAD"
 
-alias gbr-current-push="git push origin HEAD:$(gbr-current)"
+alias gbr-current-push="git push -u origin HEAD:\$(gbr-current)"
 
 # impl here: ~/.git/bin/git-close-branch
 # inspired by: https://github.com/agross/dotfiles/commit/453bde6218b3e483beade7860acb8730d76a30ae
