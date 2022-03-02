@@ -109,6 +109,9 @@ brew install yt-dlp/taps/yt-dlp
 
 # languages / envs
 brew install plantuml
+# create 'latest' symlink (to use /usr/local/Cellar/plantuml/latest/libexec/plantuml.jar in Obsidian)
+bb "${HOME}/.dotfiles/.lib/clj/scripts/update_latest_symlink.clj" "/usr/local/Cellar/plantuml"
+
 {
   brew install python
   # https://towardsdatascience.com/python-environment-101-1d68bda3094d
