@@ -43,7 +43,8 @@ brew install git-filter-repo
 brew install gnupg pinentry-mac gpa paperkey
 brew install hopenpgp-tools # linting public key
 brew install ykman                         # yubikey manager (CLI)
-brew install --cask yubico-yubikey-manager # yubikey manager (GUI)
+brew tap homebrew/cask-drivers
+brew install --cask homebrew/cask-drivers/yubico-yubikey-manager # yubikey manager (GUI)
 brew install --cask gpg-suite
 brew install pass gopass    # GPG-based password manager
 # https://android.stackexchange.com/questions/239151/why-does-grapheneos-use-signify-instead-of-pgp-to-sign-their-releases-gpg-cryp
