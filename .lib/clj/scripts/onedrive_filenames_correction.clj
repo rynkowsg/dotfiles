@@ -9,16 +9,18 @@
 
 (defn correct-name?
   [name]
-  (some? (re-matches #"[^<>\"]*" name)))
+  (some? (re-matches #"[^<>\"?]*" name)))
 #_(correct-name? "220214-1 Direct Debit Confirmation - Virgin Media - Virgin Media <webteam@virginmedia.com> - 2022-02-14 0904")
 #_(correct-name? "220214-1 Direct Debit Confirmation - Virgin Media - Virgin Media _webteam@virginmedia.com_ - 2022-02-14 0904")
+#_(correct-name? "220119-1 New Year’s resolutions to start investing in 2022?  - 'DEGIRO' _no-reply@mail.degiro.com_ - 2022-01-19 2104")
 
 (defn correct-name
   [name]
   (-> name
       (str/replace #"\"" "'")
-      (str/replace #"[<>]" "_")))
+      (str/replace #"[<>?]" "_")))
 #_(correct-name "220214-1 Direct Debit Confirmation - Virgin Media - Virgin Media <webteam@virginmedia.com> - 2022-02-14 0904")
+#_(correct-name "220119-1 New Year’s resolutions to start investing in 2022?  - 'DEGIRO' _no-reply@mail.degiro.com_ - 2022-01-19 2104")
 
 (defn correct-name!
   ([path] (correct-name! path nil))
