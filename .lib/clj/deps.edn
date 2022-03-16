@@ -1,5 +1,5 @@
 ;; this file is added only to develop Babashka scripts
 ;; in typical Clojure environment I use: Cursive + regular nREPL
 {:paths ["scripts"]
- :deps  {babashka/fs    {:mvn/version "0.1.0"}
+ :deps  {babashka/fs    {:mvn/version "0.1.4"}
          clj-commons/fs {:mvn/version "1.6.309"}}}

@@ -1,7 +1,7 @@
 #!/usr/bin/env bb
 
 (require '[babashka.deps :as deps])
-(deps/add-deps '{:deps {babashka/fs    {:mvn/version "0.1.0"}
+(deps/add-deps '{:deps {babashka/fs    {:mvn/version "0.1.4"}
                         clj-commons/fs {:mvn/version "1.6.309"}}})
 
 (ns update-latest-symlink
