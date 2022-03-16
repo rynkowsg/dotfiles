@@ -173,3 +173,6 @@ alias passcha="PASSWORD_STORE_DIR=${HOME}/.password-store/chargedup pass"
 # examples how to parse AWS credentials from CSV directly to pass:
 # cat new_user_credentials.csv | tail -n 1 | tr "," "\n" | tail -n 3 | head -n 1 | passtwo insert --echo aws/greg/AWS_ACCESS_KEY_ID
 # cat new_user_credentials.csv | tail -n 1 | tr "," "\n" | tail -n 2 | head -n 1 | passtwo insert --echo aws/greg/AWS_SECRET_ACCESS_KEY
+
+alias onedrive-fix-filenames='cd /Users/greg/.dotfiles/.lib/clj/; clj -M -m onedrive-filenames-correction'
+alias onedrive-fix-filenames-dryrun='onedrive-fix-filenames --dry-run'
