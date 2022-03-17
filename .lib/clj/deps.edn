@@ -1,8 +1,8 @@
 ;; this file is added only to develop Babashka scripts
 ;; in typical Clojure environment I use: Cursive + regular nREPL
 {:paths ["scripts"]
- :deps  {org.clojure/clojure {:mvn/version "1.10.2"}
-         babashka/fs         {:mvn/version "0.1.4"}
-         rynkowsg/malli-cli  {:git/url "https://github.com/rynkowsg/malli-cli.git" :sha "5d703e68047f76c602fa97e49c4587a5e1d9e5a5"}
-         clj-commons/fs      {:mvn/version "1.6.309"}
-         metosin/malli       {:mvn/version "0.8.4"}}}
+ :deps  {org.clojure/clojure               {:mvn/version "1.10.3"}
+         babashka/fs                       {:mvn/version "0.1.4"}
+         com.github.piotr-yuxuan/malli-cli {:mvn/version "2.0.0"}
+         clj-commons/fs                    {:mvn/version "1.6.309"}
+         metosin/malli                     {:mvn/version "0.8.4"}}}
