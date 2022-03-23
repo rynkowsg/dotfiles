@@ -178,3 +178,6 @@ alias onedrive-fix-filenames='cd /Users/greg/.dotfiles/.lib/clj/; clj -M -m oned
 alias onedrive-fix-filenames-dryrun='onedrive-fix-filenames --dry-run'
 
 alias clj-repl="JENV_VERSION=oracle64-1.8.0.321 clj -M:g/dev:g/nrepl:g/rebl-8:g/repl"
+
+alias count-kt-lines="find . -name '*.kt' | grep -v build | xargs wc -l"
+alias count-clj-lines="find -regextype sed -regex '.*\.\(clj\|cljc\|cljs\)' | grep -v .clj-kondo | xargs wc -l"
