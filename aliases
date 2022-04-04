@@ -174,7 +174,10 @@ alias passcha="PASSWORD_STORE_DIR=${HOME}/.password-store/chargedup pass"
 # cat new_user_credentials.csv | tail -n 1 | tr "," "\n" | tail -n 3 | head -n 1 | passtwo insert --echo aws/greg/AWS_ACCESS_KEY_ID
 # cat new_user_credentials.csv | tail -n 1 | tr "," "\n" | tail -n 2 | head -n 1 | passtwo insert --echo aws/greg/AWS_SECRET_ACCESS_KEY
 
-alias onedrive-fix-filenames='cd /Users/greg/.dotfiles/.lib/clj/; clj -M -m onedrive-filenames-correction'
+function onedrive-fix-filenames() (
+  cd /Users/greg/.dotfiles/.lib/clj/
+  clj -M -m onedrive-filenames-correction $@
+)
 alias onedrive-fix-filenames-dryrun='onedrive-fix-filenames --dry-run'
 
 alias clj-repl="JENV_VERSION=oracle64-1.8.0.321 clj -M:g/dev:g/nrepl:g/rebl-8:g/repl"
