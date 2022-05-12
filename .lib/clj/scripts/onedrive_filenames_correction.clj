@@ -8,7 +8,7 @@
 
 (defn correct-name?
   [name]
-  (some? (re-matches #"[^<>\"?]*" name)))
+  (some? (re-matches #"[^<>\"?|]*" name)))
 #_(correct-name? "220214-1 Email Title? <webteam@hello.com> - 2022-02-14 0904")
 #_(correct-name? "220214-1 Email Title_ _webteam@hello.com_ - 2022-02-14 0904")
 
@@ -16,7 +16,7 @@
   [name]
   (-> name
       (str/replace #"\"" "'")
-      (str/replace #"[<>?]" "_")))
+      (str/replace #"[<>?|]" "_")))
 #_(correct-name "220214-1 Email Title? <webteam@hello.com> - 2022-02-14 0904")
 
 (defn correct-name!
