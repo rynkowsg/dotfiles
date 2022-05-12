@@ -82,8 +82,8 @@ adb_apk_pull() {
 
 alias adb_top_activity="adb shell dumpsys window windows | grep -E 'mCurrentFocus|mFocusedApp'"
 
-alias adb_screencap='NAME="screencap-$(date "+%Y%m%d_%H%m%S").png"; adb shell mkdir -p /sdcard/DCIM/Screenshots/;  adb shell mkdir -p "/sdcard/DCIM/Screenshots"; adb shell screencap "/sdcard/DCIM/Screenshots/${NAME}"; adb pull "/sdcard/DCIM/Screenshots/${NAME}" .'
-alias adb_screenrecord='NAME="screenrecord-$(date "+%Y%m%d_%H%m%S").mp4"; adb shell mkdir -p /sdcard/DCIM/Screenshots/; echo "When finished call:\n    adb pull /sdcard/DCIM/Screenshots/${NAME} .\n"; adb shell screenrecord --verbose --bit-rate 20000000 "/sdcard/DCIM/Screenshots/${NAME}"; '
+alias adb_screencap='NAME="screencap-$(date "+%Y%m%d_%H%M%S").png"; adb shell mkdir -p /sdcard/DCIM/Screenshots/;  adb shell mkdir -p "/sdcard/DCIM/Screenshots"; adb shell screencap "/sdcard/DCIM/Screenshots/${NAME}"; adb pull "/sdcard/DCIM/Screenshots/${NAME}" .'
+alias adb_screenrecord='NAME="screenrecord-$(date "+%Y%m%d_%H%M%S").mp4"; adb shell mkdir -p /sdcard/DCIM/Screenshots/; echo "When finished call:\n    adb pull /sdcard/DCIM/Screenshots/${NAME} .\n"; adb shell screenrecord --verbose --bit-rate 20000000 "/sdcard/DCIM/Screenshots/${NAME}"; '
 
 
 alias adb_apk_list="adb shell pm list packages"
