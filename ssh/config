@@ -2,6 +2,18 @@ Host github.com
   Hostname ssh.github.com
   IdentitiesOnly yes
   IdentityFile ~/.ssh/id_rsa_yubikey.pub
+
+# CircleCI - to connect to container
+# https://discuss.circleci.com/t/permission-denied-publickey-when-trying-to-ssh-to-container/43294/7
+Host 34.132.147.241
+  IdentityFile ~/.ssh/id_rsa_yubikey.pub
+  HostkeyAlgorithms +ssh-rsa
+  PubkeyAcceptedAlgorithms +ssh-rsa
+Host 34.68.184.117
+  IdentityFile ~/.ssh/id_rsa_yubikey.pub
+  HostkeyAlgorithms +ssh-rsa
+  PubkeyAcceptedAlgorithms +ssh-rsa
+
 Host *
   AddKeysToAgent yes
   IdentityFile ~/.ssh/id_rsa_yubikey.pub
