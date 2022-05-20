@@ -8,16 +8,18 @@
 
 (defn correct-name?
   [name]
-  (some? (re-matches #"[^<>\"?|]*" name)))
+  (some? (re-matches #"[^<>\"?|*]*" name)))
 #_(correct-name? "220214-1 Email Title? <webteam@hello.com> - 2022-02-14 0904")
 #_(correct-name? "220214-1 Email Title_ _webteam@hello.com_ - 2022-02-14 0904")
+#_(correct-name? "220514-1 You paid £923.10 to Paypal *star Labs")
 
 (defn correct-name
   [name]
   (-> name
       (str/replace #"\"" "'")
-      (str/replace #"[<>?|]" "_")))
+      (str/replace #"[<>?|*]" "_")))
 #_(correct-name "220214-1 Email Title? <webteam@hello.com> - 2022-02-14 0904")
+#_(correct-name "220514-1 You paid £923.10 to Paypal *star Labs")
 
 (defn correct-name!
   ([path] (correct-name! path nil))
