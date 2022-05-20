@@ -1,0 +1,40 @@
+{:min-bb-version "0.4.3"
+ :paths          ["scripts"]
+ :tasks          {:requires     ([bb-helper :refer [print-exec]]
+                                 [clojure.string :refer [join]])
+                  ; COMMON
+                  ; TODO: try to replace print-exec by using :enter and (current-task)
+                  brew          (shell "brew bundle --verbose")
+                  deps          (print-exec '(clojure "-M:antq -m antq.core") *command-line-args*)
+                  deps-upgrade  (shell "bb deps --upgrade")
+                  format        (print-exec '(clojure "-M:cljfmt -m cljfmt.main"
+                                               "--indentation"
+                                               "--remove-surrounding-whitespace"
+                                               "--remove-trailing-whitespace"
+                                               "--insert-missing-whitespace"
+                                               "--remove-consecutive-blank-lines") *command-line-args*)
+                  format-check  (shell "bb format check app/dev/src app/main/src app/test/src")
+                  format-fix    (shell "bb format fix app/dev/src app/main/src app/test/src")
+                  ;; clj-kondo
+                  ;; to import configs: `clj -M:dev:test:clj-kondo --copy-configs --dependencies --lint "$(clj -A:dev:test -Spath)"`
+                  ;; more: https://github.com/clj-kondo/clj-kondo/blob/master/doc/config.md#sample-exports
+                  lint          (print-exec '(clojure "-M:dev:test:clj-kondo --lint app/main --lint app/test --lint app/clerk --lint app/rebl"))
+                  ;; nvd check:
+                  ;; clojure -M:g/nvd "" "$(clojure -Spath)"
+                  log           (print-exec '(shell "tail -F logs/dev.log"))
+                  pom           (print-exec '(clojure "-Spom"))
+                  test          (print-exec '(clojure "-M:dev:test -m kaocha.runner --config-file tests.edn") *command-line-args*)
+                  test-coverage (shell "bb test --plugin kaocha.plugin/cloverage")
+                  test-profiler (shell "bb test --plugin kaocha.plugin/profiling")
+                  ; COMPILATION / EXECUTION / REPL
+                  clj-repl      (clojure "-M:g/dev:g/nrepl:g/rebel:repl")
+                  clj-repl-plus (clojure "-M:g/dev:g/nrepl:g/rebl-8:clerk:g/repl")}}
+
+; Example - dependencies between tasks:
+; https://gist.github.com/stelcodes/a8c3b8f4b9c07ef784675750ab91079e
+;
+; Example - where to store tasks code:
+; https://github.com/wilkerlucio/pathom-viz/tree/master/src/tasks
+;
+; Cheatsheet - Bash equivalents in BB:
+; https://github.com/babashka/babashka/wiki/Bash-and-Babashka-equivalents
