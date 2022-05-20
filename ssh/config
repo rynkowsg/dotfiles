@@ -1,4 +1,5 @@
 Host github.com
+  Hostname ssh.github.com
   IdentitiesOnly yes
   IdentityFile ~/.ssh/id_rsa_yubikey.pub
 Host *
