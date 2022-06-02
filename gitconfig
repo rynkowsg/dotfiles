@@ -4,6 +4,11 @@
 	signingkey = F3476719D0661632D61D0B3B6762037B92E2622E
 [commit]
 	gpgsign = true
+	# To disabe gpgsign temporarely:
+	#   git -c commit.gpgsign=false commit
+	#   git commit --amend --no-gpg-sign
+	# It is very handy to disable the setting when rebasing very often.
+	# Source: https://stackoverflow.com/questions/39274739/how-to-disable-git-gpg-signing
 [alias]
 	br = branch
 	ci = commit
