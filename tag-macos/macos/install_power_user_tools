@@ -176,7 +176,7 @@ brew install polyfy/polylith/poly # https://polylith.gitbook.io/poly/install/ins
   printf "${GREEN}%s${RESET}\n" "--- Oracle JDK 1.8 ---"
   printf "%s\n" ""
   printf "%s\n" "Download the latest Oracle JDK 1.8 from location below and install it."
-  printf "%s\n" "    https://www.oracle.com/webapps/redirect/signon?nexturl=https://download.oracle.com/otn/java/jdk/8u321-b07/df5ad55fdd604472a86a45a217032c7d/jdk-8u321-macosx-x64.dmg"
+  printf "%s\n" "    https://www.oracle.com/webapps/redirect/signon?nexturl=https://download.oracle.com/otn/java/jdk/8u333-b02/2dee051a5d0647d5be72a7c0abff270e/jdk-8u333-macosx-x64.dmg"
   printf "%s\n" ""
   printf "%s\n" "Oracle JDK8 downloads:"
   printf "%s\n" "    https://www.oracle.com/java/technologies/javase/javase-jdk8-downloads.html"
@@ -196,6 +196,7 @@ brew install polyfy/polylith/poly # https://polylith.gitbook.io/poly/install/ins
   # Oracle
   # https://www.oracle.com/webapps/redirect/signon?nexturl=https://download.oracle.com/otn/java/jdk/8u301-b09/d3c52aa6bfa54d3ca74e617f18309292/jdk-8u301-macosx-x64.dmg
   # https://www.oracle.com/webapps/redirect/signon?nexturl=https://download.oracle.com/otn/java/jdk/8u311-b11/4d5417147a92418ea8b615e228bb6935/jdk-8u311-macosx-x64.dmg
+  # https://www.oracle.com/webapps/redirect/signon?nexturl=https://download.oracle.com/otn/java/jdk/8u333-b02/2dee051a5d0647d5be72a7c0abff270e/jdk-8u333-macosx-x64.dmg
   for home_path in /Library/Java/JavaVirtualMachines/jdk*.jdk/Contents/Home; do
     jenv add "$home_path"
   done
