@@ -90,9 +90,26 @@ brew install pv             # data's progress through a pipe
 brew install rcm
 brew install rlwrap
 brew install speedtest-cli
+
+# https://github.com/tmux/tmux/issues/2262
+# https://github.com/molawson/dotfiles/commit/e72c41dc8cc842eeb6698b285c84d6040e6073bf
+fixTmux256ColorTerm() {
+  curl -OL https://gist.githubusercontent.com/nicm/ea9cf3c93f22e0246ec858122d9abea1/raw/37ae29fc86e88b48dbc8a674478ad3e7a009f357/tmux-256color
+  echo '8f259a31649900b9a8f71cbc28be762aa55206316d33d51fd8d08e4275b5f6a3  tmux-256color' | shasum -a 256 -c
+  if [ $? == 0 ]
+  then
+    /usr/bin/tic -x tmux-256color
+  else
+    echo 'tmux-256color checksum has changed'
+  fi
+  rm tmux-256color
+}
+
 brew install tmux
+fixTmux256ColorTerm
 # TODO: install tmux plugins
 # https://github.com/smudge/dotfiles/blob/master/setup.sh#L20
+
 brew install tree
 {
   brew install vim
