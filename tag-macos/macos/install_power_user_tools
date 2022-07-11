@@ -161,7 +161,8 @@ bb "${HOME}/.dotfiles/.lib/clj/scripts/update_latest_symlink.clj" "/usr/local/Ce
 # clojure
 brew tap clojure/tools
 brew install clojure/tools/clojure leiningen
-brew install borkdude/brew/babashka borkdude/brew/jet borkdude/brew/clj-kondo
+# https://github.com/babashka/obb
+brew install borkdude/brew/babashka babashka/brew/obb borkdude/brew/jet borkdude/brew/clj-kondo
 brew install markus-wa/brew/cq # https://github.com/markus-wa/cq
 brew install polyfy/polylith/poly # https://polylith.gitbook.io/poly/install/install/install-on-mac
 {
