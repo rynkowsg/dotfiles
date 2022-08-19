@@ -84,8 +84,41 @@ alias adb_top_activity="adb shell dumpsys window windows | grep -E 'mCurrentFocu
 
 alias adb_screencap='NAME="screencap-$(date "+%Y%m%d_%H%M%S").png"; adb shell mkdir -p /sdcard/DCIM/Screenshots/;  adb shell mkdir -p "/sdcard/DCIM/Screenshots"; adb shell screencap "/sdcard/DCIM/Screenshots/${NAME}"; adb pull "/sdcard/DCIM/Screenshots/${NAME}" .'
 alias adb_screenrecord='NAME="screenrecord-$(date "+%Y%m%d_%H%M%S").mp4"; adb shell mkdir -p /sdcard/DCIM/Screenshots/; echo "When finished call:\n    adb pull /sdcard/DCIM/Screenshots/${NAME} .\n"; adb shell screenrecord --verbose --bit-rate 20000000 "/sdcard/DCIM/Screenshots/${NAME}"; '
-alias adb_screenshare=scrcpy
 
+adb_screenshare() {
+  scrcpy $@
+}
+
+adb_screenshare_all() {
+  for SN in `adb devices | tail -n +2 | awk '{print $1}'`; do
+    scrcpy -s ${SN} &
+  done
+}
+
+adb_charles_proxy_start() {
+  local sn=$1
+  # open 8888 on device mapping my machine's 8888
+  adb -s $sn reverse tcp:8888 tcp:8888
+  # redirect traffic on device to device's 8888
+  adb -s $sn shell settings put global http_proxy localhost:8888
+}
+
+adb_charles_proxy_stop() {
+  local sn=$1
+  adb -s $sn shell settings put global http_proxy :0
+  adb -s $sn reverse --remove tcp:8888
+}
+
+adb_local_backend_start() {
+  local sn=$1
+  # open 3000 on device mapping my machine's 3000
+  adb -s $sn reverse tcp:3000 tcp:3000
+}
+
+adb_local_backend_stop() {
+  local sn=$1
+  adb -s $sn reverse --remove tcp:3000
+}
 
 alias adb_apk_list="adb shell pm list packages"
 
