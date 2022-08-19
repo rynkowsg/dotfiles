@@ -44,6 +44,9 @@ if [ -z "$INTELLIJ_ENVIRONMENT_READER" ]; then
   bash "${HOME}/.dotfiles/.lib/run_when_changed" "${HOME}/.macos/set_other_apps_preferences"
 fi
 
-# Homebrew
-# to fix brew doctor warning "Homebrew's "sbin" was not found in your PATH"
+# Homebrew - fix brew doctor warning "Homebrew's "sbin" was not found in your PATH"
 export PATH="$(brew --prefix)/sbin:${PATH}"
+# Homebrew - disable cleanup on install
+export HOMEBREW_NO_INSTALL_CLEANUP=TRUE
+# To check config call:
+#     brew config
