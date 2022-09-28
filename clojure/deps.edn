@@ -241,3 +241,6 @@
   "clojars"             {:url "https://repo.clojars.org/"}
   "sonatype"            {:url "https://oss.sonatype.org/content/repositories/snapshots/"}
   "cognitect-dev-tools" {:url "https://dev-tools.cognitect.com/maven/releases/"}}}
+
+;; find deps
+;; https://github.com/practicalli/clojure-deps-edn/blob/live/deps.edn#L393
