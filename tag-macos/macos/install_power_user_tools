@@ -85,6 +85,7 @@ brew install nload          # Realtime console network usage monitor
 brew install openssh
 brew install prettyping
 brew install pv             # data's progress through a pipe
+brew install ripgrep
 # https://thoughtbot.github.io/rcm/rcm.7.html
 # https://thoughtbot.github.io/rcm/rcrc.5.html
 brew install rcm
@@ -249,9 +250,10 @@ brew install polyfy/polylith/poly # https://polylith.gitbook.io/poly/install/ins
   ######  Amazon Corretto  ######
   printf "%s\n" "List of available corretto jdks:"
   brew search corretto
-  brew install --cask corretto8 corretto11
+  brew install --cask corretto8 corretto11 corretto17
   jenv add /Library/Java/JavaVirtualMachines/amazon-corretto-8.jdk/Contents/Home
   jenv add /Library/Java/JavaVirtualMachines/amazon-corretto-11.jdk/Contents/Home
+  jenv add /Library/Java/JavaVirtualMachines/amazon-corretto-17.jdk/Contents/Home
   ######  GraalVM #######
   # TODO: install graalvm
   # TODO: consider adding Homebrew cask for GraalVM
