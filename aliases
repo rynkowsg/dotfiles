@@ -120,6 +120,18 @@ adb_local_backend_stop() {
   adb -s $sn reverse --remove tcp:3000
 }
 
+adb_app_clear() {
+  local sn=$1
+  local app=$2
+  adb -s $sn shell pm clear $app
+}
+
+adb_app_stop() {
+  local sn=$1
+  local app=$2
+  adb -s $sn shell am force-stop $app
+}
+
 alias adb_apk_list="adb shell pm list packages"
 
 alias sdkmanager="JAVA_HOME=/Users/greg/.jenv/versions/1.8 sdkmanager"
