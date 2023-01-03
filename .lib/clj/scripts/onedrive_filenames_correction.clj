@@ -47,6 +47,7 @@
                              :pre-visit-dir visit-fn})
     @found))
 #_(find-incorrect-names "/Users/greg/OneDrive")
+#_(find-incorrect-names "/Users/greg/Library/CloudStorage/OneDrive-Personal/Events-Common/expenses/")
 
 (defn correct-incorrect-names!
   ([dir] (correct-incorrect-names! dir nil))
