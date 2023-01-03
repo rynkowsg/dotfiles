@@ -186,8 +186,8 @@
 
      :antq
      {:replace-paths []
-      :replace-deps  {com.github.liquidz/antq {:mvn/version "1.6.0"}
-                      org.slf4j/slf4j-nop     {:mvn/version "1.7.36"}}
+      :replace-deps  {com.github.liquidz/antq {:mvn/version "2.2.970"}
+                      org.slf4j/slf4j-nop     {:mvn/version "2.0.6"}}
       :main-opts     ["-m" "antq.core"]}
 
      ;; Example of clj-kondo setup
