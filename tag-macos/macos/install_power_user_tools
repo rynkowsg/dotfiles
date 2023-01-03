@@ -82,7 +82,6 @@ brew install fswatch
 brew install htop
 brew install mc
 brew install nload          # Realtime console network usage monitor
-brew install openssh
 brew install prettyping
 brew install pv             # data's progress through a pipe
 brew install ripgrep
@@ -91,6 +90,11 @@ brew install ripgrep
 brew install rcm
 brew install rlwrap
 brew install speedtest-cli
+
+# ssh-ish
+brew install openssh
+brew install telnet
+#brew install minicom
 
 # https://github.com/tmux/tmux/issues/2262
 # https://github.com/molawson/dotfiles/commit/e72c41dc8cc842eeb6698b285c84d6040e6073bf
@@ -325,6 +329,9 @@ brew install jpegoptim jpeginfo
 # macos control
 brew install smudge/smudge/nightlight   # managing night shift feature
 brew install duti                       # assigning apps for file extensions
+
+# to prepare bootable usb stricks
+#brew install nativeos/i386-elf-toolchain/i386-elf-grub
 
 #######################
 ###    NON-SHELL    ###
