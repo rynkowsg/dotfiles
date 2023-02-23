@@ -1,21 +1,53 @@
 #!/usr/bin/env bash
 
 # $1 - root_dir
-function install_dotfiles_deps {
+function install_dotfiles_deps_macos {
   local root_dir="$1"
+  # install Homebrew if not installed
+  source "${root_dir}/.lib/macos/homebrew"
+  install_homebrew;
+  # install rcm
+  brew install rcm
+  # install coreutils (usage of mktemp is different in GNU and BSD implementations)
+  brew install coreutils
+  export PATH="$(brew --prefix)/opt/coreutils/libexec/gnubin:${PATH}"
+}
+
+function install_dotfiles_deps_debian {
+  sudo apt install rcm
+}
+
+function install_dotfiles_deps_fedora {
+  sudo dnf install rcm
+}
+
+# $1 - root_dir
+function install_dotfiles_deps {
+  RED='\033[0;31m'; NC='\033[0m' # No Color
+
   # on detecting system: https://stackoverflow.com/a/8597411
   if [[ "$OSTYPE" == "darwin"* ]]; then
-    # install Homebrew if not installed
-    source "${root_dir}/.lib/macos/homebrew"
-    install_homebrew;
-    # install rcm
-    brew install rcm
-    # install coreutils (usage of mktemp is different in GNU and BSD implementations)
-    brew install coreutils
-    export PATH="$(brew --prefix)/opt/coreutils/libexec/gnubin:${PATH}"
+    install_dotfiles_deps_macos $@
+  elif [[ "$OSTYPE" == "linux-gnu"*  ]] && [ -f /etc/debian_version ]; then
+    install_dotfiles_deps_debian
+  elif [[ "$OSTYPE" == "linux-gnu"*  ]] && [ -f /etc/fedora_version ]; then
+    install_dotfiles_deps_fedora
+  elif [[ "$OSTYPE" == "linux-gnu"* ]]; then
+    printf "${RED}%s${NC}\n" "This type of '${OSTYPE}' not supported."
+    exit 1;
   else
-    RED='\033[0;31m'; NC='\033[0m' # No Color
     printf "${RED}%s${NC}\n" "'${OSTYPE}' not supported."
     exit 1;
   fi
 }
+
+function main {
+  install_dotfiles_deps "$@"
+}
+
+# don't run main, if the script is imported using `source`
+if [[ "${BASH_SOURCE[0]}" != "${0}" ]]; then
+  [[ -n "${BASH_SOURCE[0]}" ]] && printf "%s\n\n" "Loaded: ${BASH_SOURCE[0]}"
+else
+  main "$@"
+fi
