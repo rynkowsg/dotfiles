@@ -6,6 +6,10 @@ ROOT_DIR="${SCRIPT_DIR}/.."
 # install dependencies
 source "${ROOT_DIR}/.lib/install_dotfiles_deps" && install_dotfiles_deps "${ROOT_DIR}"
 
+# import my gpg key
+
+gpg --import < ~/.dotfiles/.data/gpg/gpg-0x6762037B92E2622E-2022-10-05-with-4-ids.asc
+
 # link all the files
 
 TMP_DIR=$(mktemp -d -t "dotfiles-$(date +%Y%m%d_%H%M%S)-XXXXXXXX")
