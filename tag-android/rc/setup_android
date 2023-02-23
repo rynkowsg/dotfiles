@@ -1,0 +1,14 @@
+#!/usr/bin/env sh
+
+# debug log
+[ "${RC_DEBUG}" = true ] && printf "reading: %s\t($0)\n" "setup_android"
+
+# Android dev env setup
+# TODO: Fix paths to make sense for Linux
+export ANDROID_SDK_ROOT="/usr/local/opt/android-sdk"
+export ANDROID_HOME="${ANDROID_SDK_ROOT}"
+export PATH="${ANDROID_SDK_ROOT}:${ANDROID_SDK_ROOT}/tools:${ANDROID_SDK_ROOT}/tools/bin:${PATH}"
+export PATH="${ANDROID_SDK_ROOT}/platform-tools:${PATH}"
+export PATH="${ANDROID_SDK_ROOT}/build-tools/latest:${PATH}"  # requires a symlink e.g. `ln -s 27.0.3 latest`
+export PATH="${ANDROID_NDK_ROOT}:${PATH}"
+export ANDROID_NDK_ROOT="/usr/local/opt/android-sdk/ndk/latest"

@@ -1,0 +1,7 @@
+#!/usr/bin/env sh
+
+[ "${RC_DEBUG}" = true ] && printf "reading: %s\t\t($0)\n" "setup_jenv"
+
+# Load jenv
+export PATH="${HOME}/.jenv/bin:${PATH}"
+eval "$(jenv init -)"

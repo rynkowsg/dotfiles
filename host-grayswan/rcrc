@@ -3,5 +3,5 @@
 
 EXCLUDES="README.md commonrc .internal .lib"
 COPY_ALWAYS="m2/settings.xml datomic/dev-local.edn"
-TAGS="macos android clj fzf gpg gpg-ssh gpg-macos python vim-dev terraform"
+TAGS="macos android autojump clj fzf gpg gpg-ssh gpg-macos jenv nvm python vim-dev terraform"
 SYMLINK_DIRS="clojure git/bin macos"

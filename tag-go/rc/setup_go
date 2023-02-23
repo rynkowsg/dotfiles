@@ -1,0 +1,8 @@
+#!/usr/bin/env sh
+
+[ "${RC_DEBUG}" = true ] && printf "reading: %s\t\t\t($0)\n" "setup_go"
+
+# TODO: Fix ot! It will not work on linux
+export GOROOT="/usr/local/Cellar/go/latest"
+export GOPATH="${HOME}/.go"
+export PATH="${GOROOT}/bin:${GOPATH}/bin:${PATH}"

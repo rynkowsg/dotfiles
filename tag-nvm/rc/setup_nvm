@@ -1,0 +1,6 @@
+#!/usr/bin/env sh
+
+[ "${RC_DEBUG}" = true ] && printf "reading: %s\t\t\t($0)\n" "setup_nvm"
+
+# Load nvm
+[ -f "$HOME"/.nvmrc ] && . "$HOME"/.nvmrc

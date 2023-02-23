@@ -1,0 +1,13 @@
+#!/usr/bin/env sh
+
+# debug log
+[ "${RC_DEBUG}" = true ] && printf "reading: %s\t\t($0)\n" "setup_gpg"
+
+# Setup GPG + SSH
+export GPG_TTY="$(tty)"
+export SSH_AUTH_SOCK=$(gpgconf --list-dirs agent-ssh-socket)
+gpgconf --launch gpg-agent
+
+# Export the pub key if not yet exist
+! [ -f ~/.ssh/id_rsa_yubikey.pub ] &&
+  ssh-add -L | grep "cardno" > ~/.ssh/id_rsa_yubikey.pub

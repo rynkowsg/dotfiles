@@ -20,43 +20,19 @@ source_existing "${HOME}/.platformrc"
 # Load user bin
 export PATH="${HOME}/.bin:${PATH}"
 
-# Setup GPG + SSH
-export GPG_TTY="$(tty)"
-export SSH_AUTH_SOCK=$(gpgconf --list-dirs agent-ssh-socket)
-gpgconf --launch gpg-agent
+source_existing "$HOME/.rc/setup_gpg_ssh"
 
-# Load autojump
-# https://github.com/wting/autojump
-if [ -n "$BASH_VERSION" ] || [ -n "$ZSH_VERSION" ]; then
-  [ -f "$(brew --prefix)/etc/profile.d/autojump.sh" ] && . "$(brew --prefix)/etc/profile.d/autojump.sh"
-elif [ -n "$FISH_VERSION" ]; then
-  [ -f "$(brew --prefix)/share/autojump/autojump.fish" ]; and source "$(brew --prefix)/share/autojump/autojump.fish"
-fi
+source_existing "$HOME/.rc/setup_autojump"
 
 source_existing "$HOME/.rc/setup_fzf"
 
-# Load jenv
-export PATH="${HOME}/.jenv/bin:${PATH}"
-eval "$(jenv init -)"
+source_existing "$HOME/.rc/setup_jenv"
 
-# Load nvm
-[ -f "$HOME"/.nvmrc ] && source "$HOME"/.nvmrc
+source_existing "$HOME/.rc/setup_nvm"
 
-# Load pyenv
-# (based on instructions printed on `pyenv init`)
-export PYENV_ROOT="$HOME/.pyenv"
-export PATH="$PYENV_ROOT/bin:$PATH"
-eval "$(pyenv init --path)"
-eval "$(pyenv init -)"
-# Load pyenv-virtualenv
-if which pyenv-virtualenv-init > /dev/null; then
-  eval "$(pyenv virtualenv-init -)";
-fi
+source_existing "$HOME/.rc/setup_python"
 
-# Load go
-export GOROOT="/usr/local/Cellar/go/latest"
-export GOPATH="${HOME}/.go"
-export PATH="${GOROOT}/bin:${GOPATH}/bin:${PATH}"
+source_existing "$HOME/.rc/setup_go"
 
 # Add to PATH bin/ containing user packages
 export PATH="${HOME}/.local/bin:${PATH}"
@@ -64,30 +40,8 @@ export PATH="${HOME}/.local/bin:${PATH}"
 # Override system curl
 export PATH="$(brew --prefix)/opt/curl/bin:${PATH}"
 
-# Setup Babashka (bb) completion
-if [ -n "$ZSH_VERSION" ]; then
-  [ -f "$HOME"/.bb.zsh ] && source "$HOME"/.bb.zsh
-else
-  echo "Warning! Babashka integration for $SHELL doesn't exist or couldn't be loaded"
-fi
+source_existing "$HOME/.rc/setup_babashka"
 
-# Setup cloud
-GOOGLE_CLOUD_HOME="$(brew --prefix)/Caskroom/google-cloud-sdk/latest/google-cloud-sdk"
-if [ -n "$BASH_VERSION" ]; then
-  source "${GOOGLE_CLOUD_HOME}/path.bash.inc"
-  source "${GOOGLE_CLOUD_HOME}/completion.bash.inc"
-elif [ -n "$ZSH_VERSION" ]; then
-  source "${GOOGLE_CLOUD_HOME}/path.zsh.inc"
-  source "${GOOGLE_CLOUD_HOME}/completion.zsh.inc"
-elif [ -n "$FISH_VERSION" ]; then
-  source "${GOOGLE_CLOUD_HOME}/path.fish.inc"
-fi
+source_existing "$HOME/.rc/setup_gcp"
 
-# Android dev env setup
-export ANDROID_SDK_ROOT="/usr/local/opt/android-sdk"
-export ANDROID_HOME="${ANDROID_SDK_ROOT}"
-export PATH="${ANDROID_SDK_ROOT}:${ANDROID_SDK_ROOT}/tools:${ANDROID_SDK_ROOT}/tools/bin:${PATH}"
-export PATH="${ANDROID_SDK_ROOT}/platform-tools:${PATH}"
-export PATH="${ANDROID_SDK_ROOT}/build-tools/latest:${PATH}"  # requires a symlink e.g. `ln -s 27.0.3 latest`
-export PATH="${ANDROID_NDK_ROOT}:${PATH}"
-export ANDROID_NDK_ROOT="/usr/local/opt/android-sdk/ndk/latest"
+source_existing "$HOME/.rc/setup_android"
