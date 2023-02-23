@@ -1,0 +1,20 @@
+#!/usr/bin/env bash
+
+# includes
+. "$HOME/.dotfiles/.lib/error"
+
+main() {
+  set -e
+
+  cd "$HOME/.dotfiles" || error_exit "Directory ~/.dotfiles does not exist."
+  git pull --rebase
+
+  local -r should_confirm=true
+  "$HOME/.dotfiles/.internal/install" "$should_confirm"
+}
+
+if [[ "${BASH_SOURCE[0]}" != "${0}" ]]; then
+  [[ -n "${BASH_SOURCE[0]}" ]] && printf "%s\n\n" "Loaded: ${BASH_SOURCE[0]}"
+else
+  main "$@"
+fi
