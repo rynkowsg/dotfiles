@@ -1,0 +1,80 @@
+#!/usr/bin/env bash
+
+# shellcheck disable=SC2002
+
+# includes
+. "$HOME/.dotfiles/.lib/error"
+. "$HOME/.dotfiles/.lib/install_dotfiles_deps"
+. "$HOME/.dotfiles/.lib/trap"
+. "$HOME/.dotfiles/.lib/yes_or_no"
+
+install_deps() {
+  info "Installing dotfiles deps..."
+  install_dotfiles_deps
+  info "Installing dotfiles deps... DONE"
+  echo
+}
+
+import_gpg_key() {
+  info "Importing my gpg key..."
+  gpg --import < ~/.dotfiles/.data/gpg/gpg-0x6762037B92E2622E-2022-10-05-with-4-ids.asc
+  info "Importing my gpg key... DONE"
+  echo
+}
+
+# $1 - should_confirm
+link_dotfiles() {
+  local -r should_confirm="$1"
+
+  info "Installing dotfiles..."
+
+  local -r tmp_dir=$(mktemp -d -t "dotfiles-$(date +%Y%m%d_%H%M%S)-XXXXXXXX")
+  add_on_exit rm -rf "${tmp_dir}" \&\& echo "Cleanup: removed $tmp_dir"
+
+  local -r install_script="${tmp_dir}/install.sh"
+
+  # rcup generates a shell script installing all the links
+  RCRC="$HOME/.dotfiles/host-$(hostname)/rcrc" rcup -B 0tmu -g > "${install_script}"
+
+  printf "%s\n" "---------------------------------------------------------------"
+  printf "%s\n" "---               FILES TO LINK                            ----"
+  printf "%s\n" "---------------------------------------------------------------"
+  cat "${install_script}" | grep -E "handle_file_ln \"|handle_file_cp \"" | sort
+  printf "%s\n" "---------------------------------------------------------------"
+
+  if [ "$should_confirm" = "true" ]; then
+    if ! yes_or_no "Do you want to execute this script?"; then echo; return; fi
+  fi
+  echo
+
+  # execute the script answering yes to any override questions
+  yes | env VERBOSE=1 sh "${install_script}"
+  echo
+
+  info "Installing dotfiles... DONE"
+  echo
+}
+
+# $1 - should_confirm
+main() {
+  local -r should_confirm="$1"
+  install_deps
+  import_gpg_key
+  link_dotfiles "$should_confirm"
+}
+
+if [[ "${BASH_SOURCE[0]}" != "${0}" ]]; then
+  [[ -n "${BASH_SOURCE[0]}" ]] && printf "%s\n\n" "Loaded: ${BASH_SOURCE[0]}"
+else
+  main "$@"
+fi
+
+# TODO: inject secrets per environment, per machine name
+## checkout password stores
+#mkdir -p ~/.password-store
+#[ ! -d ~/.password-store/rynkowski ] && \
+#    git clone git@github.com:rynkowsg/rynkowski-pass-store.git ~/.password-store/rynkowski
+#[ ! -d ~/.password-store/chargedup ] && \
+#    git clone git@github.com:rynkowsg/chargedup-pass-store.git ~/.password-store/chargedup
+#
+#bash "$HOME/.dotfiles/.internal/inject_secrets.sh"

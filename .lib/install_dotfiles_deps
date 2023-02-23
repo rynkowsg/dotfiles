@@ -1,10 +1,8 @@
 #!/usr/bin/env bash
 
-# $1 - root_dir
 function install_dotfiles_deps_macos {
-  local root_dir="$1"
   # install Homebrew if not installed
-  source "${root_dir}/.lib/macos/homebrew"
+  source "$HOME/.dotfiles/.lib/macos/homebrew"
   install_homebrew;
   # install rcm
   brew install rcm
@@ -21,13 +19,12 @@ function install_dotfiles_deps_fedora {
   sudo dnf install rcm
 }
 
-# $1 - root_dir
 function install_dotfiles_deps {
   RED='\033[0;31m'; NC='\033[0m' # No Color
 
   # on detecting system: https://stackoverflow.com/a/8597411
   if [[ "$OSTYPE" == "darwin"* ]]; then
-    install_dotfiles_deps_macos $@
+    install_dotfiles_deps_macos
   elif [[ "$OSTYPE" == "linux-gnu"*  ]] && [ -f /etc/debian_version ]; then
     install_dotfiles_deps_debian
   elif [[ "$OSTYPE" == "linux-gnu"*  ]] && [ -f /etc/fedora_version ]; then
@@ -42,7 +39,7 @@ function install_dotfiles_deps {
 }
 
 function main {
-  install_dotfiles_deps "$@"
+  install_dotfiles_deps
 }
 
 # don't run main, if the script is imported using `source`
