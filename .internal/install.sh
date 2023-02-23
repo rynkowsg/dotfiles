@@ -16,7 +16,7 @@ TMP_DIR=$(mktemp -d -t "dotfiles-$(date +%Y%m%d_%H%M%S)-XXXXXXXX")
 INSTALL_SCRIPT="${TMP_DIR}/install.sh"
 
 # rcup generates a shell script installing all the links
-env RCRC="${ROOT_DIR}/rcrc" rcup -B 0 -g > "${INSTALL_SCRIPT}"
+RCRC="${ROOT_DIR}/host-$(hostname)/rcrc" rcup -B 0tmu -g > "${INSTALL_SCRIPT}"
 
 printf "%s\n" "---------------------------------------------------------------"
 printf "%s\n" "---               GENERATED SCRIPT                         ----"
