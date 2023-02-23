@@ -30,12 +30,12 @@ yes | env VERBOSE=1 sh "${INSTALL_SCRIPT}"
 
 rm -rf "${TMP_DIR}"
 
-
-# checkout password stores
-mkdir -p ~/.password-store
-[ ! -d ~/.password-store/rynkowski ] && \
-    git clone git@github.com:rynkowsg/rynkowski-pass-store.git ~/.password-store/rynkowski
-[ ! -d ~/.password-store/chargedup ] && \
-    git clone git@github.com:rynkowsg/chargedup-pass-store.git ~/.password-store/chargedup
-
-bash "${ROOT_DIR}/.internal/inject_secrets.sh"
+# TODO: inject secrets per environment, per machine name
+## checkout password stores
+#mkdir -p ~/.password-store
+#[ ! -d ~/.password-store/rynkowski ] && \
+#    git clone git@github.com:rynkowsg/rynkowski-pass-store.git ~/.password-store/rynkowski
+#[ ! -d ~/.password-store/chargedup ] && \
+#    git clone git@github.com:rynkowsg/chargedup-pass-store.git ~/.password-store/chargedup
+#
+#bash "${ROOT_DIR}/.internal/inject_secrets.sh"
