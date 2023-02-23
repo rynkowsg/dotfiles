@@ -72,86 +72,7 @@ alias lsd="ls -lF ${colorflag} | grep --color=never '^d'"
 # Always use color output for `ls`
 alias ls="command ls ${colorflag}"
 
-###############################################################################
-# Android                                                                     #
-###############################################################################
-
-# $1 - package name
-adb_apk_pull() {
-  local pkgname=$1
-  mkdir -p "$pkgname"
-  adb pull "$(adb shell pm path $pkgname | awk -F':' '{print $2}')" "${pkgname}/"
-}
-# Short:
-#export NAME=com.amazon.kindle;  mkdir -p "$NAME"; adb pull "$(adb shell pm path $NAME | awk -F':' '{print $2}')" "${NAME}/"
-
-alias adb_top_activity="adb shell dumpsys window windows | grep -E 'mCurrentFocus|mFocusedApp'"
-
-adb_screencap() {
-  NAME="screencap-$(date "+%Y%m%d_%H%M%S").png"
-  adb $@ shell mkdir -p /sdcard/DCIM/Screenshots/
-  adb $@ shell mkdir -p "/sdcard/DCIM/Screenshots"
-  adb $@ shell screencap "/sdcard/DCIM/Screenshots/${NAME}"
-  adb $@ pull "/sdcard/DCIM/Screenshots/${NAME}" .
-}
-
-adb_screenrecord() {
-  NAME="screenrecord-$(date "+%Y%m%d_%H%M%S").mp4"
-  adb shell mkdir -p /sdcard/DCIM/Screenshots/
-  echo "When finished call:\n    adb $@ pull /sdcard/DCIM/Screenshots/${NAME} .\n"
-  adb shell screenrecord --verbose --bit-rate 20000000 "/sdcard/DCIM/Screenshots/${NAME}"
-}
-
-adb_screenshare() {
-  scrcpy $@
-}
-
-adb_screenshare_all() {
-  for SN in `adb devices | tail -n +2 | awk '{print $1}'`; do
-    scrcpy -s ${SN} &
-  done
-}
-
-adb_charles_proxy_start() {
-  local sn=$1
-  # open 8888 on device mapping my machine's 8888
-  adb -s $sn reverse tcp:8888 tcp:8888
-  # redirect traffic on device to device's 8888
-  adb -s $sn shell settings put global http_proxy localhost:8888
-}
-
-adb_charles_proxy_stop() {
-  local sn=$1
-  adb -s $sn shell settings put global http_proxy :0
-  adb -s $sn reverse --remove tcp:8888
-}
-
-adb_local_backend_start() {
-  local sn=$1
-  # open 3000 on device mapping my machine's 3000
-  adb -s $sn reverse tcp:3000 tcp:3000
-}
-
-adb_local_backend_stop() {
-  local sn=$1
-  adb -s $sn reverse --remove tcp:3000
-}
-
-adb_app_clear() {
-  local sn=$1
-  local app=$2
-  adb -s $sn shell pm clear $app
-}
-
-adb_app_stop() {
-  local sn=$1
-  local app=$2
-  adb -s $sn shell am force-stop $app
-}
-
-alias adb_apk_list="adb shell pm list packages"
-
-alias sdkmanager="JAVA_HOME=/Users/greg/.jenv/versions/1.8 sdkmanager"
+source_existing ~/.aliases_android
 
 ###############################################################################
 # MacOS                                                                       #
@@ -227,10 +148,8 @@ alias pip-uninstall-all="pip freeze | xargs pip uninstall -y"
 
 alias dns-reset="sudo dscacheutil -flushcache; sudo killall -HUP mDNSResponder"
 
-alias gpg-discover-yubikey='gpg-connect-agent "scd serialno" "learn --force" /bye'
-alias gpg-agent-restart="gpg-connect-agent /bye; gpgconf --launch gpg-agent"
-alias gpg-restart="gpgconf --kill all"
-alias gpg-kill="gpg-connect-agent /bye; gpgconf --kill all"
+source_existing ~/.aliases_gpg
+
 alias yk-info="ykman openpgp info; gpg --card-status"
 alias passryn="PASSWORD_STORE_DIR=${HOME}/.password-store/rynkowski pass"
 alias passtwo="PASSWORD_STORE_DIR=${HOME}/.password-store/twobuffers pass"

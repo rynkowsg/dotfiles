@@ -1,0 +1,9 @@
+#!/usr/bin/env sh
+
+# debug log
+[ "${RC_DEBUG}" = true ] && printf "reading: %s\t\t($0)\n" "aliases_gpg"
+
+alias gpg-discover-yubikey='gpg-connect-agent "scd serialno" "learn --force" /bye'
+alias gpg-agent-restart="gpg-connect-agent /bye; gpgconf --launch gpg-agent"
+alias gpg-restart="gpgconf --kill all"
+alias gpg-kill="gpg-connect-agent /bye; gpgconf --kill all"
