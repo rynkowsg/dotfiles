@@ -39,3 +39,5 @@ source_existing "$HOME/.rc/setup_jenv"
 source_existing "$HOME/.rc/setup_nvm"
 
 source_existing "$HOME/.rc/setup_python"
+
+source_existing "$HOME/.rc/setup_yarn"

@@ -26,17 +26,3 @@ setopt HIST_BEEP                 # Beep when accessing nonexistent history.
 
 # Load commons among shells
 [ -f ~/.dotfiles/commonrc ] && source ~/.dotfiles/commonrc
-
-# Yarn scripts autocompletion
-# Source: https://gist.github.com/ryaninvents/d9155214c91d18ddae3da021d3a13c99
-function _yarn() {
-    local scripts=$(jq -r '.scripts | to_entries | '\
-'map(.key |= sub(":";"\\:";"g")) | '\
-'.[] | '\
-'[select((.value | length) > 0)] | '\
-'select((. | length) > 0) | '\
-'map("'"'"'\(.key):\(.value)'"'"'") | '\
-'join(" ")' < package.json)
-    _describe 'command' "($scripts)"
-}
-compdef _yarn yarn
