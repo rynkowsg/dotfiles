@@ -1,0 +1,30 @@
+#!/usr/bin/env sh
+
+# debug log
+[ "${RC_DEBUG}" = true ] && printf "reading: %s\t\t($0)\n" "setup_fzf"
+
+fzf_install() {
+  git clone --branch 0.38.0 --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
+  ~/.fzf/install
+}
+
+fzf_update() {
+  cd ~/.fzf && git pull && ./install
+}
+
+# shellcheck disable=SC2039
+if [ "$OSTYPE" = "darwin" ]; then
+  export FZF_ROOT="/usr/local/opt/fzf"
+elif [ "$OSTYPE" = "linux-gnu" ]; then
+  export FZF_ROOT="$HOME/.fzf"
+else
+  printf "Error: %s\n" "fzf is not supported."
+  exit 1;
+fi
+
+# Load fzf
+if [ -n "$BASH_VERSION" ]; then
+  [ -f "$HOME"/.fzf.bash ] && . "$HOME"/.fzf.bash
+elif [ -n "$ZSH_VERSION" ]; then
+  [ -f "$HOME"/.fzf.zsh ] && . "$HOME"/.fzf.zsh
+fi

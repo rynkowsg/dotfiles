@@ -33,13 +33,7 @@ elif [ -n "$FISH_VERSION" ]; then
   [ -f "$(brew --prefix)/share/autojump/autojump.fish" ]; and source "$(brew --prefix)/share/autojump/autojump.fish"
 fi
 
-# Load fzf
-if [ -n "$BASH_VERSION" ]; then
-  [ -f "$HOME"/.fzf.bash ] && source "$HOME"/.fzf.bash
-elif [ -n "$ZSH_VERSION" ]; then
-  [ -f "$HOME"/.fzf.zsh ] && source "$HOME"/.fzf.zsh
-fi
-# https://stackoverflow.com/questions/9910966/how-to-tell-if-its-using-zsh-or-bash
+source_existing "$HOME/.rc/setup_fzf"
 
 # Load jenv
 export PATH="${HOME}/.jenv/bin:${PATH}"
