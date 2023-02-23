@@ -1,0 +1,58 @@
+#!/usr/bin/env bash
+
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]:-${0}}")" || exit; pwd -P)"
+
+# load colors
+source "${SCRIPT_DIR}/colors"
+
+UNKNOWN_ERROR=101
+INVALID_FN_CALL_ERROR=102
+INVALID_STATE_ERROR=103
+COMMAND_DONT_EXIST=104
+
+function warning_color() {
+  local msg="${1}"
+  printf "${YELLOW}%s${RESET}" "${msg}"
+}
+
+function warning() {
+  local msg="${1}"
+  printf "%s\n" "$(warning_color "${msg}")"
+}
+
+function error_color() {
+  local msg="${1}"
+  printf "${RED}%s${RESET}" "${msg}"
+}
+
+function error() {
+  local msg="${1:-"Unknown Error"}"
+  printf "%s%s\n" "$(error_color "Error: ")" "$(error_color "${msg}")"
+}
+
+function error_exit() {
+  local msg="${1:-"Unknown Error"}"
+  local code="${2:-${UNKNOWN_ERROR}}"
+  printf "${RED}Error: %s${RESET}\n" "${msg}" >&2
+  exit ${code}
+}
+
+function info_color() {
+  local msg="${1}"
+  printf "${YELLOW}%s${RESET}" "${msg}"
+}
+
+function info() {
+  local msg="${1}"
+  printf "%s\n" "$(info_color "${msg}")"
+}
+
+function assert_command_exist() {
+  local command=$1
+  if ! command -v "$command" &> /dev/null
+  then
+    error_exit "'$command' doesn't exist. Please install '$command'." ${COMMAND_DONT_EXIST}
+  else
+    echo "'$command' detected...";echo
+  fi
+}

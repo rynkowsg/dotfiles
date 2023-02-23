@@ -1,0 +1,17 @@
+#!/usr/bin/env sh
+
+#
+# Usage:
+#   yes_or_no "$message" && do_something
+#
+# Source: https://stackoverflow.com/a/29436423
+yes_or_no() {
+    while true; do
+        printf "%s [y/n]: " "$*"
+        read -r yn
+        case $yn in
+            [Yy]*) return 0 ;;
+            [Nn]*) return 1 ;;
+        esac
+    done
+}
