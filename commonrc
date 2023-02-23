@@ -5,10 +5,11 @@
 # includes
 . "$HOME/.dotfiles/.lib/source_existing"
 
-# Global env vars
-
-# https://consoledonottrack.com/
+# Disable shell analytics, more: https://consoledonottrack.com
 export DO_NOT_TRACK=1
+
+# Add local bin paths to PATH
+export PATH="${HOME}/.bin:${HOME}/.local/bin:${PATH}"
 
 # Load aliases
 source_existing "${HOME}/.aliases"
@@ -17,28 +18,24 @@ source_existing "${HOME}/.aliases"
 # (it needs to be done before the rest, some of the ENVs are set here)
 source_existing "${HOME}/.platformrc"
 
-# Load user bin
-export PATH="${HOME}/.bin:${PATH}"
+# Load other configs if they exist
 
-source_existing "$HOME/.rc/setup_gpg_ssh"
+source_existing "$HOME/.rc/setup_android"
 
 source_existing "$HOME/.rc/setup_autojump"
 
+source_existing "$HOME/.rc/setup_babashka"
+
 source_existing "$HOME/.rc/setup_fzf"
+
+source_existing "$HOME/.rc/setup_gcp"
+
+source_existing "$HOME/.rc/setup_go"
+
+source_existing "$HOME/.rc/setup_gpg_ssh"
 
 source_existing "$HOME/.rc/setup_jenv"
 
 source_existing "$HOME/.rc/setup_nvm"
 
 source_existing "$HOME/.rc/setup_python"
-
-source_existing "$HOME/.rc/setup_go"
-
-# Add to PATH bin/ containing user packages
-export PATH="${HOME}/.local/bin:${PATH}"
-
-source_existing "$HOME/.rc/setup_babashka"
-
-source_existing "$HOME/.rc/setup_gcp"
-
-source_existing "$HOME/.rc/setup_android"
