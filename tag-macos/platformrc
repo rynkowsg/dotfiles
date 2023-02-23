@@ -53,3 +53,6 @@ export PATH="$(brew --prefix)/sbin:${PATH}"
 export HOMEBREW_NO_INSTALL_CLEANUP=TRUE
 # To check config call:
 #     brew config
+
+# Override system curl
+export PATH="$(brew --prefix)/opt/curl/bin:${PATH}"

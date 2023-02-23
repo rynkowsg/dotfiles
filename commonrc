@@ -37,9 +37,6 @@ source_existing "$HOME/.rc/setup_go"
 # Add to PATH bin/ containing user packages
 export PATH="${HOME}/.local/bin:${PATH}"
 
-# Override system curl
-export PATH="$(brew --prefix)/opt/curl/bin:${PATH}"
-
 source_existing "$HOME/.rc/setup_babashka"
 
 source_existing "$HOME/.rc/setup_gcp"
