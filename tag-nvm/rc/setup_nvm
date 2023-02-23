@@ -1,6 +1,55 @@
 #!/usr/bin/env sh
 
-[ "${RC_DEBUG}" = true ] && printf "reading: %s\t\t\t($0)\n" "setup_nvm"
+# debug log
+[ "${RC_DEBUG}" = true ] && printf "reading: %s\t\t($0)\n" "setup_nvm"
+# includes
+. "$HOME/.dotfiles/.lib/error"
+. "$HOME/.dotfiles/.lib/yes_or_no"
 
-# Load nvm
-[ -f "$HOME"/.nvmrc ] && . "$HOME"/.nvmrc
+NVM_VER="0.39.3"
+NVM_VER_TAG="v${NVM_VER}"
+NVM_REPO="https://github.com/nvm-sh/nvm.git"
+
+export NVM_DIR="$HOME/.nvm"
+
+install_nvm() {
+  git -C "$HOME" -c advice.detachedHead=false clone --branch "$NVM_VER_TAG" --depth 1 "$NVM_REPO" "${NVM_DIR}"
+}
+
+# $1 - version
+update_nvm() {
+  cd "${NVM_DIR}"
+  git fetch -t origin -- "$1"
+  git checkout "$1" --
+}
+
+installed() {
+  [ -f "$NVM_DIR/nvm.sh" ] && return 0 || return 1
+}
+
+init_nvm() {
+  [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"                   # This loads nvm
+  [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion" # This loads nvm bash_completion
+}
+
+# if nvm is not installed, install it (assuming user wants it)
+if ! installed; then
+  error "nvm is not installed"
+  yes_or_no "$(error_color "Do you want to install it?")" && install_nvm "$NVM_VER_TAG"
+fi
+
+# if nvm still do not installed, skip reading the rest of this config
+if ! installed; then
+  return
+fi
+
+init_nvm
+
+# Update (optionally)
+CURRENT_NVM_VER="$(nvm --version)"
+if installed && [ ! "$NVM_VER" = "$CURRENT_NVM_VER" ]; then
+  warning "Current version ($CURRENT_NVM_VER) is different then expected ($NVM_VER)"
+  yes_or_no "$(warning_color "Do you want to update it?")" && \
+    update_nvm "$NVM_VER_TAG" &&                          \
+    init_nvm
+fi
