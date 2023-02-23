@@ -1,4 +1,9 @@
-#!/usr/bin/env bash
+#!/usr/bin/env sh
+
+# debug log
+[ "${RC_DEBUG}" = true ] && printf "reading: %s\t\t($0)\n" "commonrc"
+# includes
+. "$HOME/.dotfiles/.lib/source_existing"
 
 # Global env vars
 
@@ -6,11 +11,11 @@
 export DO_NOT_TRACK=1
 
 # Load aliases
-[ -f "$HOME"/.aliases ] && source "$HOME"/.aliases
+source_existing "${HOME}/.aliases"
 
 # Load platform specific setup
 # (it needs to be done before the rest, some of the ENVs are set here)
-[ -f "$HOME"/.platformrc ] && source "$HOME"/.platformrc
+source_existing "${HOME}/.platformrc"
 
 # Load user bin
 export PATH="${HOME}/.bin:${PATH}"

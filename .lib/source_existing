@@ -1,0 +1,8 @@
+#!/usr/bin/env sh
+
+# debug log
+[ "${RC_DEBUG}" = true ] && printf "reading: %s\t($0)\n" "source_existing"
+
+source_existing() {
+  [ -f "$1" ] && source "$1"
+}

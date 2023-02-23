@@ -1,5 +1,8 @@
 #!/usr/bin/env bash
 
+# debug log
+[ "${RC_DEBUG}" = true ] && printf "reading: %s\t\t\t($0)\n" "platform_rc"
+
 # Use GNU utils
 export PATH="$(brew --prefix)/opt/coreutils/libexec/gnubin:${PATH}"
 export PATH="$(brew --prefix)/opt/ed/libexec/gnubin:${PATH}"
