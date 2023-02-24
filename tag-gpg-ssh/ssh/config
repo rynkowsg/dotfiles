@@ -8,15 +8,15 @@ Host github.com
 Host 34.132.147.241
   IdentityFile ~/.ssh/id_rsa_yubikey.pub
   HostkeyAlgorithms +ssh-rsa
-  PubkeyAcceptedAlgorithms +ssh-rsa
+#   PubkeyAcceptedAlgorithms +ssh-rsa
 Host 34.68.184.117
   IdentityFile ~/.ssh/id_rsa_yubikey.pub
   HostkeyAlgorithms +ssh-rsa
-  PubkeyAcceptedAlgorithms +ssh-rsa
+#  PubkeyAcceptedAlgorithms +ssh-rsa
 Host 3.92.8.148
   IdentityFile ~/.ssh/id_rsa_yubikey.pub
   HostkeyAlgorithms +ssh-rsa
-  PubkeyAcceptedAlgorithms +ssh-rsa
+#  PubkeyAcceptedAlgorithms +ssh-rsa
 
 Host *
   AddKeysToAgent yes
