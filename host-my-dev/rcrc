@@ -3,5 +3,5 @@
 
 EXCLUDES="README.md commonrc .internal .lib"
 COPY_ALWAYS="m2/settings.xml datomic/dev-local.edn"
-TAGS="clj fzf git gpg gpg-ssh gpg-linux jenv nvm pass-ryn vim-basic"
+TAGS="clj fzf dotenv git gpg gpg-ssh gpg-linux jenv nvm pass-ryn vim-basic"
 SYMLINK_DIRS="clojure git/bin"

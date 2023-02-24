@@ -1,0 +1,9 @@
+#!/usr/bin/env sh
+
+# debug log
+[ "${RC_DEBUG}" = true ] && printf "reading: %s\t\t($0)\n" "setup_dotenv"
+
+# Setup dotenv
+if [ -n "$ZSH_VERSION" ]; then
+  [ -f "$HOME/.bb.zsh" ] && . "$HOME/.dotenv.zsh"
+fi

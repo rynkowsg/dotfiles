@@ -30,6 +30,8 @@ source_existing "$HOME/.rc/setup_autojump"
 
 source_existing "$HOME/.rc/setup_babashka"
 
+source_existing "$HOME/.rc/setup_dotenv"
+
 source_existing "$HOME/.rc/setup_fzf"
 
 source_existing "$HOME/.rc/setup_gcp"
