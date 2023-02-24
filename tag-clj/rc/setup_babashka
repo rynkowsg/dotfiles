@@ -1,11 +1,11 @@
 #!/usr/bin/env sh
 
 # debug log
-[ "${RC_DEBUG}" = true ] && printf "reading: %s\t($0)\n" "setup_babashka"
+[ "${RC_DEBUG}" = true ] && printf "reading: %s\t\t($0)\n" "setup_babashka"
 
 # Setup Babashka (bb) completion
-if [ -n "$ZSH_VERSION" ]; then
+if [ -n "$BASH_VERSION" ]; then
+  [ -f "$HOME/.bb.bash" ] && . "$HOME/.bb.bash"
+elif [ -n "$ZSH_VERSION" ]; then
   [ -f "$HOME/.bb.zsh" ] && . "$HOME/.bb.zsh"
-else
-  echo "Warning! Babashka integration for $SHELL doesn't exist or couldn't be loaded"
 fi
