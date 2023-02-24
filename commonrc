@@ -28,6 +28,8 @@ source_existing "$HOME/.rc/setup_android"
 
 source_existing "$HOME/.rc/setup_autojump"
 
+source_existing "$HOME/.rc/setup_aws"
+
 source_existing "$HOME/.rc/setup_babashka"
 
 source_existing "$HOME/.rc/setup_dotenv"

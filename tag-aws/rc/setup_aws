@@ -1,0 +1,47 @@
+#!/usr/bin/env bash
+
+# debug log
+[ "${RC_DEBUG}" = true ] && printf "reading: %s\t\t($0)\n" "setup_aws"
+# includes
+. "$HOME/.dotfiles/.lib/error"
+. "$HOME/.dotfiles/.lib/trap"
+. "$HOME/.dotfiles/.lib/yes_or_no"
+
+
+# According to: https://docs.aws.amazon.com/cli/latest/userguide/getting-started-install.html
+install_aws_cli() {
+  local -r is_update="$1"
+
+  local tmp_dir
+  tmp_dir=$(mktemp -d -t "dotfiles-$(date +%Y%m%d_%H%M%S)-XXXXXXXX")
+  add_on_exit rm -rf "${tmp_dir}" \&\& echo "Cleanup: removed $tmp_dir"
+
+  cd "$tmp_dir" || error "Dir $tmp_dir does not exist."
+  curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip"
+  unzip awscliv2.zip > /dev/null
+  echo
+
+  if [ "$is_update" = "true" ]; then
+    sudo ./aws/install --install-dir "/usr/local/opt/aws-cli" --bin-dir "/usr/local/bin" --update
+  else
+    sudo ./aws/install --install-dir "/usr/local/opt/aws-cli" --bin-dir "/usr/local/bin"
+  fi
+}
+
+main() {
+
+  # on a call of sourcing it, it checks weather aws-cli is installed
+  if ! command -v aws > /dev/null; then
+    yes_or_no "AWS CLI not installed. Should install?" && emulate bash -c install_aws_cli
+    return
+  fi
+
+  # in case aws was installed, and it was called with "update" param, try to update it
+  local -r action=$1
+  if [ "$action" = "update" ]; then
+    local -r is_update="true"
+    install_aws_cli "$is_update"
+  fi
+}
+
+main "$@"
