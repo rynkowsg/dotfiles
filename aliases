@@ -2,8 +2,6 @@
 
 # debug log
 [ "${RC_DEBUG}" = true ] && printf "reading: %s\t\t($0)\n" "aliases"
-# includes
-. "$HOME/.dotfiles/.lib/source_existing"
 
 # shellcheck disable=SC2139
 
@@ -72,7 +70,11 @@ alias lsd="ls -lF ${colorflag} | grep --color=never '^d'"
 # Always use color output for `ls`
 alias ls="command ls ${colorflag}"
 
-source_existing ~/.aliases_android
+###############################################################################
+# Include all ~/.rc_aliases/*                                                 #
+###############################################################################
+
+run-parts ~/.rc_aliases
 
 ###############################################################################
 # MacOS                                                                       #
@@ -147,8 +149,6 @@ alias pip-search="${HOME}/.bin/pypy-search.sh"
 alias pip-uninstall-all="pip freeze | xargs pip uninstall -y"
 
 alias dns-reset="sudo dscacheutil -flushcache; sudo killall -HUP mDNSResponder"
-
-source_existing ~/.aliases_gpg
 
 alias yk-info="ykman openpgp info; gpg --card-status"
 alias passryn="PASSWORD_STORE_DIR=${HOME}/.password-store/rynkowski pass"
