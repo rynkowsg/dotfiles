@@ -1,7 +1,7 @@
 #!/usr/bin/env sh
 
 # debug log
-[ "${RC_DEBUG}" = true ] && printf "reading: %s\t($0)\n" "setup_pass_ryn"
+[ "${RC_DEBUG}" = true ] && printf "reading: %s\t\t($0)\n" "setup_pass_ryn"
 # includes
 . "$HOME/.dotfiles/.lib/error"
 . "$HOME/.dotfiles/.lib/yes_or_no"
