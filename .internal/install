@@ -55,12 +55,26 @@ link_dotfiles() {
   echo
 }
 
+init_templates_processing() {
+  rm -rf ~/.rc_templates
+  add_on_exit rm -rf ~/.rc_templates \&\& echo "Cleanup: removed ~/.rc_templates"
+}
+
+fill_templates() {
+  info "Filling templates..."
+  run-parts ~/.rc_templates
+  info "Filling templates... DONE"
+  echo
+}
+
 # $1 - should_confirm
 main() {
   local -r should_confirm="$1"
+  init_templates_processing
   install_deps
   import_gpg_key
   link_dotfiles "$should_confirm"
+  fill_templates
 }
 
 if [[ "${BASH_SOURCE[0]}" != "${0}" ]]; then
