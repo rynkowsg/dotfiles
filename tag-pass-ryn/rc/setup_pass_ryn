@@ -1,0 +1,14 @@
+#!/usr/bin/env sh
+
+# debug log
+[ "${RC_DEBUG}" = true ] && printf "reading: %s\t($0)\n" "setup_pass_ryn"
+# includes
+. "$HOME/.dotfiles/.lib/error"
+. "$HOME/.dotfiles/.lib/yes_or_no"
+
+if [ ! -d ~/.password-store/rynkowski ]; then
+  echo "~/.password-store/rynkowski is not installed"
+  yes_or_no "Do you want to clone this repo?" || return
+  mkdir -p ~/.password-store
+  git clone git@github.com:rynkowsg/rynkowski-pass-store.git ~/.password-store/rynkowski
+fi

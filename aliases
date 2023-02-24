@@ -151,7 +151,6 @@ alias pip-uninstall-all="pip freeze | xargs pip uninstall -y"
 alias dns-reset="sudo dscacheutil -flushcache; sudo killall -HUP mDNSResponder"
 
 alias yk-info="ykman openpgp info; gpg --card-status"
-alias passryn="PASSWORD_STORE_DIR=${HOME}/.password-store/rynkowski pass"
 alias passtwo="PASSWORD_STORE_DIR=${HOME}/.password-store/twobuffers pass"
 alias passcha="PASSWORD_STORE_DIR=${HOME}/.password-store/chargedup pass"
 
