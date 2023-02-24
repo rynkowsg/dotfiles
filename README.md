@@ -30,6 +30,12 @@ To update dotfiles:
 dot-update
 ```
 
+To sync dotfiles - pull & rebase changes from remote repo and then push if it has anything new:
+```shell
+# reinstall
+dot-sync
+```
+
 ### rcm specific
 
 [rcm] is a dotfiles (aka RC files) manager. It is a simple tool to manage dotfiles repo,

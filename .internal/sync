@@ -1,0 +1,39 @@
+#!/usr/bin/env bash
+
+# includes
+. "$HOME/.dotfiles/.lib/error"
+. "$HOME/.dotfiles/.lib/yes_or_no"
+
+update_repo_if_exists() {
+  local -r dir="$1"
+
+  info "Sync repo $dir..."
+  if ! [ -d "$dir" ]; then return; fi
+  cd "$dir" || error_exit "Directory $dir does not exist."
+  git pull --rebase
+  echo
+
+  local local_changes
+  local_changes="$(git log --oneline origin/master..HEAD)"
+  if [ -n "$local_changes" ]; then
+    info "Changes available only locally:"
+    echo "$local_changes"; echo
+    if yes_or_no "$(info_color "Do you want to push these changes?")"; then
+      git push -u
+      echo; info "Sync repo $dir... DONE"; echo
+    else
+      echo; info "Sync repo $dir... CANCELLED"; echo
+    fi
+  fi
+}
+
+main() {
+  set -e
+  update_repo_if_exists "$HOME/.dotfiles"
+}
+
+if [[ "${BASH_SOURCE[0]}" != "${0}" ]]; then
+  [[ -n "${BASH_SOURCE[0]}" ]] && printf "%s\n\n" "Loaded: ${BASH_SOURCE[0]}"
+else
+  main "$@"
+fi
