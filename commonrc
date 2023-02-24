@@ -18,6 +18,10 @@ source_existing "${HOME}/.aliases"
 # (it needs to be done before the rest, some of the ENVs are set here)
 source_existing "${HOME}/.platformrc"
 
+# Load gpg & ssh related
+source_existing "$HOME/.rc/setup_gpg_ssh"
+source_existing "$HOME/.rc/setup_pass_ryn"
+
 # Load other configs if they exist
 
 source_existing "$HOME/.rc/setup_android"
@@ -31,8 +35,6 @@ source_existing "$HOME/.rc/setup_fzf"
 source_existing "$HOME/.rc/setup_gcp"
 
 source_existing "$HOME/.rc/setup_go"
-
-source_existing "$HOME/.rc/setup_gpg_ssh"
 
 source_existing "$HOME/.rc/setup_jenv"
 

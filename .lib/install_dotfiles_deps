@@ -6,17 +6,19 @@ function install_dotfiles_deps_macos {
   install_homebrew;
   # install rcm
   brew install rcm
+  # install pass
+  brew install rcm
   # install coreutils (usage of mktemp is different in GNU and BSD implementations)
   brew install coreutils
   export PATH="$(brew --prefix)/opt/coreutils/libexec/gnubin:${PATH}"
 }
 
 function install_dotfiles_deps_debian {
-  sudo apt install rcm
+  sudo apt install rcm pass
 }
 
 function install_dotfiles_deps_fedora {
-  sudo dnf install rcm
+  sudo dnf install rcm pass
 }
 
 function install_dotfiles_deps {
