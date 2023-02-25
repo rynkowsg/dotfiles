@@ -1,7 +1,7 @@
 # https://thoughtbot.github.io/rcm/rcrc.5.html
 # https://thoughtbot.github.io/rcm/lsrc.1.html#EXCLUDE_PATTERN
 
-EXCLUDES="README.md commonrc .internal .lib"
+EXCLUDES="README.md commonrc .internal .lib .samples"
 COPY_ALWAYS="m2/settings.xml datomic/dev-local.edn"
 TAGS="macos android autojump clj fzf gpg gpg-ssh gpg-macos jenv nvm python vim-dev terraform"
 SYMLINK_DIRS="clojure git/bin macos"
