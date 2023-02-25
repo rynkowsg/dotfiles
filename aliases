@@ -1,7 +1,7 @@
 #!/usr/bin/env sh
 
 # debug log
-[ "${RC_DEBUG}" = true ] && printf "reading: %s\t\t($0)\n" "aliases"
+printf "reading: %s\t\t($0)\n" "aliases" >> ~/.dotfiles_log
 
 # shellcheck disable=SC2139
 
@@ -177,3 +177,4 @@ alias pidcat-VB53217C20096='pidcat -s VB53217C20096 -w 50 servedup.terminal.dev 
 alias dot-reinstall="~/.dotfiles/.internal/install"
 alias dot-update="~/.dotfiles/.internal/update"
 alias dot-sync="~/.dotfiles/.internal/sync"
+alias dot-log="tail -F ~/.dotfiles_log"

@@ -1,6 +1,6 @@
 #!/usr/bin/env sh
 
-[ "${RC_DEBUG}" = true ] && printf "reading: %s\t\t($0)\n" "setup_jenv"
+printf "reading: %s\t\t($0)\n" "setup_jenv" >> ~/.dotfiles_log
 
 JENV_DIR="$HOME/.jenv"
 

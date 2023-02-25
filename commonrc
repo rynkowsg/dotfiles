@@ -1,7 +1,7 @@
 #!/usr/bin/env sh
 
 # debug log
-[ "${RC_DEBUG}" = true ] && printf "reading: %s\t\t($0)\n" "commonrc"
+printf "reading: %s\t\t($0)\n" "commonrc" >> ~/.dotfiles_log
 # includes
 . "$HOME/.dotfiles/.lib/source_existing"
 

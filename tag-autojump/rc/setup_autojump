@@ -1,7 +1,7 @@
 #!/usr/bin/env sh
 
 # debug log
-[ "${RC_DEBUG}" = true ] && printf "reading: %s\t($0)\n" "setup_autojump"
+printf "reading: %s\t($0)\n" "setup_autojump" >> ~/.dotfiles_log
 
 # TODO: fix and compare with files on macos
 #       On linux they are at /usr/share/autojump/

@@ -1,7 +1,7 @@
 #!/usr/bin/env sh
 
 # debug log
-[ "${RC_DEBUG}" = true ] && printf "reading: %s\t($0)\n" "setup_android"
+printf "reading: %s\t($0)\n" "setup_android" >> ~/.dotfiles_log
 
 # Android dev env setup
 # TODO: Fix paths to make sense for Linux

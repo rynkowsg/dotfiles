@@ -1,7 +1,7 @@
 #!/usr/bin/env sh
 
 # debug log
-[ "${RC_DEBUG}" = true ] && printf "reading: %s\t\t($0)\n" "aliases_aws"
+printf "reading: %s\t\t($0)\n" "aliases_aws" >> ~/.dotfiles_log
 
 alias aws-update="\$HOME/.dotfiles/tag-aws/rc/setup_aws update"
 alias aws="AWS_ACCESS_KEY_ID=\"\$AWS_ACCESS_KEY_ID\" AWS_SECRET_ACCESS_KEY=\"\$AWS_SECRET_ACCESS_KEY\" aws"

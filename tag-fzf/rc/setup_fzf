@@ -1,7 +1,7 @@
 #!/usr/bin/env sh
 
 # debug log
-[ "${RC_DEBUG}" = true ] && printf "reading: %s\t\t($0)\n" "setup_fzf"
+printf "reading: %s\t\t($0)\n" "setup_fzf" >> ~/.dotfiles_log
 
 fzf_install() {
   git clone --branch 0.38.0 --depth 1 https://github.com/junegunn/fzf.git ~/.fzf

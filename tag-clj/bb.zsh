@@ -1,7 +1,7 @@
 #!/usr/bin/env zsh
 
 # debug log
-[ "${RC_DEBUG}" = true ] && printf "reading: %s\t\t\t($0)\n" "bb.zsh"
+printf "reading: %s\t\t\t($0)\n" "bb.zsh" >> ~/.dotfiles_log
 
 if ! command -v compinit > /dev/null; then
   autoload -Uz compinit

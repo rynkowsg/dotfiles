@@ -1,6 +1,6 @@
 #!/usr/bin/env sh
 
-[ "${RC_DEBUG}" = true ] && printf "reading: %s\t($0)\n" "aliases_android"
+printf "reading: %s\t($0)\n" "aliases_android" >> ~/.dotfiles_log
 
 # $1 - package name
 adb_apk_pull() {
