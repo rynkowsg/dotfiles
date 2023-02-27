@@ -1,6 +1,9 @@
 #!/usr/bin/env sh
 
+# debug log
 printf "reading: %s\t\t($0)\n" "setup_jenv" >> ~/.dotfiles_log
+# includes
+. "$HOME/.dotfiles/.lib/yes_or_no"
 
 JENV_DIR="$HOME/.jenv"
 
