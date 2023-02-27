@@ -1,0 +1,21 @@
+#!/usr/bin/env sh
+
+# debug log
+printf "reading: %s\t\t($0)\n" "load_hugo_ext" >> ~/.dotfiles_log
+
+main() {
+  ~/.rc/setup_hugo_ext
+
+  # Hugo completion
+  # https://gohugo.io/commands/hugo_completion/
+#  if [ -n "$BASH_VERSION" ]; then
+#    source <(hugo completion bash)
+#  elif [ -n "$ZSH_VERSION" ]; then
+#    source <(hugo completion zsh)
+#  elif [ -n "$FISH_VERSION" ]; then
+#    source <(hugo completion fish)
+#  fi
+  # TODO: Hugo completion doesn't seem to work on bash nor zsh. Fix it.
+}
+
+main "$@"

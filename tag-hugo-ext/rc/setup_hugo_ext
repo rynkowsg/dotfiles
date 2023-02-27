@@ -1,0 +1,92 @@
+#!/usr/bin/env bash
+
+# debug log
+printf "reading: %s\t\t($0)\n" "setup_hugo_ext" >> ~/.dotfiles_log
+# includes
+. "$HOME/.dotfiles/.lib/error"
+. "$HOME/.dotfiles/.lib/source_utils"
+. "$HOME/.dotfiles/.lib/trap"
+. "$HOME/.dotfiles/.lib/yes_or_no"
+
+# releases: https://github.com/gohugoio/hugo/releases
+HUGO_EXT_VER="0.110.0"
+
+hugo_ext_download_link() {
+  local -r version="$1"
+  local platform
+  platform="linux"
+  local arch
+  arch="amd64"
+  echo "https://github.com/gohugoio/hugo/releases/download/v${version}/hugo_extended_${version}_${platform}-${arch}.tar.gz"
+}
+
+
+hugo_ext_install() {
+  local tmp_dir
+  tmp_dir=$(mktemp -d -t "dotfiles-$(date +%Y%m%d_%H%M%S)-XXXXXXXX")
+  add_on_exit rm -rf "${tmp_dir}" \&\& echo "Cleanup: removed $tmp_dir"
+  cd "$tmp_dir"
+
+  local src="$(hugo_ext_download_link "$HUGO_EXT_VER")"
+
+  curl -L "$src" -o "$tmp_dir/hugo_ext.tar.gz"
+
+  mkdir -p "$tmp_dir/hugo_ext"
+  tar -xvzf "hugo_ext.tar.gz" -C "$tmp_dir/hugo_ext"
+
+  sudo mv "$tmp_dir/hugo_ext/hugo" /usr/local/bin
+}
+
+hugo_is_installed() {
+  if  command -v hugo > /dev/null; then
+    return 0 # true
+  else
+    return 1 # false
+  fi
+}
+
+hugo_is_extended() {
+  if hugo version | grep -q "extended"; then
+    return 0 # true
+  else
+    return 1 # false
+  fi
+}
+
+hugo_version() {
+  hugo version | sed 's|^.*v\([0-9]*.[0-9]*.[0-9]*\).*$|\1|'
+}
+
+# $1 - expected version
+hugo_is_version() {
+  local expected_ver="$1"
+  if [ "$(hugo_version)" = "$expected_ver" ]; then
+    return 0; # true
+  else
+    return 1; # false
+  fi
+}
+
+main() {
+  set -e
+
+  if is_sourced; then
+    error_exit "This script can not be sourced, only executed."
+    # It is not compatible with ZSH due to trap use.
+  fi
+
+  if ! hugo_is_installed; then
+    yes_or_no "Hugo not installed. Should install?" && hugo_ext_install || return
+  fi
+
+  if ! hugo_is_extended; then
+    yes_or_no "The Hugo installed is not extended. Should install Hugo Extended?" && hugo_ext_install || return
+  fi
+
+  if ! hugo_is_version "$HUGO_EXT_VER"; then
+    echo "Current hugo version (`hugo_version`) is different then expected ($HUGO_EXT_VER)."
+    yes_or_no "Do you want to install expected version?" && hugo_ext_install || return
+  fi
+}
+
+main "$@"
