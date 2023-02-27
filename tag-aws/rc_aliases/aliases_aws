@@ -4,4 +4,5 @@
 printf "reading: %s\t\t($0)\n" "aliases_aws" >> ~/.dotfiles_log
 
 alias aws-update="\$HOME/.dotfiles/tag-aws/rc/setup_aws update"
-alias aws="AWS_ACCESS_KEY_ID=\"\$AWS_ACCESS_KEY_ID\" AWS_SECRET_ACCESS_KEY=\"\$AWS_SECRET_ACCESS_KEY\" aws"
+alias with-aws-vars="AWS_ACCESS_KEY_ID=\"\$AWS_ACCESS_KEY_ID\" AWS_SECRET_ACCESS_KEY=\"\$AWS_SECRET_ACCESS_KEY\""
+alias aws="with-aws-vars aws"
