@@ -1,8 +1,0 @@
-#!/usr/bin/env sh
-
-# debug log
-printf "reading: %s\t($0)\n" "source_existing" >> ~/.dotfiles_log
-
-source_existing() {
-  [ -f "$1" ] && source "$1"
-}

@@ -3,7 +3,7 @@
 # debug log
 printf "reading: %s\t\t($0)\n" "commonrc" >> ~/.dotfiles_log
 # includes
-. "$HOME/.dotfiles/.lib/source_existing"
+. "$HOME/.dotfiles/.lib/source_utils"
 
 # Disable shell analytics, more: https://consoledonottrack.com
 export DO_NOT_TRACK=1
