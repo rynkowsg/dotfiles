@@ -29,7 +29,7 @@ function install_dotfiles_deps {
     install_dotfiles_deps_macos
   elif [[ "$OSTYPE" == "linux-gnu"*  ]] && [ -f /etc/debian_version ]; then
     install_dotfiles_deps_debian
-  elif [[ "$OSTYPE" == "linux-gnu"*  ]] && [ -f /etc/fedora_version ]; then
+  elif [[ "$OSTYPE" == "linux-gnu"*  ]] && [ -f /etc/fedora-release ]; then
     install_dotfiles_deps_fedora
   elif [[ "$OSTYPE" == "linux-gnu"* ]]; then
     printf "${RED}%s${NC}\n" "This type of '${OSTYPE}' not supported."
