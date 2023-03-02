@@ -9,7 +9,7 @@ My dotfiles, managed by [rcm].
 
 ```shell
 git clone https://github.com/rynkowsg/dotfiles ~/.dotfiles
-~/.dotfiles/bin/install
+~/.dotfiles/.internal/install
 ```
 
 ## Usage
