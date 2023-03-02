@@ -2,6 +2,6 @@
 # https://thoughtbot.github.io/rcm/lsrc.1.html#EXCLUDE_PATTERN
 
 EXCLUDES="README.md commonrc .internal .lib .samples"
-COPY_ALWAYS="m2/settings.xml datomic/dev-local.edn"
-TAGS="clj fzf dotenv git gpg gpg-ssh gpg-linux jenv nvm pass-ryn vim-basic"
-SYMLINK_DIRS="clojure git/bin"
+COPY_ALWAYS="m2/settings.xml datomic/dev-local.edn clojure/deps_brian.edn"
+TAGS="brian clj fzf dotenv git gpg gpg-ssh gpg-linux jenv nvm pass-ryn vim-basic"
+SYMLINK_DIRS="git/bin"
