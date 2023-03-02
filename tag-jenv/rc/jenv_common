@@ -1,0 +1,26 @@
+#!/usr/bin/env sh
+
+# debug log
+printf "reading: %s\t\t($0)\n" "jenv_common" >> ~/.dotfiles_log
+
+export JENV_DIR="$HOME/.jenv"
+
+jenv_is_installed() {
+  [ -f "$JENV_DIR/bin/jenv" ] && return 0 || return 1
+}
+
+jenv_version() {
+#  jenv --version | sed 's/^jenv \([0-9]*\.[0-9]*\.[0-9]*\)-.*$/\1/g'
+  jenv --version | sed -E 's/^.*([0-9]+\.[0-9]+\.[0-9]+).*$/\1/'
+}
+
+# $1 - expected version
+jenv_is_version() {
+  local expected_ver="$1"
+  [ "$(jenv_version)" = "${expected_ver}" ] && return 0 || return 1
+}
+
+jenv_init() {
+  export PATH="${HOME}/.jenv/bin:${PATH}"
+  eval "$(jenv init -)"
+}

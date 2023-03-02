@@ -1,0 +1,49 @@
+#!/usr/bin/env sh
+
+# debug log
+printf "reading: %s\t\t($0)\n" "jenv_setup" >> ~/.dotfiles_log
+# includes
+. "$HOME/.dotfiles/.lib/source_utils" # is_sourced
+. "$HOME/.dotfiles/.lib/yes_or_no"
+. "$HOME/.rc/jenv_common"             # jenv_init, jenv_is_installed, jenv_is_version, jenv_version
+
+JENV_DIR="$HOME/.jenv"
+
+JENV_VER="0.5.6"
+JENV_VER_TAG="${JENV_VER}"
+JENV_REPO="https://github.com/jenv/jenv.git"
+
+jenv_install() {
+  rm -rf "${JENV_DIR}"
+  set -x
+  git -C "${HOME}" -c advice.detachedHead=false clone --branch "${JENV_VER_TAG}" --depth 1 "${JENV_REPO}" "${JENV_DIR}"
+}
+
+# $1 - version
+jenv_update() {
+  cd "${JENV_DIR}"
+  git fetch -t origin -- "$1"
+  git checkout "$1" --
+}
+
+main() {
+  set -e
+
+  if is_sourced; then
+    error_exit "This script can not be sourced, only executed."
+    # It is not compatible with ZSH due to trap use.
+  fi
+
+  if ! jenv_is_installed; then
+    yes_or_no "jenv not installed. Should install?" && jenv_install || return
+  fi
+
+  jenv_init
+
+  if ! jenv_is_version "${JENV_VER}"; then
+    echo "Current jenv version (`jenv_version`) is different then expected (${JENV_VER})."
+    yes_or_no "Do you want to install expected version?" && jenv_update || return
+  fi
+}
+
+main "$@"
