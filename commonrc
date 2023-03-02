@@ -34,7 +34,7 @@ source_existing "$HOME/.rc/load_babashka"
 
 source_existing "$HOME/.rc/setup_dotenv"
 
-source_existing "$HOME/.rc/setup_fzf"
+source_existing "$HOME/.rc/fzf_load"
 
 source_existing "$HOME/.rc/setup_gcp"
 

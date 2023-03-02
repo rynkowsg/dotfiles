@@ -1,0 +1,10 @@
+#!/usr/bin/env sh
+
+# debug log
+printf "reading: %s\t\t($0)\n" "fzf_load" >> ~/.dotfiles_log
+# includes
+. "$HOME/.rc/fzf_common"             # fzf_load
+
+bash ~/.rc/fzf_setup
+
+fzf_load

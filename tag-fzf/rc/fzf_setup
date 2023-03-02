@@ -1,0 +1,67 @@
+#!/usr/bin/env bash
+
+# debug log
+printf "reading: %s\t\t($0)\n" "fzf_setup" >> ~/.dotfiles_log
+# includes
+. "$HOME/.dotfiles/.lib/error"        # error_exit
+. "$HOME/.dotfiles/.lib/source_utils" # is_sourced
+. "$HOME/.dotfiles/.lib/yes_or_no"    # yes_or_no
+. "$HOME/.rc/fzf_common"              # fzf_load
+
+FZF_VER="0.38.0"
+
+fzf_install() {
+  git clone --branch "${FZF_VER}" --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
+  ~/.fzf/install
+}
+
+fzf_update() {
+  cd ~/.fzf
+  git fetch origin
+  git checkout "${FZF_VER}"
+  ./install
+}
+
+fzf_installed() {
+  if [ -d ~/.fzf ]; then
+    return 0; # true
+  else
+    return 1; # false
+  fi
+}
+
+fzf_version() {
+  fzf --version | sed 's|\([0-9]*.[0-9]*.[0-9]*\).*|\1|'
+}
+
+# $1 - expected version
+fzf_is_version() {
+  local expected_ver="$1"
+  if [ "$(fzf_version)" = "${expected_ver}" ]; then
+    return 0; # true
+  else
+    return 1; # false
+  fi
+}
+
+main() {
+  set -e
+
+  if is_sourced; then
+    error_exit "This script can not be sourced, only executed."
+    # It is not compatible with ZSH due to trap use.
+  fi
+
+  if ! fzf_installed; then
+    yes_or_no "FZF not installed. Should install?" && fzf_install || return
+  fi
+
+  fzf_load
+
+  if ! fzf_is_version "${FZF_VER}"; then
+    echo "Current FZF version (`fzf_version`) is different then expected (${FZF_VER})."
+    yes_or_no "Do you want to install expected version?" && fzf_install || return
+  fi
+}
+
+main "$@"
