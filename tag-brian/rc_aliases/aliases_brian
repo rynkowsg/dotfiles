@@ -2,7 +2,3 @@
 
 # debug log
 printf "reading: %s\t($0)\n" "aliases_brian" >> ~/.dotfiles_log
-
-BRIAN_DEPS="$(cat "${HOME}/.clojure/deps_brian.edn")"
-alias clj="clj -Sdeps '${BRIAN_DEPS}'"
-alias clojure="clojure -Sdeps '${BRIAN_DEPS}'"

@@ -1,4 +1,4 @@
 #!/usr/bin/env bash
 
 SRC_ROOT="${HOME}/Sources"
-sed -i "s|?SRC_ROOT?|${SRC_ROOT}|g" "${HOME}/.clojure/deps_brian.edn"
+sed -i "s|?SRC_ROOT?|${SRC_ROOT}|g" "${HOME}/.clojure/deps.edn"
