@@ -59,7 +59,7 @@
      :v1.10
      {:override-deps {org.clojure/clojure {:mvn/version "1.10.3"}}}
      :v1.11
-     {:override-deps {org.clojure/clojure {:mvn/version "1.11.0-alpha2"}}}
+     {:override-deps {org.clojure/clojure {:mvn/version "1.11.1"}}}
      ;; master has just become 1.11:
      :master
      {:override-deps {org.clojure/clojure {:mvn/version "1.11.1-master-SNAPSHOT"}}}

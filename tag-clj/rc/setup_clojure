@@ -1,0 +1,68 @@
+#!/usr/bin/env bash
+
+# debug log
+printf "reading: %s\t\t($0)\n" "setup_clojure" >> ~/.dotfiles_log
+# includes
+. "$HOME/.dotfiles/.lib/error"
+. "$HOME/.dotfiles/.lib/source_utils"
+. "$HOME/.dotfiles/.lib/trap"
+. "$HOME/.dotfiles/.lib/yes_or_no"
+
+# releases: https://github.com/clojure/clojure/tags
+CLJ_VER="1.11.1"
+# https://clojure.org/guides/install_clojure#_linux_instructions
+INSTALL_SCRIPT="https://download.clojure.org/install/linux-install-1.11.1.1237.sh"
+
+clj_install() {
+  local tmp_dir
+  tmp_dir=$(mktemp -d -t "setup_clojure-$(date +%Y%m%d_%H%M%S)-XXXXXXXX")
+  add_on_exit rm -rf "${tmp_dir}" \&\& echo "Cleanup: removed $tmp_dir"
+  cd "$tmp_dir"
+
+  curl "${INSTALL_SCRIPT}" -o install.sh
+  chmod +x install.sh
+  sudo ./install.sh
+}
+
+clj_is_installed() {
+  if  command -v clojure > /dev/null; then
+    return 0 # true
+  else
+    return 1 # false
+  fi
+}
+
+clj_version() {
+  clojure -M -e "(clojure-version)" | sed 's|"*\([0-9]*.[0-9]*.[0-9]*\)"|\1|'
+}
+
+# $1 - expected version
+clj_is_version() {
+  local expected_ver="$1"
+  if [ "$(clj_version)" = "$expected_ver" ]; then
+    return 0; # true
+  else
+    return 1; # false
+  fi
+}
+
+
+main() {
+  set -e
+
+  if is_sourced; then
+    error_exit "This script can not be sourced, only executed."
+    # It is not compatible with ZSH due to trap use.
+  fi
+
+  if ! clj_is_installed; then
+    yes_or_no "Clojure not installed. Should install?" && clj_install || return
+  fi
+
+  if ! clj_is_version "$CLJ_VER"; then
+    echo "Current Clojure version (`clj_version`) is different then expected ($CLJ_VER)."
+    yes_or_no "Do you want to install expected version?" && clj_install || return
+  fi
+}
+
+main "$@"
