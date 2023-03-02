@@ -1,0 +1,10 @@
+#!/usr/bin/env sh
+
+# debug log
+printf "reading: %s\t\t($0)\n" "load_clj" >> ~/.dotfiles_log
+
+main() {
+  ~/.rc/setup_clj
+}
+
+main "$@"
