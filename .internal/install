@@ -62,7 +62,9 @@ init_templates_processing() {
 
 fill_templates() {
   info "Filling templates..."
-  run-parts ~/.rc_templates
+  if [ -d ~/.rc_templates ]; then
+    run-parts ~/.rc_templates
+  fi
   info "Filling templates... DONE"
   echo
 }
