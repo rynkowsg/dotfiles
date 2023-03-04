@@ -4,4 +4,4 @@
 EXCLUDES="README.md commonrc .internal .lib .samples"
 COPY_ALWAYS="m2/settings.xml datomic/dev-local.edn"
 TAGS="aws clj clj-default-deps fzf dotenv git gpg gpg-ssh gpg-linux hugo-ext jenv nvm pass-ryn vim-basic"
-SYMLINK_DIRS="clojure git/bin"
+SYMLINK_DIRS="git/bin"
