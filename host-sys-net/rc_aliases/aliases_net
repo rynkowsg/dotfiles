@@ -1,0 +1,9 @@
+#!/usr/bin/env sh
+
+# debug log
+printf "reading: %s\t\t($0)\n" "aliases_net" >> ~/.dotfiles_log
+
+# e.g. wifi-connect <wifi-name>
+alias wifi-connect'nmcli dev wifi connect'
+
+alias wifi-list='nmcli dev wifi list'

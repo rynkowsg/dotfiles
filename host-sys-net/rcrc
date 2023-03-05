@@ -1,0 +1,8 @@
+# https://thoughtbot.github.io/rcm/rcrc.5.html
+# https://thoughtbot.github.io/rcm/lsrc.1.html#EXCLUDE_PATTERN
+
+EXCLUDES="README.md commonrc .internal .lib .samples"
+COPY_ALWAYS=""
+TAGS="git vim-basic"
+SYMLINK_DIRS="git/bin"
+# TODO: remove git/bin - I don't need it
