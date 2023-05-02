@@ -2,3 +2,5 @@
 
 # debug log
 printf "reading: %s\t($0)\n" "aliases_brian" >> ~/.dotfiles_log
+
+alias lenv="source .env"
