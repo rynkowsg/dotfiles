@@ -1,0 +1,14 @@
+#!/usr/bin/env sh
+
+# debug log
+printf "reading: %s\t\t($0)\n" "shell_utils" >> ~/.dotfiles_log
+
+# run-parts are available by default only on debian.
+# On other systems you need to take car of providing it
+# in install_dotfiles_deps.
+run_parts_safe() {
+  local -r dir="$1"
+  if [ -d "$dir" ]; then
+    run-parts "$dir"
+  fi
+}

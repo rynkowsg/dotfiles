@@ -2,6 +2,8 @@
 
 # debug log
 printf "reading: %s\t\t($0)\n" "aliases" >> ~/.dotfiles_log
+# includes
+. "$HOME/.dotfiles/.lib/source_utils" # source_parts_safe
 
 # shellcheck disable=SC2139
 
@@ -74,9 +76,7 @@ alias ls="command ls ${colorflag}"
 # Include all ~/.rc_aliases/*                                                 #
 ###############################################################################
 
-for f in `find "$HOME/.rc_aliases/" -type l`; do
-  source "$f";
-done
+source_parts_safe "$HOME/.rc_aliases"
 
 ###############################################################################
 # MacOS                                                                       #

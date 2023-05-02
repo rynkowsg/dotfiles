@@ -18,3 +18,12 @@ is_sourced() {
  fi
  return 1  # NOT sourced.
 }
+
+source_parts_safe() {
+  local -r dir="$1"
+  if [ -d "$dir" ]; then
+    for f in `find "$dir" -type l`; do
+      source "$f";
+    done
+  fi
+}

@@ -5,6 +5,7 @@
 # includes
 . "$HOME/.dotfiles/.lib/error"
 . "$HOME/.dotfiles/.lib/install_dotfiles_deps"
+. "$HOME/.dotfiles/.lib/shell_utils" # run_parts_safe
 . "$HOME/.dotfiles/.lib/trap"
 . "$HOME/.dotfiles/.lib/yes_or_no"
 
@@ -62,9 +63,7 @@ init_templates_processing() {
 
 fill_templates() {
   info "Filling templates..."
-  if [ -d ~/.rc_templates ]; then
-    run-parts ~/.rc_templates
-  fi
+  run_parts_safe "$HOME/.rc_templates"
   info "Filling templates... DONE"
   echo
 }
