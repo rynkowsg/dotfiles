@@ -148,3 +148,6 @@ alias dot-reinstall="~/.dotfiles/.internal/install"
 alias dot-update="~/.dotfiles/.internal/update"
 alias dot-sync="~/.dotfiles/.internal/sync"
 alias dot-log="tail -F ~/.dotfiles_log"
+
+alias clip-copy="xclip -sel clip"
+alias clip-paste="xclip -o"
