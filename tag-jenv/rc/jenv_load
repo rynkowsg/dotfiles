@@ -13,8 +13,6 @@ init_jenv() {
 
 bash ~/.rc/jenv_setup
 
-# Update (optionally)
-CURRENT_JENV_VER="$(jenv --version | sed 's/^jenv \([0-9]*\.[0-9]*\.[0-9]*\)-.*$/\1/g')"
 if jenv_is_installed; then
   jenv_init
 else
