@@ -1,0 +1,4 @@
+#!/usr/bin/env sh
+
+# debug log
+printf "reading: %s\t\t($0)\n" "aliases_docker" >> ~/.dotfiles_log

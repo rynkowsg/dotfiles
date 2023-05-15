@@ -1,0 +1,9 @@
+#!/usr/bin/env sh
+
+# debug log
+printf "reading: %s\t\t($0)\n" "docker_load" >> ~/.dotfiles_log
+
+# TODO: ensure /usr/bin is in PATH
+# TODO: add fn to check whether the give path is added to PATH
+
+export DOCKER_HOST=unix:///run/user/1000/docker.sock

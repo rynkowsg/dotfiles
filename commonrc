@@ -34,6 +34,8 @@ source_existing "$HOME/.rc/load_babashka"
 
 source_existing "$HOME/.rc/load_clj"
 
+source_existing "$HOME/.rc/docker_load"
+
 source_existing "$HOME/.rc/setup_dotenv"
 
 source_existing "$HOME/.rc/fzf_load"
