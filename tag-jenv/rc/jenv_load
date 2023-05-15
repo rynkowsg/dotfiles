@@ -3,8 +3,8 @@
 # debug log
 printf "reading: %s\t\t($0)\n" "jenv_load" >> ~/.dotfiles_log
 # imports
-. "$HOME/.dotfiles/.lib//error" # warning
-. "$HOME/.rc/jenv_common"       # jenv_init, jenv_is_installed
+. "$HOME/.dotfiles/.lib/error" # warning
+. "$HOME/.rc/jenv_common"      # jenv_init, jenv_is_installed
 
 init_jenv() {
   export PATH="${HOME}/.jenv/bin:${PATH}"
