@@ -1,0 +1,8 @@
+#!/usr/bin/env bash
+
+COGNITECT_USER_KEY="?cognitect-username?"
+COGNITECT_PASS_KEY="?cognitect-password?"
+COGNITECT_USER_VAL="$(pass show rynkowski/cognitect/maven/username)"
+COGNITECT_PASS_VAL="$(pass show rynkowski/cognitect/maven/password)"
+sed -i "s/${COGNITECT_USER_KEY}/${COGNITECT_USER_VAL}/g" "$HOME/.m2/settings.xml"
+sed -i "s/${COGNITECT_PASS_KEY}/${COGNITECT_PASS_VAL}/g" "$HOME/.m2/settings.xml"
