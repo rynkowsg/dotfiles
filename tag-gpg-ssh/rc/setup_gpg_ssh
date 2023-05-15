@@ -9,5 +9,7 @@ export SSH_AUTH_SOCK=$(gpgconf --list-dirs agent-ssh-socket)
 gpgconf --launch gpg-agent
 
 # Export the pub key if not yet exist
-! [ -f ~/.ssh/id_rsa_yubikey.pub ] &&
+if ! [ -f ~/.ssh/id_rsa_yubikey.pub ]; then
   ssh-add -L | grep "cardno" > ~/.ssh/id_rsa_yubikey.pub
+  chmod 0600 ~/.ssh/id_rsa_yubikey.pub
+fi
