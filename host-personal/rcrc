@@ -3,5 +3,5 @@
 
 EXCLUDES="README.md commonrc .internal .lib .samples"
 COPY_ALWAYS="m2/settings.xml datomic/dev-local.edn"
-TAGS="clj clj-default-deps fzf git gpg gpg-linux gpg-ssh pass-ryn vim-basic"
+TAGS="clj clj-default-deps fzf git gpg gpg-linux gpg-ssh linux pass-ryn vim-basic"
 SYMLINK_DIRS="git/bin"

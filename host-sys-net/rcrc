@@ -3,6 +3,6 @@
 
 EXCLUDES="README.md commonrc .internal .lib .samples"
 COPY_ALWAYS=""
-TAGS="git vim-basic"
+TAGS="git linux vim-basic"
 SYMLINK_DIRS="git/bin"
 # TODO: remove git/bin - I don't need it
