@@ -1,0 +1,7 @@
+#!/usr/bin/env sh
+
+# debug log
+printf "reading: %s\t($0)\n" "aliases_clj_default_deps" >> ~/.dotfiles_log
+
+alias polyt="clojure -Tpoly"
+alias polym="clojure -M:poly"
