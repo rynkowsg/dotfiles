@@ -176,6 +176,17 @@
 
      :sc {:extra-deps {vvvvalvalval/scope-capture {:mvn/version "0.3.3"}}}
 
+     :charles
+     {:jvm-opts ["-Djava.net.preferIPv4Stack=true"
+                 ;; https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/net/doc-files/net-properties.html
+                 "-DproxySet=true" "-DproxyHost=127.0.0.1" "-DproxyPort=8888"
+                 "-DsocksProxyHost=127.0.0.1" "-DsocksProxyPort=8889"
+                 "-Dhttp.proxyHost=127.0.0.1" "-Dhttp.proxyPort=8888"
+                 "-Dhttps.proxyHost=127.0.0.1" "-Dhttps.proxyPort=8888"
+                 ;; socks proxy for non-http connections
+                 ;; proxy all, including localhost (by default localhost is not proxied)
+                 "-Dhttp.nonProxyHosts="]}
+
      ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
      ;; PROJECT
      ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
