@@ -174,6 +174,8 @@
       :main-opts  ["-e" "(->>(Thread/currentThread)(.getContextClassLoader)(clojure.lang.DynamicClassLoader.)(.setContextClassLoader,(Thread/currentThread)))"
                    "-m" "repl-runner.core"]}
 
+     :sc {:extra-deps {vvvvalvalval/scope-capture {:mvn/version "0.3.3"}}}
+
      ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
      ;; PROJECT
      ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
