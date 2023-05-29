@@ -1,6 +1,6 @@
 #!/usr/bin/env sh
 
-printf "reading: %s\t($0)\n" "aliases_android" >> ~/.dotfiles_log
+printf "reading: %s\t\t($0)\n" "aliases_android" >> ~/.dotfiles_log
 
 # $1 - package name
 adb_apk_pull() {

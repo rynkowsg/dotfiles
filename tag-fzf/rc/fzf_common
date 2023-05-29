@@ -1,7 +1,7 @@
 #!/usr/bin/env sh
 
 # debug log
-printf "reading: %s\t\t($0)\n" "fzf_common" >> ~/.dotfiles_log
+printf "reading: %s\t\t\t($0)\n" "fzf_common" >> ~/.dotfiles_log
 
 fzf_load() {
   # shellcheck disable=SC2039

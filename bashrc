@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-printf "reading: %s\t\t\t($0)\n" "bashrc" >> ~/.dotfiles_log
+printf "reading: %s\t\t\t\t($0)\n" "bashrc" >> ~/.dotfiles_log
 
 # ~/.bashrc: executed by bash(1) for non-login shells.
 # see /usr/share/doc/bash/examples/startup-files (in the package bash-doc)

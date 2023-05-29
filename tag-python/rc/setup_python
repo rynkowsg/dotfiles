@@ -1,6 +1,6 @@
 #!/usr/bin/env sh
 
-printf "reading: %s\t\t($0)\n" "setup_python" >> ~/.dotfiles_log
+printf "reading: %s\t\t\t($0)\n" "setup_python" >> ~/.dotfiles_log
 
 # Load pyenv
 # (based on instructions printed on `pyenv init`)

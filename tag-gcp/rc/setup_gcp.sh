@@ -1,7 +1,7 @@
 #!/usr/bin/env sh
 
 # debug log
-printf "reading: %s\t\t($0)\n" "setup_gcp" >> ~/.dotfiles_log
+printf "reading: %s\t\t\t($0)\n" "setup_gcp" >> ~/.dotfiles_log
 
 # Setup   # TODO: Correct for Linux
 GOOGLE_CLOUD_HOME="$(brew --prefix)/Caskroom/google-cloud-sdk/latest/google-cloud-sdk"

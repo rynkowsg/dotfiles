@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 # debug log
-printf "reading: %s\t\t\t($0)\n" "platform_rc" >> ~/.dotfiles_log
+printf "reading: %s\t\t\t\t($0)\n" "platform_rc" >> ~/.dotfiles_log
 
 # Use GNU utils
 export PATH="$(brew --prefix)/opt/coreutils/libexec/gnubin:${PATH}"

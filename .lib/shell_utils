@@ -1,7 +1,7 @@
 #!/usr/bin/env sh
 
 # debug log
-printf "reading: %s\t\t($0)\n" "shell_utils" >> ~/.dotfiles_log
+printf "reading: %s\t\t\t($0)\n" "shell_utils" >> ~/.dotfiles_log
 
 # run-parts are available by default only on debian.
 # On other systems you need to take car of providing it

@@ -1,6 +1,6 @@
 #!/usr/bin/env sh
 
 # debug log
-printf "reading: %s\t($0)\n" "aliases_pass_ryn" >> ~/.dotfiles_log
+printf "reading: %s\t\t($0)\n" "aliases_pass_ryn" >> ~/.dotfiles_log
 
 alias pass-ryn="PASSWORD_STORE_DIR=\$HOME/.password-store/rynkowski pass"
