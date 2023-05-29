@@ -39,6 +39,7 @@ main() {
   fi
 
   jenv_init
+  jenv enable-plugin export
 
   if ! jenv_is_version "${JENV_VER}"; then
     echo "Current jenv version (`jenv_version`) is different then expected (${JENV_VER})."
