@@ -61,6 +61,10 @@ init_templates_processing() {
   add_on_exit rm -rf ~/.rc_templates \&\& echo "Cleanup: removed ~/.rc_templates"
 }
 
+remove_rc_aliases() {
+  rm -rf ~/.rc_aliases
+}
+
 fill_templates() {
   info "Filling templates..."
   run_parts_safe "$HOME/.rc_templates"
@@ -72,6 +76,7 @@ fill_templates() {
 main() {
   local -r should_confirm="$1"
   init_templates_processing
+  remove_rc_aliases
   install_deps
   import_gpg_key
   link_dotfiles "$should_confirm"
