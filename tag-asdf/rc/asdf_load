@@ -1,0 +1,10 @@
+#!/usr/bin/env bash
+
+# debug log
+printf "reading: %s\t\t\t($0)\n" "asdf_load" >> ~/.dotfiles_log
+# includes
+. "$HOME/.rc/asdf_common"             # asdf_load
+
+bash ~/.rc/asdf_setup
+
+asdf_load

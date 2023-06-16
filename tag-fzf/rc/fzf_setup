@@ -10,6 +10,14 @@ printf "reading: %s\t\t\t($0)\n" "fzf_setup" >> ~/.dotfiles_log
 
 FZF_VER="0.38.0"
 
+fzf_installed() {
+  if [ -d ~/.fzf ]; then
+    return 0; # true
+  else
+    return 1; # false
+  fi
+}
+
 fzf_install() {
   git clone --branch "${FZF_VER}" --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
   ~/.fzf/install
@@ -20,14 +28,6 @@ fzf_update() {
   git fetch origin
   git checkout "${FZF_VER}"
   ./install
-}
-
-fzf_installed() {
-  if [ -d ~/.fzf ]; then
-    return 0; # true
-  else
-    return 1; # false
-  fi
 }
 
 fzf_version() {

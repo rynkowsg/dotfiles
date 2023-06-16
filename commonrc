@@ -26,6 +26,8 @@ source_existing "$HOME/.rc/setup_pass_ryn"
 
 source_existing "$HOME/.rc/setup_android"
 
+source_existing "$HOME/.rc/asdf_load"
+
 source_existing "$HOME/.rc/setup_autojump"
 
 source_existing "$HOME/.rc/setup_aws"

@@ -1,0 +1,84 @@
+#!/usr/bin/env bash
+
+SCRIPT_DIR="$(cd "$(dirname "$([ -L "$0" ] && readlink "$0" || echo "$0")")" || exit 1; pwd -P)"
+
+# debug log
+printf "reading: %s\t\t\t($0)\n" "asdf_setup" >> ~/.dotfiles_log
+# includes
+. "${SCRIPT_DIR}/asdf_common"             # ASDF_DIR
+. "$HOME/.dotfiles/.lib/error"            # error_exit
+. "$HOME/.dotfiles/.lib/source_utils"     # is_sourced
+. "$HOME/.dotfiles/.lib/yes_or_no"        # yes_or_no
+
+ASDF_VER="0.12.0"
+ASDF_VER_TAG="v${ASDF_VER}"
+ASDF_REPO="https://github.com/asdf-vm/asdf.git"
+
+declare ASDF_DIR # from asdf_common
+
+asdf_is_installed() {
+  if [ -d "${ASDF_DIR}" ]; then
+    return 0; # true
+  else
+    return 1; # false
+  fi
+}
+
+asdf_install() {
+  # https://asdf-vm.com/guide/getting-started.html#_3-install-asdf
+  git -C "$HOME" -c advice.detachedHead=false clone --branch "${ASDF_VER_TAG}" --depth 1 "${ASDF_REPO}" "${ASDF_DIR}"
+}
+
+asdf_update() {
+  # https://asdf-vm.com/guide/getting-started.html#_3-install-asdf
+  cd "${ASDF_DIR}"
+  git -C "${ASDF_DIR}" remote set-url origin "${ASDF_REPO}"
+  git -C "${ASDF_DIR}" fetch -t origin
+  git -C "${ASDF_DIR}" checkout "${ASDF_VER_TAG}" -b ${ASDF_VER_TAG}
+}
+
+asdf_version() {
+  asdf --version | sed 's|v\([0-9]*.[0-9]*.[0-9]*\)-.*|\1|'
+}
+
+# $1 - expected version
+asdf_is_version() {
+  local expected_ver="$1"
+  if [ "$(asdf_version)" = "${expected_ver}" ]; then
+    return 0; # true
+  else
+    return 1; # false
+  fi
+}
+
+main() {
+  set -e
+
+  if is_sourced; then
+    error_exit "This script can not be sourced, only executed."
+    # It is not compatible with ZSH due to trap use.
+  fi
+
+  if ! asdf_is_installed; then
+    yes_or_no "ASDF not installed. Should install?" && asdf_install || return
+  fi
+
+  asdf_load
+
+  if ! asdf_is_version "${ASDF_VER}"; then
+    echo "Current ASDF version (`asdf_version`) is different then expected (${ASDF_VER})."
+    yes_or_no "Do you want to install expected version?" && asdf_update || return
+  fi
+
+  # TODO: Add automatic installation for ASDF plugins
+  #       based on global ~/.tool-versions (which is specific per machine)
+  #
+  # e.g.
+  #      asdf plugin-add terraform https://github.com/asdf-community/asdf-hashicorp.git
+  #      asdf plugin-add java https://github.com/halcyon/asdf-java.git
+  #      asdf plugin-add nodejs https://github.com/asdf-vm/asdf-nodejs.git
+  #      asdf plugin add babashka https://github.com/fredZen/asdf-babashka.git
+  #      asdf plugin-add clojure https://github.com/halcyon/asdf-clojure.git
+}
+
+main "$@"

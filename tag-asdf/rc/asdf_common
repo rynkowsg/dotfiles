@@ -1,0 +1,14 @@
+#!/usr/bin/env sh
+
+# debug log
+printf "reading: %s\t\t\t($0)\n" "asdf_common" >> ~/.dotfiles_log
+
+export ASDF_DIR="${HOME}/.asdf"
+
+asdf_load() {
+  if [ -n "$BASH_VERSION" ]; then
+    [ -f "$HOME"/.rc/asdf.bash ] && . "$HOME"/.rc/asdf.bash
+  elif [ -n "$ZSH_VERSION" ]; then
+    [ -f "$HOME"/.rc/asdf.zsh ] && . "$HOME"/.rc/asdf.zsh
+  fi
+}
