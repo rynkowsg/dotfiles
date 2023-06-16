@@ -35,7 +35,7 @@ link_dotfiles() {
   local -r install_script="${tmp_dir}/install.sh"
 
   # rcup generates a shell script installing all the links
-  RCRC="$HOME/.dotfiles/host-$(hostname)/rcrc" rcup -B 0tmu -g > "${install_script}"
+  RCRC="$HOME/.dotfiles/host-$(hostname)/rcrc" rcup -B "$(hostname)" -g > "${install_script}"
 
   printf "%s\n" "---------------------------------------------------------------"
   printf "%s\n" "---               FILES TO LINK                            ----"
