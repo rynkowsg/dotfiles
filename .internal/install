@@ -48,6 +48,10 @@ link_dotfiles() {
   fi
   echo
 
+  # TODO: add processing all scripts from ~/.rc/cleanup
+  # TODO: move rc_aliases to rc/aliases, same for updates
+  rm -rf ~/.rc ~/.rc_aliases ~/.rc_update
+
   # execute the script answering yes to any override questions
   yes | env VERBOSE=1 sh "${install_script}"
   echo
