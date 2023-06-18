@@ -1,0 +1,32 @@
+#!/usr/bin/env sh
+
+# debug log
+printf "reading: %s\t\t\t($0)\n" "terraform_load" >> ~/.dotfiles_log
+# imports
+. "$HOME/.dotfiles/.lib/error" # warning
+
+terraform_is_installed() {
+  if command -v terraform > /dev/null; then
+      return 0 # true
+    else
+      return 1 # false
+    fi
+}
+
+
+terraform_load() {
+  if [ -n "$BASH_VERSION" ]; then
+    if [ -e "$HOME/.rc/terraform.bash" ]; then
+      . "$HOME/.rc/terraform.bash"
+    fi
+  elif [ -n "$ZSH_VERSION" ]; then
+    [ -e "$HOME/.rc/terraform.zsh" ] && . "$HOME/.rc/terraform.zsh"
+  fi
+}
+
+if terraform_is_installed; then
+  terraform_load
+else
+  echo "not loading"
+  warning "terraform is not installed"
+fi
