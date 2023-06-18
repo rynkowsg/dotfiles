@@ -11,4 +11,13 @@ asdf_load() {
   elif [ -n "$ZSH_VERSION" ]; then
     [ -f "$HOME"/.rc/asdf.zsh ] && . "$HOME"/.rc/asdf.zsh
   fi
+
+  # set JAVA_HOME if java plugin installed - https://github.com/halcyon/asdf-java#java_home
+  if [ -d "$HOME/.asdf/plugins/java" ]; then
+    if [ -n "$BASH_VERSION" ]; then
+      [ -f "$HOME"/.asdf/plugins/java/set-java-home.bash ] && . "$HOME"/.asdf/plugins/java/set-java-home.bash
+    elif [ -n "$ZSH_VERSION" ]; then
+      [ -f "$HOME"/.asdf/plugins/java/set-java-home.zsh ] && . "$HOME"/.asdf/plugins/java/set-java-home.zsh
+    fi
+  fi
 }
