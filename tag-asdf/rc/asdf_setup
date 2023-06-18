@@ -51,6 +51,73 @@ asdf_is_version() {
   fi
 }
 
+declare -A plugins
+plugins["babashka"]="https://github.com/fredZen/asdf-babashka.git"
+plugins["clojure"]="https://github.com/halcyon/asdf-clojure.git"
+plugins["java"]="https://github.com/halcyon/asdf-java.git"
+plugins["nodejs"]="https://github.com/asdf-vm/asdf-nodejs.git"
+plugins["terraform"]="https://github.com/asdf-community/asdf-hashicorp.git"
+
+
+declare plugins_installed
+
+# $1 - plugin name
+is_plugin_installed() {
+  # init plugins_installed (at first run)
+  # (it can't be run earlier at the script loading, because asdf is not yet known)
+  if [[ -z $plugins_installed ]]; then
+    mapfile -t plugins_installed < <(asdf plugin list)
+  fi
+  # check
+  if [[ "${plugins_installed[*]}" =~ $1 ]]; then
+    return 0; # true
+  else
+    return 1; # false
+  fi
+}
+
+# $1 - plugin name
+# $2 - tool version
+is_tool_installed() {
+  local -r plugin_name="$1"
+  local -r tool_version="$2"
+
+  if asdf list "${plugin_name}" | grep -q "${tool_version}"; then
+    return 0; # true
+  else
+    return 1; # false
+  fi
+}
+
+asdf_install_plugins() {
+  # read plugins
+  declare -A tools
+  while IFS= read -r line; do
+    read -r plugin version <<< "$line"
+    tools["$plugin"]="$version"
+  done < "${HOME}/.tool-versions"
+
+  # install plugins
+  for plugin in "${!tools[@]}"; do
+    local plugin_url="${plugins[${plugin}]}"
+#    echo "plugin_url: $plugin_url"
+    if ! is_plugin_installed $plugin; then
+      asdf plugin-add "${plugin}" "${plugin_url}"
+      echo "Plugin '${plugin}' installed from url: ${plugin_url}"
+    fi
+  done
+
+  # install tools in requested version
+  for plugin in "${!tools[@]}"; do
+    local version="${tools[${plugin}]}"
+    if ! is_tool_installed "${plugin}" "${version}"; then
+      echo "Tool '${plugin}' in version '${version}' is not installed."
+      yes_or_no "Should install?" && \
+        asdf install "${plugin}" "${version}"
+    fi
+  done
+}
+
 main() {
   set -e
 
@@ -70,15 +137,7 @@ main() {
     yes_or_no "Do you want to install expected version?" && asdf_update || return
   fi
 
-  # TODO: Add automatic installation for ASDF plugins
-  #       based on global ~/.tool-versions (which is specific per machine)
-  #
-  # e.g.
-  #      asdf plugin-add terraform https://github.com/asdf-community/asdf-hashicorp.git
-  #      asdf plugin-add java https://github.com/halcyon/asdf-java.git
-  #      asdf plugin-add nodejs https://github.com/asdf-vm/asdf-nodejs.git
-  #      asdf plugin add babashka https://github.com/fredZen/asdf-babashka.git
-  #      asdf plugin-add clojure https://github.com/halcyon/asdf-clojure.git
+  asdf_install_plugins;
 }
 
 main "$@"
