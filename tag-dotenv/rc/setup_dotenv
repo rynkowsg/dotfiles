@@ -5,5 +5,5 @@ printf "reading: %s\t\t\t($0)\n" "setup_dotenv" >> ~/.dotfiles_log
 
 # Setup dotenv
 if [ -n "$ZSH_VERSION" ]; then
-  [ -f "$HOME/.bb.zsh" ] && . "$HOME/.dotenv.zsh"
+  [ -f "$HOME/.rc/dotenv.zsh" ] && . "$HOME/.rc/dotenv.zsh"
 fi
