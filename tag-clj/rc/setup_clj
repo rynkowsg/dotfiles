@@ -33,7 +33,7 @@ clj_is_installed() {
 }
 
 clj_version() {
-  clojure -M -e "(clojure-version)" | sed 's|"*\([0-9]*.[0-9]*.[0-9]*\)"|\1|'
+  (cd /tmp; clojure -M -e "(clojure-version)" | sed 's|"*\([0-9]*.[0-9]*.[0-9]*\)"|\1|')
 }
 
 # $1 - expected version
