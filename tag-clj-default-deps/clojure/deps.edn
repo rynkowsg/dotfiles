@@ -176,6 +176,10 @@
 
      :sc {:extra-deps {vvvvalvalval/scope-capture {:mvn/version "0.3.3"}}}
 
+     ;; https://github.com/stuarthalloway/reflector
+     :reflector {:extra-deps {stuarthalloway/reflector {:git/url   "https://github.com/stuarthalloway/reflector.git"
+                                                        :sha       "93a0c19b4526c1180959e940202928d35e5c3cef"}}}
+
      :charles
      {:jvm-opts ["-Djava.net.preferIPv4Stack=true"
                  ;; https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/net/doc-files/net-properties.html
