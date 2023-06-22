@@ -176,6 +176,10 @@
 
      :sc {:extra-deps {vvvvalvalval/scope-capture {:mvn/version "0.3.3"}}}
 
+     ;; For printing ascii tables from data
+     ;; https://github.com/cldwalker/table
+     :table {:extra-deps {table/table {:mvn/version "0.5.0"}}}
+
      ;; https://github.com/stuarthalloway/reflector
      :reflector {:extra-deps {stuarthalloway/reflector {:git/url   "https://github.com/stuarthalloway/reflector.git"
                                                         :sha       "93a0c19b4526c1180959e940202928d35e5c3cef"}}}
