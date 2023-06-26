@@ -4,11 +4,13 @@
 printf "reading: %s\t\t\t($0)\n" "setup_gpg" >> ~/.dotfiles_log
 
 # Setup GPG + SSH
+# https://github.com/drduh/YubiKey-Guide#replace-agents
 export GPG_TTY="$(tty)"
 export SSH_AUTH_SOCK=$(gpgconf --list-dirs agent-ssh-socket)
 gpgconf --launch gpg-agent
 
 # Export the pub key if not yet exist
+# https://github.com/drduh/YubiKey-Guide#copy-public-key
 if ! [ -f ~/.ssh/id_rsa_yubikey.pub ]; then
   ssh-add -L | grep "cardno" > ~/.ssh/id_rsa_yubikey.pub
   chmod 0600 ~/.ssh/id_rsa_yubikey.pub
