@@ -76,3 +76,9 @@
 #    git config --list --show-origin
 [http]
 	cookiefile = /Users/greg/.gitcookies
+
+# submodules cusomtization
+[status]
+	submoduleSummary = true
+[diff]
+	submodule = log
