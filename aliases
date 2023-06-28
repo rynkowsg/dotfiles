@@ -150,3 +150,6 @@ alias dot-sync="~/.dotfiles/.internal/sync"
 alias dot-log="tail -F ~/.dotfiles_log"
 
 alias ssl-preview-pem="openssl x509 -text -in"
+
+# https://www.cyberciti.biz/faq/how-to-find-my-public-ip-address-from-command-line-on-a-linux/
+alias ip-public-address="dig +short myip.opendns.com @resolver1.opendns.com"
