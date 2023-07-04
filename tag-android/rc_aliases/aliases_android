@@ -78,4 +78,4 @@ adb_app_stop() {
 alias adb_apk_list="adb shell pm list packages"
 
 # TODO: Fix it. It's not going to work on Linux
-alias sdkmanager="JAVA_HOME=/Users/greg/.jenv/versions/1.8 sdkmanager"
+#alias sdkmanager="JAVA_HOME=/Users/greg/.jenv/versions/1.8 sdkmanager"
