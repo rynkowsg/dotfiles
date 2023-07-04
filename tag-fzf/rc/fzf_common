@@ -14,10 +14,12 @@ fzf_load() {
     exit 1;
   fi
 
-  # Load fzf
-  if [ -n "$BASH_VERSION" ]; then
-    [ -f "$HOME"/.rc/fzf.bash ] && . "$HOME"/.rc/fzf.bash
-  elif [ -n "$ZSH_VERSION" ]; then
-    [ -f "$HOME"/.rc/fzf.zsh ] && . "$HOME"/.rc/fzf.zsh
+  # Load fzf if exists
+  if [ -d "${FZF_ROOT}" ]; then
+    if [ -n "$BASH_VERSION" ]; then
+      [ -f "$HOME"/.rc/fzf.bash ] && . "$HOME"/.rc/fzf.bash
+    elif [ -n "$ZSH_VERSION" ]; then
+      [ -f "$HOME"/.rc/fzf.zsh ] && . "$HOME"/.rc/fzf.zsh
+    fi
   fi
 }
