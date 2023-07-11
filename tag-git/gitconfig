@@ -65,6 +65,7 @@
 [gui]
 	editor = mate
 	diffcontext = 10
+	historybrowser = git-dag
 
 # Replace all Github URLs from https:// to ssh://
 # (this also affect all other apps using git, so if you use gpg and yubikey
