@@ -161,7 +161,7 @@
       :main-opts  ["-m" "cognitect.rebl"]}
 
      :clerk
-     {:extra-deps  {io.github.nextjournal/clerk {:mvn/version "0.6.387"}}}
+     {:extra-deps  {io.github.nextjournal/clerk {:mvn/version "0.14.919"}}}
 
      ;; start smart REPL runner
      :repl
