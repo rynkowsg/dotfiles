@@ -9,8 +9,8 @@ printf "reading: %s\t\t\t($0)\n" "pass_store" >> ~/.dotfiles_log
 . "$HOME/.dotfiles/.lib/yes_or_no"
 
 clone_pass_store() {
-  local store_dir="$1"
-  local repo_url="$2"
+  local repo_url="$1"
+  local store_dir="$2"
   if [ ! -d "${store_dir}" ]; then
     echo "${store_dir} is not installed"
     yes_or_no "Do you want to clone this repo?" || return
