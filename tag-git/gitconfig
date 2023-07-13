@@ -63,7 +63,7 @@
 # For some reason it doesn't work. Perhaps git-cola can'r resolve [include] blocks.
 # TODO: Sort out the problem of setting platform-specific gitconfig for git-cola.
 [gui]
-	editor = mate
+	editor = vim
 	diffcontext = 10
 	historybrowser = git-dag
 
