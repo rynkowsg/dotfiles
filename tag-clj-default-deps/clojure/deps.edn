@@ -132,6 +132,9 @@
       :main-opts  ["--main" "nrepl.cmdline" "--interactive"
                    "--repl-fn" "rebel-readline.main/-main"]}
 
+     :portal
+     {:extra-deps {djblue/portal {:mvn/version "0.42.1"}}}
+
      ;; start REBL
      :rebl-8
      {:extra-deps {org.clojure/core.async {:mvn/version "1.5.648"}
