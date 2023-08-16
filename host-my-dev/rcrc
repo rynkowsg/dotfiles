@@ -3,5 +3,5 @@
 
 EXCLUDES="README.md commonrc .internal .lib .samples"
 COPY_ALWAYS="m2/settings.xml datomic/dev-local.edn"
-TAGS="asdf aws bb clj clj-default-deps fzf dotenv git gpg gpg-ssh gpg-linux hugo-ext m2-datomic pass-ryn vim-basic terraform"
+TAGS="asdf aws bb clj clj-default-deps fzf dotenv git gpg gpg-ssh gpg-linux hugo-ext cognitect pass-ryn vim-basic terraform"
 SYMLINK_DIRS="git/bin"
