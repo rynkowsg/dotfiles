@@ -30,3 +30,11 @@ alias git-commit-with-date-described=git_commit_with_date_described
 # git rebase -i HEAD~4 -x "git commit --amend --author 'Greg Rynkowski <5878299+rynkowsg@users.noreply.github.com>' --no-edit"
 # git rebase -i --root -x "git commit --amend --author 'Greg Rynkowski <5878299+rynkowsg@users.noreply.github.com>' --no-edit"
 # Source: https://stackoverflow.com/questions/4981126/how-to-amend-several-commits-in-git-to-change-author/31669789#31669789
+
+alias gl="git lo"
+alias glgg="git lgg"
+alias gf="git fetch -p origin"
+alias gs="git status"
+alias glom="git lo origin/master..master"
+alias glmo="git lo master..origin/master"
+alias gpcb="git push -u origin HEAD:$(gbr-current)"
