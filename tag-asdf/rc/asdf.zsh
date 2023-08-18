@@ -1,7 +1,7 @@
 #!/usr/bin/env zsh
 
 # debug log
-printf "reading: %s\t\t\t($0)\n" "asdf.zsh" >> ~/.dotfiles_log
+printf "reading: %s\t\t\t($0)\n" "asdf.zsh"
 
 . "$HOME/.asdf/asdf.sh"
 

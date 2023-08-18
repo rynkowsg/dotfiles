@@ -3,7 +3,7 @@
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]:-${0}}")" || exit; pwd -P)"
 
 # debug log
-printf "reading: %s\t\t\t($0)\n" "pass_store" >> ~/.dotfiles_log
+printf "reading: %s\t\t\t($0)\n" "pass_store"
 # includes
 . "$HOME/.dotfiles/.lib/error"
 . "$HOME/.dotfiles/.lib/yes_or_no"

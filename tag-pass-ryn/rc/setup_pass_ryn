@@ -1,7 +1,7 @@
 #!/usr/bin/env sh
 
 # debug log
-printf "reading: %s\t\t\t($0)\n" "setup_pass_ryn" >> ~/.dotfiles_log
+printf "reading: %s\t\t\t($0)\n" "setup_pass_ryn"
 # includes
 . "$HOME/.dotfiles/.lib/pass_store"       # clone_pass_store
 

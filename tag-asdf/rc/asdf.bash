@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 # debug log
-printf "reading: %s\t\t\t($0)\n" "asdf.bash" >> ~/.dotfiles_log
+printf "reading: %s\t\t\t($0)\n" "asdf.bash"
 
 . "$HOME/.asdf/asdf.sh"
 

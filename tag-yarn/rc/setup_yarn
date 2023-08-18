@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-printf "reading: %s\t\t\t($0)\n" "setup_yarn" >> ~/.dotfiles_log
+printf "reading: %s\t\t\t($0)\n" "setup_yarn"
 
 # Yarn scripts autocompletion
 # Source: https://gist.github.com/ryaninvents/d9155214c91d18ddae3da021d3a13c99
