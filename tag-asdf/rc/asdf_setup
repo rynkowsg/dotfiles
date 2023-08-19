@@ -54,12 +54,13 @@ asdf_is_version() {
 declare -A plugins
 plugins["babashka"]="https://github.com/fredZen/asdf-babashka.git"
 plugins["clojure"]="https://github.com/halcyon/asdf-clojure.git"
+plugins["gradle"]="https://github.com/rfrancis/asdf-gradle.git"
 plugins["java"]="https://github.com/halcyon/asdf-java.git"
 #plugins["lein"]="https://github.com/miorimmax/asdf-lein.git"
 plugins["lein"]="https://github.com/rynkowsg/asdf-lein.git"
 plugins["nodejs"]="https://github.com/asdf-vm/asdf-nodejs.git"
 plugins["terraform"]="https://github.com/asdf-community/asdf-hashicorp.git"
-plugins["gradle"]="https://github.com/rfrancis/asdf-gradle.git"
+plugins["terragrunt"]="https://github.com/ohmer/asdf-terragrunt.git"
 
 declare plugins_installed
 
