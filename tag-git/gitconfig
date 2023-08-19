@@ -83,3 +83,5 @@
 	submoduleSummary = true
 [diff]
 	submodule = log
+[init]
+	defaultBranch = master
