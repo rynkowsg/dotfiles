@@ -44,10 +44,6 @@ source_existing "$HOME/.rc/fzf_load"
 
 source_existing "$HOME/.rc/setup_gcp"
 
-source_existing "$HOME/.rc/setup_go"
-
-source_existing "$HOME/.rc/load_hugo_ext"
-
 source_existing "$HOME/.rc/jenv_load"
 
 source_existing "$HOME/.rc/setup_nvm"
