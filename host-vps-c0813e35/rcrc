@@ -1,6 +1,21 @@
 # https://thoughtbot.github.io/rcm/rcrc.5.html
 # https://thoughtbot.github.io/rcm/lsrc.1.html#EXCLUDE_PATTERN
 
-EXCLUDES="README.md bash_profile git/bin bashrc commonrc .internal .lib .samples"
-TAGS="git vim-basic"
-SYMLINK_DIRS=""
+EXCLUDES="
+    README.md
+    bash_profile
+    git/bin
+    bashrc
+    commonrc
+    .internal
+    .lib
+    .samples
+    "
+
+TAGS="
+    git
+    vim-basic
+    "
+
+SYMLINK_DIRS="
+    "

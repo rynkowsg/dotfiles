@@ -1,7 +1,32 @@
 # https://thoughtbot.github.io/rcm/rcrc.5.html
 # https://thoughtbot.github.io/rcm/lsrc.1.html#EXCLUDE_PATTERN
 
-EXCLUDES="README.md commonrc .internal .lib .samples"
-COPY_ALWAYS="m2/settings.xml datomic/dev-local.edn"
-TAGS="bb clj clj-default-deps fzf git gpg gpg-linux gpg-ssh linux pass-ryn vim-basic"
-SYMLINK_DIRS="git/bin"
+EXCLUDES="
+    .internal
+    .lib
+    .samples
+    README.md
+    commonrc
+    "
+
+COPY_ALWAYS="
+    datomic/dev-local.edn"
+    m2/settings.xml
+
+TAGS="
+    bb
+    clj
+    clj-default-deps
+    fzf
+    git
+    gpg
+    gpg-linux
+    gpg-ssh
+    linux
+    pass-ryn
+    vim-basic
+    "
+
+SYMLINK_DIRS="
+    git/bin
+    "
