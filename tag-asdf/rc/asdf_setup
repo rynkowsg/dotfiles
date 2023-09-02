@@ -63,6 +63,8 @@ plugins["lein"]="https://github.com/rynkowsg/asdf-lein.git"
 plugins["nodejs"]="https://github.com/asdf-vm/asdf-nodejs.git"
 plugins["terraform"]="https://github.com/asdf-community/asdf-hashicorp.git"
 plugins["terragrunt"]="https://github.com/ohmer/asdf-terragrunt.git"
+plugins["tflint"]="https://github.com/skyzyx/asdf-tflint.git"
+plugins["tfsec"]="https://github.com/woneill/asdf-tfsec.git"
 
 declare plugins_installed
 
