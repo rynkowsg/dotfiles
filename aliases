@@ -153,3 +153,19 @@ alias ssl-preview-pem="openssl x509 -text -in"
 
 # https://www.cyberciti.biz/faq/how-to-find-my-public-ip-address-from-command-line-on-a-linux/
 alias ip-public-address="dig +short myip.opendns.com @resolver1.opendns.com"
+
+_tmp_dir() {
+  local path="./.tmp/$(date +%Y-%m-%d)"
+  /usr/bin/mkdir -p "${path}"
+  echo "${path}"
+}
+
+tmp-dir() {
+  local path=$(_tmp_dir)
+  echo "Tmp dir: ${path}"
+}
+cd-tmp-dir() {
+  local path=$(_tmp_dir)
+  echo "Tmp dir: ${path}"
+  cd "${path}"
+}
