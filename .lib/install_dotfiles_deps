@@ -1,5 +1,9 @@
 #!/usr/bin/env bash
 
+# includes
+. "$HOME/.dotfiles/.lib/error" # assert_command_exist
+. "$HOME/.dotfiles/.lib/linux" # can_run_sudo
+
 function install_dotfiles_deps_macos {
   # install Homebrew if not installed
   source "$HOME/.dotfiles/.lib/macos/homebrew"
@@ -12,12 +16,23 @@ function install_dotfiles_deps_macos {
 }
 
 function install_dotfiles_deps_debian {
-  sudo apt install rcm pass
+  if can_run_sudo; then
+    sudo apt install rcm pass
+  else
+    assert_command_exist mkrc # package: rcm
+    assert_command_exist pass
+  fi
 }
 
 function install_dotfiles_deps_fedora {
-  sudo dnf install rcm pass
-  sudo dnf install crontabs # provides: run-parts
+  if can_run_sudo; then
+    sudo dnf install rcm pass
+    sudo dnf install crontabs # provides: run-parts
+  else
+    assert_command_exist mkrc # package: rcm
+    assert_command_exist pass
+    assert_command_exist run-parts # package: crontabs
+  fi
 }
 
 function install_dotfiles_deps {

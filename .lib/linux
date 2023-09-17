@@ -1,0 +1,8 @@
+#!/usr/bin/env sh
+
+# debug log
+printf "reading: %s\t\t\t($0)\n" "linux" >> ~/.dotfiles_log
+
+function can_run_sudo {
+  sudo -v > /dev/null
+}
