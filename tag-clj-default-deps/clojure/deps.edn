@@ -168,7 +168,7 @@
 
      ;; start smart REPL runner
      :repl
-     {:extra-deps {rynkowsg/repl-runner                 {:git/url "https://github.com/rynkowsg/repl-runner" :sha "1e7f6851e123ce6fb1106c6b8ed737cb61e7d264"}
+     {:extra-deps {rynkowsg/repl-runner                 {:git/url "https://github.com/rynkowsg/repl-runner" :sha "66aa8f04af6dfe87a2000e7cfc01db9189676429"}
                    com.github.rynkowsg/nrebl.middleware {:mvn/version "0.4.0"}}
       :jvm-opts   ["-XX:-OmitStackTraceInFastThrow"]
       ;; this ensures we have a DynamicClassLoader, which is needed for
