@@ -65,6 +65,7 @@ plugins["terraform"]="https://github.com/asdf-community/asdf-hashicorp.git"
 plugins["terragrunt"]="https://github.com/ohmer/asdf-terragrunt.git"
 plugins["tflint"]="https://github.com/skyzyx/asdf-tflint.git"
 plugins["tfsec"]="https://github.com/woneill/asdf-tfsec.git"
+plugins["yq"]="https://github.com/sudermanjr/asdf-yq.git"
 
 declare plugins_installed
 
