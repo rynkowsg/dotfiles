@@ -1,0 +1,21 @@
+#!/usr/bin/env bash
+
+# debug log
+printf "reading: %s\t\t($0)\n" "aliases_terraform" >> ~/.dotfiles_log
+
+# $1 - command (e.g. terraform, tofu, terragrunt). Default: terraform
+tf_backup() {
+  local -r command=${1:-"terraform"}
+  local -r backup_dir="./.backup"
+  mkdir -p "${backup_dir}"
+  local backup_filepath
+  backup_filepath="${backup_dir}/$(basename "$(pwd)")-$(date +%Y%m%d_%H%M%S).tfstate"
+  "${command}" state pull > "${backup_filepath}"
+  echo "Backup created: ${backup_filepath}"
+  echo "List of backups:"
+  ls -1 "${backup_dir}/"
+}
+
+alias terraform_backup="tf_backup terraform"
+alias terragrunt_backup="tf_backup terragrunt"
+alias tofu_backup="tf_backup tofu"
