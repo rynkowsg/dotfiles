@@ -8,6 +8,7 @@ printf "reading: %s\t\t\t($0)\n" "asdf_setup" >> ~/.dotfiles_log
 . "${SCRIPT_DIR}/asdf_common"             # ASDF_DIR
 . "$HOME/.dotfiles/.lib/error"            # error_exit
 . "$HOME/.dotfiles/.lib/source_utils"     # is_sourced
+. "$HOME/.dotfiles/.lib/trap"             # add_on_exit
 . "$HOME/.dotfiles/.lib/yes_or_no"        # yes_or_no
 
 ASDF_VER="0.13.1"
@@ -101,20 +102,30 @@ is_tool_installed() {
 }
 
 asdf_install_plugins() {
+  local tmp_tools_versions
+  tmp_tools_versions=$(mktemp "/tmp/dotfiles-tmp-tool-versions.XXX")
+  add_on_exit rm -f "${tmp_tools_versions}"
+
+  # filter out all comments and empty lines
+  grep -v -E "^#|^$" "${HOME}/.tool-versions" > "${tmp_tools_versions}"
+
   # read plugins
   declare -A tools
   while IFS= read -r line; do
     read -r plugin version <<< "$line"
     tools["$plugin"]="$version"
-  done < "${HOME}/.tool-versions"
+  done < "${tmp_tools_versions}"
 
   # install plugins
   for plugin in "${!tools[@]}"; do
     local plugin_url="${plugins[${plugin}]}"
-#    echo "plugin_url: $plugin_url"
-    if ! is_plugin_installed $plugin; then
+    if [ -z "${plugin_url}" ]; then
+      echo "Plugin URL is not defined for plugin '${plugin}'!"
+    fi
+#    echo "plugin_url[$plugin]: ${plugin_url}"
+    if ! is_plugin_installed "${plugin}"; then
       asdf plugin-add "${plugin}" "${plugin_url}"
-      echo "Plugin '${plugin}' installed from url: ${plugin_url}"
+      echo "Plugin '${plugin}' installed from url: ${plugin_url}."
     fi
   done
 
