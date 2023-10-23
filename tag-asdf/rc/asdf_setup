@@ -52,6 +52,7 @@ asdf_is_version() {
 }
 
 declare -A plugins
+plugins["aws-vault"]="https://github.com/karancode/asdf-aws-vault.git"
 plugins["babashka"]="https://github.com/fredZen/asdf-babashka.git"
 plugins["clojure"]="https://github.com/halcyon/asdf-clojure.git"
 plugins["gradle"]="https://github.com/rfrancis/asdf-gradle.git"
