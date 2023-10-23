@@ -29,9 +29,15 @@
 	logs = log --show-signature
 	lo = log --oneline --abbrev-commit
 	lg = log --oneline --decorate --graph
-	lgg = log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit
-	lggd = log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cs) %C(bold blue)<%an>%Creset' --abbrev-commit
-	lggs = log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cs)%Creset' --abbrev-commit
+	lgg = log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%as)%Creset' --abbrev-commit
+	# lgg with autor
+	lgga = log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%as) %C(bold blue)<%an>%Creset' --abbrev-commit
+	# lgg with relative date
+	lggr = log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%ar)%Creset' --abbrev-commit
+	# In the above lgg commands I use two date formats:
+	# %as - author date, short format (YYYY-MM-DD)
+	# %ar - author date, relative
+	# More in man git-log or at https://git-scm.com/docs/pretty-formats
 [core]
 	editor = vim
 	pager = less -XFR
