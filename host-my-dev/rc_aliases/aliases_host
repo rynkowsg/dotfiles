@@ -1,0 +1,17 @@
+#!/usr/bin/env sh
+
+printf "reading: %s\t\t\t($0)\n" "aliases_host" >> ~/.dotfiles_log
+
+# Alias to aws-vault to use pass as backend with proper prefix.
+#
+# Usage:
+#
+# Add profile by typing secrets
+#
+#     aws-vault-pass add --env "${profile_name}"
+#
+# Add profile from env vars
+#
+#    AWS_SECRET_ACCESS_KEY="${key_secret}" aws-vault-pass add --env "${profile_name}"
+#
+alias aws-vault-pass='aws-vault --backend=pass --debug --pass-dir="~/.password-store/rynkowski/" --pass-prefix="app/aws-vault"'
