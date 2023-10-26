@@ -6,3 +6,5 @@ printf "reading: %s\t\t\t($0)\n" "aliases_aws" >> ~/.dotfiles_log
 alias aws-update="\$HOME/.dotfiles/tag-aws/rc/setup_aws update"
 alias with-aws-vars="AWS_ACCESS_KEY_ID=\"\$AWS_ACCESS_KEY_ID\" AWS_SECRET_ACCESS_KEY=\"\$AWS_SECRET_ACCESS_KEY\""
 alias awsw="with-aws-vars aws"
+
+alias aws-account-id="aws sts get-caller-identity --query \"Account\" --output text"
