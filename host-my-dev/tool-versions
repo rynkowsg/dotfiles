@@ -13,6 +13,11 @@ nodejs 18.17.1
 # https://github.com/opentofu/opentofu/blob/main/CHANGELOG.md
 opentofu 1.6.0-alpha3
 
+# https://devguide.python.org/versions/
+# https://www.python.org/downloads/source/
+# https://www.python.org/doc/versions/
+python 3.12.0
+
 shellcheck 0.9.0
 
 shfmt 3.7.0
