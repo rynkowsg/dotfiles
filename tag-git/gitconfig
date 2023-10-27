@@ -91,3 +91,4 @@
 	submodule = log
 [init]
 	defaultBranch = master
+	templatedir = ~/.git/templates
