@@ -2,3 +2,6 @@
 
 # debug log
 printf "reading: %s\t\t\t($0)\n" "aliases_docker" >> ~/.dotfiles_log
+
+# source: https://stackoverflow.com/questions/33913020/docker-remove-none-tag-images
+alias docker_remove_dangling_images='docker rmi $(docker images --filter "dangling=true" -q --no-trunc)'
