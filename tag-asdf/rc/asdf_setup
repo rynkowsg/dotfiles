@@ -56,6 +56,7 @@ declare -A plugins
 plugins["aws-vault"]="https://github.com/karancode/asdf-aws-vault.git"
 plugins["babashka"]="https://github.com/fredZen/asdf-babashka.git"
 plugins["circleci-cli"]="https://github.com/ucpr/asdf-circleci-cli.git"
+plugins["clj-kondo"]="https://github.com/rynkowsg/asdf-clj-kondo.git"
 plugins["clojure"]="https://github.com/halcyon/asdf-clojure.git"
 plugins["golang"]="https://github.com/asdf-community/asdf-golang.git"
 plugins["gradle"]="https://github.com/rfrancis/asdf-gradle.git"
