@@ -70,11 +70,11 @@
 
      :dev
      {:extra-paths ["src" "dev" "test" "res" "resources" "."]
-      :extra-deps  {babashka/fs {:mvn/version "0.4.19"}
+      :extra-deps  {babashka/fs {:mvn/version "0.5.20"}
                     camel-snake-kebab/camel-snake-kebab {:mvn/version "0.4.3"}
                     cljc.java-time/cljc.java-time              {:mvn/version "0.1.18"}
                     clj-http/clj-http                          {:mvn/version "3.12.3"}
-                    com.clojure-goes-fast/clj-async-profiler {:mvn/version "1.0.5"} ;; https://github.com/clojure-goes-fast/clj-async-profiler
+                    com.clojure-goes-fast/clj-async-profiler {:mvn/version "1.1.1"} ;; https://github.com/clojure-goes-fast/clj-async-profiler
                     com.clojure-goes-fast/clj-java-decompiler {:mvn/version "0.3.4"} ;; https://github.com/clojure-goes-fast/clj-java-decompiler
                     com.clojure-goes-fast/clj-memory-meter {:mvn/version "0.3.0"} ;; https://github.com/clojure-goes-fast/jvm-hiccup-meter
                     com.clojure-goes-fast/jvm-alloc-rate-meter {:mvn/version "0.1.4"} ;; https://github.com/clojure-goes-fast/jvm-alloc-rate-meter
@@ -85,13 +85,13 @@
                     javax.servlet/servlet-api                  {:mvn/version "2.5"}   ;; required for ring/ring-core, https://github.com/ring-clojure/ring#upgrade-notice
                     fipp/fipp {:mvn/version "0.6.26"}
                     kixi/stats {:mvn/version "0.5.5"}
-                    org.slf4j/slf4j-nop {:mvn/version "2.0.9"}
+                    org.slf4j/slf4j-nop {:mvn/version "2.0.10"}
                     meander/epsilon                            {:mvn/version "0.0.650"}
                     dev.weavejester/medley {:mvn/version "1.7.0"}
                     metosin/malli {:mvn/version "0.13.0"}
                     net.cgrand/xforms {:mvn/version "0.19.5"}
                     nubank/matcher-combinators {:mvn/version "3.8.8"}
-                    org.babashka/sci {:mvn/version "0.8.40"} ; for malli and fn serialization
+                    org.babashka/sci {:mvn/version "0.8.41"} ; for malli and fn serialization
                     org.clojure/clojure {:mvn/version "1.11.1"}
                     org.clojure/core.async {:mvn/version "1.6.681"}
                     org.clojure/data.csv {:mvn/version "1.0.1"}
@@ -101,7 +101,7 @@
                                                   :git/url "https://github.com/clojure/tools.deps.alpha"
                                                   :sha "e4fb92eef724fa39e29b39cc2b1a850567d490dd"}
                     prismatic/plumbing {:mvn/version "0.6.0"}
-                    ring/ring-core {:mvn/version "1.10.0"}
+                    ring/ring-core {:mvn/version "1.11.0"}
                     rynkowsg/tapic {:git/url "https://github.com/rynkowsg/tapic.git" :sha "928d3547c7fffdac877b2358743ce9567e9275c3"}
                     selmer/selmer {:mvn/version "1.12.59"}
                     tick/tick {:mvn/version "0.7.5"}
@@ -116,7 +116,7 @@
 
      ;; start a modern nREPL server on a random available port
      :nrepl
-     {:extra-deps {nrepl/nrepl {:mvn/version "1.0.0"}}
+     {:extra-deps {nrepl/nrepl {:mvn/version "1.1.0"}}
       :main-opts  ["-m" "nrepl.cmdline"]}
 
      ;; start a Rebel REPL
@@ -127,23 +127,23 @@
 
      ;; start nREPL server & Rebel
      :rebel-nrepl
-     {:extra-deps {nrepl/nrepl {:mvn/version "1.0.0"}
+     {:extra-deps {nrepl/nrepl {:mvn/version "1.1.0"}
                    com.bhauman/rebel-readline {:mvn/version "0.1.4"}}
       :main-opts  ["--main" "nrepl.cmdline" "--interactive"
                    "--repl-fn" "rebel-readline.main/-main"]}
 
      :portal
-     {:extra-deps {djblue/portal {:mvn/version "0.48.0"}}}
+     {:extra-deps {djblue/portal {:mvn/version "0.51.0"}}}
 
      ;; start REBL
      :rebl-8
      {:extra-deps {org.clojure/core.async {:mvn/version "1.6.681"}
                    ;; deps for file datafication (REBL 0.9.149 or later)
                    org.clojure/data.csv {:mvn/version "1.0.1"}
-                   org.clojure/data.json  {:mvn/version "2.4.0"}
-                   org.yaml/snakeyaml     {:mvn/version "1.30"}
+                   org.clojure/data.json {:mvn/version "2.5.0"}
+                   org.yaml/snakeyaml {:mvn/version "2.2"}
                    ;; assumes you've installed the latest Cognitect dev-tools:
-                   com.cognitect/rebl {:mvn/version "0.9.245"}}
+                   com.cognitect/rebl ^:antq/exclude {:mvn/version "0.9.245"}}
       :main-opts  ["-m" "cognitect.rebl"]}
 
      ;; start REBL on JVM 11
@@ -151,16 +151,16 @@
      {:extra-deps {org.clojure/core.async {:mvn/version "1.6.681"}
                    ;; deps for file datafication (REBL 0.9.149 or later)
                    org.clojure/data.csv {:mvn/version "1.0.1"}
-                   org.clojure/data.json       {:mvn/version "2.4.0"}
-                   org.yaml/snakeyaml          {:mvn/version "1.30"}
+                   org.clojure/data.json {:mvn/version "2.5.0"}
+                   org.yaml/snakeyaml {:mvn/version "2.2"}
                    ;; assumes you've installed the latest Cognitect dev-tools:
-                   com.cognitect/rebl {:mvn/version "0.9.245"}
+                   com.cognitect/rebl ^:antq/exclude {:mvn/version "0.9.245"}
                    ;; JavaFX deps
-                   org.openjfx/javafx-fxml {:mvn/version "15-ea+6"}
-                   org.openjfx/javafx-controls {:mvn/version "15-ea+6"}
-                   org.openjfx/javafx-swing {:mvn/version "15-ea+6"}
-                   org.openjfx/javafx-base {:mvn/version "15-ea+6"}
-                   org.openjfx/javafx-web {:mvn/version "15-ea+6"}}
+                   org.openjfx/javafx-fxml ^:antq/exclude {:mvn/version "15-ea+6"}
+                   org.openjfx/javafx-controls ^:antq/exclude {:mvn/version "15-ea+6"}
+                   org.openjfx/javafx-swing ^:antq/exclude {:mvn/version "15-ea+6"}
+                   org.openjfx/javafx-base ^:antq/exclude {:mvn/version "15-ea+6"}
+                   org.openjfx/javafx-web ^:antq/exclude {:mvn/version "15-ea+6"}}
       :main-opts  ["-m" "cognitect.rebl"]}
 
      :rebl-17
@@ -168,16 +168,16 @@
       :extra-deps {org.clojure/core.async {:mvn/version "1.6.681"}
                    ;; deps for file datafication (REBL 0.9.149 or later)
                    org.clojure/data.csv {:mvn/version "1.0.1"}
-                   org.clojure/data.json {:mvn/version "2.4.0"}
-                   org.yaml/snakeyaml {:mvn/version "1.33"}
+                   org.clojure/data.json {:mvn/version "2.5.0"}
+                   org.yaml/snakeyaml {:mvn/version "2.2"}
                    ;; assumes you've installed the latest Cognitect dev-tools:
-                   com.cognitect/rebl {:mvn/version "0.9.245"}
+                   com.cognitect/rebl ^:antq/exclude {:mvn/version "0.9.245"}
                    ;; JavaFX deps
-                   org.openjfx/javafx-fxml {:mvn/version "17"}
-                   org.openjfx/javafx-controls {:mvn/version "17"}
-                   org.openjfx/javafx-swing {:mvn/version "17"}
-                   org.openjfx/javafx-base {:mvn/version "17"}
-                   org.openjfx/javafx-web {:mvn/version "17"}}}
+                   org.openjfx/javafx-fxml ^:antq/exclude {:mvn/version "17"}
+                   org.openjfx/javafx-controls ^:antq/exclude {:mvn/version "17"}
+                   org.openjfx/javafx-swing ^:antq/exclude {:mvn/version "17"}
+                   org.openjfx/javafx-base ^:antq/exclude {:mvn/version "17"}
+                   org.openjfx/javafx-web ^:antq/exclude {:mvn/version "17"}}}
 
      :clerk
      {:extra-deps  {io.github.nextjournal/clerk {:mvn/version "0.14.919"}}}
@@ -232,14 +232,14 @@
 
      :antq
      {:replace-paths []
-      :replace-deps {com.github.liquidz/antq {:mvn/version "2.7.1133"}
-                     org.slf4j/slf4j-nop {:mvn/version "2.0.9"}}
+      :replace-deps {com.github.liquidz/antq {:mvn/version "2.7.1147"}
+                     org.slf4j/slf4j-nop {:mvn/version "2.0.10"}}
       :main-opts ["-m" "antq.core"]}
 
      ;; Example of clj-kondo setup
      ;; https://github.com/wilkerlucio/pathom-viz/tree/master/.clj-kondo
      :clj-kondo
-     {:replace-deps {clj-kondo/clj-kondo {:mvn/version "2023.09.07"}}
+     {:replace-deps {clj-kondo/clj-kondo {:mvn/version "2023.12.15"}}
       :main-opts ["-m" "clj-kondo.main"]}
 
      :cljfmt
@@ -247,7 +247,7 @@
 
      ;; - see https://github.com/rm-hull/nvd-clojure
      ;; - clojure -M:g/nvd "" "$(clojure -Spath -A:any:aliases)"
-     :nvd {:extra-deps {nvd-clojure/nvd-clojure {:mvn/version "3.4.0"}}
+     :nvd {:extra-deps {nvd-clojure/nvd-clojure {:mvn/version "3.6.0"}}
            :main-opts ["-m" "nvd.task.check"]}
 
      ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
