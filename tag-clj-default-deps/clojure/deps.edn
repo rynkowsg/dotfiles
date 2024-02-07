@@ -179,12 +179,20 @@
                    org.openjfx/javafx-base ^:antq/exclude {:mvn/version "17"}
                    org.openjfx/javafx-web ^:antq/exclude {:mvn/version "17"}}}
 
+     :morse
+     {:extra-deps {io.github.nubank/morse {:git/tag "v2023.04.30.01" :git/sha "d99b09c"}
+                   io.github.rynkowsg/morse-nrepl {:git/url "https://github.com/rynkowsg/morse-nrepl.git"
+                                                   :git/branch "master"
+                                                   :git/sha "05bfb6fd2979c6f83a701d786b830930c051bf93"}}}
+
      :clerk
      {:extra-deps  {io.github.nextjournal/clerk {:mvn/version "0.14.919"}}}
 
      ;; start smart REPL runner
      :repl
-     {:extra-deps {rynkowsg/repl-runner                 {:git/url "https://github.com/rynkowsg/repl-runner" :sha "66aa8f04af6dfe87a2000e7cfc01db9189676429"}
+     {:extra-deps {rynkowsg/repl-runner                 {:git/url "https://github.com/rynkowsg/repl-runner"
+                                                         :git/branch "master"
+                                                         :git/sha "43baf4df917725fc9e7b0b4855e559d73f1ac62d"}
                    com.github.rynkowsg/nrebl.middleware {:mvn/version "0.4.0"}}
       :jvm-opts   ["-XX:-OmitStackTraceInFastThrow"]
       ;; this ensures we have a DynamicClassLoader, which is needed for
