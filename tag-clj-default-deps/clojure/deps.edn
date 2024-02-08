@@ -160,8 +160,10 @@
                    org.openjfx/javafx-controls ^:antq/exclude {:mvn/version "15-ea+6"}
                    org.openjfx/javafx-swing ^:antq/exclude {:mvn/version "15-ea+6"}
                    org.openjfx/javafx-base ^:antq/exclude {:mvn/version "15-ea+6"}
-                   org.openjfx/javafx-web ^:antq/exclude {:mvn/version "15-ea+6"}}
-      :main-opts  ["-m" "cognitect.rebl"]}
+                   org.openjfx/javafx-web ^:antq/exclude {:mvn/version "15-ea+6"}
+                   ;; nREPL middleware
+                   com.github.rynkowsg/nrebl.middleware {:mvn/version "0.4.0"}}
+      :main-opts ["-m" "cognitect.rebl"]}
 
      :rebl-17
      {:extra-paths ["app/rebl/src"]
@@ -177,13 +179,23 @@
                    org.openjfx/javafx-controls ^:antq/exclude {:mvn/version "17"}
                    org.openjfx/javafx-swing ^:antq/exclude {:mvn/version "17"}
                    org.openjfx/javafx-base ^:antq/exclude {:mvn/version "17"}
-                   org.openjfx/javafx-web ^:antq/exclude {:mvn/version "17"}}}
+                   org.openjfx/javafx-web ^:antq/exclude {:mvn/version "17"}
+                   ;; nREPL middleware
+                   com.github.rynkowsg/nrebl.middleware {:mvn/version "0.4.0"}}
+      :main-opts ["-m" "cognitect.rebl"]}
 
      :morse
      {:extra-deps {io.github.nubank/morse {:git/tag "v2023.04.30.01" :git/sha "d99b09c"}
-                   io.github.rynkowsg/morse-nrepl {:git/url "https://github.com/rynkowsg/morse-nrepl.git"
-                                                   :git/branch "master"
-                                                   :git/sha "05bfb6fd2979c6f83a701d786b830930c051bf93"}}}
+                   pl.rynkowski/morse-nrepl {:git/url "https://github.com/rynkowsg/morse-nrepl.git"
+                                             :git/branch "master"
+                                             :git/sha "8ec1c2f14a23557f0664f892dfb78097d6ea61ae"}}}
+
+     :morse-run
+     {:extra-deps {io.github.nubank/morse {:git/tag "v2023.04.30.01" :git/sha "d99b09c"}
+                   pl.rynkowski/morse-nrepl {:git/url "https://github.com/rynkowsg/morse-nrepl.git"
+                                             :git/branch "master"
+                                             :git/sha "8ec1c2f14a23557f0664f892dfb78097d6ea61ae"}}
+      :jvm-opts ["-Dpl.rynkowski.repl-runner.morse-autostart=true"]}
 
      :clerk
      {:extra-deps  {io.github.nextjournal/clerk {:mvn/version "0.14.919"}}}
@@ -192,14 +204,13 @@
      :repl
      {:extra-deps {rynkowsg/repl-runner                 {:git/url "https://github.com/rynkowsg/repl-runner"
                                                          :git/branch "master"
-                                                         :git/sha "43baf4df917725fc9e7b0b4855e559d73f1ac62d"}
-                   com.github.rynkowsg/nrebl.middleware {:mvn/version "0.4.0"}}
+                                                         :git/sha "cbdd31519cac3dec29793e3a554619988e44990a"}}
       :jvm-opts   ["-XX:-OmitStackTraceInFastThrow"]
       ;; this ensures we have a DynamicClassLoader, which is needed for
       ;; add-lib to work, if we're starting other processes via aliases
       ;; such as a socket REPL or Cognitect's REBL etc
       :main-opts  ["-e" "(->>(Thread/currentThread)(.getContextClassLoader)(clojure.lang.DynamicClassLoader.)(.setContextClassLoader,(Thread/currentThread)))"
-                   "-m" "repl-runner.core"]}
+                   "-m" "pl.rynkowski.repl-runner"]}
 
      :sc {:extra-deps {vvvvalvalval/scope-capture {:mvn/version "0.3.3"}}}
 
