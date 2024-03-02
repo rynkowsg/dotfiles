@@ -1,15 +1,12 @@
-/target
-/classes
-/checkouts
-*.jar
-*.class
-.cpcache
-/.lein-*
-.nrepl-history
-.nrepl-port
-pom.xml
-pom.xml.asc
-/.dir-locals.el
+# JetBrains IDEs
+/.idea/*
+!/.idea/codeStyles/
+!/.idea/dictionaries/
+!/.idea/runConfigurations/
+/*.iml
 
 # MacOs
 .DS_Store
+
+# Clojure
+.cpcache

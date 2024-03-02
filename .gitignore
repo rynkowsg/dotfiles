@@ -1,9 +1,12 @@
+# JetBrains IDEs
+/.idea/*
+!/.idea/codeStyles/
+!/.idea/dictionaries/
+!/.idea/runConfigurations/
+/*.iml
+
 # MacOs
 .DS_Store
-
-# JetBrains
-.idea/
-*.iml
 
 # specifc
 ssh/id_rsa_yubikey.pub
