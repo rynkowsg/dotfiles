@@ -1,32 +1,67 @@
-# https://github.com/99designs/aws-vault/releases
+# PLUGIN: https://github.com/karancode/asdf-aws-vault
+# RELEASES: https://github.com/99designs/aws-vault/releases
 aws-vault 7.2.0
 
-babashka 1.3.182
+# PLUGIN: https://github.com/fredZen/asdf-babashka
+# RELEASES: https://github.com/babashka/babashka/releases
+babashka 1.3.189
 
-# https://github.com/CircleCI-Public/circleci-cli/releases
-circleci-cli 0.1.29041
+# PLUGIN: https://github.com/timgluz/asdf-bats
+# RELEASES: https://github.com/bats-core/bats-core/releases
+bats 1.10.0
 
+# PLUGIN: https://github.com/ucpr/asdf-circleci-cli
+# RELEASES: https://github.com/CircleCI-Public/circleci-cli/releases
+circleci-cli 0.1.30163
+
+# PLUGIN: https://github.com/rynkowsg/asdf-clj-kondo
+# RELEASES: https://github.com/clj-kondo/clj-kondo/releases
+clj-kondo 2024.02.12
+
+# PLUGIN: https://github.com/halcyon/asdf-clojure
+# RELEASES: https://github.com/clojure/brew-install/releases
 clojure 1.11.1.1403
 
+# PLUGIN: https://github.com/halcyon/asdf-java
 java openjdk-17.0.2
 
+# PLUGIN: https://github.com/asdf-vm/asdf-nodejs
+# RELEASES: https://github.com/nodejs/node/releases
+# VERSIONS: https://nodejs.org/en/about/previous-releases
 nodejs 18.17.1
 
-# https://github.com/opentofu/opentofu/releases
-# https://github.com/opentofu/opentofu/blob/main/CHANGELOG.md
-opentofu 1.6.0-alpha3
+# PLUGIN: https://github.com/rynkowsg/asdf-opentofu.git
+# RELEASES: https://github.com/opentofu/opentofu/releases
+# CHANGELOG: https://github.com/opentofu/opentofu/blob/main/CHANGELOG.md
+opentofu 1.6.1
 
+# Python
 # https://devguide.python.org/versions/
 # https://www.python.org/downloads/source/
 # https://www.python.org/doc/versions/
-python 3.12.0
+# PyPy
+# https://doc.pypy.org/en/latest/index-of-release-notes.html
+# https://doc.pypy.org/en/latest/index-of-whatsnew.html
+python pypy3.10-7.3.15
 
+# PLUGIN: https://github.com/luizm/asdf-shellcheck
+# RELEASES: https://github.com/koalaman/shellcheck/releases
 shellcheck 0.9.0
 
+# PLUGIN: https://github.com/luizm/asdf-shfmt
+# RELEASES: https://github.com/mvdan/sh/releases
 shfmt 3.7.0
 
-# https://github.com/hashicorp/terraform/releases
-terraform 1.5.7
+# PLUGIN: https://github.com/asdf-community/asdf-hashicorp
+# RELEASES: https://github.com/hashicorp/terraform/releases
+terraform 1.6.1
 
-# https://github.com/gruntwork-io/terragrunt/releases
-terragrunt 0.52.3
+# Terragrunt & Terraform/OpenTofu compatibility:
+# https://terragrunt.gruntwork.io/docs/getting-started/supported-versions/
+# PLUGIN: https://github.com/ohmer/asdf-terragrunt
+# RELEASES: https://github.com/gruntwork-io/terragrunt/releases
+terragrunt 0.55.1
+
+# PLUGIN: https://github.com/sudermanjr/asdf-yq
+# RELEASES: https://github.com/mikefarah/yq/releases
+yq 4.42.1
