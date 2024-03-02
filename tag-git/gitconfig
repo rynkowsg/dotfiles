@@ -21,6 +21,7 @@
 	plr = pull --rebase
 	rb = rebase
 	rbf = rebase --no-gpg-sign
+	rbv = rebase --verbose
 	st = status
 	fix-lfs = "!f() { cp /dev/null .gitattributes && git status && git checkout -- .gitattributes && git status; }; f"
 	pushf = push --force-with-lease
