@@ -2,8 +2,9 @@
 /.idea/*
 !/.idea/codeStyles/
 !/.idea/dictionaries/
+!/.idea/repl-commands.xml
 !/.idea/runConfigurations/
-/*.iml
+*.iml
 
 # MacOs
 .DS_Store
