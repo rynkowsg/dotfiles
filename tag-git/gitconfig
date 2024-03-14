@@ -42,7 +42,7 @@
 [core]
 	editor = vim
 	pager = less -XFR
-	fileMode = false
+	fileMode = true
 [push]
 	default = current
 [color]
