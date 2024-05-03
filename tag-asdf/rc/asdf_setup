@@ -54,6 +54,7 @@ asdf_is_version() {
 
 declare -A plugins
 plugins["aws-vault"]="https://github.com/karancode/asdf-aws-vault.git"
+plugins["awscli"]="https://github.com/MetricMike/asdf-awscli.git"
 plugins["babashka"]="https://github.com/fredZen/asdf-babashka.git"
 plugins["bats"]="https://github.com/timgluz/asdf-bats.git"
 plugins["circleci-cli"]="https://github.com/ucpr/asdf-circleci-cli.git"
