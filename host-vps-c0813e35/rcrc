@@ -2,14 +2,15 @@
 # https://thoughtbot.github.io/rcm/lsrc.1.html#EXCLUDE_PATTERN
 
 EXCLUDES="
-    README.md
-    bash_profile
-    git/bin
-    bashrc
-    commonrc
+    .bin
     .internal
     .lib
     .samples
+    README.md
+    bash_profile
+    bashrc
+    commonrc
+    git/bin
     "
 
 TAGS="
@@ -18,4 +19,5 @@ TAGS="
     "
 
 SYMLINK_DIRS="
+    git/bin
     "

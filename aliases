@@ -125,6 +125,7 @@ alias dns-reset="sudo dscacheutil -flushcache; sudo killall -HUP mDNSResponder"
 alias yk-info="ykman openpgp info; gpg --card-status"
 alias passtwo="PASSWORD_STORE_DIR=${HOME}/.password-store/twobuffers pass"
 alias passcha="PASSWORD_STORE_DIR=${HOME}/.password-store/chargedup pass"
+alias pass-here='PASSWORD_STORE_DIR=. pass'
 
 # examples how to parse AWS credentials from CSV directly to pass:
 # cat new_user_credentials.csv | tail -n 1 | tr "," "\n" | tail -n 3 | head -n 1 | passtwo insert --echo aws/greg/AWS_ACCESS_KEY_ID

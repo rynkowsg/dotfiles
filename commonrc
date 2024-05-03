@@ -9,7 +9,7 @@ printf "reading: %s\t\t\t($0)\n" "commonrc" >> ~/.dotfiles_log
 export DO_NOT_TRACK=1
 
 # Add local bin paths to PATH
-export PATH="${HOME}/.bin:${HOME}/.local/bin:${PATH}"
+export PATH="${HOME}/.bin:${HOME}/.local/bin:${PATH}:${HOME}/.dotfiles/.bin"
 
 # Load aliases
 source_existing "${HOME}/.aliases"

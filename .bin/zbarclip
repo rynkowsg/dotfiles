@@ -1,0 +1,33 @@
+#!/bin/bash
+
+##
+# Takes the image from the clipboard and decodes it using zbarimg
+##
+
+main () {
+  local temp_file
+  temp_file=$(mktemp /tmp/zbarclip-XXXXXX.png)
+
+  # save image from clip board to a temporary file
+  xclip -selection clipboard -t image/png -o > "${temp_file}"
+  if ! [ -f "${temp_file}" ]; then
+    echo "Error: Could not save clipboard to temporary file" >&2
+    exit 1
+  fi
+
+  # save image from clip board to a temporary file
+  local result
+  result=$(zbarimg -q --raw "${temp_file}")
+  if [ $? -ne 0 ]; then
+    echo "Error: Invalid image. Could not decode QR code." >&2
+    exit 1
+  fi
+
+  # cleanup
+  rm "${temp_file}"
+
+  # return final result
+  echo "${result}"
+}
+
+main

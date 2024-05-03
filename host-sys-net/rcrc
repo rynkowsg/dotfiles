@@ -2,6 +2,7 @@
 # https://thoughtbot.github.io/rcm/lsrc.1.html#EXCLUDE_PATTERN
 
 EXCLUDES="
+    .bin
     .internal
     .lib
     .samples

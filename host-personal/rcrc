@@ -2,6 +2,7 @@
 # https://thoughtbot.github.io/rcm/lsrc.1.html#EXCLUDE_PATTERN
 
 EXCLUDES="
+    .bin
     .internal
     .lib
     .samples
@@ -10,8 +11,7 @@ EXCLUDES="
     "
 
 COPY_ALWAYS="
-    datomic/dev-local.edn"
-    m2/settings.xml
+    "
 
 TAGS="
     bb
