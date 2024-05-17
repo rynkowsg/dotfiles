@@ -23,6 +23,19 @@ import_gpg_key() {
   echo
 }
 
+install_ssh_auth() {
+  if gpg --card-status &>/dev/null
+  then
+    ssh-add -L | grep "cardno" > ~/.ssh/id_rsa_yubikey.pub
+    info "Created ~/.ssh/id_rsa_yubikey.pub"
+  else
+    error "Failed to create ~/.ssh/id_rsa_yubikey.pub!"
+    error "Can't find YubiKey"
+    exit 1
+  fi
+  echo
+}
+
 # $1 - should_confirm
 link_dotfiles() {
   local -r should_confirm="$1"
@@ -83,6 +96,7 @@ main() {
   remove_rc_aliases
   install_deps
   import_gpg_key
+  install_ssh_auth
   link_dotfiles "$should_confirm"
   fill_templates
 }
