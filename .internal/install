@@ -18,7 +18,7 @@ install_deps() {
 
 import_gpg_key() {
   info "Importing my gpg key..."
-  gpg --import < ~/.dotfiles/.data/gpg/gpg-0x6762037B92E2622E-2022-10-05-with-4-ids.asc
+  gpg --import < ~/.dotfiles/.data/gpg/gpg-0x6762037B92E2622E-2023-10-05-public-with-4-uids.asc
   info "Importing my gpg key... DONE"
   echo
 }
