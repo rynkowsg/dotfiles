@@ -33,6 +33,9 @@ install_ssh_auth() {
     error "Can't find YubiKey"
     exit 1
   fi
+
+  git -C "${HOME}/.dotfiles" remote set-url origin git@github.com:rynkowsg/dotfiles.git
+  info "git remote for dotfiles updated"
   echo
 }
 
