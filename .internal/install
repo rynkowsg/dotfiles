@@ -24,16 +24,26 @@ import_gpg_key() {
 }
 
 install_ssh_auth() {
-  if gpg --card-status &>/dev/null
-  then
-    ssh-add -L | grep "cardno" > ~/.ssh/id_rsa_yubikey.pub
-    info "Created ~/.ssh/id_rsa_yubikey.pub"
-  else
+  # check YubiKey inserted
+  if ! gpg --card-status &>/dev/null; then
     error "Failed to create ~/.ssh/id_rsa_yubikey.pub!"
     error "Can't find YubiKey"
     exit 1
   fi
 
+  # restart gpg agent
+  gpg-connect-agent /bye; gpgconf --launch gpg-agent
+  # export key from SSH agent
+  if ssh-add -L | grep -q "cardno"; then
+    mkdir -p ~/.ssh
+    ssh-add -L | grep "cardno" > ~/.ssh/id_rsa_yubikey.pub
+    info "Created ~/.ssh/id_rsa_yubikey.pub"
+  else
+    error "YubiKey key not found in ssh agent"
+    exit 1
+  fi
+
+  # update dotfiles repo URL
   git -C "${HOME}/.dotfiles" remote set-url origin git@github.com:rynkowsg/dotfiles.git
   info "git remote for dotfiles updated"
   echo
@@ -99,9 +109,9 @@ main() {
   remove_rc_aliases
   install_deps
   import_gpg_key
-  install_ssh_auth
   link_dotfiles "$should_confirm"
   fill_templates
+  install_ssh_auth
 }
 
 if [[ "${BASH_SOURCE[0]}" != "${0}" ]]; then
