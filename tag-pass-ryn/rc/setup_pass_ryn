@@ -6,7 +6,8 @@ printf "reading: %s\t\t\t($0)\n" "setup_pass_ryn" >> ~/.dotfiles_log
 . "$HOME/.dotfiles/.lib/pass_store"       # clone_pass_store
 
 main() {
-  clone_pass_store "git@github.com:rynkowsg/rynkowski-pass-store.git" "${HOME}/.password-store/rynkowski"
+  clone_pass_store "git@github.com:rynkowsg/pass-store-rynkowski.git" "${HOME}/.password-store/rynkowski"
+  clone_pass_store "git@github.com:rynkowsg/pass-store-rynkowski-otp.git" "${HOME}/.password-store/rynkowski-otp"
 }
 
 main "$@"
