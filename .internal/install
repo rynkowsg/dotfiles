@@ -110,8 +110,13 @@ main() {
   install_deps
   import_gpg_key
   link_dotfiles "$should_confirm"
+
+  # asks to download pass-store repos, loads gpg config
+  source ~/.dotfiles/commonrc
+
+  # do rest that relies on reloaded config
   fill_templates
-  install_ssh_auth
+  [ -f ~/.rc/setup_gpg_ssh ] && install_ssh_auth
 }
 
 if [[ "${BASH_SOURCE[0]}" != "${0}" ]]; then
