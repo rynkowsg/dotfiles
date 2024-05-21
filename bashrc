@@ -28,4 +28,4 @@ HISTFILESIZE=2000
 shopt -s checkwinsize
 
 # Load commons
-[ -f ~/.dotfiles/commonrc ] && source ~/.dotfiles/commonrc
+[ -f ~/.commonrc ] && source ~/.commonrc

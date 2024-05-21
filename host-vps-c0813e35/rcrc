@@ -9,7 +9,6 @@ EXCLUDES="
     README.md
     bash_profile
     bashrc
-    commonrc
     git/bin
     "
 

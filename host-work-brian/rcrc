@@ -7,7 +7,6 @@ EXCLUDES="
     .lib
     .samples
     README.md
-    commonrc
     "
 
 COPY_ALWAYS="

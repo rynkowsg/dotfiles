@@ -25,4 +25,4 @@ setopt HIST_VERIFY               # Don't execute immediately upon history expans
 setopt HIST_BEEP                 # Beep when accessing nonexistent history.
 
 # Load commons
-[ -f ~/.dotfiles/commonrc ] && source ~/.dotfiles/commonrc
+[ -f ~/.commonrc ] && source ~/.commonrc
