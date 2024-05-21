@@ -8,8 +8,11 @@ My dotfiles, managed by [rcm].
 ## Installation
 
 ```shell
-git clone https://github.com/rynkowsg/dotfiles ~/.dotfiles
+git clone https://github.com/rynkowsg/dotfiles ~/src/os/rynkowsg/dotfiles
+ln -s ~/src/os/rynkowsg/dotfiles ~/.dotfiles
 ~/.dotfiles/.internal/install
+
+git -C "${HOME}/.dotfiles" remote set-url origin git@github.com:rynkowsg/dotfiles.git
 ```
 
 ## Usage

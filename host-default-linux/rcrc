@@ -1,0 +1,26 @@
+# https://thoughtbot.github.io/rcm/rcrc.5.html
+# https://thoughtbot.github.io/rcm/lsrc.1.html#EXCLUDE_PATTERN
+
+EXCLUDES="
+    .bin
+    .internal
+    .lib
+    .samples
+    "
+
+COPY_ALWAYS="
+    "
+
+TAGS="
+    git
+    gpg
+    gpg-linux
+    gpg-ssh
+    linux
+    pass-ryn
+    vim-basic
+    "
+
+SYMLINK_DIRS="
+    git/bin
+    "

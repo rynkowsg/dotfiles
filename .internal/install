@@ -24,6 +24,9 @@ import_gpg_key() {
 }
 
 install_ssh_auth() {
+  # restart gpg agent
+  gpg-connect-agent /bye; gpgconf --launch gpg-agent
+
   # check YubiKey inserted
   if ! gpg --card-status &>/dev/null; then
     error "Failed to create ~/.ssh/id_rsa_yubikey.pub!"
@@ -31,8 +34,6 @@ install_ssh_auth() {
     exit 1
   fi
 
-  # restart gpg agent
-  gpg-connect-agent /bye; gpgconf --launch gpg-agent
   # export key from SSH agent
   if ssh-add -L | grep -q "cardno"; then
     mkdir -p ~/.ssh
@@ -43,10 +44,54 @@ install_ssh_auth() {
     exit 1
   fi
 
-  # update dotfiles repo URL
-  git -C "${HOME}/.dotfiles" remote set-url origin git@github.com:rynkowsg/dotfiles.git
-  info "git remote for dotfiles updated"
   echo
+}
+
+# $1 - host name
+# env var DOTFILES_DIRS - list of
+find_host_dir() {
+  local -r hostname=$1
+  find_opts=()
+  find_opts+=("-L") # ensure it follows symbolic links
+  IFS=' :' read -r -a dotfiles_dirs_array <<< "${DOTFILES_DIRS}"
+  if [ ${#dotfiles_dirs_array[@]} -eq 0 ]; then
+    dotfiles_dirs_array=("${HOME}/.dotfiles")
+  fi
+  find_opts+=("${dotfiles_dirs_array[@]}")
+  find_opts+=("-name" "host-${hostname}")
+
+  local result
+  >&2  echo "find ${find_opts[@]}"
+  result=$(find "${find_opts[@]}")
+
+  # Count the number of lines in the result
+  local count
+  count=$(echo "%s" "$result" | wc -l)
+
+  if [[ -n "$result" && $count -eq 1 ]]; then
+    echo "$result"
+  elif [[ $count -gt 1 ]]; then
+    # If more than one directory is found, print an error and return empty string
+    >&2 echo "Error: Multiple directories found for host-${hostname}."
+    echo $result
+    exit 1
+  else
+    echo ""
+  fi
+}
+
+host_dir_exists() {
+  local -r hostname=$1
+
+  local result
+  result=$(find_host_dir "$hostname")
+  if [[ -n "$result" ]]; then
+    echo "directory for $hostname NOT found"
+    return 0
+  else
+    echo "directory for $hostname found"
+    return 1
+  fi
 }
 
 # $1 - should_confirm
@@ -60,8 +105,37 @@ link_dotfiles() {
 
   local -r install_script="${tmp_dir}/install.sh"
 
-  # rcup generates a shell script installing all the links
-  RCRC="$HOME/.dotfiles/host-$(hostname)/rcrc" rcup -B "$(hostname)" -g > "${install_script}"
+  DOTFILES_DIRS="${DOTFILES_DIRS:-"${HOME}/.dotfiles"}" # list of paths separated by space or :
+  # Note about DOTFILES_DIR:
+  # To access more then one directory, either you can:
+  # - provide multiple paths with `-d` param (man rcup)
+  # - provide paths with DOTFILES_DIRS in rcrc file
+  # rcm doesn't support env vars, so `rcup` doesn't read `DOTFILES_DIRS` env var.
+  # The code below translates env var to `-d` params.
+
+  # generate a shell script installing all the links
+  local rcup_opts=()
+  rcup_opts+=("-g") # print to stdout
+  rcup_opts+=("-x" '"README.md:.internal"') # sample exclude
+
+  # Add -d parameter for each path in DOTFILES_DIRS
+  IFS=' :' read -r -a dotfiles_dirs_array <<< "${DOTFILES_DIRS}"
+  for dir in "${dotfiles_dirs_array[@]}"; do
+    rcup_opts+=("-d" "${dir}")
+  done
+
+  local target_host host_dir
+  target_host="$(hostname)"
+  host_dir="$(find_host_dir "${target_host}")"
+  if [ -z "${host_dir}" ]; then
+    target_host="default-linux"
+    >&2 echo "Directory targeting hostname '${target_host}' not found. Changed taget to '${target_host}'."
+  fi
+  host_dir="$(find_host_dir "${target_host}")"
+  >&2 echo "Directory targeting hostname '${target_host}' found: ${host_dir}"
+  rcup_opts+=(-B "${target_host}")
+  >&2 echo "${host_dir}/rcrc rcup ${rcup_opts[@]}"
+  RCRC="${host_dir}/rcrc" rcup "${rcup_opts[@]}" > "${install_script}"
 
   printf "%s\n" "---------------------------------------------------------------"
   printf "%s\n" "---               FILES TO LINK                            ----"
@@ -116,6 +190,8 @@ main() {
 
   # do rest that relies on reloaded config
   fill_templates
+
+  # setup gpg+ssh
   [ -f ~/.rc/setup_gpg_ssh ] && install_ssh_auth
 }
 
