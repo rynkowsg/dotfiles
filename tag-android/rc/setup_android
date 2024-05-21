@@ -1,14 +1,122 @@
-#!/usr/bin/env sh
+#!/usr/bin/env bash
 
 # debug log
 printf "reading: %s\t\t\t($0)\n" "setup_android" >> ~/.dotfiles_log
+# includes
+. "${HOME}/.dotfiles.envs"                  # DOTFILES_BASE_PATH
+. "${DOTFILES_BASE_PATH}/.lib/error"        # error_exit, info, debug
+. "${DOTFILES_BASE_PATH}/.lib/source_utils" # is_sourced
+. "${DOTFILES_BASE_PATH}/.lib/yes_or_no"    # yes_or_no
+. "${DOTFILES_BASE_PATH}/.lib/trap"         # add_on_exit
 
-# Android dev env setup
-# TODO: Fix paths to make sense for Linux
-export ANDROID_SDK_ROOT="${HOME}/.android/sdk"
-export ANDROID_HOME="${ANDROID_SDK_ROOT}"
-export PATH="${ANDROID_SDK_ROOT}/cmdline-tools/latest/bin:${PATH}"
-export PATH="${ANDROID_SDK_ROOT}/platform-tools:${PATH}"
-export PATH="${ANDROID_SDK_ROOT}/build-tools/latest:${PATH}"  # requires a symlink e.g. `ln -s 27.0.3 latest`
-#export ANDROID_NDK_ROOT="/usr/local/opt/android-sdk/ndk/latest"
-#export PATH="${ANDROID_NDK_ROOT}:${PATH}"
+# Sample links
+# - https://dl.google.com/android/repository/commandlinetools-linux-11076708_latest.zip
+# - https://dl.google.com/android/repository/commandlinetools-mac-11076708_latest.zip
+# - https://dl.google.com/android/repository/commandlinetools-win-11076708_latest.zip
+
+INSTALL_VERSION="11076708"
+TOOL_NAME="platform-tools"
+
+# Note
+# The cmdline-tools needs to be installed in ${sdk_path}/cmdline-tools/latest.
+# Otherwise I got this message when I try to use sdkmanager:
+#     Error: Could not determine SDK root.
+#     Error: Either specify it explicitly with --sdk_root= or move this package into its expected location: <sdk>/cmdline-tools/latest/
+# Plus if I install the downloaded files in the latest/ dir, sdkmanager is not going to update it later.
+# Therefore, I don't install the downloaded files. I use sdkmanager among downloaded files to install cmdline-tools and rest.
+
+ANDROID_PT_installed() {
+  if hash "sdkmanager" &> /dev/null; then
+    return 0 # true
+  else
+    return 1 # false
+  fi
+}
+
+ANDROID_PT_url_path() {
+  if [ "${OSTYPE}" = "darwin" ]; then
+    echo "https://dl.google.com/android/repository/commandlinetools-mac-11076708_latest.zip"
+  elif [ "${OSTYPE}" = "linux-gnu" ]; then
+    echo "https://dl.google.com/android/repository/commandlinetools-linux-11076708_latest.zip"
+  else
+    printf "Error: %s\n" "System '${OSTYPE}' is not supported."
+    exit 1;
+  fi
+}
+
+ANDROID_PT_install() {
+  local -r github_api_token="${ANDROID_PT__GITHUB_API_TOKEN:-}" # optional
+  local -r sdk_root="${ANDROID_PT__SDK_ROOT:-}"
+  local -r version="${ANDROID_PT__VERSION:-}"
+
+  # inputs validation
+  [ -z "${version}" ] && error_exit "version can't be empty"
+  [ -z "${sdk_root}" ] && error_exit "sdk_root can't be empty"
+
+   # prepare curl opts
+  local curl_opts=(-fsSL)
+  if [ -n "${github_api_token:-}" ]; then
+    curl_opts=("${curl_opts[@]}" "-H" "Authorization: token ${github_api_token}")
+  fi
+
+  # prepare temp directory
+  local temp_dir
+  temp_dir=$(mktemp -d -t "dotfiles-install-android-platform-tools.XXXX")
+  debug "Temporary directory created at ${temp_dir}"
+  add_on_exit rm -rf "${temp_dir}"
+  debug
+
+  # download archive & checksum file
+  info "Downloading '${TOOL_NAME}' release ${version}..."
+  local archive_url
+  archive_url="$(ANDROID_PT_url_path "${version}")"
+  info " - ${archive_url}"
+  local temp_archive_path="${temp_dir}/${TOOL_NAME}.zip"
+  curl "${curl_opts[@]}" -o "${temp_archive_path}" -C - "${archive_url}" || error_exit "Could not download ${archive_url}"
+  info
+
+  # move the downloaded file to final destination
+  local unzip_opts=(-o "${temp_archive_path}" -d "${temp_dir}")
+#  ! is_debug && unzip_opts=(-q "${unzip_opts[@]}")
+  unzip "${unzip_opts[@]}" || error_exit "Could not extract ${temp_archive_path}"
+
+  mkdir -p "${sdk_root}"
+  yes | "${temp_dir}/cmdline-tools/bin/sdkmanager" --sdk_root="${sdk_root}" --install "cmdline-tools;latest" "platform-tools" "build-tools;34.0.0"
+
+  info "Downloading ${TOOL_NAME} release ${version}... DONE"
+  info
+}
+
+ANDROID_PT_install_xp() {
+  if [ -n "$BASH_VERSION" ]; then
+    ANDROID_PT_install
+  elif [ -n "$ZSH_VERSION" ]; then
+    emulate bash -c ANDROID_PT_install
+  else
+    error_exit "Shell type not supported"
+  fi
+}
+
+ANDROID_export_env_vars() {
+  # Android dev env setup
+  # TODO: Fix paths to make sense for Linux
+  export ANDROID_SDK_ROOT="${HOME}/.android/sdk"
+  export ANDROID_HOME="${ANDROID_SDK_ROOT}"
+  export PATH="${ANDROID_SDK_ROOT}/cmdline-tools/latest/bin:${PATH}"
+  export PATH="${ANDROID_SDK_ROOT}/platform-tools:${PATH}"
+  export PATH="${ANDROID_SDK_ROOT}/build-tools/latest:${PATH}"  # requires a symlink e.g. `ln -s 27.0.3 latest`
+  #export ANDROID_NDK_ROOT="/usr/local/opt/android-sdk/ndk/latest"
+  #export PATH="${ANDROID_NDK_ROOT}:${PATH}"
+}
+
+main() {
+  ANDROID_export_env_vars
+  if ! ANDROID_PT_installed; then
+    ANDROID_PT__GITHUB_API_TOKEN="${GITHUB_API_TOKEN:-}" \
+      ANDROID_PT__SDK_ROOT="${ANDROID_SDK_ROOT}" \
+      ANDROID_PT__VERSION="11076708" \
+      ANDROID_PT_install_xp
+  fi
+}
+
+main "$@"

@@ -10,6 +10,11 @@ INVALID_FN_CALL_ERROR=102
 INVALID_STATE_ERROR=103
 COMMAND_DONT_EXIST=104
 
+function debug() {
+  local msg="${1}"
+  printf "%s\n" "${msg}"
+}
+
 function warning_color() {
   local msg="${1}"
   printf "${YELLOW}%s${RESET}" "${msg}"
