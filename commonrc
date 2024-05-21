@@ -35,8 +35,6 @@ source_existing "$HOME/.rc/asdf_load"
 
 source_existing "$HOME/.rc/setup_autojump"
 
-source_existing "$HOME/.rc/setup_aws"
-
 source_existing "$HOME/.rc/bb_load"
 
 source_existing "$HOME/.rc/load_clj"
