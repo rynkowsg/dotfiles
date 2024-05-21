@@ -20,7 +20,11 @@ source_existing "${HOME}/.platformrc"
 
 # Load gpg & ssh related
 source_existing "$HOME/.rc/setup_gpg_ssh"
-source_existing "$HOME/.rc/setup_pass_ryn"
+
+# Load pass setups
+for file in "$HOME/.rc"/setup_pass*; do
+  source "$file"
+done
 
 # Load other configs if they exist
 
