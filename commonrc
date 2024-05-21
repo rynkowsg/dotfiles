@@ -3,7 +3,8 @@
 # debug log
 printf "reading: %s\t\t\t($0)\n" "commonrc" >> ~/.dotfiles_log
 # includes
-. "$HOME/.dotfiles/.lib/source_utils"
+. ~/.dotfiles.envs                          # DOTFILES_BASE_PATH
+. "${DOTFILES_BASE_PATH}/.lib/source_utils"
 
 # Disable shell analytics, more: https://consoledonottrack.com
 export DO_NOT_TRACK=1

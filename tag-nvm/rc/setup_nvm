@@ -3,8 +3,9 @@
 # debug log
 printf "reading: %s\t\t\t($0)\n" "setup_nvm" >> ~/.dotfiles_log
 # includes
-. "$HOME/.dotfiles/.lib/error"
-. "$HOME/.dotfiles/.lib/yes_or_no"
+. ~/.dotfiles.envs                          # DOTFILES_BASE_PATH
+. "${DOTFILES_BASE_PATH}/.lib/error"
+. "${DOTFILES_BASE_PATH}/.lib/yes_or_no"
 
 NVM_VER="0.39.3"
 NVM_VER_TAG="v${NVM_VER}"

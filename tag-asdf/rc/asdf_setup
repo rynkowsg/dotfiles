@@ -5,11 +5,12 @@ SCRIPT_DIR="$(cd "$(dirname "$([ -L "$0" ] && readlink "$0" || echo "$0")")" || 
 # debug log
 printf "reading: %s\t\t\t($0)\n" "asdf_setup" >> ~/.dotfiles_log
 # includes
-. "${SCRIPT_DIR}/asdf_common"             # ASDF_DIR
-. "$HOME/.dotfiles/.lib/error"            # error_exit
-. "$HOME/.dotfiles/.lib/source_utils"     # is_sourced
-. "$HOME/.dotfiles/.lib/trap"             # add_on_exit
-. "$HOME/.dotfiles/.lib/yes_or_no"        # yes_or_no
+. ~/.dotfiles.envs                          # DOTFILES_BASE_PATH
+. "${SCRIPT_DIR}/asdf_common"               # ASDF_DIR
+. "${DOTFILES_BASE_PATH}/.lib/error"        # error_exit
+. "${DOTFILES_BASE_PATH}/.lib/source_utils" # is_sourced
+. "${DOTFILES_BASE_PATH}/.lib/trap"         # add_on_exit
+. "${DOTFILES_BASE_PATH}/.lib/yes_or_no"    # yes_or_no
 
 ASDF_VER="0.14.0"
 ASDF_VER_TAG="v${ASDF_VER}"

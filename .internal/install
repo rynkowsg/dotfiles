@@ -2,12 +2,20 @@
 
 # shellcheck disable=SC2002
 
+# paths initialization
+SCRIPT_DIR="$(cd "$(dirname "$([ -L "$0" ] && readlink "$0" || echo "$0")")" || exit 1; pwd -P)"
+ROOT_DIR="$(cd "${SCRIPT_DIR}/.." || exit 1; pwd -P)"
 # includes
-. "$HOME/.dotfiles/.lib/error"
-. "$HOME/.dotfiles/.lib/install_dotfiles_deps"
-. "$HOME/.dotfiles/.lib/shell_utils" # run_parts_safe
-. "$HOME/.dotfiles/.lib/trap"
-. "$HOME/.dotfiles/.lib/yes_or_no"
+. "${ROOT_DIR}/.lib/error"
+. "${ROOT_DIR}/.lib/install_dotfiles_deps"
+. "${ROOT_DIR}/.lib/shell_utils" # run_parts_safe
+. "${ROOT_DIR}/.lib/trap"
+. "${ROOT_DIR}/.lib/yes_or_no"
+
+save_install_dir() {
+  echo "DOTFILES_BASE_PATH=${ROOT_DIR}" > ~/.dotfiles.envs
+  echo "DOTFILES_PATH=${ROOT_DIR}" >> ~/.dotfiles.envs
+}
 
 install_deps() {
   info "Installing dotfiles deps..."
@@ -18,7 +26,7 @@ install_deps() {
 
 import_gpg_key() {
   info "Importing my gpg key..."
-  gpg --import < ~/.dotfiles/.data/gpg/gpg-0x6762037B92E2622E-2023-10-05-public-with-4-uids.asc
+  gpg --import < "${ROOT_DIR}/.data/gpg/gpg-0x6762037B92E2622E-2023-10-05-public-with-4-uids.asc"
   info "Importing my gpg key... DONE"
   echo
 }
@@ -55,7 +63,7 @@ find_host_dir() {
   find_opts+=("-L") # ensure it follows symbolic links
   IFS=' :' read -r -a dotfiles_dirs_array <<< "${DOTFILES_DIRS}"
   if [ ${#dotfiles_dirs_array[@]} -eq 0 ]; then
-    dotfiles_dirs_array=("${HOME}/.dotfiles")
+    dotfiles_dirs_array=("${ROOT_DIR}")
   fi
   find_opts+=("${dotfiles_dirs_array[@]}")
   find_opts+=("-name" "host-${hostname}")
@@ -105,7 +113,7 @@ link_dotfiles() {
 
   local -r install_script="${tmp_dir}/install.sh"
 
-  DOTFILES_DIRS="${DOTFILES_DIRS:-"${HOME}/.dotfiles"}" # list of paths separated by space or :
+  DOTFILES_DIRS="${DOTFILES_DIRS:-"${ROOT_DIR}"}" # list of paths separated by space or :
   # Note about DOTFILES_DIR:
   # To access more then one directory, either you can:
   # - provide multiple paths with `-d` param (man rcup)
@@ -179,6 +187,7 @@ fill_templates() {
 # $1 - should_confirm
 main() {
   local -r should_confirm="$1"
+  save_install_dir
   init_templates_processing
   remove_rc_aliases
   install_deps
@@ -186,7 +195,7 @@ main() {
   link_dotfiles "$should_confirm"
 
   # asks to download pass-store repos, loads gpg config
-  source ~/.dotfiles/commonrc
+  source "${ROOT_DIR}/commonrc"
 
   # do rest that relies on reloaded config
   fill_templates

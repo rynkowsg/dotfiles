@@ -3,7 +3,8 @@
 # debug log
 printf "reading: %s\t\t\t($0)\n" "aliases" >> ~/.dotfiles_log
 # includes
-. "$HOME/.dotfiles/.lib/source_utils" # source_parts_safe
+. ~/.dotfiles.envs                          # DOTFILES_BASE_PATH
+. "${DOTFILES_BASE_PATH}/.lib/source_utils" # source_parts_safe
 
 # shellcheck disable=SC2139
 

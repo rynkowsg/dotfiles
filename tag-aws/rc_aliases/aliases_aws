@@ -2,8 +2,10 @@
 
 # debug log
 printf "reading: %s\t\t\t($0)\n" "aliases_aws" >> ~/.dotfiles_log
+# includes
+. ~/.dotfiles.envs                          # DOTFILES_BASE_PATH
 
-alias aws-update="\$HOME/.dotfiles/tag-aws/rc/setup_aws update"
+alias aws-update="${DOTFILES_BASE_PATH}/tag-aws/rc/setup_aws update"
 alias with-aws-vars="AWS_ACCESS_KEY_ID=\"\$AWS_ACCESS_KEY_ID\" AWS_SECRET_ACCESS_KEY=\"\$AWS_SECRET_ACCESS_KEY\""
 alias awsw="with-aws-vars aws"
 

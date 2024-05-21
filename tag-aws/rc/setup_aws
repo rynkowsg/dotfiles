@@ -3,9 +3,10 @@
 # debug log
 printf "reading: %s\t\t\t($0)\n" "setup_aws" >> ~/.dotfiles_log
 # includes
-. "$HOME/.dotfiles/.lib/error"
-. "$HOME/.dotfiles/.lib/trap"
-. "$HOME/.dotfiles/.lib/yes_or_no"
+. ~/.dotfiles.envs                          # DOTFILES_BASE_PATH
+. "${DOTFILES_BASE_PATH}/.lib/error"
+. "${DOTFILES_BASE_PATH}/.lib/trap"
+. "${DOTFILES_BASE_PATH}/.lib/yes_or_no"
 
 
 # According to: https://docs.aws.amazon.com/cli/latest/userguide/getting-started-install.html

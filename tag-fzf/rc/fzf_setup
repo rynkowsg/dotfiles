@@ -3,10 +3,11 @@
 # debug log
 printf "reading: %s\t\t\t($0)\n" "fzf_setup" >> ~/.dotfiles_log
 # includes
-. "$HOME/.dotfiles/.lib/error"        # error_exit
-. "$HOME/.dotfiles/.lib/source_utils" # is_sourced
-. "$HOME/.dotfiles/.lib/yes_or_no"    # yes_or_no
-. "$HOME/.rc/fzf_common"              # fzf_load
+. ~/.dotfiles.envs                          # DOTFILES_BASE_PATH
+. "${DOTFILES_BASE_PATH}/.lib/error"        # error_exit
+. "${DOTFILES_BASE_PATH}/.lib/source_utils" # is_sourced
+. "${DOTFILES_BASE_PATH}/.lib/yes_or_no"    # yes_or_no
+. "${HOME}/.rc/fzf_common"                  # fzf_load
 
 FZF_VER="0.38.0"
 

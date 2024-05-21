@@ -1,12 +1,15 @@
 #!/usr/bin/env bash
 
+# paths initialization
+SCRIPT_DIR="${SCRIPT_DIR:-"$(cd "$(dirname "$([ -L "$0" ] && readlink "$0" || echo "$0")")" || exit 1; pwd -P)"}"
+ROOT_DIR="${ROOT_DIR:-"$(cd "${SCRIPT_DIR}/." || exit 1; pwd -P)"}"
 # includes
-. "$HOME/.dotfiles/.lib/error" # assert_command_exist
-. "$HOME/.dotfiles/.lib/linux" # can_run_sudo
+. "${ROOT_DIR}/.lib/error"        # assert_command_exist
+. "${ROOT_DIR}/.lib/linux"        # can_run_sudo
 
 function install_dotfiles_deps_macos {
   # install Homebrew if not installed
-  source "$HOME/.dotfiles/.lib/macos/homebrew"
+  source "${DOTFILES_BASE_PATH}/.lib/macos/homebrew"
   install_homebrew;
   brew install rcm pass
   brew install debianutils # provides: run-parts

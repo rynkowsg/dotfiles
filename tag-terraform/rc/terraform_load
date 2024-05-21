@@ -3,7 +3,8 @@
 # debug log
 printf "reading: %s\t\t\t($0)\n" "terraform_load" >> ~/.dotfiles_log
 # imports
-. "$HOME/.dotfiles/.lib/error" # warning
+. ~/.dotfiles.envs                          # DOTFILES_BASE_PATH
+. "${DOTFILES_BASE_PATH}/.lib/error"        # warning
 
 terraform_is_installed() {
   if command -v terraform > /dev/null; then

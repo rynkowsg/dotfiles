@@ -1,7 +1,10 @@
 #!/usr/bin/env bash
 
+# paths initialization
+SCRIPT_DIR="$(cd "$(dirname "$([ -L "$0" ] && readlink "$0" || echo "$0")")" || exit 1; pwd -P)"
+ROOT_DIR="$(cd "${SCRIPT_DIR}/.." || exit 1; pwd -P)"
 # includes
-. "$HOME/.dotfiles/.lib/error"
+. "${ROOT_DIR}/.lib/error"
 
 main() {
   set -e
@@ -10,7 +13,7 @@ main() {
   git pull --rebase
 
   local -r should_confirm=true
-  "$HOME/.dotfiles/.internal/install" "$should_confirm"
+  "${ROOT_DIR}/.internal/install" "$should_confirm"
 }
 
 if [[ "${BASH_SOURCE[0]}" != "${0}" ]]; then
