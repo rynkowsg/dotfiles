@@ -1,0 +1,25 @@
+#!/bin/bash
+
+# Inspiration:
+# https://gist.github.com/dwiash/f9d4734fd27da79f6a57
+
+# Get list of existing sessions
+sessions=$(tmux list-sessions -F "#S")
+
+# Count the number of existing sessions
+num_sessions=$(echo "$sessions" | wc -l)
+
+if [ "$num_sessions" -eq 1 ]; then
+    session_name=$(echo "$sessions")
+    tmux attach-session -t "$session_name"
+
+elif [ "$num_sessions" -gt 1 ]; then
+    echo "Existing sessions:"
+    tmux list-sessions
+    read -p "Enter the name of the session you want to join: " session_name
+    tmux attach-session -t "$session_name"
+
+# If no sessions exist, start a new one
+else
+    tmux
+fi
