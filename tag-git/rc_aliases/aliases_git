@@ -38,3 +38,5 @@ alias gs="git status"
 alias glom="git lo origin/master..master"
 alias glmo="git lo master..origin/master"
 alias gpcb="git push -u origin HEAD:\$(gbr-current)"
+
+alias git-clone-naked="GIT_CLONE_PROTECTION_ACTIVE=false git clone"
