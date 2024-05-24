@@ -13,8 +13,16 @@ ROOT_DIR="$(cd "${SCRIPT_DIR}/.." || exit 1; pwd -P)"
 . "${ROOT_DIR}/.lib/yes_or_no"
 
 save_install_dir() {
-  echo "DOTFILES_BASE_PATH=${ROOT_DIR}" > ~/.dotfiles.envs
-  echo "DOTFILES_PATH=${ROOT_DIR}" >> ~/.dotfiles.envs
+  # DOTFILES_BASE_PATH - add if deosn't exist & modify if exists
+  if ! grep -q "^DOTFILES_BASE_PATH=" ~/.dotfiles.envs; then
+    echo "DOTFILES_BASE_PATH=${ROOT_DIR}" >> ~/.dotfiles.envs
+  else
+    sed -i "s|^DOTFILES_BASE_PATH=.*|DOTFILES_BASE_PATH=${ROOT_DIR}|"  ~/.dotfiles.envs
+  fi
+  # DOTFILES_PATH - add only if it doesn't exist
+  if ! grep -q "^DOTFILES_PATH=" ~/.dotfiles.envs; then
+    echo "DOTFILES_PATH=${ROOT_DIR}" >> ~/.dotfiles.envs
+  fi
 }
 
 install_deps() {
