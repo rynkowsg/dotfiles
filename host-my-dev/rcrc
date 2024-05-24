@@ -32,6 +32,7 @@ TAGS="
     pass-ryn
     terraform
     vim-basic
+    zsh
     "
 
 SYMLINK_DIRS="
