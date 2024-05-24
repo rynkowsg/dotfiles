@@ -12,6 +12,7 @@ COPY_ALWAYS="
     "
 
 TAGS="
+    bash
     git
     gpg
     gpg-linux

@@ -1,0 +1,9 @@
+#!/bin/bash
+
+# debug log
+printf "reading: %s\t\t\t($0)\n" "bash/completions" >> ~/.dotfiles_log
+# includes
+. ~/.dotfiles.envs                          # DOTFILES_BASE_PATH
+. "${DOTFILES_BASE_PATH}/.lib/source_utils" # source_parts_safe
+
+source_parts_safe ~/.bash/completion_scripts

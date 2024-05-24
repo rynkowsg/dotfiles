@@ -27,5 +27,7 @@ HISTFILESIZE=2000
 # update the values of LINES and COLUMNS.
 shopt -s checkwinsize
 
+source ~/.bash/completions
+
 # Load commons
 [ -f ~/.commonrc ] && source ~/.commonrc

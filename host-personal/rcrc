@@ -13,6 +13,7 @@ COPY_ALWAYS="
     "
 
 TAGS="
+    bash
     bb
     clj
     clj-default-deps
