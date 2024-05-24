@@ -1,0 +1,23 @@
+#!/bin/bash
+
+###
+#
+#  Usage:
+#
+#      pidcat-install
+#      DOTFILES_BASE_PATH=~/.dotfiles pidcat-install
+#
+####
+
+. ~/.dotfiles.envs                          # DOTFILES_BASE_PATH
+
+if [ -z "${DOTFILES_BASE_PATH}" ]; then
+  echo "env variable DOTFILES_BASE_PATH not defined"
+  exit 1
+fi
+
+set -x
+curl https://raw.githubusercontent.com/JakeWharton/pidcat/master/pidcat.py --create-dir --output "${DOTFILES_BASE_PATH}/tag-android/bin/pidcat" && chmod +x "${_}"
+curl https://raw.githubusercontent.com/JakeWharton/pidcat/master/zsh-completion/_pidcat --create-dir --output "${DOTFILES_BASE_PATH}/tag-android/zsh/completion/_pidcat"
+curl https://raw.githubusercontent.com/JakeWharton/pidcat/master/bash_completion.d/pidcat --create-dir --output "${DOTFILES_BASE_PATH}/tag-android/bash/completion_scripts/pidcat"
+set +x
