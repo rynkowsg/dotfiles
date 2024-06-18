@@ -81,7 +81,8 @@ ANDROID_PT_install() {
   unzip "${unzip_opts[@]}" || error_exit "Could not extract ${temp_archive_path}"
 
   mkdir -p "${sdk_root}"
-  yes | "${temp_dir}/cmdline-tools/bin/sdkmanager" --sdk_root="${sdk_root}" --install "cmdline-tools;latest" "platform-tools" "build-tools;34.0.0"
+  yes | "${temp_dir}/cmdline-tools/bin/sdkmanager" --sdk_root="${sdk_root}" --licenses
+  "${temp_dir}/cmdline-tools/bin/sdkmanager" --sdk_root="${sdk_root}" --install "cmdline-tools;latest" "platform-tools" "build-tools;34.0.0"
 
   info "Downloading ${TOOL_NAME} release ${version}... DONE"
   info
