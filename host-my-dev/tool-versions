@@ -26,6 +26,10 @@ clojure 1.11.1.1403
 # releases: https://adoptium.net/temurin/archive/?version=17
 java temurin-17.0.11+9
 
+# PLUGIN: https://github.com/rynkowsg/asdf-jet.git
+# RELEASES: https://github.com/borkdude/jet/releases
+jet 0.7.27
+
 # PLUGIN: https://github.com/asdf-vm/asdf-nodejs
 # RELEASES: https://github.com/nodejs/node/releases
 # VERSIONS: https://nodejs.org/en/about/previous-releases
