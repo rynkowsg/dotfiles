@@ -32,9 +32,9 @@ done
 
 # Load other configs if they exist
 
-source_existing "$HOME/.rc/setup_android"
+source_existing "$HOME/.rc/asdf_load" # first because some others (e.g. android) needs it (e.g. for java)
 
-source_existing "$HOME/.rc/asdf_load"
+source_existing "$HOME/.rc/setup_android"
 
 source_existing "$HOME/.rc/setup_autojump"
 

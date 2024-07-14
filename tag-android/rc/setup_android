@@ -9,14 +9,6 @@ printf "reading: %s\t\t\t($0)\n" "setup_android" >> ~/.dotfiles_log
 . "${DOTFILES_BASE_PATH}/.lib/yes_or_no"    # yes_or_no
 . "${DOTFILES_BASE_PATH}/.lib/trap"         # add_on_exit
 
-# Sample links
-# - https://dl.google.com/android/repository/commandlinetools-linux-11076708_latest.zip
-# - https://dl.google.com/android/repository/commandlinetools-mac-11076708_latest.zip
-# - https://dl.google.com/android/repository/commandlinetools-win-11076708_latest.zip
-
-INSTALL_VERSION="11076708"
-TOOL_NAME="platform-tools"
-
 # Note
 # The cmdline-tools needs to be installed in ${sdk_path}/cmdline-tools/latest.
 # Otherwise I got this message when I try to use sdkmanager:
@@ -24,6 +16,8 @@ TOOL_NAME="platform-tools"
 #     Error: Either specify it explicitly with --sdk_root= or move this package into its expected location: <sdk>/cmdline-tools/latest/
 # Plus if I install the downloaded files in the latest/ dir, sdkmanager is not going to update it later.
 # Therefore, I don't install the downloaded files. I use sdkmanager among downloaded files to install cmdline-tools and rest.
+
+TOOL_NAME="commandlinetools"
 
 ANDROID_PT_installed() {
   if hash "sdkmanager" &> /dev/null; then
@@ -33,28 +27,33 @@ ANDROID_PT_installed() {
   fi
 }
 
+# Sample links
+# - https://dl.google.com/android/repository/commandlinetools-linux-11076708_latest.zip
+# - https://dl.google.com/android/repository/commandlinetools-mac-11076708_latest.zip
+# - https://dl.google.com/android/repository/commandlinetools-win-11076708_latest.zip
 ANDROID_PT_url_path() {
+  android_studio_page="$(curl "https://developer.android.com/studio")"
+  link=
   if [ "${OSTYPE}" = "darwin" ]; then
-    echo "https://dl.google.com/android/repository/commandlinetools-mac-11076708_latest.zip"
+    link="$(echo "${android_studio_page}" | grep -o "https://dl.google.com/android/repository/commandlinetools-mac-[0-9]*_latest\.zip")"
   elif [ "${OSTYPE}" = "linux-gnu" ]; then
-    echo "https://dl.google.com/android/repository/commandlinetools-linux-11076708_latest.zip"
+    link="$(echo "${android_studio_page}" | grep -o "https://dl.google.com/android/repository/commandlinetools-linux-[0-9]*_latest\.zip")"
   else
     printf "Error: %s\n" "System '${OSTYPE}' is not supported."
     exit 1;
   fi
+  echo "${link}"
 }
 
 ANDROID_PT_install() {
   local -r github_api_token="${ANDROID_PT__GITHUB_API_TOKEN:-}" # optional
   local -r sdk_root="${ANDROID_PT__SDK_ROOT:-}"
-  local -r version="${ANDROID_PT__VERSION:-}"
 
   # inputs validation
-  [ -z "${version}" ] && error_exit "version can't be empty"
   [ -z "${sdk_root}" ] && error_exit "sdk_root can't be empty"
 
    # prepare curl opts
-  local curl_opts=(-fsSL)
+  local curl_opts=(-L)
   if [ -n "${github_api_token:-}" ]; then
     curl_opts=("${curl_opts[@]}" "-H" "Authorization: token ${github_api_token}")
   fi
@@ -67,10 +66,17 @@ ANDROID_PT_install() {
   debug
 
   # download archive & checksum file
-  info "Downloading '${TOOL_NAME}' release ${version}..."
+  info "Downloading '${TOOL_NAME}' metadata..."
   local archive_url
-  archive_url="$(ANDROID_PT_url_path "${version}")"
+  archive_url="$(ANDROID_PT_url_path)"
+  local version=
+  version=$(echo "$url" | sed -n 's/.*commandlinetools-\(linux\|mac\|win\)-\([0-9]\+\)_latest.zip.*/\2/p')
+  info "Downloading '${TOOL_NAME}' release ${version}..."
   info " - ${archive_url}"
+  info ""
+  info "Note: This is not version installed, but one used to install commadlinetools."
+  info "      commadlinetools can install itself and this is temporary version used to install it."
+  info ""
   local temp_archive_path="${temp_dir}/${TOOL_NAME}.zip"
   curl "${curl_opts[@]}" -o "${temp_archive_path}" -C - "${archive_url}" || error_exit "Could not download ${archive_url}"
   info
@@ -79,6 +85,7 @@ ANDROID_PT_install() {
   local unzip_opts=(-o "${temp_archive_path}" -d "${temp_dir}")
 #  ! is_debug && unzip_opts=(-q "${unzip_opts[@]}")
   unzip "${unzip_opts[@]}" || error_exit "Could not extract ${temp_archive_path}"
+  info "Extracted temporary files at ${temp_dir}."
 
   mkdir -p "${sdk_root}"
   yes | "${temp_dir}/cmdline-tools/bin/sdkmanager" --sdk_root="${sdk_root}" --licenses
@@ -115,7 +122,6 @@ main() {
   if ! ANDROID_PT_installed; then
     ANDROID_PT__GITHUB_API_TOKEN="${GITHUB_API_TOKEN:-}" \
       ANDROID_PT__SDK_ROOT="${ANDROID_SDK_ROOT}" \
-      ANDROID_PT__VERSION="11076708" \
       ANDROID_PT_install_xp
   fi
 }
