@@ -12,6 +12,8 @@ printf "reading: %s\t\t\t($0)\n" "asdf_setup" >> ~/.dotfiles_log
 . "${DOTFILES_BASE_PATH}/.lib/trap"         # add_on_exit
 . "${DOTFILES_BASE_PATH}/.lib/yes_or_no"    # yes_or_no
 
+#### ASDF ####
+
 ASDF_VER="0.14.0"
 ASDF_VER_TAG="v${ASDF_VER}"
 ASDF_REPO="https://github.com/asdf-vm/asdf.git"
@@ -53,104 +55,149 @@ asdf_is_version() {
   fi
 }
 
-declare -A plugins
-plugins["asdf-plugin-manager"]="https://github.com/asdf-community/asdf-plugin-manager.git"
-plugins["aws-vault"]="https://github.com/karancode/asdf-aws-vault.git"
-plugins["awscli"]="https://github.com/MetricMike/asdf-awscli.git"
-plugins["babashka"]="https://github.com/fredZen/asdf-babashka.git"
-plugins["bats"]="https://github.com/timgluz/asdf-bats.git"
-plugins["bazel"]="https://github.com/rajatvig/asdf-bazel.git"
-plugins["circleci-cli"]="https://github.com/ucpr/asdf-circleci-cli.git"
-plugins["clj-kondo"]="https://github.com/rynkowsg/asdf-clj-kondo.git"
-plugins["clojure"]="https://github.com/halcyon/asdf-clojure.git"
-plugins["garden-cli"]="https://github.com/rynkowsg/asdf-garden-cli.git"
-plugins["golang"]="https://github.com/asdf-community/asdf-golang.git"
-plugins["gradle"]="https://github.com/rfrancis/asdf-gradle.git"
-plugins["hugo"]="https://github.com/NeoHsu/asdf-hugo.git"
-plugins["java"]="https://github.com/halcyon/asdf-java.git"
-plugins["jet"]="https://github.com/rynkowsg/asdf-jet.git"
-#plugins["lein"]="https://github.com/miorimmax/asdf-lein.git"
-plugins["lein"]="https://github.com/rynkowsg/asdf-lein.git"
-plugins["ktlint"]="https://github.com/asdf-community/asdf-ktlint.git"
-plugins["nodejs"]="https://github.com/asdf-vm/asdf-nodejs.git"
-plugins["opentofu"]="https://github.com/rynkowsg/asdf-opentofu.git"
-plugins["python"]="https://github.com/asdf-community/asdf-python.git"
-plugins["shellcheck"]="https://github.com/luizm/asdf-shellcheck.git"
-plugins["shfmt"]="https://github.com/luizm/asdf-shfmt.git"
-plugins["terraform"]="https://github.com/asdf-community/asdf-hashicorp.git"
-plugins["terragrunt"]="https://github.com/ohmer/asdf-terragrunt.git"
-plugins["tflint"]="https://github.com/skyzyx/asdf-tflint.git"
-plugins["tfsec"]="https://github.com/woneill/asdf-tfsec.git"
-plugins["yq"]="https://github.com/sudermanjr/asdf-yq.git"
+#### ASDF-PLUGIN-MANAGER ####
 
-declare plugins_installed
+ASDF_PLUGIN_MANAGER_ROOT="${HOME}/.asdf/plugins/asdf-plugin-manager"
+ASDF_PLUGIN_MANAGER_REPO="https://github.com/asdf-community/asdf-plugin-manager.git"
+ASDF_PLUGIN_MANAGER_PLUGIN_VER="ecd1642"
+ASDF_PLUGIN_MANAGER_TOOL_VER="1.3.1"
+TOOL_NAME="asdf-plugin-manager"
 
-# $1 - plugin name
-is_plugin_installed() {
-  # init plugins_installed (at first run)
-  # (it can't be run earlier at the script loading, because asdf is not yet known)
-  if [[ -z $plugins_installed ]]; then
-    mapfile -t plugins_installed < <(asdf plugin list)
+git_clone_specific_ver() {
+  local repo_url="${REPO_URL:-}"
+  local ver="${VER:-}"
+  local dest="${DEST:-}"
+  [ -n "${repo_url}" ] || { echo "REPO_URL is required"; exit 1; }
+  [ -n "${ver}" ] || { echo "VER is required"; exit 1; }
+  [ -n "${dest}" ] || { echo "DEST is required"; exit 1; }
+  mkdir -p "${dest}"
+  git -C "${dest}" init
+  git -C "${dest}" remote add origin "${repo_url}"
+  git -C "${dest}" fetch origin
+  git -C "${dest}" reset --hard "${ver}"
+}
+
+asdf_plugin_manager_detect_coordinates() {
+  local repo_url plugin_ver
+  local plugins_file="$HOME/.plugin-versions"
+  local tools_file="$HOME/.tool-versions"
+  local tool_name="${TOOL_NAME}"
+  # DETECT PLUGIN COORDINATES
+
+  # Check if the .plugin-versions file exists
+  if [[ ! -f "${plugins_file}" ]]; then
+    # File doesn't exist, use environment variables
+    repo_url="${ASDF_PLUGIN_MANAGER_REPO}"
+    plugin_ver="${ASDF_PLUGIN_MANAGER_PLUGIN_VER}"
+    >&2 echo "Plugins file ${plugins_file} not found. Using default coordinates."
+  elif [[ ! -f "${plugins_file}" ]] && ! grep -q "${tool_name}" "${plugins_file}"; then
+    # File exists, but asdf-plugin-manager is not listed there, use environment variables
+    repo_url="${ASDF_PLUGIN_MANAGER_REPO}"
+    plugin_ver="${ASDF_PLUGIN_MANAGER_PLUGIN_VER}"
+    >&2 echo "Plugins file ${plugins_file} found, but ${tool_name} missing in it. Using default coordinates."
+  else
+    # File exists, and asdf-plugin-manager is there
+    while read -r name url ver; do
+      if [[ "${name}" == "${tool_name}" ]]; then
+          repo_url="${url}"
+          plugin_ver="${ver}"
+          break
+      fi
+    done < <(grep "${tool_name}" "${plugins_file}")
+    >&2 echo "Detected ${tool_name} coordinates in ${plugins_file}."
   fi
-  # check
-  if [[ "${plugins_installed[*]}" =~ $1 ]]; then
+
+  # Fall back to environment variables if not found
+  if [[ -z "${repo_url}" ]] || [[ -z "${plugin_ver}" ]]; then
+    >&2 echo "Error: for some reason coordinates missing:"
+    >&2 echo "  repl_url:   ${repo_url}"
+    >&2 echo "  plugin_ver: ${plugin_ver}"
+    repo_url="${ASDF_PLUGIN_MANAGER_REPO}"
+    plugin_ver="${ASDF_PLUGIN_MANAGER_PLUGIN_VER}"
+    >&2 echo "Using default coordinates."
+  fi
+
+  # DETECT TOOL VERSION
+
+  # Check if the .tool-versions file exists
+  if [[ ! -f "${tools_file}" ]]; then
+    # File doesn't exist, use environment variable
+    tool_ver="${ASDF_PLUGIN_MANAGER_TOOL_VER}"
+    >&2 echo "Tools file ${tools_file} not found. Using default version."
+  elif [[ ! -f "${tools_file}" ]] && ! grep -q "${tool_name}" "${tools_file}"; then
+    # File exists, but asdf-plugin-manager is not listed there, use environment variable
+    tool_ver="${ASDF_PLUGIN_MANAGER_TOOL_VER}"
+    >&2 echo "Tools file ${tools_file} found, but ${tool_name} missing in it. Using default version."
+  else
+    # File exists, and asdf-plugin-manager is there
+    while read -r name ver; do
+      if [[ "${name}" == "${tool_name}" ]]; then
+          tool_ver="${ver}"
+          break
+      fi
+    done < <(grep "${tool_name}" "${tools_file}")
+    >&2 echo "Detected ${tool_name}'s version in ${tools_file}"
+  fi
+
+  # Fall back to environment variables if not found
+  if [[ -z "${tool_ver}" ]]; then
+    >&2 echo "Error: for some reason tool version missing"
+    >&2 echo "  tool_ver:   ${tool_ver}"
+    tool_ver="${ASDF_PLUGIN_MANAGER_TOOL_VER}"
+    >&2 echo "Setting default version."
+  fi
+
+  # Return values as a comma-separated string
+  echo "${repo_url},${plugin_ver},${tool_ver}"
+}
+
+asdf_plugin_manager_is_plugin_installed() {
+  if [ -d "${ASDF_PLUGIN_MANAGER_ROOT}" ] &&  asdf plugin-list | grep -qw "${TOOL_NAME}"; then
     return 0; # true
   else
     return 1; # false
   fi
 }
 
-# $1 - plugin name
-# $2 - tool version
-is_tool_installed() {
-  local -r plugin_name="$1"
-  local -r tool_version="$2"
-
-  if asdf list "${plugin_name}" | grep -q "${tool_version}"; then
+asdf_plugin_manager_is_tool_installed() {
+  if command -v "${TOOL_NAME}" > /dev/null && "${TOOL_NAME}" version > /dev/null ; then
     return 0; # true
   else
     return 1; # false
   fi
 }
 
-asdf_install_plugins() {
-  local tmp_tools_versions
-  tmp_tools_versions=$(mktemp "/tmp/dotfiles-tmp-tool-versions.XXX")
-  add_on_exit rm -f "${tmp_tools_versions}"
-
-  # filter out all comments and empty lines
-  grep -v -E "^#|^$" "${HOME}/.tool-versions" > "${tmp_tools_versions}"
-
-  # read plugins
-  declare -A tools
-  while IFS= read -r line; do
-    read -r plugin version <<< "$line"
-    tools["$plugin"]="$version"
-  done < "${tmp_tools_versions}"
-
-  # install plugins
-  for plugin in "${!tools[@]}"; do
-    local plugin_url="${plugins[${plugin}]}"
-    if [ -z "${plugin_url}" ]; then
-      echo "Plugin URL is not defined for plugin '${plugin}'!"
-    fi
-#    echo "plugin_url[$plugin]: ${plugin_url}"
-    if ! is_plugin_installed "${plugin}"; then
-      asdf plugin-add "${plugin}" "${plugin_url}"
-      echo "Plugin '${plugin}' installed from url: ${plugin_url}."
-    fi
-  done
-
-  # install tools in requested version
-  for plugin in "${!tools[@]}"; do
-    local version="${tools[${plugin}]}"
-    if ! is_tool_installed "${plugin}" "${version}"; then
-      echo "Tool '${plugin}' in version '${version}' is not installed."
-      yes_or_no "Should install?" && \
-        asdf install "${plugin}" "${version}"
-    fi
-  done
+asdf_plugin_manager_install_plugin() {
+  IFS=',' read -r repo_url plugin_ver tool_ver <<< "$(asdf_plugin_manager_detect_coordinates)"
+  [ -n "${repo_url}" ] || { echo "repo_url is required"; exit 1; }
+  [ -n "${plugin_ver}" ] || { echo "plugin_ver is required"; exit 1; }
+  [ -n "${tool_ver}" ] || { echo "tool_ver is required"; exit 1; }
+  REPO_URL="${repo_url}" VER="${plugin_ver}" DEST="${ASDF_PLUGIN_MANAGER_ROOT}" git_clone_specific_ver
 }
+
+asdf_plugin_manager_install_tool() {
+  IFS=',' read -r repo_url plugin_ver tool_ver <<< "$(asdf_plugin_manager_detect_coordinates)"
+  [ -n "${repo_url}" ] || { echo "repo_url is required"; exit 1; }
+  [ -n "${plugin_ver}" ] || { echo "plugin_ver is required"; exit 1; }
+  [ -n "${tool_ver}" ] || { echo "tool_ver is required"; exit 1; }
+  asdf install "${TOOL_NAME}" "${tool_ver}"
+  asdf global "${TOOL_NAME}" "${tool_ver}"
+  # since this is the first tool installation, install plugins
+  asdf_plugin_manager_install_plugins
+}
+
+asdf_plugin_manager_install_plugins() {
+  if [ -f "${HOME}/.plugin-versions" ]; then
+    ! asdf_plugin_manager_is_plugin_installed && { echo "asdf-plugin-manager plugin missing. Can't install plugins." >&2; return 0; }
+    ! asdf_plugin_manager_is_tool_installed && { echo "asdf-plugin-manager tool missing. Can't install plugins." >&2; return 0; }
+    (
+     cd "${HOME}"
+     asdf-plugin-manager add-all
+    )
+  fi
+}
+
+#### MAIN ####
 
 main() {
   set -e
@@ -171,7 +218,13 @@ main() {
     yes_or_no "Do you want to install expected version?" && asdf_update || return
   fi
 
-  asdf_install_plugins;
+  if ! asdf_plugin_manager_is_plugin_installed; then
+    yes_or_no "asdf-plugin-manager plugin not installed. Should install?" && asdf_plugin_manager_install_plugin || return
+  fi
+
+  if ! asdf_plugin_manager_is_tool_installed; then
+    yes_or_no "asdf-plugin-manager tool not installed. Should install?" && asdf_plugin_manager_install_tool || return
+  fi
 }
 
 main "$@"
