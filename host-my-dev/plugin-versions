@@ -6,7 +6,6 @@ bats                 https://github.com/timgluz/asdf-bats.git               2995
 circleci-cli         https://github.com/ucpr/asdf-circleci-cli.git          fee038b
 clj-kondo            https://github.com/rynkowsg/asdf-clj-kondo.git         6c56b6a
 clojure              https://github.com/halcyon/asdf-clojure.git            01fbe94
-hashicorp            https://github.com/asdf-community/asdf-hashicorp.git   f1602b6
 java                 https://github.com/halcyon/asdf-java.git               c401062
 jet                  https://github.com/rynkowsg/asdf-jet.git               03377ee
 nodejs               https://github.com/asdf-vm/asdf-nodejs.git             c5b7c40
@@ -14,5 +13,6 @@ opentofu             https://github.com/rynkowsg/asdf-opentofu.git          e4c4
 python               https://github.com/asdf-community/asdf-python.git      5e277e2
 shellcheck           https://github.com/luizm/asdf-shellcheck.git           780d78d
 shfmt                https://github.com/luizm/asdf-shfmt.git                a42c5ff
+terraform            https://github.com/asdf-community/asdf-hashicorp.git   f1602b6
 terragrunt           https://github.com/ohmer/asdf-terragrunt.git           4a6651a
 yq                   https://github.com/sudermanjr/asdf-yq.git              772992f
