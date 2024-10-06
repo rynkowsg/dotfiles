@@ -21,6 +21,7 @@
 	plr = pull --rebase
 	rb = rebase
 	rbf = rebase --no-gpg-sign
+	rbfi = rebase --no-gpg-sign -i
 	rbv = rebase --verbose
 	st = status
 	fix-lfs = "!f() { cp /dev/null .gitattributes && git status && git checkout -- .gitattributes && git status; }; f"
@@ -33,6 +34,7 @@
 	lgg = log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%as)%Creset' --abbrev-commit
 	# lgg with autor
 	lgga = log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%as) %C(bold blue)<%an>%Creset' --abbrev-commit
+	lggaa = log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%as %cs) %C(bold blue)<%an>%Creset' --abbrev-commit
 	# lgg with relative date
 	lggr = log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%ar)%Creset' --abbrev-commit
 	# In the above lgg commands I use two date formats:
