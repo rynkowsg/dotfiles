@@ -27,6 +27,7 @@
 	fix-lfs = "!f() { cp /dev/null .gitattributes && git status && git checkout -- .gitattributes && git status; }; f"
 	pushf = push --force-with-lease
 	this = symbolic-ref --short HEAD
+	logref = log --walk-reflogs
 	# https://coderwall.com/p/euwpig/a-better-git-log
 	logs = log --show-signature
 	lo = log --oneline --abbrev-commit
