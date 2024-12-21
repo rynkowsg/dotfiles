@@ -113,3 +113,9 @@ set smartindent     " Enable smart-indent - Be smart when using tabs ;)
 """"""""""""""""""""""""""""""
 " Always show the status line
 set laststatus=1
+
+""""""""""""""""""""""""""""""
+" => Filetype custom settings
+""""""""""""""""""""""""""""""
+" Use tabs in ,gitconfig
+autocmd FileType gitconfig setlocal noexpandtab tabstop=2 shiftwidth=2
