@@ -14,7 +14,7 @@ printf "reading: %s\t\t\t($0)\n" "asdf_setup" >> ~/.dotfiles_log
 
 #### ASDF ####
 
-ASDF_VER="0.14.0"
+ASDF_VER="0.15.0"
 ASDF_VER_TAG="v${ASDF_VER}"
 ASDF_REPO="https://github.com/asdf-vm/asdf.git"
 
