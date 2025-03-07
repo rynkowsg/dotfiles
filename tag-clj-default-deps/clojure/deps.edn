@@ -185,13 +185,13 @@
      {:extra-deps {io.github.nubank/morse {:git/tag "v2023.10.06.02" :git/sha "88b5ff7"}
                    pl.rynkowski/morse-nrepl {:git/url "https://github.com/rynkowsg/morse-nrepl.git"
                                              :git/branch "master"
-                                             :git/sha "8ec1c2f14a23557f0664f892dfb78097d6ea61ae"}}}
+                                             :git/sha "acfc3293f2c3869ddfa7b39e414f5638923fabc7"}}}
 
      :morse-run
      {:extra-deps {io.github.nubank/morse {:git/tag "v2023.10.06.02" :git/sha "88b5ff7"}
                    pl.rynkowski/morse-nrepl {:git/url "https://github.com/rynkowsg/morse-nrepl.git"
                                              :git/branch "master"
-                                             :git/sha "8ec1c2f14a23557f0664f892dfb78097d6ea61ae"}}
+                                             :git/sha "acfc3293f2c3869ddfa7b39e414f5638923fabc7"}}
       :jvm-opts ["-Dpl.rynkowski.repl-runner.morse-autostart=true"]}
 
      :clerk
