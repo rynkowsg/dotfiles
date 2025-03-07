@@ -59,3 +59,10 @@ source_existing "$HOME/.rc/setup_python"
 source_existing "$HOME/.rc/setup_yarn"
 
 source_existing "$HOME/.rc/terraform_load"
+
+# KEY MAPPING
+
+# bind caps lock to escape
+# more: https://www.reddit.com/r/vim/comments/k5twce/comment/geh7e9o/
+#setxkbmap -option caps:escape_shifted_capslock
+setxkbmap -option caps:escape
