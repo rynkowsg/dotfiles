@@ -105,15 +105,17 @@ ANDROID_PT_install_xp() {
   fi
 }
 
+export ANDROID_SDK_ROOT="${HOME}/.android/sdk"
+export ANDROID_HOME="${ANDROID_SDK_ROOT}"
+
 ANDROID_export_env_vars() {
   # Android dev env setup
   # TODO: Fix paths to make sense for Linux
-  export ANDROID_SDK_ROOT="${HOME}/.android/sdk"
-  export ANDROID_HOME="${ANDROID_SDK_ROOT}"
-  export PATH="${ANDROID_SDK_ROOT}/cmdline-tools/latest/bin:${PATH}"
   export PATH="${ANDROID_SDK_ROOT}/platform-tools:${PATH}"
   export PATH="${ANDROID_SDK_ROOT}/tools:${PATH}"
+  export PATH="${ANDROID_SDK_ROOT}-cmdline-tools-latest/bin:${PATH}"
   export PATH="${ANDROID_SDK_ROOT}-build-tools-latest:${PATH}"
+  export PATH="${ANDROID_SDK_ROOT}-ndk-latest:${PATH}"
   # The one above requires a symlink, e.g.
   # `ln -s ${ANDROID_SDK_ROOT}/build-tools/34.0.0 ${ANDROID_SDK_ROOT}-build-tools-latest`
 
@@ -121,7 +123,16 @@ ANDROID_export_env_vars() {
   #export PATH="${ANDROID_NDK_ROOT}:${PATH}"
 }
 
+ANDROID_update_symlinks() {
+  # TODO: consider updating it only every few days, not on every shell start
+  bb "${DOTFILES_BASE_PATH}/.lib/clj/scripts/update_latest_symlink.clj" "${ANDROID_SDK_ROOT}/build-tools" "${ANDROID_SDK_ROOT}-build-tools-latest"
+  bb "${DOTFILES_BASE_PATH}/.lib/clj/scripts/update_latest_symlink.clj" "${ANDROID_SDK_ROOT}/cmake" "${ANDROID_SDK_ROOT}-cmake-latest"
+  bb "${DOTFILES_BASE_PATH}/.lib/clj/scripts/update_latest_symlink.clj" "${ANDROID_SDK_ROOT}/cmdline-tools" "${ANDROID_SDK_ROOT}-cmdline-tools-latest"
+  bb "${DOTFILES_BASE_PATH}/.lib/clj/scripts/update_latest_symlink.clj" "${ANDROID_SDK_ROOT}/ndk" "${ANDROID_SDK_ROOT}-ndk-latest"
+}
+
 main() {
+  ANDROID_update_symlinks
   ANDROID_export_env_vars
   if ! ANDROID_PT_installed; then
     ANDROID_PT__GITHUB_API_TOKEN="${GITHUB_API_TOKEN:-}" \
