@@ -11,7 +11,7 @@ aws-vault 7.2.0
 
 # https://github.com/aws/aws-cli/tags
 # https://github.com/aws/aws-cli/blob/v2/CHANGELOG.rst
-awscli 2.27.12
+awscli 2.27.14
 
 # https://github.com/babashka/babashka/releases
 babashka 1.12.200
@@ -20,7 +20,7 @@ babashka 1.12.200
 bats 1.11.1
 
 # https://github.com/bridgecrewio/checkov/releases
-checkov 3.2.411@3.12.10
+checkov 3.2.420@3.12.10
 
 # https://github.com/CircleCI-Public/circleci-cli/releases
 circleci-cli 0.1.31687
@@ -60,7 +60,7 @@ shellcheck 0.10.0
 shfmt 3.11.0
 
 # https://github.com/hashicorp/terraform/releases
-terraform 1.11.4
+terraform 1.12.0
 
 # https://github.com/gruntwork-io/terragrunt/releases
 terragrunt 0.55.1
@@ -71,4 +71,4 @@ terragrunt 0.55.1
 yamlfmt 0.16.0
 
 # https://github.com/mikefarah/yq/releases
-yq 4.45.3
+yq 4.45.4
