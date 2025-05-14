@@ -2,16 +2,17 @@
 
 # Usage
 #   
-#    ./install-android-studio.sh 2024.1.2.12
+#    ./install-android-studio.sh 2024.3.2.14
 #   
 
 mkdir ~/bin  
 cd ~/bin
 
-VERSION=${1:-"2024.3.1.13"}
+VERSION=${1:-"2024.3.2.14"}
 # Sample versions
 # - 2024.1.2.12
 # - 2024.2.1.9
+# - 2024.3.2.14
 
 if [ -d "android-studio-$VERSION" ]; then
   echo "already downloaded"
@@ -21,7 +22,6 @@ else
   mv android-studio android-studio-$VERSION
 fi
 
-rm -f android-studio
+rm -f android-studio ideas
 ln -s android-studio-$VERSION/bin/studio.sh android-studio
-rm as
-ln -s android-studio-$VERSION/bin/studio.sh as
+ln -s android-studio-$VERSION/bin/studio.sh ideas
