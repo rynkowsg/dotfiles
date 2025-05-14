@@ -116,6 +116,7 @@ ANDROID_export_env_vars() {
   export PATH="${ANDROID_SDK_ROOT}-cmdline-tools-latest/bin:${PATH}"
   export PATH="${ANDROID_SDK_ROOT}-build-tools-latest:${PATH}"
   export PATH="${ANDROID_SDK_ROOT}-ndk-latest:${PATH}"
+  export PATH="${ANDROID_SDK_ROOT}-ndk-latest/toolchains/llvm/prebuilt/linux-x86_64/bin:${PATH}"
   # The one above requires a symlink, e.g.
   # `ln -s ${ANDROID_SDK_ROOT}/build-tools/34.0.0 ${ANDROID_SDK_ROOT}-build-tools-latest`
 
