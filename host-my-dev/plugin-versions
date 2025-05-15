@@ -5,6 +5,7 @@ aws-vault            https://github.com/karancode/asdf-aws-vault.git            
 awscli               https://github.com/MetricMike/asdf-awscli.git              8489e24
 babashka             https://github.com/pitch-io/asdf-babashka.git              3c26394
 bats                 https://github.com/timgluz/asdf-bats.git                   299551f
+bun                  https://github.com/rynkowsg/asdf-bun.git                   019058c
 checkov              https://github.com/rynkowsg/asdf-pyapp.git                 b92eb9f
 circleci-cli         https://github.com/ucpr/asdf-circleci-cli.git              fee038b
 clj-kondo            https://github.com/rynkowsg/asdf-clj-kondo.git             6c56b6a
