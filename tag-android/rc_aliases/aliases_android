@@ -14,27 +14,31 @@ adb_apk_pull() {
 alias adb_top_activity="adb shell dumpsys window windows | grep -E 'mCurrentFocus|mFocusedApp'"
 
 adb_screencap() {
+  local adb_cmd="${ADB_CMD:-"adb"}"
   NAME="screencap-$(date "+%Y%m%d_%H%M%S").png"
-  adb $@ shell mkdir -p /sdcard/DCIM/Screenshots/
-  adb $@ shell mkdir -p "/sdcard/DCIM/Screenshots"
-  adb $@ shell screencap "/sdcard/DCIM/Screenshots/${NAME}"
-  adb $@ pull "/sdcard/DCIM/Screenshots/${NAME}" .
+  $adb_cmd $@ shell mkdir -p /sdcard/DCIM/Screenshots/
+  $adb_cmd $@ shell mkdir -p "/sdcard/DCIM/Screenshots"
+  $adb_cmd $@ shell screencap "/sdcard/DCIM/Screenshots/${NAME}"
+  $adb_cmd $@ pull "/sdcard/DCIM/Screenshots/${NAME}" .
 }
 
 adb_screenrecord() {
+  local adb_cmd="${ADB_CMD:-"adb"}"
   NAME="screenrecord-$(date "+%Y%m%d_%H%M%S").mp4"
-  adb shell mkdir -p /sdcard/DCIM/Screenshots/
+  $adb_cmd shell mkdir -p /sdcard/DCIM/Screenshots/
   echo "When finished call:\n    adb $@ pull /sdcard/DCIM/Screenshots/${NAME} .\n"
-  adb shell screenrecord --verbose --bit-rate 20000000 "/sdcard/DCIM/Screenshots/${NAME}"
+  $adb_cmd shell screenrecord --verbose --bit-rate 20000000 "/sdcard/DCIM/Screenshots/${NAME}"
 }
 
 adb_screenshare() {
-  scrcpy $@
+  local adb_cmd="${ADB_CMD:-"adb"}"
+  ADB="${adb_cmd}" scrcpy $@
 }
 
 adb_screenshare_all() {
+  local adb_cmd="${ADB_CMD:-"adb"}"unloc
   for SN in `adb devices | tail -n +2 | awk '{print $1}'`; do
-    scrcpy -s ${SN} &
+    ADB="${adb_cmd}" scrcpy -s ${SN} &
   done
 }
 
