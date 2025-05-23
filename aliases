@@ -171,3 +171,17 @@ cd-tmp-dir() {
   echo "Tmp dir: ${path}"
   cd "${path}"
 }
+
+gif_to_png() {
+  local filepath="$1"
+  if [[ ! -f "$filepath" ]]; then
+    echo "File not found: $filepath"
+    return 1
+  fi
+
+  local dir=$(dirname "$filepath")
+  local filename=$(basename -- "$filepath")
+  local name="${filename%.*}"
+
+  ffmpeg -i "$filepath" "${dir}/${name}_%03d.png"
+}
