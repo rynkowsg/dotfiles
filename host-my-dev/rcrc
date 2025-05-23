@@ -22,6 +22,7 @@ TAGS="
     clj
     clj-default-deps
     cognitect
+    docker
     dotenv
     fzf
     git
