@@ -1,6 +1,6 @@
 # plugin-name        git-url                                                git-ref (hash, tag, or branch)
 aider-install        https://github.com/rynkowsg/asdf-pyapp.git                 b92eb9f
-asdf-plugin-manager  https://github.com/asdf-community/asdf-plugin-manager.git  00ba8ab
+asdf-plugin-manager  https://github.com/asdf-community/asdf-plugin-manager.git  db4a5e6
 aws-vault            https://github.com/karancode/asdf-aws-vault.git            678cacf
 awscli               https://github.com/MetricMike/asdf-awscli.git              8489e24
 babashka             https://github.com/pitch-io/asdf-babashka.git              3c26394
@@ -11,12 +11,12 @@ circleci-cli         https://github.com/ucpr/asdf-circleci-cli.git              
 clj-kondo            https://github.com/rynkowsg/asdf-clj-kondo.git             6c56b6a
 clojure              https://github.com/halcyon/asdf-clojure.git                01fbe94
 cowsay               https://github.com/rynkowsg/asdf-pyapp.git                 b92eb9f
-java                 https://github.com/halcyon/asdf-java.git                   1649a5c
+java                 https://github.com/halcyon/asdf-java.git                   1a462e1
 jet                  https://github.com/rynkowsg/asdf-jet.git                   03377ee
 nodejs               https://github.com/asdf-vm/asdf-nodejs.git                 fd2c7f9
 opentofu             https://github.com/rynkowsg/asdf-opentofu.git              e4c4724
-python               https://github.com/asdf-community/asdf-python.git          a3a0185
-shellcheck           https://github.com/luizm/asdf-shellcheck.git               66200ff
+python               https://github.com/asdf-community/asdf-python.git          d4caa7d
+shellcheck           https://github.com/luizm/asdf-shellcheck.git               954cde0
 shfmt                https://github.com/luizm/asdf-shfmt.git                    a42c5ff
 terraform            https://github.com/asdf-community/asdf-hashicorp.git       22eb1c4
 terragrunt           https://github.com/ohmer/asdf-terragrunt.git               29f2935
