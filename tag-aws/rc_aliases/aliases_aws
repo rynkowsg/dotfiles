@@ -10,3 +10,8 @@ alias with-aws-vars="AWS_ACCESS_KEY_ID=\"\$AWS_ACCESS_KEY_ID\" AWS_SECRET_ACCESS
 alias awsw="with-aws-vars aws"
 
 alias aws-account-id="aws sts get-caller-identity --query \"Account\" --output text"
+
+alias aws-vault-ryn='AWS_VAULT_BACKEND=pass AWS_VAULT_PASS_PASSWORD_STORE_DIR=~/.password-store/rynkowski AWS_VAULT_PASS_PREFIX=app/aws-vault aws-vault'
+# Usage:
+#     aws-vault-ryn add sth
+#     aes-vault-ryn exec sth -- aws s3 ls s3://
