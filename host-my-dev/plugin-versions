@@ -11,7 +11,7 @@ circleci-cli         https://github.com/ucpr/asdf-circleci-cli.git              
 clj-kondo            https://github.com/rynkowsg/asdf-clj-kondo.git             6c56b6a
 clojure              https://github.com/halcyon/asdf-clojure.git                01fbe94
 cowsay               https://github.com/rynkowsg/asdf-pyapp.git                 b92eb9f
-java                 https://github.com/halcyon/asdf-java.git                   1a462e1
+java                 https://github.com/halcyon/asdf-java.git                   e18c5fc
 jet                  https://github.com/rynkowsg/asdf-jet.git                   03377ee
 nodejs               https://github.com/asdf-vm/asdf-nodejs.git                 fd2c7f9
 opentofu             https://github.com/rynkowsg/asdf-opentofu.git              e4c4724

@@ -11,25 +11,25 @@ aws-vault 7.2.0
 
 # https://github.com/aws/aws-cli/tags
 # https://github.com/aws/aws-cli/blob/v2/CHANGELOG.rst
-awscli 2.27.33
+awscli 2.27.35
 
 # https://github.com/babashka/babashka/releases
-babashka 1.12.200
+babashka 1.12.202
 
 # https://github.com/bats-core/bats-core/releases
 bats 1.11.1
 
 # https://github.com/bridgecrewio/checkov/releases
-checkov 3.2.420@3.12.10
+checkov 3.2.442@3.13.5
 
 # https://github.com/CircleCI-Public/circleci-cli/releases
-circleci-cli 0.1.31983
+circleci-cli 0.1.32367
 
 # https://github.com/clj-kondo/clj-kondo/releases
 clj-kondo 2025.04.07
 
 # https://github.com/clojure/brew-install/releases
-clojure 1.12.0.1530
+clojure 1.12.1.1550
 
 # https://pypi.org/project/cowsay/#history
 cowsay 6.1
@@ -51,7 +51,7 @@ opentofu 1.6.1
 
 # https://github.com/actions/python-versions/releases
 # https://python3.info/about/versions.html
-python 3.13.3
+python 3.13.5
 
 # https://github.com/koalaman/shellcheck/releases
 shellcheck 0.10.0
@@ -60,10 +60,10 @@ shellcheck 0.10.0
 shfmt 3.11.0
 
 # https://github.com/hashicorp/terraform/releases
-terraform 1.12.0
+terraform 1.12.2
 
 # https://github.com/gruntwork-io/terragrunt/releases
-terragrunt 0.55.1
+terragrunt 0.81.6
 # Terragrunt & Terraform/OpenTofu compatibility:
 # https://terragrunt.gruntwork.io/docs/getting-started/supported-versions/
 
