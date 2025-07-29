@@ -15,10 +15,13 @@ java                 https://github.com/halcyon/asdf-java.git                   
 jet                  https://github.com/rynkowsg/asdf-jet.git                   03377ee
 nodejs               https://github.com/asdf-vm/asdf-nodejs.git                 fd2c7f9
 opentofu             https://github.com/rynkowsg/asdf-opentofu.git              e4c4724
-python               https://github.com/asdf-community/asdf-python.git          d4caa7d
 shellcheck           https://github.com/luizm/asdf-shellcheck.git               954cde0
 shfmt                https://github.com/luizm/asdf-shfmt.git                    a42c5ff
 terraform            https://github.com/asdf-community/asdf-hashicorp.git       22eb1c4
 terragrunt           https://github.com/ohmer/asdf-terragrunt.git               29f2935
 yamlfmt              https://github.com/mise-plugins/asdf-yamlfmt.git           c5760c1
 yq                   https://github.com/sudermanjr/asdf-yq.git                  772992f
+
+# alternatives:
+#
+#checkov              https://github.com/bosmak/asdf-checkov.git                 08104c7
