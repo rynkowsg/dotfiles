@@ -44,7 +44,7 @@
 	# More in man git-log or at https://git-scm.com/docs/pretty-formats
 [core]
 	editor = vim
-	pager = less -XFR
+	pager = delta
 	fileMode = true
 [push]
 	default = current
@@ -72,6 +72,8 @@
 # That include contains settings for git-cola.
 # For some reason it doesn't work. Perhaps git-cola can'r resolve [include] blocks.
 # TODO: Sort out the problem of setting platform-specific gitconfig for git-cola.
+[interactive]
+	diffFilter = delta --color-only
 [gui]
 	editor = vim
 	diffcontext = 10
@@ -93,6 +95,15 @@
 	submoduleSummary = true
 [diff]
 	submodule = log
+	tool = xxdiff
+[merge]
+	conflictstyle = zdiff3
+	tool = xxdiff
 [init]
 	defaultBranch = main
 	templatedir = ~/.git/templates
+[delta]
+	line-numbers = true
+	side-by-side = false
+	navigate = true  # use n and N to move between diff sections
+	dark = true      # or light = true, or omit for auto-detection
