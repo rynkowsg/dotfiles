@@ -10,10 +10,10 @@ checkov              https://github.com/rynkowsg/asdf-pyapp.git                 
 circleci-cli         https://github.com/ucpr/asdf-circleci-cli.git              fee038b
 clj-kondo            https://github.com/rynkowsg/asdf-clj-kondo.git             6c56b6a
 clojure              https://github.com/halcyon/asdf-clojure.git                01fbe94
-cowsay               https://github.com/rynkowsg/asdf-pyapp.git                 b92eb9f
-java                 https://github.com/halcyon/asdf-java.git                   e18c5fc
+cowsay               https://github.com/rynkowsg/asdf-pyapp.git                 5c7281f
+java                 https://github.com/halcyon/asdf-java.git                   3eaf7bc
 jet                  https://github.com/rynkowsg/asdf-jet.git                   03377ee
-nodejs               https://github.com/asdf-vm/asdf-nodejs.git                 fd2c7f9
+nodejs               https://github.com/asdf-vm/asdf-nodejs.git                 90b8eca
 opentofu             https://github.com/rynkowsg/asdf-opentofu.git              e4c4724
 shellcheck           https://github.com/luizm/asdf-shellcheck.git               954cde0
 shfmt                https://github.com/luizm/asdf-shfmt.git                    a42c5ff

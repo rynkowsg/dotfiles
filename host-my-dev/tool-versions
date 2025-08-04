@@ -11,10 +11,10 @@ aws-vault 7.2.0
 
 # https://github.com/aws/aws-cli/tags
 # https://github.com/aws/aws-cli/blob/v2/CHANGELOG.rst
-awscli 2.27.61
+awscli 2.28.1
 
 # https://github.com/babashka/babashka/releases
-babashka 1.12.206
+babashka 1.12.207
 
 # https://github.com/bats-core/bats-core/releases
 bats 1.12.0
