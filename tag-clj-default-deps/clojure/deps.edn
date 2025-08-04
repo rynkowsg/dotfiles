@@ -253,6 +253,14 @@
      ;; clj -M:g/antq --upgrade
      :tool.antq
      {:replace-paths []
+      :replace-deps {com.github.liquidz/antq ^:antq/exclude {:mvn/version "2.10.1241"}
+                     org.slf4j/slf4j-nop {:mvn/version "2.0.17"}}
+      :main-opts ["-m" "antq.core"]}
+
+     ; latest has a problem with CircleCI local orbs. More:
+     ; https://github.com/liquidz/antq/issues/290
+     :tool.antq.latest
+     {:replace-paths []
       :replace-deps {com.github.liquidz/antq {:mvn/version "2.11.1276"}
                      org.slf4j/slf4j-nop {:mvn/version "2.0.17"}}
       :main-opts ["-m" "antq.core"]}
