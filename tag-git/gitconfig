@@ -32,6 +32,7 @@
 	logs = log --show-signature
 	lo = log --oneline --abbrev-commit
 	lg = log --oneline --decorate --graph
+	reflogg = reflog --color --pretty=format:'%Cred%h%Creset - %Cgreen(%cd)%Creset %s %Cgreen(%ad)%Creset' --date=iso
 	lgg = log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%as)%Creset' --abbrev-commit
 	# lgg with autor
 	lgga = log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%as) %C(bold blue)<%an>%Creset' --abbrev-commit
