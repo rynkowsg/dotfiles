@@ -26,10 +26,10 @@ checkov 3.2.457@3.12.11
 circleci-cli 0.1.33163
 
 # https://github.com/clj-kondo/clj-kondo/releases
-clj-kondo 2025.04.07
+clj-kondo 2025.07.28
 
 # https://github.com/clojure/brew-install/releases
-clojure 1.12.1.1550
+clojure 1.12.1.1561
 
 # https://pypi.org/project/cowsay/#history
 cowsay 6.1
@@ -60,10 +60,10 @@ shellcheck 0.10.0
 shfmt 3.12.0
 
 # https://github.com/hashicorp/terraform/releases
-terraform 1.12.2
+terraform 1.13.3
 
 # https://github.com/gruntwork-io/terragrunt/releases
-terragrunt 0.83.2
+terragrunt 0.89.4
 # Terragrunt & Terraform/OpenTofu compatibility:
 # https://terragrunt.gruntwork.io/docs/getting-started/supported-versions/
 
